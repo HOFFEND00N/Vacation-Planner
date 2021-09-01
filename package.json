@@ -1,0 +1,28 @@
+{
+  "name": "employees_holidays_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "npm run build && node build/app.js",
+    "build": "babel src --out-dir build --extensions \".ts\"",
+    "eslint": "eslint \"./{src,tests}/**/*.ts\"",
+    "eslint-fix": "eslint --fix \"./{src,tests}/**/*.ts\"",
+    "test": "jest --coverage"
+  },
+  "author": "ivan.petrov@confirmit.com",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "7.14.8",
+    "@babel/core": "7.15.0",
+    "@babel/preset-env": "7.15.0",
+    "@babel/preset-typescript": "7.15.0",
+    "@typescript-eslint/eslint-plugin": "4.30.0",
+    "@typescript-eslint/parser": "4.30.0",
+    "eslint": "7.32.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-import": "2.24.2",
+    "jest": "27.1.0",
+    "prettier": "2.3.2"
+  }
+}
