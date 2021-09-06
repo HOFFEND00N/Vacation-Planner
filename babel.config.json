@@ -1,4 +1,4 @@
 {
-  "presets": ["@babel/preset-typescript"],
-  "sourceMaps": true
+  "presets": ["@babel/preset-typescript", "@babel/preset-react"],
+  "sourceMaps": "both"
 }

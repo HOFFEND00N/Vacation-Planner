@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "target": "ES2020",
+    "moduleResolution": "Node",
+    "strictNullChecks": true,
+    "module": "ES2020",
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true
+  },
+}
