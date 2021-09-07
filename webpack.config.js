@@ -1,5 +1,6 @@
 import HTMLWebpackPlugin from "html-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
+import getStudioCSSModuleLoader from "./getStudioCSSModuleLoader.js";
 
 const webpackConfig = {
   entry: "./src/index.tsx",
@@ -21,11 +22,11 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: ["style-loader", getStudioCSSModuleLoader({ sourceMap: true })],
       },
       {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
