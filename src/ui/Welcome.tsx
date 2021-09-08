@@ -1,8 +1,5 @@
 import React from "react";
-import Button from "@confirmit/react-button";
 
 export function Welcome() {
-  return <Button appearance={Button.appearances.primaryNeutral}>
-    {Button.appearances.secondaryBanner}
-  </Button>;
+  return <h1>Welcome to employees holidays app!</h1>;
 }

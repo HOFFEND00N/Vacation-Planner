@@ -8,6 +8,7 @@ const webpackConfig = {
   devServer: {
     static: "./dist",
     open: true,
+    port: process.env.PORT || 3000
   },
   module: {
     rules: [

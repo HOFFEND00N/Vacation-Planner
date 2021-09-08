@@ -1,5 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Welcome } from "./ui/Welcome";
+import { Register } from "./ui/Register";
 
-ReactDOM.render(<Welcome />, document.getElementById("root"));
+ReactDOM.render(<Register />, document.getElementById("root"));
