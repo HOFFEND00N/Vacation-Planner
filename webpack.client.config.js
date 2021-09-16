@@ -2,14 +2,9 @@ import HTMLWebpackPlugin from "html-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
 import getStudioCSSModuleLoader from "./getStudioCSSModuleLoader.js";
 
-const webpackConfig = {
+const webpackClientConfig = {
   entry: "./src/index.tsx",
   devtool: "inline-source-map",
-  devServer: {
-    static: "./dist",
-    open: true,
-    port: process.env.PORT || 3000
-  },
   module: {
     rules: [
       {
@@ -43,4 +38,4 @@ const webpackConfig = {
   },
 };
 
-export default webpackConfig;
+export default webpackClientConfig;

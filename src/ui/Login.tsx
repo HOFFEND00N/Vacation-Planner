@@ -1,8 +1,6 @@
 import React from "react";
-import { Email } from "./Email";
-import { Password } from "./Password";
 
-export class Login extends React.Component<{}, { email: string; password: string }> {
+export class Login extends React.Component<Record<string, never>, { email: string; password: string }> {
   constructor(props) {
     super(props);
     this.state = { email: "", password: "" };
@@ -12,16 +10,16 @@ export class Login extends React.Component<{}, { email: string; password: string
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleEmailChange(email) {
-    this.setState({ email: email });
+  handleEmailChange(e) {
+    this.setState({ email: e.target.value });
   }
 
-  handlePasswordChange(password) {
-    this.setState({ password: password });
+  handlePasswordChange(e) {
+    this.setState({ password: e.target.value });
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleSubmit(e) {
+    e.preventDefault();
     //TODO: send request to a server for user authentication
     alert("Credentials: " + this.state.email + this.state.password);
   }
@@ -29,8 +27,14 @@ export class Login extends React.Component<{}, { email: string; password: string
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <Email email={this.state.email} onEmailChange={this.handleEmailChange} />
-        <Password password={this.state.password} onPasswordChange={this.handlePasswordChange} />
+        <label>
+          login:
+          <input type="text" value={this.state.email} onChange={this.handleEmailChange} />
+        </label>
+        <label>
+          password:
+          <input type="password" value={this.state.password} onChange={this.handlePasswordChange} />
+        </label>
         <input type="submit" value="Submit" />
       </form>
     );
