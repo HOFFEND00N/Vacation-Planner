@@ -15,7 +15,7 @@ const HTML_FILE = path.join(dirName, "index.html");
 
 server.use(express.static("dist"));
 
-server.get("/", (req, res) => {
+server.get("*", (req, res) => {
   res.sendFile(HTML_FILE, (err) => {
     if (err) console.log(err);
   });

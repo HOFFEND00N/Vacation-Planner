@@ -1,42 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
+//TODO: send request to a server for user authentication
 
-export class Login extends React.Component<Record<string, never>, { email: string; password: string }> {
-  constructor(props) {
-    super(props);
-    this.state = { email: "", password: "" };
+export function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+  const handleEmail = (e) => {
+    setEmail(e.target.value)
   }
 
-  handleEmailChange(e) {
-    this.setState({ email: e.target.value });
+  const handlePassword = (e) => {
+    setPassword(e.target.value)
   }
 
-  handlePasswordChange(e) {
-    this.setState({ password: e.target.value });
-  }
-
-  handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    //TODO: send request to a server for user authentication
-    alert("Credentials: " + this.state.email + this.state.password);
-  }
+    alert("Credentials: " + email + password);
+  };
 
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          login:
-          <input type="text" value={this.state.email} onChange={this.handleEmailChange} />
-        </label>
-        <label>
-          password:
-          <input type="password" value={this.state.password} onChange={this.handlePasswordChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-    );
-  }
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        login:
+        <input type="text" value={email} onChange={handleEmail} />
+      </label>
+      <label>
+        password:
+        <input type="password" value={password} onChange={handlePassword} />
+      </label>
+      <input type="submit" value="Submit" />
+    </form>
+  );
 }
