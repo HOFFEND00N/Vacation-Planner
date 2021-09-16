@@ -9,8 +9,8 @@
     "build": "npm run build:client && npm run build:server",
     "start": "npm run build && node dist/server.js",
     "startWithoiutBuild": "node dist/server.js",
-    "eslint": "eslint \"./{src,tests}/**/*.ts\"",
-    "eslint-fix": "eslint --fix \"./{src,tests}/**/*.ts\"",
+    "eslint": "eslint \"./{src,tests}/**/*.{ts,tsx}\"",
+    "eslint-fix": "eslint --fix \"./{src,tests}/**/*.{ts,tsx}\"",
     "test": "jest --coverage"
   },
   "author": "ivan.petrov@confirmit.com",
