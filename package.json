@@ -11,7 +11,7 @@
     "startWithoiutBuild": "node dist/server.js",
     "eslint": "eslint \"./{src,tests}/**/*.{ts,tsx}\"",
     "eslint-fix": "eslint --fix \"./{src,tests}/**/*.{ts,tsx}\"",
-    "test": "jest --coverage",
+    "test": "jest --coverage --passWithNoTests",
     "prepare": "husky install",
     "pre-commit": "lint-staged",
     "typeCheck": "tsc --noEmit"
