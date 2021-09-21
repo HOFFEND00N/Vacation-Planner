@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "devClient": "webpack serve --config webpack.dev.config.js",
     "build:server": "babel src/client/application --ignore \\\"**/tests/**\\\" --out-dir dist --extensions \\\".ts\\\"",
     "build:client": "webpack --config webpack.client.config.js",
     "build:all": "npm run build:client && npm run build:server",
