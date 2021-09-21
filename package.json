@@ -4,11 +4,11 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "build:server": "babel src/application --ignore \"**/tests/**\" --out-dir dist --extensions \".ts\"",
+    "build:server": "babel src/client/application --ignore \\\"**/tests/**\\\" --out-dir dist --extensions \\\".ts\\\"",
     "build:client": "webpack --config webpack.client.config.js",
     "build:all": "npm run build:client && npm run build:server",
     "start": "npm run build:all && node dist/server.js",
-    "startWithoiutBuild": "node dist/server.js",
+    "startWithoutBuild": "node dist/server.js",
     "eslint": "eslint \"./{src,tests}/**/*.{ts,tsx}\"",
     "eslint-fix": "eslint --fix \"./{src,tests}/**/*.{ts,tsx}\"",
     "test": "jest --coverage --passWithNoTests",
@@ -57,15 +57,16 @@
   },
   "dependencies": {
     "@babel/runtime": "7.15.4",
+    "@confirmit/js-build-tools": "2.0.0",
     "@confirmit/react-button": "6.4.9",
+    "@confirmit/react-calendar": "8.1.6",
     "@confirmit/react-contexts": "0.x",
     "@confirmit/react-themes": "5.x",
     "classnames": "2.x",
     "express": "4.17.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-router-dom": "5.2.1",
-    "@confirmit/js-build-tools": "2.0.0"
+    "react-router-dom": "5.2.1"
   },
   "lint-staged": {
     "*.{ts,tsx}": [

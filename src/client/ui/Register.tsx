@@ -6,16 +6,16 @@ export function Register() {
   const [confirmedPassword, setConfirmedPassword] = useState("");
 
   const handleEmail = (e) => {
-    setEmail(e.target.value)
-  }
+    setEmail(e.target.value);
+  };
 
   const handlePassword = (e) => {
-    setPassword(e.target.value)
-  }
+    setPassword(e.target.value);
+  };
 
   const handleConfirmedPassword = (e) => {
-    setConfirmedPassword(e.target.value)
-  }
+    setConfirmedPassword(e.target.value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
