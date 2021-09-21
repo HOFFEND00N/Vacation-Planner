@@ -4,15 +4,13 @@ import { Register } from "./Register";
 import { Login } from "./Login";
 import { EmailConfirmed } from "./EmailConfirmed";
 import { Welcome } from "./Welcome";
+import { Main } from "./Main";
 
 export function App() {
   return (
     <BrowserRouter>
       <div>
         <ul>
-          <li>
-            <Link to="/">Login </Link>
-          </li>
           <li>
             <Link to="/register">Register</Link>
           </li>
@@ -24,6 +22,9 @@ export function App() {
           </li>
           <li>
             <Link to="/emailConfirmed">EmailConfirmed </Link>
+          </li>
+          <li>
+            <Link to="/main">Main </Link>
           </li>
         </ul>
         <hr />
@@ -43,6 +44,9 @@ export function App() {
           </Route>
           <Route exact path="/welcome">
             <Welcome />
+          </Route>
+          <Route exact path="/main">
+            <Main />
           </Route>
         </Switch>
       </div>
