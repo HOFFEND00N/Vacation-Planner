@@ -5,14 +5,28 @@ import moment from "moment";
 import Dropzone, { UploadStates } from "@confirmit/react-dropzone";
 
 export function PlanVacation() {
+  const today = moment();
+
   const [uploadState, setUploadState] = useState(UploadStates.Idle);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [files, setFiles] = useState<File[]>([]);
   const [selectedFileName, setSelectedFileName] = useState("");
+  const [vacationStart, setVacationStart] = useState(today);
+  const [vacationEnd, setVacationEnd] = useState(today);
 
   const handleSubmit = () => {
+    if (files.length === 0) {
+      alert("please upload document with vacation request");
+    }
     setUploadState(UploadStates.Uploading);
-    alert("submitted data");
+    alert(`file = ${files[0].name}, vacation start = ${vacationStart}, vacation end = ${vacationEnd}`);
+  };
+
+  const handleDateStartChange = (startDate) => {
+    setVacationStart(startDate);
+  };
+
+  const handleDateEndChange = (endDate) => {
+    setVacationEnd(endDate);
   };
 
   return (
@@ -31,8 +45,8 @@ export function PlanVacation() {
         }}
       />
       <div style={{ width: "300px" }}>
-        <DatePicker defaultDate={moment()} />
-        <DatePicker defaultDate={moment()} />
+        <DatePicker defaultDate={today} onChange={handleDateStartChange} />
+        <DatePicker defaultDate={today} onChange={handleDateEndChange} />
       </div>
       <Button onClick={handleSubmit}> Отправить </Button>
     </>
