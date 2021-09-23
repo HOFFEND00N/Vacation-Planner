@@ -29,7 +29,6 @@ export function PlanVacation() {
           setFiles([]);
           setSelectedFileName("");
         }}
-        accept={[".doc", ".docx", "image/*", "pdf"]}
       />
       <div style={{ width: "300px" }}>
         <DatePicker defaultDate={moment()} />
