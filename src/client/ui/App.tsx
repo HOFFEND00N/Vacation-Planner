@@ -7,11 +7,11 @@ export function App() {
   return (
     <BrowserRouter>
       <div>
-        <ul>
+        <ul style={{ listStyle: "none", display: "flex", justifyContent: "flex-start" }}>
           <li>
-            <Link to="/planVacation">Plan Vacation </Link>
+            <Link to="/plan-vacation">Plan Vacation </Link>
           </li>
-          <li>
+          <li style={{ paddingLeft: 10 }}>
             <Link to="/home">Home </Link>
           </li>
         </ul>
@@ -21,7 +21,7 @@ export function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route exact path="/planVacation">
+          <Route exact path="/plan-vacation">
             <PlanVacation />
           </Route>
           <Route exact path="/home">
