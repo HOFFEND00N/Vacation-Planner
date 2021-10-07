@@ -1,9 +1,10 @@
 // import path from "path";
 import express from "express";
 import cors from "cors";
+import config from "../../.env.development.json";
 
 const server = express();
-const port = 3000;
+const port = config.serverPort;
 
 server.listen(port, () => {
   console.log(`The app server is running on port: ${port}`);

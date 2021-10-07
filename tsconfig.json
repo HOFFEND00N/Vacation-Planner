@@ -7,6 +7,7 @@
     "module": "ES2020",
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true
   }
 }
