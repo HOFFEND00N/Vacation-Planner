@@ -1,14 +1,8 @@
-// import fs from "fs";
 import HTMLWebpackPlugin from "html-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
 import webpack from "webpack";
 import getStudioCSSModuleLoader from "./getStudioCSSModuleLoader.js";
 import config from "./.env.development.json"
-// Ways to fix:
-// 1) use require instead of import
-// 2) compile webpack config with babel to common js modules
-// 3) add package json for a webpack config, and specify there type: "module"
-// const config = JSON.parse(fs.readFileSync(`${__dirname}/.env.development.json`).toString());
 
 const envKeys = Object.keys(config).reduce((prev, next) => {
   prev[`${next}`] = `"${config[next]}"`;

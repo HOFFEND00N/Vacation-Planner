@@ -1,10 +1,8 @@
-// import fs from "fs";
 import HTMLWebpackPlugin from "html-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
 import webpack from "webpack";
 import getStudioCSSModuleLoader from "./getStudioCSSModuleLoader.js";
 import config from "./.env.development.json"
-// const config = JSON.parse(fs.readFileSync(`${__dirname}/.env.development.json`, { encoding: "utf8" }));
 
 const envKeys = Object.keys(config).reduce((prev, next) => {
   prev[`${next}`] = `"${config[next]}"`;
