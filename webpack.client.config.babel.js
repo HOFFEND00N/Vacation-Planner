@@ -5,7 +5,7 @@ import getStudioCSSModuleLoader from "./getStudioCSSModuleLoader.js";
 import config from "./.env.development.json"
 
 const envKeys = Object.keys(config).reduce((prev, next) => {
-  prev[`${next}`] = `"${config[next]}"`;
+  prev[`${next}`] = JSON.stringify(config[next]);
   return prev;
 }, {});
 
