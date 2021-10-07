@@ -1,4 +1,3 @@
-// import path from "path";
 import express from "express";
 import cors from "cors";
 import config from "../../.env.development.json";
@@ -10,9 +9,6 @@ server.listen(port, () => {
   console.log(`The app server is running on port: ${port}`);
 });
 
-// const HTML_FILE = path.resolve("./public/index.html");
-
-// server.use(express.static("dist"));
 if (process.env.mode == "development") {
   server.use(cors());
 }
