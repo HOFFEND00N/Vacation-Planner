@@ -17,9 +17,9 @@ export function PlanVacation() {
     if (files.length === 0) {
       alert("please upload document with vacation request");
     }
-    //TODO: component dont need to know about \plan-vacation
+    //TODO: component dont need to know about \plan-vacation => extract to a function into application folder
     setUploadState(UploadStates.Uploading);
-    const res = await fetch(`${protocol}${domain}${serverPort || 3000}/plan-vacation`, { method: "post" });
+    const res = await fetch(`${protocol}${domain}${serverPort}/plan-vacation`, { method: "post" });
     //TODO: put vs patch
     //TODO: FTP server, web server, time server
     //TODO: react context (problem with passing props)

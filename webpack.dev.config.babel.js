@@ -5,7 +5,9 @@ import getStudioCSSModuleLoader from "./getStudioCSSModuleLoader.js";
 import config from "./.env.development.json"
 
 const envKeys = Object.keys(config).reduce((prev, next) => {
-  prev[`${next}`] = `"${config[next]}"`;
+  // Used JSON.stringify to add quotes to string, because plugin does a direct text replacement,
+  // the value given to it must include actual quotes inside of the string itself
+  prev[`${next}`] = JSON.stringify(config[next]);
   return prev;
 }, {});
 
