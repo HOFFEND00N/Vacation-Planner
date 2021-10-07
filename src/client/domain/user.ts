@@ -1,4 +1,4 @@
-import { UniqueId } from "../../types";
+import { UniqueId } from "../../types/types";
 
 type Email = string;
 type Password = string;
