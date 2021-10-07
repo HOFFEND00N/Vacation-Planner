@@ -8,7 +8,7 @@ export function Home() {
     <UncontrollableCalendar
       renderDayContent={({ day }) => (
         <Popover content={"No planned vacations"}>
-          <div className={styles.calendarDay}>{day.date()}</div>
+          <div className={styles["calendar-day"]}>{day.date()}</div>
         </Popover>
       )}
     />
