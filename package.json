@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "devClient": "cross-env environment=development webpack serve --config webpack.dev.config.babel.js",
-    "devServer": "babel-watch src/server/server.ts --extensions .ts --config-file ./babel.config.json",
+    "devClient": "webpack serve --config webpack.dev.config.babel.js",
+    "devServer": "cross-env mode=development babel-watch src/server/server.ts --extensions .ts --config-file ./babel.config.json --inspect",
     "start:Dev": "npm-run-all --parallel devClient devServer",
     "build:client": "webpack --config webpack.client.config.babel.js",
     "build:server": "babel src/server --ignore \"**/tests/**\" --out-dir dist --extensions \".ts\"",

@@ -3,7 +3,7 @@ import express from "express";
 import cors from "cors";
 
 const server = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 server.listen(port, () => {
   console.log(`The app server is running on port: ${port}`);
@@ -12,7 +12,9 @@ server.listen(port, () => {
 // const HTML_FILE = path.resolve("./public/index.html");
 
 // server.use(express.static("dist"));
-server.use(cors());
+if (process.env.mode == "development") {
+  server.use(cors());
+}
 
 server.post("/plan-vacation", (req, res) => {
   res.set("Content-Type", "application/json");
