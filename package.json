@@ -4,12 +4,13 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "devClient": "webpack serve --config webpack.dev.config.js",
-    "build:server": "babel src/client/application --ignore \\\"**/tests/**\\\" --out-dir dist --extensions \\\".ts\\\"",
-    "build:client": "webpack --config webpack.client.config.js",
-    "build:all": "npm run build:client && npm run build:server",
+    "devClient": "cross-env environment=development webpack serve --config webpack.dev.config.babel.js",
+    "devServer": "babel-watch src/server/server.ts --extensions .ts --config-file ./babel.config.json",
+    "start:Dev": "npm-run-all --parallel devClient devServer",
+    "build:client": "webpack --config webpack.client.config.babel.js",
+    "build:server": "babel src/server --ignore \"**/tests/**\" --out-dir dist --extensions \".ts\"",
+    "build:all": "cross-env environment=development npm run build:client && npm run build:server",
     "start": "npm run build:all && node dist/server.js",
-    "startWithoutBuild": "node dist/server.js",
     "eslint": "eslint \"./{src,tests}/**/*.{ts,tsx}\"",
     "eslint-fix": "eslint --fix \"./{src,tests}/**/*.{ts,tsx}\"",
     "test": "jest --coverage --passWithNoTests",
@@ -26,6 +27,7 @@
     "@babel/preset-env": "7.15.0",
     "@babel/preset-react": "7.14.5",
     "@babel/preset-typescript": "7.15.0",
+    "@babel/register": "7.15.3",
     "@confirmit/js-build-tools": "2.0.0",
     "@confirmit/react-button": "6.4.9",
     "@confirmit/react-calendar": "8.1.6",
@@ -42,6 +44,8 @@
     "@typescript-eslint/eslint-plugin": "4.30.0",
     "@typescript-eslint/parser": "4.30.0",
     "babel-loader": "8.2.2",
+    "babel-watch": "7.5.0",
+    "cross-env": "7.0.3",
     "css-loader": "6.2.0",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
@@ -52,6 +56,7 @@
     "husky": "7.0.2",
     "jest": "27.1.0",
     "lint-staged": "11.1.2",
+    "npm-run-all": "4.1.5",
     "path-browserify": "1.0.1",
     "prettier": "2.3.2",
     "sass-loader": "12.1.0",
@@ -67,6 +72,9 @@
   "dependencies": {
     "@babel/runtime": "7.15.4",
     "classnames": "2.x",
+    "core-js": "3.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "10.0.0",
     "express": "4.17.1",
     "moment": "2.29.1",
     "react": "17.0.2",
@@ -80,6 +88,5 @@
       "prettier --write",
       "git add"
     ]
-  },
-  "type": "module"
+  }
 }

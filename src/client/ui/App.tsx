@@ -5,6 +5,7 @@ import { Home } from "./Home";
 
 export function App() {
   return (
+    //TODO: extract menu to different component
     <BrowserRouter>
       <div>
         <ul style={{ listStyle: "none", display: "flex", justifyContent: "flex-start" }}>

@@ -13,11 +13,17 @@ export function PlanVacation() {
   const [vacationStart, setVacationStart] = useState(today);
   const [vacationEnd, setVacationEnd] = useState(today);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (files.length === 0) {
       alert("please upload document with vacation request");
     }
+    //TODO: component dont need to know about \plan-vacation
     setUploadState(UploadStates.Uploading);
+    const res = await fetch(`${protocol}${domain}${serverPort || 3000}/plan-vacation`, { method: "post" });
+    //TODO: put vs patch
+    //TODO: FTP server, web server, time server
+    //TODO: react context (problem with passing props)
+    console.log(res.json());
     alert(`file = ${files[0].name}, vacation start = ${vacationStart}, vacation end = ${vacationEnd}`);
   };
 
@@ -35,6 +41,7 @@ export function PlanVacation() {
       <Dropzone
         uploadState={uploadState}
         selectedLabel={selectedFileName}
+        //TODO: extract to a function
         onFileSelected={(selectedFiles) => {
           setFiles(selectedFiles);
           setSelectedFileName(selectedFiles[0].name);

@@ -1,22 +1,34 @@
-import path from "path";
-import { fileURLToPath } from "url";
+// import path from "path";
 import express from "express";
+import cors from "cors";
 
 const server = express();
 const port = process.env.PORT || 3000;
-const fileName = fileURLToPath(import.meta.url);
-const dirName = path.dirname(fileName);
 
 server.listen(port, () => {
   console.log(`The app server is running on port: ${port}`);
 });
 
-const HTML_FILE = path.join(dirName, "index.html");
+// const HTML_FILE = path.resolve("./public/index.html");
 
-server.use(express.static("dist"));
+// server.use(express.static("dist"));
+server.use(cors());
+
+server.post("/plan-vacation", (req, res) => {
+  res.set("Content-Type", "application/json");
+  res.send({ message: "saved to db" });
+});
 
 server.get("*", (req, res) => {
-  res.sendFile(HTML_FILE, (err) => {
-    if (err) console.log(err);
-  });
+  res.send(`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>My React App</title>
+  <script defer src="http://localhost:3001/main.js"></script></head>
+<body>
+<div id="root"></div>
+</body>
+</html>
+`);
 });
+//TODO: study rest API
