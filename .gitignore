@@ -4,4 +4,4 @@ package-lock.json
 dist
 coverage
 .env.json
-.env.development.json
+developmentConfig.json

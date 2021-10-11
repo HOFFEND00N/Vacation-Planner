@@ -1,6 +1,7 @@
-import config from "../../.env.development.json";
+import fs from "fs";
 
 export function makeIndexHtml() {
+  const config = JSON.parse(fs.readFileSync("developmentConfig.json", "utf-8"));
   return `<!DOCTYPE html>
 <html lang="en">
 <head>

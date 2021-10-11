@@ -2,7 +2,7 @@ import HTMLWebpackPlugin from "html-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
 import webpack from "webpack";
 import getStudioCSSModuleLoader from "./getStudioCSSModuleLoader.js";
-import config from "./.env.development.json"
+import config from "./developmentConfig.json"
 
 const envKeys = Object.keys(config).reduce((prev, next) => {
   // Used JSON.stringify to add quotes to string, because plugin does a direct text replacement,

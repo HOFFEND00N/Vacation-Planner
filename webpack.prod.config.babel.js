@@ -2,14 +2,14 @@ import HTMLWebpackPlugin from "html-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
 import webpack from "webpack";
 import getStudioCSSModuleLoader from "./getStudioCSSModuleLoader.js";
-import config from "./.env.development.json"
+import config from "./developmentConfig.json"
 
 const envKeys = Object.keys(config).reduce((prev, next) => {
   prev[`${next}`] = JSON.stringify(config[next]);
   return prev;
 }, {});
 
-const webpackClientConfigBabel = {
+const webpackProdConfigBabel = {
   entry: "./src/index.tsx",
   devtool: "inline-source-map",
   module: {
@@ -46,4 +46,4 @@ const webpackClientConfigBabel = {
   },
 };
 
-export default webpackClientConfigBabel;
+export default webpackProdConfigBabel;
