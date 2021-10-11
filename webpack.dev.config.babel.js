@@ -13,7 +13,7 @@ const envKeys = Object.keys(config).reduce((prev, next) => {
 
 const webpackClientConfig = () => {
   return {
-    entry: "./src/index.tsx",
+    entry: "./src/client/ui/index.tsx",
     devtool: "inline-source-map",
     devServer: {
       port: config.clientPort || 3001,

@@ -1,11 +1,14 @@
 import path from "path";
-import * as fs from "fs";
 import express from "express";
+import nconf from "nconf";
+import { Config } from "../types/constants";
 import { makeIndexHtml } from "./makeIndexHtml";
-//extract + rename
-const config = JSON.parse(fs.readFileSync("developmentConfig.json", "utf-8"));
+import { setupConfig } from "./setupConfig";
+
+setupConfig();
+
 const server = express();
-const port = config.serverPort;
+const port = nconf.get(Config.serverPort);
 
 server.listen(port, () => {
   console.log(`The app server is running on port: ${port}`);
@@ -18,7 +21,7 @@ server.post("/plan-vacation", (req, res) => {
 
 server.get("/main.js", (req, res) => {
   if (process.env.mode === "production") {
-    res.sendFile(path.resolve(__dirname, ".././dist/main.js"));
+    res.sendFile(path.resolve(__dirname, "../main.js"));
   }
 });
 
@@ -26,7 +29,7 @@ server.get("*", (req, res) => {
   if (process.env.mode === "development") {
     res.send(makeIndexHtml());
   } else {
-    res.sendFile(path.resolve(__dirname, ".././dist/index.html"));
+    res.sendFile(path.resolve(__dirname, "../index.html"));
   }
 });
 //TODO: study rest API
