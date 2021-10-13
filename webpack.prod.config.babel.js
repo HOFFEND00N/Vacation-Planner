@@ -10,7 +10,7 @@ const envKeys = Object.keys(config).reduce((prev, next) => {
 }, {});
 
 const webpackProdConfigBabel = {
-  entry: "./src/index.tsx",
+  entry: "./src/client/ui/index.tsx",
   devtool: "inline-source-map",
   module: {
     rules: [
