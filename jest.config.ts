@@ -9,5 +9,5 @@ const config = {
       statements: 100,
     },
   },
-}
+};
 export default config;
