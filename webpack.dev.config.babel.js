@@ -17,10 +17,12 @@ const webpackClientConfig = () => {
     devtool: "inline-source-map",
     devServer: {
       port: config.clientPort || 3001,
-      static: "./dist",
       historyApiFallback: true,
       allowedHosts: "all",
       hot: true,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
     },
     module: {
       rules: [
