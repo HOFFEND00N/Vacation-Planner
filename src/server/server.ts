@@ -2,12 +2,21 @@ import path from "path";
 import express from "express";
 import nconf from "nconf";
 import { Sequelize, DataTypes } from "sequelize";
+import { sso } from "node-expose-sspi";
 import { Config } from "../types/constants";
 import { makeIndexHtml } from "./makeIndexHtml";
 import { setupConfig } from "./setupConfig";
 setupConfig();
 
 const server = express();
+server.use(sso.auth());
+
+server.use((req, res) => {
+  res.json({
+    sso: req.sso,
+  });
+});
+
 const port = nconf.get(Config.serverPort);
 const sequelize = new Sequelize("postgresql://postgres:Petrov!23@localhost:5432/vacationPlanner");
 sequelize

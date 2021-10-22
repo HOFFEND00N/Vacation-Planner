@@ -80,6 +80,7 @@
     "express": "4.17.1",
     "moment": "2.29.1",
     "nconf": "0.11.3",
+    "node-expose-sspi": "^0.1.59",
     "pg": "8.7.1",
     "pg-hstore": "2.3.4",
     "react": "17.0.2",
