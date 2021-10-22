@@ -16,6 +16,7 @@
     "test": "jest --coverage --passWithNoTests",
     "prepare": "husky install",
     "pre-commit": "lint-staged",
+    "pre-push": "npm run typeCheck && npm run test",
     "typeCheck": "tsc --noEmit"
   },
   "author": "ivan.petrov@confirmit.com",
