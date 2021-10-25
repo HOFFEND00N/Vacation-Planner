@@ -6,10 +6,10 @@ import config from "./developmentConfig.json";
 
 // Used JSON.stringify to add quotes to string, because plugin does a direct text replacement,
 // the value given to it must include actual quotes inside of the string itself.
-const variablesToReplace = {
-  protocol: JSON.stringify(config.protocol),
-  domain: JSON.stringify(config.domain),
-  serverPort: JSON.stringify(config.serverPort)
+const variablesToReplace= {
+  SITE_PROTOCOL: JSON.stringify(config.SITE_PROTOCOL),
+  SITE_DOMAIN: JSON.stringify(config.SITE_DOMAIN),
+  SITE_SERVER_PORT: JSON.stringify(config.SITE_SERVER_PORT)
 };
 
 const webpackClientConfig = () => {
@@ -17,7 +17,7 @@ const webpackClientConfig = () => {
     entry: "./src/client/ui/index.tsx",
     devtool: "inline-source-map",
     devServer: {
-      port: config.clientPort || 3001,
+      port: config.SITE_CLIENT_PORT || 3001,
       allowedHosts: "all",
       hot: true,
       headers: {

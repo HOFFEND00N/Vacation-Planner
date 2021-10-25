@@ -6,6 +6,7 @@ import { sso } from "node-expose-sspi";
 import { Config } from "../types/constants";
 import { makeIndexHtml } from "./makeIndexHtml";
 import { setupConfig } from "./setupConfig";
+
 setupConfig();
 
 const server = express();
@@ -17,7 +18,7 @@ server.use((req, res) => {
   });
 });
 
-const port = nconf.get(Config.serverPort);
+const port = nconf.get(Config.SITE_SERVER_PORT);
 const sequelize = new Sequelize("postgresql://postgres:Petrov!23@localhost:5432/vacationPlanner");
 sequelize
   .authenticate()

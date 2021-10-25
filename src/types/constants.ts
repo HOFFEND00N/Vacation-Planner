@@ -1,6 +1,6 @@
-export enum Config {
-  protocol = "protocol",
-  domain = "domain",
-  serverPort = "serverPort",
-  clientPort = "clientPort",
-}
+export const Config = {
+  SITE_PROTOCOL: "SITE_PROTOCOL",
+  SITE_DOMAIN: "SITE_DOMAIN",
+  SITE_SERVER_PORT: "SITE_SERVER_PORT",
+  SITE_CLIENT_PORT: "SITE_CLIENT_PORT",
+};

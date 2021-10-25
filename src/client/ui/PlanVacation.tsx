@@ -19,7 +19,7 @@ export function PlanVacation() {
     }
     //TODO: component dont need to know about \plan-vacation => extract to a function into application folder
     setUploadState(UploadStates.Uploading);
-    const res = await fetch(`${protocol}${domain}${serverPort}/plan-vacation`, { method: "post" });
+    const res = await fetch(`${SITE_PROTOCOL}${SITE_DOMAIN}${SITE_SERVER_PORT}/plan-vacation`, { method: "post" });
     //TODO: put vs patch
     //TODO: FTP server, web server, time server
     //TODO: react context (problem with passing props)

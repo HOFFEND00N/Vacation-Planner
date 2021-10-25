@@ -2,9 +2,9 @@
 
 ```json
 {
-  "protocol": "http://",
-  "domain": "localhost:",
-  "serverPort": 3000,
-  "clientPort": 3001
+  "SITE_PROTOCOL": "http://",
+  "SITE_DOMAIN": "localhost:",
+  "SITE_SERVER_PORT": 3000,
+  "SITE_CLIENT_PORT": 3001
 }
 ```

@@ -7,7 +7,7 @@ export function CurrentUser() {
 
   useEffect(() => {
     const getCurrentUser = async () => {
-      const response = await fetch(`${protocol}${domain}${serverPort}/user`);
+      const response = await fetch(`${SITE_PROTOCOL}${SITE_DOMAIN}${SITE_SERVER_PORT}/user`);
 
       const parsedResponse = await response.json();
 
