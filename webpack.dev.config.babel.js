@@ -32,16 +32,8 @@ const webpackClientConfig = () => {
           use: "babel-loader",
         },
         {
-          test: /\.html$/,
-          use: "html-loader",
-        },
-        {
           test: /\.css$/,
           use: ["style-loader", getStudioCSSModuleLoader({ sourceMap: true })],
-        },
-        {
-          test: /\.scss$/,
-          use: ["style-loader", "css-loader"],
         },
       ],
     },
