@@ -2,14 +2,15 @@ import HTMLWebpackPlugin from "html-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
 import webpack from "webpack";
 import getStudioCSSModuleLoader from "./getStudioCSSModuleLoader.js";
-import config from "./developmentConfig.json"
+import config from "./developmentConfig.json";
 
-const envKeys = Object.keys(config).reduce((prev, next) => {
-  // Used JSON.stringify to add quotes to string, because plugin does a direct text replacement,
-  // the value given to it must include actual quotes inside of the string itself.
-  prev[`${next}`] = JSON.stringify(config[next]);
-  return prev;
-}, {});
+// Used JSON.stringify to add quotes to string, because plugin does a direct text replacement,
+// the value given to it must include actual quotes inside of the string itself.
+const variablesToReplace = {
+  protocol: JSON.stringify(config.protocol),
+  domain: JSON.stringify(config.domain),
+  serverPort: JSON.stringify(config.serverPort)
+};
 
 const webpackClientConfig = () => {
   return {
@@ -50,7 +51,7 @@ const webpackClientConfig = () => {
         template: "./public/index.html",
       }),
       new ESLintPlugin(),
-      new webpack.DefinePlugin(envKeys),
+      new webpack.DefinePlugin(variablesToReplace),
     ],
     mode: "development",
     resolve: {
