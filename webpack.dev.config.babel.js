@@ -18,7 +18,6 @@ const webpackClientConfig = () => {
     devtool: "inline-source-map",
     devServer: {
       port: config.clientPort || 3001,
-      historyApiFallback: true,
       allowedHosts: "all",
       hot: true,
       headers: {
