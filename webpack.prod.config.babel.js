@@ -1,7 +1,7 @@
 import HTMLWebpackPlugin from "html-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
 import webpack from "webpack";
-import getStudioCSSModuleLoader from "./getStudioCSSModuleLoader.js";
+import getCSSModuleLoader from "./getCSSModuleLoader.js";
 import config from "./developmentConfig.json"
 
 const envKeys = Object.keys(config).reduce((prev, next) => {
@@ -25,7 +25,7 @@ const webpackProdConfigBabel = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", getStudioCSSModuleLoader({ sourceMap: true })],
+        use: ["style-loader", getCSSModuleLoader({ sourceMap: true })],
       },
       {
         test: /\.scss$/,

@@ -1,7 +1,7 @@
 import HTMLWebpackPlugin from "html-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
 import webpack from "webpack";
-import getStudioCSSModuleLoader from "./getStudioCSSModuleLoader.js";
+import getCSSModuleLoader from "./getCSSModuleLoader.js";
 import config from "./developmentConfig.json";
 
 // Used JSON.stringify to add quotes to string, because plugin does a direct text replacement,
@@ -33,7 +33,7 @@ const webpackClientConfig = () => {
         },
         {
           test: /\.css$/,
-          use: ["style-loader", getStudioCSSModuleLoader({ sourceMap: true })],
+          use: ["style-loader", getCSSModuleLoader({ sourceMap: true })],
         },
       ],
     },
