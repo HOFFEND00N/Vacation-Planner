@@ -20,16 +20,8 @@ const webpackProdConfigBabel = {
         use: "babel-loader",
       },
       {
-        test: /\.html$/,
-        use: "html-loader",
-      },
-      {
         test: /\.css$/,
         use: ["style-loader", getCSSModuleLoader({ sourceMap: true })],
-      },
-      {
-        test: /\.scss$/,
-        use: ["style-loader", "css-loader"],
       },
     ],
   },
