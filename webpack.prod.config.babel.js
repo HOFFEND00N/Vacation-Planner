@@ -40,7 +40,7 @@ const webpackProdConfigBabel = {
     new ESLintPlugin(),
     new webpack.DefinePlugin(envKeys),
   ],
-  mode: "development",
+  mode: "production",
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
   },
