@@ -3,7 +3,7 @@ import express from "express";
 import nconf from "nconf";
 import { Sequelize, DataTypes } from "sequelize";
 import { sso } from "node-expose-sspi";
-import { Config } from "../types/constants";
+import { CONFIG } from "../constants";
 import { makeIndexHtml } from "./makeIndexHtml";
 import { setupConfig } from "./setupConfig";
 
@@ -18,8 +18,8 @@ server.use((req, res) => {
   });
 });
 
-const port = nconf.get(Config.SITE_SERVER_PORT);
-const sequelize = new Sequelize("postgresql://postgres:Petrov!23@localhost:5432/vacationPlanner");
+const port = nconf.get(CONFIG.SITE_SERVER_PORT);
+const sequelize = new Sequelize(nconf.get(CONFIG.DB_CONNECTION));
 sequelize
   .authenticate()
   .then(() => {
