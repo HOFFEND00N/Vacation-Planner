@@ -19,9 +19,6 @@ export function App() {
         <hr />
 
         <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
           <Route exact path="/plan-vacation">
             <PlanVacation />
           </Route>
