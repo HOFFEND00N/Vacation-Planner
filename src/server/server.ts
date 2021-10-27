@@ -9,15 +9,6 @@ import { setupConfig } from "./setupConfig";
 
 setupConfig();
 
-const server = express();
-server.use(sso.auth());
-
-server.use((req, res) => {
-  res.json({
-    sso: req.sso,
-  });
-});
-
 const port = nconf.get(CONFIG.SITE_SERVER_PORT);
 const sequelize = new Sequelize(nconf.get(CONFIG.DB_CONNECTION));
 sequelize
@@ -38,16 +29,15 @@ const User = sequelize.define("User", {
     type: DataTypes.STRING,
   },
 });
-
 User.sync();
 
-server.listen(port, () => {
-  console.log(`The app server is running on port: ${port}`);
-});
+const server = express();
+
+server.use(sso.auth());
+server.use(express.static("dist"));
 
 server.get("/user", async (req, res) => {
   const currentUser = await User.findAll();
-
   res.send({ user: currentUser[0] });
 });
 
@@ -56,17 +46,15 @@ server.post("/plan-vacation", (req, res) => {
   res.send({ message: "saved to db" });
 });
 
-server.get("/main.js", (req, res) => {
-  if (process.env.mode === "production") {
-    res.sendFile(path.resolve(__dirname, "../main.js"));
-  }
-});
-
 server.get("*", (req, res) => {
   if (process.env.mode === "development") {
     res.send(makeIndexHtml());
   } else {
     res.sendFile(path.resolve(__dirname, "../index.html"));
   }
+});
+
+server.listen(port, () => {
+  console.log(`The app server is running on port: ${port}`);
 });
 //TODO: study rest API
