@@ -1,8 +1,9 @@
 import React from "react";
 import UncontrollableCalendar from "@confirmit/react-calendar";
 import { Popover } from "@confirmit/react-popover";
-import styles from "./calendarDay.module.css";
 import { CurrentUser } from "./CurrentUser";
+import styles from "./calendarDay.module.css";
+
 //controllable vs uncontrollable
 export function Home() {
   return (
