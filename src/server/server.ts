@@ -11,7 +11,7 @@ import { setupDBModels } from "./DBHelpers/setupDBModels";
 (async () => {
   setupConfig();
   const dbConnection = await setupDBConnection();
-  const User = setupDBModels(dbConnection);
+  setupDBModels(dbConnection);
   const port = nconf.get(CONFIG.SITE_SERVER_PORT);
 
   const server = express();
@@ -20,7 +20,7 @@ import { setupDBModels } from "./DBHelpers/setupDBModels";
   server.use(express.static("dist"));
 
   server.get("/user", async (req, res) => {
-    const currentUser = await User.findAll();
+    const currentUser = await dbConnection.models.User.findAll();
     res.send({ user: currentUser[0] });
   });
 

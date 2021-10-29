@@ -1,16 +1,20 @@
-import { DataTypes, Sequelize } from "sequelize";
+import { Model, DataTypes, Sequelize } from "sequelize";
+
+class User extends Model {}
 
 export function setupDBModels(sequelize: Sequelize) {
-  const User = sequelize.define("User", {
-    firstName: {
-      type: DataTypes.STRING,
-      allowNull: false,
+  User.init(
+    {
+      firstName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      lastName: {
+        type: DataTypes.STRING,
+      },
     },
-    lastName: {
-      type: DataTypes.STRING,
-    },
-  });
-  User.sync();
+    { sequelize }
+  );
 
-  return User;
+  User.sync();
 }
