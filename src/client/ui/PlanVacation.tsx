@@ -3,6 +3,7 @@ import { Button } from "@confirmit/react-button";
 import { DatePicker } from "@confirmit/react-date-picker";
 import moment from "moment";
 import Dropzone, { UploadStates } from "@confirmit/react-dropzone";
+import { planVacation } from "../application/planVacation";
 
 export function PlanVacation() {
   const [uploadState, setUploadState] = useState(UploadStates.Idle);
@@ -15,10 +16,8 @@ export function PlanVacation() {
     if (files.length === 0) {
       alert("please upload document with vacation request");
     }
-    //TODO: component dont need to know about \plan-vacation => extract to a function into application folder
     setUploadState(UploadStates.Uploading);
-    const res = await fetch(`${SITE_PROTOCOL}${SITE_DOMAIN}${SITE_SERVER_PORT}/plan-vacation`, { method: "post" });
-    //TODO: put vs patch
+    const res = await planVacation();
     //TODO: FTP server, web server, time server
     //TODO: react context (problem with passing props)
     console.log(res.json());
