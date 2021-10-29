@@ -1,4 +1,5 @@
 import { Model, DataTypes, Sequelize } from "sequelize";
+import { MODELS_NAMES } from "../../constants";
 
 class User extends Model {}
 
@@ -13,7 +14,7 @@ export function setupDBModels(sequelize: Sequelize) {
         type: DataTypes.STRING,
       },
     },
-    { sequelize }
+    { sequelize, modelName: MODELS_NAMES.USER }
   );
 
   User.sync();

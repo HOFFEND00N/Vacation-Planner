@@ -2,7 +2,7 @@ import path from "path";
 import express from "express";
 import nconf from "nconf";
 import { sso } from "node-expose-sspi";
-import { CONFIG } from "../constants";
+import { CONFIG, MODELS_NAMES } from "../constants";
 import { makeIndexHtml } from "./makeIndexHtml";
 import { setupConfig } from "./setupConfig";
 import { setupDBConnection } from "./DBHelpers/setupDBConnection";
@@ -20,7 +20,7 @@ import { setupDBModels } from "./DBHelpers/setupDBModels";
   server.use(express.static("dist"));
 
   server.get("/user", async (req, res) => {
-    const currentUser = await dbConnection.models.User.findAll();
+    const currentUser = await dbConnection.models[MODELS_NAMES.USER].findAll();
     res.send({ user: currentUser[0] });
   });
 
