@@ -4,6 +4,7 @@ import webpack from "webpack";
 import getCSSModuleLoader from "./getCSSModuleLoader.js";
 import config from "./developmentConfig.json"
 
+//TODO: pass only necessary fields
 const envKeys = Object.keys(config).reduce((prev, next) => {
   prev[`${next}`] = JSON.stringify(config[next]);
   return prev;
