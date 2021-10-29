@@ -33,21 +33,24 @@ export function PlanVacation() {
     setVacationEnd(endDate);
   };
 
+  const handleFileSelected = (selectedFiles: File[]) => {
+    setFiles(selectedFiles);
+    setSelectedFileName(selectedFiles[0].name);
+  };
+
+  const handleClearFile = () => {
+    setFiles([]);
+    setSelectedFileName("");
+  };
+
   return (
     <>
       Загрузить заявление
       <Dropzone
         uploadState={uploadState}
         selectedLabel={selectedFileName}
-        //TODO: extract to a function
-        onFileSelected={(selectedFiles) => {
-          setFiles(selectedFiles);
-          setSelectedFileName(selectedFiles[0].name);
-        }}
-        onClearFile={() => {
-          setFiles([]);
-          setSelectedFileName("");
-        }}
+        onFileSelected={handleFileSelected}
+        onClearFile={handleClearFile}
       />
       <div style={{ width: "300px" }}>
         <DatePicker date={vacationStart} onChange={handleDateStartChange} />
