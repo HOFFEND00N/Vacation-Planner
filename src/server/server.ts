@@ -17,7 +17,9 @@ import { setupDBModels } from "./DBHelpers/setupDBModels";
   const server = express();
 
   server.use(sso.auth());
-  server.use(express.static("dist"));
+  if (process.env.mode === "production") {
+    server.use(express.static("dist"));
+  }
 
   server.get("/user", async (req, res) => {
     const currentUser = await dbConnection.models[MODELS_NAMES.USER].findAll();
