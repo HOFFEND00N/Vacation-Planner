@@ -19,10 +19,10 @@ export function App() {
         <hr />
 
         <Switch>
-          <Route exact path="/plan-vacation">
+          <Route path="/plan-vacation">
             <PlanVacation />
           </Route>
-          <Route exact path="/home">
+          <Route path={["/home", "/"]}>
             <Home />
           </Route>
         </Switch>
