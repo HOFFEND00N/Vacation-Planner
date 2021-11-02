@@ -1,12 +1,12 @@
 import React from "react";
-import { TableHeaderCalendar } from "./TableHeaderCalendar";
+import { TableCalendarHeader } from "./TableHeaderCalendar/TableCalendarHeader";
 import { TableBodyCalendar } from "./TableBodyCalendar/TableBodyCalendar";
 
 export function TableCalendar() {
   return (
-    <>
-      <TableHeaderCalendar />
+    <div>
+      <TableCalendarHeader />
       <TableBodyCalendar />
-    </>
+    </div>
   );
 }

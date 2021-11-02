@@ -1,16 +1,17 @@
 .table-calendar-row{
     display: flex;
+    justify-content: center;
 }
 
 .table-calendar-element{
     padding: 5px;
     border-style: solid;
     border-width: 1px;
-    min-width: 17px;
+    min-width: 20px;
     min-height: 18px;
     text-align: center;
 }
-
+/*17(min-width) * 7 = 129 */
 .table-calendar-first-column-element{
     min-width: 129px;
 }
