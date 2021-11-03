@@ -3,3 +3,9 @@
     justify-content: center;
     margin: 10px 0;
 }
+
+.table-calendar-header-current-date{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
