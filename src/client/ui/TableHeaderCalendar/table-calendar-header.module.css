@@ -1,11 +1,17 @@
-.table-calendar-header{
-    display: flex;
-    justify-content: center;
-    margin: 10px 0;
+.table-calendar-header {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
 }
 
-.table-calendar-header-current-date{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.table-calendar-header-current-date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.table-calendar-controls:hover {
+    border-radius: 50%;
+    background-color: lightgrey;
+    padding: 5px;
 }
