@@ -4,10 +4,10 @@ import styles from "./table-body-calendar.module.css";
 
 const teamMembers = ["Karina Zabolotnoya", "Galina Vetrova", "Pavel Zdanov"];
 
-export function TableBodyCalendar() {
+export function TableBodyCalendar({ today }: { today: moment.Moment }) {
   function makeTable() {
     const table: JSX.Element[] = [];
-    const daysInMonth = moment().daysInMonth();
+    const daysInMonth = today.daysInMonth();
     for (let i = 0; i < teamMembers.length + 1; i++) {
       table.push(<div className={styles["table-calendar-row"]}>{makeRow(daysInMonth, i)}</div>);
     }
