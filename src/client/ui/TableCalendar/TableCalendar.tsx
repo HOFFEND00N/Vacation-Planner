@@ -9,7 +9,7 @@ export function TableCalendar() {
     <div className={styles["table-calendar-container"]}>
       <TableCalendarHeader />
       <TableBodyCalendar />
-      <Button>Plan Vacation</Button>
+      <Button className={styles["table-calendar-button"]}>Plan Vacation</Button>
     </div>
   );
 }

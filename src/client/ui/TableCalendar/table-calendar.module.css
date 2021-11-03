@@ -4,3 +4,9 @@
     flex-direction: column;
     margin: 0 auto;
 }
+
+.table-calendar-button{
+    max-width: 140px;
+    margin-left: auto;
+    margin-top: 10px;
+}
