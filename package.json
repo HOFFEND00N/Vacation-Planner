@@ -74,6 +74,7 @@
   },
   "dependencies": {
     "@babel/runtime": "7.15.4",
+    "@confirmit/react-icons": "^2.52.1",
     "classnames": "2.x",
     "core-js": "3.18.2",
     "express": "4.17.1",
