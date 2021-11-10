@@ -9,6 +9,7 @@ import { setupConfig } from "./setupConfig";
 import { setupDBConnection } from "./DBHelpers/setupDBConnection";
 import { setupDBModels } from "./DBHelpers/setupDBModels";
 import { findUserTeam } from "./ADHelpers/findUserTeam";
+import { findGroupMembers } from "./ADHelpers/findGroupMembers";
 
 (async () => {
   setupConfig();
@@ -57,21 +58,15 @@ import { findUserTeam } from "./ADHelpers/findUserTeam";
     try {
       const userTeam = await findUserTeam({ teams: TEAMS, username, activeDirectory });
       console.log(userTeam);
+      const teamMembers = await findGroupMembers({ groupName: userTeam, activeDirectory });
+      console.log(
+        teamMembers
+          .filter((teamMember) => teamMember.dn.includes("OU=Yaroslavl"))
+          .map((teamMember) => teamMember.displayName)
+      );
     } catch (e) {
       console.log(e);
     }
-
-    // activeDirectory.getUsersForGroup(groupName, function (err, users) {
-    //   if (err) {
-    //     console.log("ERROR: " + JSON.stringify(err));
-    //     return;
-    //   }
-    //
-    //   if (!users) console.log("Group: " + groupName + " not found.");
-    //   else {
-    //     console.log(users);
-    //   }
-    // });
 
     //user login -> get groups that user belongs to -> find match between team name and a group list -> get members of the group
 
