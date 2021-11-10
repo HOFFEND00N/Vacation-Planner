@@ -1,4 +1,4 @@
-export interface IUser {
+export interface ITeamMember {
   userPrincipalName: string;
   displayName: string;
   description: string;

@@ -1,4 +1,4 @@
-import { IActiveDirectory } from "../../types/IActiveDirectory";
+import { IActiveDirectory } from "../../types";
 
 export async function findUserTeam({
   teams,

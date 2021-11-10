@@ -1,5 +1,4 @@
-import { IActiveDirectory } from "../../types/IActiveDirectory";
-import { IUser } from "../../types/teamMember";
+import { IActiveDirectory, ITeamMember } from "../../types";
 
 export async function findGroupMembers({
   groupName,
@@ -7,7 +6,7 @@ export async function findGroupMembers({
 }: {
   groupName: string;
   activeDirectory: IActiveDirectory;
-}): Promise<IUser[]> {
+}): Promise<ITeamMember[]> {
   return new Promise((resolve, reject) => {
     activeDirectory.getUsersForGroup(groupName, function (error, users) {
       if (error) {

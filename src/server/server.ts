@@ -45,16 +45,6 @@ import { findGroupMembers } from "./ADHelpers/findGroupMembers";
       password: process.env.password,
     });
 
-    // activeDirectory.getGroupMembershipForUser("alexander.kosogorov@forsta.com", function (err, groups) {
-    //   if (err) {
-    //     console.log("ERROR: " + JSON.stringify(err));
-    //     return;
-    //   }
-    //
-    //   if (!groups) console.log("User: " + "alexander.kosogorov@forsta.com" + " not found.");
-    //   else console.log(groups);
-    // });
-
     try {
       const userTeam = await findUserTeam({ teams: TEAMS, username, activeDirectory });
       console.log(userTeam);
@@ -67,8 +57,6 @@ import { findGroupMembers } from "./ADHelpers/findGroupMembers";
     } catch (e) {
       console.log(e);
     }
-
-    //user login -> get groups that user belongs to -> find match between team name and a group list -> get members of the group
 
     if (process.env.mode === "development") {
       res.send(makeIndexHtml());
