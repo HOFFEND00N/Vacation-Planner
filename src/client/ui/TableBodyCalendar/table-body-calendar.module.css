@@ -11,7 +11,7 @@
     min-height: 18px;
     text-align: center;
 }
-/* 17(min-width) * 7 + 10(paddings) = 139 */
+
 .table-calendar-first-column-element{
-    min-width: 140px;
+    flex-grow: 1;
 }
