@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
+import { getTeamMembers } from "../../application/getTeamMembers";
 import styles from "./table-body-calendar.module.css";
 
-const teamMembers = ["Karina Zabolotnoya", "Galina Vetrova", "Pavel Zdanov"];
-
 export function TableBodyCalendar({ today }: { today: moment.Moment }) {
+  const [teamMembers, setTeamMembers] = useState<string[]>([""]);
+  const [isDataFetched, setIsDataFetched] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      const team = await getTeamMembers();
+      setIsDataFetched(true);
+      setTeamMembers(team);
+    })();
+  }, []);
+
   function makeTable() {
     const table: JSX.Element[] = [];
     const daysInMonth = today.daysInMonth();
@@ -38,5 +48,9 @@ export function TableBodyCalendar({ today }: { today: moment.Moment }) {
     return columnNumber === 0 ? teamMembers[rowNumber - 1] : "";
   }
 
-  return <div>{makeTable()}</div>;
+  if (isDataFetched) {
+    return <div>{makeTable()}</div>;
+  } else {
+    return <h1> Please wait, searching your teammates... </h1>;
+  }
 }

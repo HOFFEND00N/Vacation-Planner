@@ -34,7 +34,7 @@ import { findGroupMembers } from "./ADHelpers/findGroupMembers";
     res.send({ message: "saved to db" });
   });
 
-  server.get("*", async (req, res) => {
+  server.get("/team-members", async (req, res) => {
     // const username = req.sso.user?.adUser?.userPrincipalName;
     const username = "anna.kozlova@forsta.com";
 
@@ -47,17 +47,18 @@ import { findGroupMembers } from "./ADHelpers/findGroupMembers";
 
     try {
       const userTeam = await findUserTeam({ teams: TEAMS, username, activeDirectory });
-      console.log(userTeam);
       const teamMembers = await findGroupMembers({ groupName: userTeam, activeDirectory });
-      console.log(
-        teamMembers
-          .filter((teamMember) => teamMember.dn.includes("OU=Yaroslavl"))
-          .map((teamMember) => teamMember.displayName)
-      );
+      const teamMembersNames = teamMembers
+        .filter((teamMember) => teamMember.dn.includes("OU=Yaroslavl"))
+        .map((teamMember) => teamMember.displayName);
+
+      res.send({ team: teamMembersNames });
     } catch (e) {
       console.log(e);
     }
+  });
 
+  server.get("*", (req, res) => {
     if (process.env.mode === "development") {
       res.send(makeIndexHtml());
     } else {
