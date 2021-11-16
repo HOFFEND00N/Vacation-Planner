@@ -8,6 +8,7 @@ export const CONFIG = {
 
 export const MODELS_NAMES = {
   USER: "User",
+  VACATION: "Vacation",
 };
 
 export const TEAMS = [

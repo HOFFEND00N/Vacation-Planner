@@ -11,7 +11,7 @@ export function TableBodyCalendar({ today }: { today: moment.Moment }) {
     (async () => {
       const team = await getTeamMembers();
       setIsDataFetched(true);
-      setTeamMembers(team);
+      setTeamMembers(team.map((teamMember) => teamMember.name));
     })();
   }, []);
 

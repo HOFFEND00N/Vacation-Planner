@@ -3,4 +3,5 @@ export interface ITeamMember {
   displayName: string;
   description: string;
   dn: string;
+  objectGUID: string;
 }

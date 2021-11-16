@@ -1,11 +1,16 @@
 import { Model, DataTypes, Sequelize } from "sequelize";
-import { MODELS_NAMES } from "../../constants";
 
 class User extends Model {}
+class Vacation extends Model {}
 
-export function setupDBModels(sequelize: Sequelize) {
+export async function setupDBModels(sequelize: Sequelize) {
   User.init(
     {
+      id: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        primaryKey: true,
+      },
       firstName: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -14,8 +19,26 @@ export function setupDBModels(sequelize: Sequelize) {
         type: DataTypes.STRING,
       },
     },
-    { sequelize, modelName: MODELS_NAMES.USER }
+    { sequelize }
   );
 
-  User.sync();
+  Vacation.init(
+    {
+      start: {
+        type: DataTypes.DATEONLY,
+        allowNull: false,
+      },
+      end: {
+        type: DataTypes.DATEONLY,
+        allowNull: false,
+      },
+      userId: {
+        type: DataTypes.STRING,
+      },
+    },
+    { sequelize }
+  );
+
+  await Vacation.sync();
+  await User.sync();
 }
