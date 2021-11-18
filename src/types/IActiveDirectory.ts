@@ -8,4 +8,5 @@ export interface IActiveDirectory {
     username: string,
     callback: (error: Error, user: ITeamMember) => void
   ) => void;
+  findUsers: (LDAPQuery: string, callback: (error: Error, users) => void) => void;
 }

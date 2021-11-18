@@ -41,7 +41,7 @@ import { findGroupMembers } from "./ADHelpers/findGroupMembers";
   server.get("/team-members", async (req, res) => {
     // const username = req.sso.user?.adUser?.userPrincipalName;
     const username = "anna.kozlova@forsta.com";
-    console.log(req.sso);
+
     const activeDirectory = new ActiveDirectory({
       url: "ldap://firmglobal.com",
       baseDN: "dc=firmglobal,dc=com",
@@ -79,7 +79,7 @@ import { findGroupMembers } from "./ADHelpers/findGroupMembers";
       .toLocaleUpperCase();
   };
 
-  const getADUser = (activeDirectory: IActiveDirectory, username: string): Promise<ITeamMember> =>
+  const findADUser = (activeDirectory: IActiveDirectory, username: string): Promise<ITeamMember> =>
     new Promise((resolve, reject) => {
       activeDirectory.findUser(
         {
@@ -108,7 +108,7 @@ import { findGroupMembers } from "./ADHelpers/findGroupMembers";
       password: process.env.password,
     });
 
-    const user = await getADUser(activeDirectory, "Ivan.Petrov");
+    const user = await findADUser(activeDirectory, "Ivan.Petrov");
 
     // await dbConnection.models[MODELS_NAMES.USER].create({ firstName: "Ivan", lastName: "Petrov", id: user.objectGUID });
     const vacation = await dbConnection.models[MODELS_NAMES.VACATION].findAll({ where: { userId: user.objectGUID } });
