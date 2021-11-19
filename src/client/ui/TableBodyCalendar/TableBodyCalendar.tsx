@@ -76,18 +76,20 @@ export function TableBodyCalendar({ today }: { today: moment.Moment }) {
         // prev/prev, next/next - dont care about this cases.
         let start = -1,
           end = -1;
-        if (userVacation.start.getMonth() < today.month() && userVacation.end.getMonth() === today.month()) {
-          start = 1;
-          end = userVacation.end.getDate();
-        } else if (userVacation.start.getMonth() === today.month() && userVacation.end.getMonth() === today.month()) {
-          start = userVacation.start.getDate();
-          end = userVacation.end.getDate();
-        } else if (userVacation.start.getMonth() === today.month() && userVacation.end.getMonth() > today.month()) {
-          start = userVacation.start.getDate();
-          end = today.daysInMonth();
-        } else if (userVacation.start.getMonth() < today.month() && userVacation.end.getMonth() > today.month()) {
-          start = 1;
-          end = today.daysInMonth();
+        if (userVacation.start.getFullYear() === today.year() && userVacation.end.getFullYear() === today.year()) {
+          if (userVacation.start.getMonth() < today.month() && userVacation.end.getMonth() === today.month()) {
+            start = 1;
+            end = userVacation.end.getDate();
+          } else if (userVacation.start.getMonth() === today.month() && userVacation.end.getMonth() === today.month()) {
+            start = userVacation.start.getDate();
+            end = userVacation.end.getDate();
+          } else if (userVacation.start.getMonth() === today.month() && userVacation.end.getMonth() > today.month()) {
+            start = userVacation.start.getDate();
+            end = today.daysInMonth();
+          } else if (userVacation.start.getMonth() < today.month() && userVacation.end.getMonth() > today.month()) {
+            start = 1;
+            end = today.daysInMonth();
+          }
         }
 
         for (let i = start; i < end + 1; i++) {
