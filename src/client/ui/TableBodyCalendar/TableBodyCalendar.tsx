@@ -72,8 +72,10 @@ export function TableBodyCalendar({ today }: { today: moment.Moment }) {
       .map((userVacation) => {
         const result: number[] = [];
 
-        //4 variants of vacation dates in case of month: prev/current, current/current, current/next, prev/next
-        let start: number, end: number;
+        //6 variants of vacation dates in case of month: prev/current, current/current, current/next, prev/next.
+        // prev/prev, next/next - dont care about this cases.
+        let start = -1,
+          end = -1;
         if (userVacation.start.getMonth() < today.month() && userVacation.end.getMonth() === today.month()) {
           start = 1;
           end = userVacation.end.getDate();
@@ -83,7 +85,7 @@ export function TableBodyCalendar({ today }: { today: moment.Moment }) {
         } else if (userVacation.start.getMonth() === today.month() && userVacation.end.getMonth() > today.month()) {
           start = userVacation.start.getDate();
           end = today.daysInMonth();
-        } else {
+        } else if (userVacation.start.getMonth() < today.month() && userVacation.end.getMonth() > today.month()) {
           start = 1;
           end = today.daysInMonth();
         }
