@@ -15,3 +15,7 @@
 .table-calendar-first-column-element{
     flex-grow: 1;
 }
+
+.table-calendar-element-vacation-approved{
+    background-color: darkgrey;
+}

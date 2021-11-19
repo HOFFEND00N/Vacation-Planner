@@ -3,6 +3,7 @@ import express from "express";
 import nconf from "nconf";
 import { sso } from "node-expose-sspi";
 import ActiveDirectory from "activedirectory";
+import { Op } from "sequelize";
 import { CONFIG, MODELS_NAMES, TEAMS } from "../constants";
 import { makeIndexHtml } from "./makeIndexHtml";
 import { setupConfig } from "./setupConfig";
@@ -11,6 +12,7 @@ import { setupDBModels } from "./DBHelpers/setupDBModels";
 import { findUserTeam } from "./ADHelpers/findUserTeam";
 import { findGroupMembers } from "./ADHelpers/findGroupMembers";
 import { findUser } from "./ADHelpers/findUser";
+import { entryParser } from "./ADHelpers/entryParser";
 
 (async () => {
   setupConfig();
@@ -47,6 +49,7 @@ import { findUser } from "./ADHelpers/findUser";
       baseDN: "dc=firmglobal,dc=com",
       username: `${process.env.login}@forsta.com`,
       password: process.env.password,
+      entryParser: entryParser,
     });
 
     try {
@@ -68,6 +71,7 @@ import { findUser } from "./ADHelpers/findUser";
       baseDN: "dc=firmglobal,dc=com",
       username: `${process.env.login}@forsta.com`,
       password: process.env.password,
+      entryParser: entryParser,
     });
 
     const user = await findUser(activeDirectory, "Ivan.Petrov");
@@ -80,7 +84,9 @@ import { findUser } from "./ADHelpers/findUser";
   server.get("/vacations", async (req, res) => {
     const usersIds = req.query.id as string[];
 
-    const usersVacations = await dbConnection.models[MODELS_NAMES.VACATION].findAll({ where: { userId: usersIds } });
+    const usersVacations = await dbConnection.models[MODELS_NAMES.VACATION].findAll({
+      where: { userId: { [Op.or]: usersIds } },
+    });
 
     res.send({ vacations: usersVacations });
   });

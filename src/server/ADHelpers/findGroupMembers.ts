@@ -8,7 +8,7 @@ export async function findGroupMembers({
   activeDirectory: IActiveDirectory;
 }): Promise<ITeamMember[]> {
   return new Promise((resolve, reject) => {
-    activeDirectory.getUsersForGroup(groupName, function (error, users) {
+    activeDirectory.getUsersForGroup({ attributes: [] }, groupName, function (error, users) {
       if (error) {
         reject(error);
       }
