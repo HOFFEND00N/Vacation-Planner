@@ -1,8 +1,9 @@
 import { Moment } from "moment";
 import { Vacation } from "../../domain/vacation";
+import { VacationTypeByDay } from "../../types";
 
 export function getVacationsForCurrentMonth({ vacations, today }: { vacations: Vacation[]; today: Moment }) {
-  const vacationTypeByDay = {};
+  const vacationTypeByDay: VacationTypeByDay = {};
 
   vacations.map((vacation) => {
     //6 variants of vacation dates in case of month: prev/current, current/current, current/next, prev/next.

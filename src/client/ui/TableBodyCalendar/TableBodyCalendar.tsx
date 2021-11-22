@@ -3,9 +3,10 @@ import moment from "moment";
 import { getTeamMembers } from "../../application/getTeamMembers";
 import { getVacations } from "../../application/getVacations";
 import { User } from "../../domain/user";
-import { Vacation, VacationType } from "../../domain/vacation";
+import { Vacation } from "../../domain/vacation";
 import styles from "./table-body-calendar.module.css";
 import { getVacationsForCurrentMonth } from "./getVacationsForCurrentMonth";
+import { styleTableCalendarElement } from "./styleTableCalendarElement";
 
 export function TableBodyCalendar({ today }: { today: moment.Moment }) {
   const [teamMembers, setTeamMembers] = useState<User[]>([]);
@@ -85,37 +86,26 @@ export function TableBodyCalendar({ today }: { today: moment.Moment }) {
     let isSelectable = false;
 
     for (let day = 0; day < daysInMonth + 1; day++) {
-      let classNames = `${styles["table-calendar-element"]}`;
+      const elementDate = new Date(today.year(), today.month(), day);
+      const classNames = styleTableCalendarElement({
+        vacationStart,
+        elementDate,
+        day,
+        vacationTypeByDay,
+        vacationEnd,
+        userId: user.id,
+        currentUserId: currentUser.id,
+      });
 
-      if (vacationTypeByDay[day] === VacationType.APPROVED) {
-        classNames = `${classNames} ${styles["table-calendar-element-vacation-approved"]}`;
-      }
-      if (vacationTypeByDay[day] === VacationType.PENDING_APPROVAL) {
-        classNames = `${classNames} ${styles["table-calendar-element-vacation-pending-approval"]}`;
-      }
-      if (day === 0) {
-        classNames = `${classNames} ${styles["table-calendar-first-column-element"]} `;
-      } else if (user.id === currentUser.id) {
+      if (user.id === currentUser.id) {
         isSelectable = true;
-        classNames = `${classNames} ${styles["table-calendar-element-selectable"]}`;
       }
-
-      const currentElementDate = new Date(today.year(), today.month(), day);
-      if (
-        currentElementDate >= vacationStart.date &&
-        currentElementDate <= vacationEnd.date &&
-        user.id === currentUser.id &&
-        day !== 0
-      ) {
-        classNames = `${classNames} ${styles["table-calendar-element-selected"]}`;
-      }
-
       row.push(
         <div
           className={classNames}
           {...(isSelectable && {
             onClick: () => {
-              handleVacationSelect(currentElementDate);
+              handleVacationSelect(elementDate);
             },
           })}
         >
