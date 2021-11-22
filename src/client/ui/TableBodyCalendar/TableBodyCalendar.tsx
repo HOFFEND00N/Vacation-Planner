@@ -5,6 +5,7 @@ import { getVacations } from "../../application/getVacations";
 import { User } from "../../domain/user";
 import { Vacation, VacationType } from "../../domain/vacation";
 import styles from "./table-body-calendar.module.css";
+import { getVacationsForCurrentMonth } from "./getVacationsForCurrentMonth";
 
 export function TableBodyCalendar({ today }: { today: moment.Moment }) {
   const [teamMembers, setTeamMembers] = useState<User[]>([]);
@@ -68,34 +69,7 @@ export function TableBodyCalendar({ today }: { today: moment.Moment }) {
     vacations: Vacation[];
   }) {
     const row: JSX.Element[] = [];
-    const vacationTypeByDay = {};
-
-    vacations.map((vacation) => {
-      //6 variants of vacation dates in case of month: prev/current, current/current, current/next, prev/next.
-      // prev/prev, next/next - dont care about this cases.
-      let start = -1,
-        end = -1;
-      if (vacation.start.getFullYear() === today.year() && vacation.end.getFullYear() === today.year()) {
-        if (vacation.start.getMonth() < today.month() && vacation.end.getMonth() === today.month()) {
-          start = 1;
-          end = vacation.end.getDate();
-        } else if (vacation.start.getMonth() === today.month() && vacation.end.getMonth() === today.month()) {
-          start = vacation.start.getDate();
-          end = vacation.end.getDate();
-        } else if (vacation.start.getMonth() === today.month() && vacation.end.getMonth() > today.month()) {
-          start = vacation.start.getDate();
-          end = today.daysInMonth();
-        } else if (vacation.start.getMonth() < today.month() && vacation.end.getMonth() > today.month()) {
-          start = 1;
-          end = today.daysInMonth();
-        }
-      }
-
-      for (let i = start; i < end + 1; i++) {
-        vacationTypeByDay[i] = vacation.type;
-      }
-      return vacationTypeByDay;
-    });
+    const vacationTypeByDay = getVacationsForCurrentMonth({ vacations, today });
 
     for (let day = 0; day < daysInMonth + 1; day++) {
       let classNames = `${styles["table-calendar-element"]} ${
