@@ -59,7 +59,10 @@ import { entryParser } from "./ADHelpers/entryParser";
         .filter((teamMember) => teamMember.dn.includes("OU=Yaroslavl"))
         .map((teamMember) => ({ name: teamMember.displayName, id: teamMember.objectGUID }));
 
-      res.send({ team: filteredTeamMembers });
+      res.send({
+        team: filteredTeamMembers,
+        currentUser: { id: "D1E5D597-93FC-4AEA-8FFF-D92CADD0F639", name: "Anna Kozlova" },
+      });
     } catch (e) {
       console.log(e);
     }

@@ -11,12 +11,22 @@ export function TableBodyCalendar({ today }: { today: moment.Moment }) {
   const [teamMembers, setTeamMembers] = useState<User[]>([]);
   const [vacations, setVacations] = useState<Vacation[]>([]);
   const [isDataFetched, setIsDataFetched] = useState(false);
+  const [currentUser, setCurrentUser] = useState<User>({ id: "", name: "" });
+  const [vacationStart, setVacationStart] = useState<{ date: Date; isSelected: boolean }>({
+    date: new Date(0),
+    isSelected: false,
+  });
+  const [vacationEnd, setVacationEnd] = useState<{ date: Date; isSelected: boolean }>({
+    date: new Date(0),
+    isSelected: false,
+  });
 
   useEffect(() => {
     (async () => {
-      const team = await getTeamMembers();
-      const vacations = await getVacations(team.map((teamMember) => teamMember.id));
+      const { team, currentUser } = await getTeamMembers();
       setTeamMembers(team);
+      setCurrentUser(currentUser);
+      const vacations = await getVacations(team.map((teamMember) => teamMember.id));
       setVacations(vacations);
       setIsDataFetched(true);
     })();
@@ -30,17 +40,11 @@ export function TableBodyCalendar({ today }: { today: moment.Moment }) {
       const userVacations = findVacations(vacations, teamMembers[i].id);
       table.push(
         <div className={styles["table-calendar-row"]}>
-          {makeTableBodyRow({ daysInMonth, rowNumber: i + 1, vacations: userVacations })}
+          {makeTableBodyRow({ daysInMonth, rowNumber: i + 1, vacations: userVacations, user: teamMembers[i] })}
         </div>
       );
     }
     return table;
-  }
-
-  function findVacations(vacations: Vacation[], userId: string) {
-    return vacations.filter((vacation) => {
-      return vacation.userId === userId;
-    });
   }
 
   function makeTableHeaderRow(daysInMonth: number) {
@@ -59,22 +63,29 @@ export function TableBodyCalendar({ today }: { today: moment.Moment }) {
     return row;
   }
 
+  function findVacations(vacations: Vacation[], userId: string) {
+    return vacations.filter((vacation) => {
+      return vacation.userId === userId;
+    });
+  }
+
   function makeTableBodyRow({
     daysInMonth,
     rowNumber,
     vacations,
+    user,
   }: {
     daysInMonth: number;
     rowNumber: number;
     vacations: Vacation[];
+    user: User;
   }) {
     const row: JSX.Element[] = [];
     const vacationTypeByDay = getVacationsForCurrentMonth({ vacations, today });
+    let isSelectable = false;
 
     for (let day = 0; day < daysInMonth + 1; day++) {
-      let classNames = `${styles["table-calendar-element"]} ${
-        day === 0 ? styles["table-calendar-first-column-element"] : ""
-      } `;
+      let classNames = `${styles["table-calendar-element"]}`;
 
       if (vacationTypeByDay[day] === VacationType.APPROVED) {
         classNames = `${classNames} ${styles["table-calendar-element-vacation-approved"]}`;
@@ -82,11 +93,50 @@ export function TableBodyCalendar({ today }: { today: moment.Moment }) {
       if (vacationTypeByDay[day] === VacationType.PENDING_APPROVAL) {
         classNames = `${classNames} ${styles["table-calendar-element-vacation-pending-approval"]}`;
       }
+      if (day === 0) {
+        classNames = `${classNames} ${styles["table-calendar-first-column-element"]} `;
+      } else if (user.id === currentUser.id) {
+        isSelectable = true;
+        classNames = `${classNames} ${styles["table-calendar-element-selectable"]}`;
+      }
 
-      row.push(<div className={classNames}>{makeTableBodyElementContent(rowNumber, day)}</div>);
+      const currentElementDate = new Date(today.year(), today.month(), day);
+      if (
+        currentElementDate >= vacationStart.date &&
+        currentElementDate <= vacationEnd.date &&
+        user.id === currentUser.id &&
+        day !== 0
+      ) {
+        classNames = `${classNames} ${styles["table-calendar-element-selected"]}`;
+      }
+
+      row.push(
+        <div
+          className={classNames}
+          {...(isSelectable && {
+            onClick: () => {
+              handleVacationSelect(currentElementDate);
+            },
+          })}
+        >
+          {makeTableBodyElementContent(rowNumber, day)}
+        </div>
+      );
     }
     return row;
   }
+
+  const handleVacationSelect = (date: Date) => {
+    if (!vacationStart.isSelected) {
+      setVacationStart({ isSelected: true, date });
+      setVacationEnd({ isSelected: false, date });
+    } else if (!vacationEnd.isSelected) {
+      setVacationEnd({ isSelected: true, date });
+    } else {
+      setVacationStart({ isSelected: true, date });
+      setVacationEnd({ isSelected: false, date });
+    }
+  };
 
   function makeTableHeaderElementContent(columnNumber: number) {
     return columnNumber === 0 ? "" : columnNumber;
