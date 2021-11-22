@@ -3,4 +3,10 @@ export type Vacation = {
   start: Date;
   end: Date;
   userId: string;
+  type: VacationType;
 };
+
+export enum VacationType {
+  APPROVED = "Approved",
+  PENDING_APPROVAL = "Pending approval",
+}

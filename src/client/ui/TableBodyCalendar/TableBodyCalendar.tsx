@@ -3,7 +3,7 @@ import moment from "moment";
 import { getTeamMembers } from "../../application/getTeamMembers";
 import { getVacations } from "../../application/getVacations";
 import { User } from "../../domain/user";
-import { Vacation } from "../../domain/vacation";
+import { Vacation, VacationType } from "../../domain/vacation";
 import styles from "./table-body-calendar.module.css";
 
 export function TableBodyCalendar({ today }: { today: moment.Moment }) {
@@ -29,7 +29,7 @@ export function TableBodyCalendar({ today }: { today: moment.Moment }) {
       const userVacations = findVacations(vacations, teamMembers[i].id);
       table.push(
         <div className={styles["table-calendar-row"]}>
-          {makeTableBodyRow({ daysInMonth, rowNumber: i + 1, userVacations })}
+          {makeTableBodyRow({ daysInMonth, rowNumber: i + 1, vacations: userVacations })}
         </div>
       );
     }
@@ -61,54 +61,55 @@ export function TableBodyCalendar({ today }: { today: moment.Moment }) {
   function makeTableBodyRow({
     daysInMonth,
     rowNumber,
-    userVacations,
+    vacations,
   }: {
     daysInMonth: number;
     rowNumber: number;
-    userVacations: Vacation[];
+    vacations: Vacation[];
   }) {
     const row: JSX.Element[] = [];
-    const vacationDays = userVacations
-      .map((userVacation) => {
-        const result: number[] = [];
+    const vacationTypeByDay = {};
 
-        //6 variants of vacation dates in case of month: prev/current, current/current, current/next, prev/next.
-        // prev/prev, next/next - dont care about this cases.
-        let start = -1,
-          end = -1;
-        if (userVacation.start.getFullYear() === today.year() && userVacation.end.getFullYear() === today.year()) {
-          if (userVacation.start.getMonth() < today.month() && userVacation.end.getMonth() === today.month()) {
-            start = 1;
-            end = userVacation.end.getDate();
-          } else if (userVacation.start.getMonth() === today.month() && userVacation.end.getMonth() === today.month()) {
-            start = userVacation.start.getDate();
-            end = userVacation.end.getDate();
-          } else if (userVacation.start.getMonth() === today.month() && userVacation.end.getMonth() > today.month()) {
-            start = userVacation.start.getDate();
-            end = today.daysInMonth();
-          } else if (userVacation.start.getMonth() < today.month() && userVacation.end.getMonth() > today.month()) {
-            start = 1;
-            end = today.daysInMonth();
-          }
+    vacations.map((vacation) => {
+      //6 variants of vacation dates in case of month: prev/current, current/current, current/next, prev/next.
+      // prev/prev, next/next - dont care about this cases.
+      let start = -1,
+        end = -1;
+      if (vacation.start.getFullYear() === today.year() && vacation.end.getFullYear() === today.year()) {
+        if (vacation.start.getMonth() < today.month() && vacation.end.getMonth() === today.month()) {
+          start = 1;
+          end = vacation.end.getDate();
+        } else if (vacation.start.getMonth() === today.month() && vacation.end.getMonth() === today.month()) {
+          start = vacation.start.getDate();
+          end = vacation.end.getDate();
+        } else if (vacation.start.getMonth() === today.month() && vacation.end.getMonth() > today.month()) {
+          start = vacation.start.getDate();
+          end = today.daysInMonth();
+        } else if (vacation.start.getMonth() < today.month() && vacation.end.getMonth() > today.month()) {
+          start = 1;
+          end = today.daysInMonth();
         }
+      }
 
-        for (let i = start; i < end + 1; i++) {
-          result.push(i);
-        }
-        return result;
-      })
-      .flat();
+      for (let i = start; i < end + 1; i++) {
+        vacationTypeByDay[i] = vacation.type;
+      }
+      return vacationTypeByDay;
+    });
 
-    for (let j = 0; j < daysInMonth + 1; j++) {
-      row.push(
-        <div
-          className={`${styles["table-calendar-element"]} ${
-            j === 0 ? styles["table-calendar-first-column-element"] : ""
-          } ${vacationDays.includes(j) ? styles["table-calendar-element-vacation-approved"] : ""}`}
-        >
-          {makeTableBodyElementContent(rowNumber, j)}
-        </div>
-      );
+    for (let day = 0; day < daysInMonth + 1; day++) {
+      let classNames = `${styles["table-calendar-element"]} ${
+        day === 0 ? styles["table-calendar-first-column-element"] : ""
+      } `;
+
+      if (vacationTypeByDay[day] === VacationType.APPROVED) {
+        classNames = `${classNames} ${styles["table-calendar-element-vacation-approved"]}`;
+      }
+      if (vacationTypeByDay[day] === VacationType.PENDING_APPROVAL) {
+        classNames = `${classNames} ${styles["table-calendar-element-vacation-pending-approval"]}`;
+      }
+
+      row.push(<div className={classNames}>{makeTableBodyElementContent(rowNumber, day)}</div>);
     }
     return row;
   }

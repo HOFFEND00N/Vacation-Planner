@@ -34,11 +34,16 @@ export async function setupDBModels(sequelize: Sequelize) {
       },
       userId: {
         type: DataTypes.STRING,
+        allowNull: false,
+      },
+      type: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
     },
     { sequelize }
   );
 
-  await Vacation.sync();
-  await User.sync();
+  await Vacation.sync({ alter: true });
+  await User.sync({ alter: true });
 }

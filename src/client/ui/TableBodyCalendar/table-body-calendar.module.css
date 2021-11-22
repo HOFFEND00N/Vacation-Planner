@@ -1,21 +1,25 @@
-.table-calendar-row{
-    display: flex;
-    justify-content: center;
+.table-calendar-row {
+  display: flex;
+  justify-content: center;
 }
 
-.table-calendar-element{
-    padding: 5px;
-    border-style: solid;
-    border-width: 1px;
-    min-width: 30px;
-    min-height: 18px;
-    text-align: center;
+.table-calendar-element {
+  padding: 5px;
+  border-style: solid;
+  border-width: 1px;
+  min-width: 30px;
+  min-height: 18px;
+  text-align: center;
 }
 
-.table-calendar-first-column-element{
-    flex-grow: 1;
+.table-calendar-first-column-element {
+  flex-grow: 1;
 }
 
-.table-calendar-element-vacation-approved{
-    background-color: darkgrey;
+.table-calendar-element-vacation-approved {
+  background-color: darkgrey;
+}
+
+.table-calendar-element-vacation-pending-approval {
+    background: repeating-linear-gradient(45deg, black, black 2%, transparent 10%, transparent 18%);
 }
