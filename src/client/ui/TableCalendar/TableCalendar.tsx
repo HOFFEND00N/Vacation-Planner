@@ -7,6 +7,26 @@ import styles from "./table-calendar.module.css";
 
 export function TableCalendar() {
   const [today, setToday] = useState(moment());
+  const [vacationStart, setVacationStart] = useState<{ date: Date; isSelected: boolean }>({
+    date: new Date(0),
+    isSelected: false,
+  });
+  const [vacationEnd, setVacationEnd] = useState<{ date: Date; isSelected: boolean }>({
+    date: new Date(0),
+    isSelected: false,
+  });
+
+  const handleVacationSelect = (date: Date) => {
+    if (!vacationStart.isSelected) {
+      setVacationStart({ isSelected: true, date });
+      setVacationEnd({ isSelected: false, date });
+    } else if (!vacationEnd.isSelected) {
+      setVacationEnd({ isSelected: true, date });
+    } else {
+      setVacationStart({ isSelected: true, date });
+      setVacationEnd({ isSelected: false, date });
+    }
+  };
 
   function handlePreviousMonthChange() {
     setToday(today.clone().subtract(1, "months"));
@@ -23,8 +43,18 @@ export function TableCalendar() {
         handleNextMonthChange={handleNextMonthChange}
         today={today}
       />
-      <TableBodyCalendar today={today} />
-      <Button className={styles["table-calendar-button"]}>Plan Vacation</Button>
+      <TableBodyCalendar
+        today={today}
+        vacationStart={vacationStart}
+        vacationEnd={vacationEnd}
+        handleVacationSelect={handleVacationSelect}
+      />
+      <Button
+        className={styles["table-calendar-button"]}
+        {...(vacationStart.isSelected && vacationEnd.isSelected ? { disabled: false } : { disabled: true })}
+      >
+        Plan Vacation
+      </Button>
     </div>
   );
 }

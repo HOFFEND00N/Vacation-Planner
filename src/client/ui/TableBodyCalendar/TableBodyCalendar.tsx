@@ -8,19 +8,18 @@ import styles from "./table-body-calendar.module.css";
 import { getVacationsForCurrentMonth } from "./getVacationsForCurrentMonth";
 import { styleTableCalendarElement } from "./styleTableCalendarElement";
 
-export function TableBodyCalendar({ today }: { today: moment.Moment }) {
+type propsType = {
+  today: moment.Moment;
+  vacationStart: { date: Date; isSelected: boolean };
+  vacationEnd: { date: Date; isSelected: boolean };
+  handleVacationSelect: (date: Date) => void;
+};
+
+export function TableBodyCalendar({ today, vacationStart, vacationEnd, handleVacationSelect }: propsType) {
   const [teamMembers, setTeamMembers] = useState<User[]>([]);
   const [vacations, setVacations] = useState<Vacation[]>([]);
   const [isDataFetched, setIsDataFetched] = useState(false);
   const [currentUser, setCurrentUser] = useState<User>({ id: "", name: "" });
-  const [vacationStart, setVacationStart] = useState<{ date: Date; isSelected: boolean }>({
-    date: new Date(0),
-    isSelected: false,
-  });
-  const [vacationEnd, setVacationEnd] = useState<{ date: Date; isSelected: boolean }>({
-    date: new Date(0),
-    isSelected: false,
-  });
 
   useEffect(() => {
     (async () => {
@@ -115,18 +114,6 @@ export function TableBodyCalendar({ today }: { today: moment.Moment }) {
     }
     return row;
   }
-
-  const handleVacationSelect = (date: Date) => {
-    if (!vacationStart.isSelected) {
-      setVacationStart({ isSelected: true, date });
-      setVacationEnd({ isSelected: false, date });
-    } else if (!vacationEnd.isSelected) {
-      setVacationEnd({ isSelected: true, date });
-    } else {
-      setVacationStart({ isSelected: true, date });
-      setVacationEnd({ isSelected: false, date });
-    }
-  };
 
   function makeTableHeaderElementContent(columnNumber: number) {
     return columnNumber === 0 ? "" : columnNumber;
