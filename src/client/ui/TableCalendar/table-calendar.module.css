@@ -8,5 +8,10 @@
 .table-calendar-button{
     max-width: 140px;
     margin-left: auto;
-    margin-top: 10px;
+    margin-top: 15px;
+    max-height: 40px;
+}
+
+.table-calendar-legend-and-button-container {
+    display: flex;
 }

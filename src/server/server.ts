@@ -30,11 +30,6 @@ import { entryParser } from "./ADHelpers/entryParser";
     server.use(express.static("dist"));
   }
 
-  server.get("/user", async (req, res) => {
-    const currentUser = await dbConnection.models[MODELS_NAMES.USER].findAll();
-    res.send({ user: currentUser[0] });
-  });
-
   server.post("/plan-vacation", (req, res) => {
     res.set("Content-Type", "application/json");
     res.send({ message: "saved to db" });

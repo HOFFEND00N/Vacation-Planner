@@ -3,6 +3,7 @@ import { Button } from "@confirmit/react-button";
 import moment from "moment";
 import { TableCalendarHeader } from "../TableHeaderCalendar/TableCalendarHeader";
 import { TableBodyCalendar } from "../TableBodyCalendar/TableBodyCalendar";
+import { TableCalendarLegend } from "../TableCalendarLegend/TableCalendarLegend";
 import styles from "./table-calendar.module.css";
 
 export function TableCalendar() {
@@ -50,12 +51,15 @@ export function TableCalendar() {
         vacationEnd={vacationEnd}
         handleVacationSelect={handleVacationSelect}
       />
-      <Button
-        className={styles["table-calendar-button"]}
-        {...(vacationStart.isSelected && vacationEnd.isSelected ? { disabled: false } : { disabled: true })}
-      >
-        Plan Vacation
-      </Button>
+      <div className={styles["table-calendar-legend-and-button-container"]}>
+        <TableCalendarLegend />
+        <Button
+          className={styles["table-calendar-button"]}
+          {...(vacationStart.isSelected && vacationEnd.isSelected ? { disabled: false } : { disabled: true })}
+        >
+          Plan Vacation
+        </Button>
+      </div>
     </div>
   );
 }

@@ -21,25 +21,25 @@
 }
 
 .table-calendar-element-vacation-pending-approval {
-    background: repeating-linear-gradient(45deg, black, black 2%, transparent 10%, transparent 18%);
+  background: repeating-linear-gradient(45deg, black, black 2%, transparent 10%, transparent 18%);
 }
 
-.table-calendar-element-selectable:hover{
+.table-calendar-element-selectable:hover {
   cursor: pointer;
 }
 
-.table-calendar-element-selected{
+.table-calendar-element-selected {
   background: lightskyblue;
 }
 
-.table-calendar-total-element-weak-workload{
+.table-calendar-total-element-weak-workload {
   background: lawngreen;
 }
 
-.table-calendar-total-element-medium-workload{
+.table-calendar-total-element-medium-workload {
   background: yellow;
 }
 
-.table-calendar-total-element-heavy-workload{
+.table-calendar-total-element-heavy-workload {
   background: red;
 }
