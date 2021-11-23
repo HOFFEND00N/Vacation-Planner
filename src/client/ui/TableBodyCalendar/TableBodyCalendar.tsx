@@ -138,19 +138,18 @@ export function TableBodyCalendar({ today, vacationStart, vacationEnd, handleVac
     });
 
     for (let j = 0; j < daysInMonth + 1; j++) {
-      const vacationsCount = vacationsCountByDays[j] ?? 0;
       const className = makeStylesForTableTotalElement({
-        vacationsCount,
+        vacationsCount: vacationsCountByDays[j] ?? 0,
         teamMembersCount: teamMembers.length,
         columnNumber: j,
       });
-      row.push(<div className={className}>{makeTableTotalElementContent(j, vacationsCount)}</div>);
+      row.push(<div className={className}>{makeTableTotalElementContent(j)}</div>);
     }
     return row;
   }
 
-  function makeTableTotalElementContent(columnNumber: number, vacationsCount: number) {
-    return columnNumber === 0 ? "Total" : vacationsCount;
+  function makeTableTotalElementContent(columnNumber: number) {
+    return columnNumber === 0 ? "Total" : "";
   }
 
   if (isDataFetched) {
