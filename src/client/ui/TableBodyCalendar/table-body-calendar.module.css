@@ -31,3 +31,15 @@
 .table-calendar-element-selected{
   background: lightskyblue;
 }
+
+.table-calendar-total-element-weak-workload{
+  background: lawngreen;
+}
+
+.table-calendar-total-element-medium-workload{
+  background: yellow;
+}
+
+.table-calendar-total-element-heavy-workload{
+  background: red;
+}

@@ -5,8 +5,10 @@ import { getVacations } from "../../application/getVacations";
 import { User } from "../../domain/user";
 import { Vacation } from "../../domain/vacation";
 import styles from "./table-body-calendar.module.css";
-import { getVacationsForCurrentMonth } from "./getVacationsForCurrentMonth";
-import { styleTableCalendarElement } from "./styleTableCalendarElement";
+import { getVacationsTypeByDayForCurrentMonth } from "./getVacationsTypeByDayForCurrentMonth";
+import { makeStylesForTableBodyCalendarElement } from "./makeStylesForTableBodyCalendarElement";
+import { getVacationIntervalForCurrentMonth } from "./getVacationIntervalForCurrentMonth";
+import { makeStylesForTableTotalElement } from "./makeStylesForTableTotalElement";
 
 type propsType = {
   today: moment.Moment;
@@ -44,6 +46,7 @@ export function TableBodyCalendar({ today, vacationStart, vacationEnd, handleVac
         </div>
       );
     }
+    table.push(<div className={styles["table-calendar-row"]}>{makeTableTotalRow(daysInMonth, vacations)}</div>);
     return table;
   }
 
@@ -81,15 +84,15 @@ export function TableBodyCalendar({ today, vacationStart, vacationEnd, handleVac
     user: User;
   }) {
     const row: JSX.Element[] = [];
-    const vacationTypeByDay = getVacationsForCurrentMonth({ vacations, today });
+    const vacationTypeByDay = getVacationsTypeByDayForCurrentMonth({ vacations, today });
     let isSelectable = false;
 
     for (let day = 0; day < daysInMonth + 1; day++) {
       const elementDate = new Date(today.year(), today.month(), day);
-      const classNames = styleTableCalendarElement({
+      const classNames = makeStylesForTableBodyCalendarElement({
         vacationStart,
         elementDate,
-        day,
+        columnNumber: day,
         vacationTypeByDay,
         vacationEnd,
         userId: user.id,
@@ -121,6 +124,33 @@ export function TableBodyCalendar({ today, vacationStart, vacationEnd, handleVac
 
   function makeTableBodyElementContent(rowNumber: number, columnNumber: number) {
     return columnNumber === 0 ? teamMembers[rowNumber - 1].name : "";
+  }
+
+  function makeTableTotalRow(daysInMonth: number, vacations: Vacation[]) {
+    const row: JSX.Element[] = [];
+
+    const vacationsCountByDays: Record<number, number> = {};
+    vacations.map((vacation) => {
+      const vacationInterval = getVacationIntervalForCurrentMonth({ vacation, today });
+      for (let i = vacationInterval.start; i < vacationInterval.end + 1; i++) {
+        vacationsCountByDays[i] = (vacationsCountByDays[i] ?? 0) + 1;
+      }
+    });
+
+    for (let j = 0; j < daysInMonth + 1; j++) {
+      const vacationsCount = vacationsCountByDays[j] ?? 0;
+      const className = makeStylesForTableTotalElement({
+        vacationsCount,
+        teamMembersCount: teamMembers.length,
+        columnNumber: j,
+      });
+      row.push(<div className={className}>{makeTableTotalElementContent(j, vacationsCount)}</div>);
+    }
+    return row;
+  }
+
+  function makeTableTotalElementContent(columnNumber: number, vacationsCount: number) {
+    return columnNumber === 0 ? "Total" : vacationsCount;
   }
 
   if (isDataFetched) {
