@@ -18,6 +18,7 @@ export function TableCalendar() {
 
   const handleVacationSelect = (date: Date) => {
     if (!vacationStart.isSelected) {
+      //set end vacation date === start vacation date, because we paint vacation in interval between the two
       setVacationStart({ isSelected: true, date });
       setVacationEnd({ isSelected: false, date });
     } else if (!vacationEnd.isSelected) {
