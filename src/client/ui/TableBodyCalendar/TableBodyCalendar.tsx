@@ -3,11 +3,15 @@ import moment from "moment";
 import { getTeamMembers } from "../../application/getTeamMembers";
 import { getVacations } from "../../application/getVacations";
 import { User } from "../../domain/user";
-import { Vacation } from "../../domain/vacation";
+import {
+  getVacationIntervalForCurrentMonth,
+  getVacationsTypeByDayForCurrentMonth,
+  findUserVacations,
+  getTotalVacationsDays,
+  Vacation,
+} from "../../domain/vacation";
 import styles from "./table-body-calendar.module.css";
-import { getVacationsTypeByDayForCurrentMonth } from "./getVacationsTypeByDayForCurrentMonth";
 import { makeStylesForTableBodyCalendarElement } from "./makeStylesForTableBodyCalendarElement";
-import { getVacationIntervalForCurrentMonth } from "./getVacationIntervalForCurrentMonth";
 import { makeStylesForTableTotalElement } from "./makeStylesForTableTotalElement";
 
 type propsType = {
@@ -73,12 +77,6 @@ export function TableBodyCalendar({ today, vacationStart, vacationEnd, handleVac
     return row;
   }
 
-  function findUserVacations({ vacations, userId, year }: { vacations: Vacation[]; userId: string; year: number }) {
-    return vacations.filter((vacation) => {
-      return vacation.userId === userId && year === vacation.start.getFullYear() && year === vacation.end.getFullYear();
-    });
-  }
-
   function makeTableBodyRow({
     daysInMonth,
     rowNumber,
@@ -133,19 +131,13 @@ export function TableBodyCalendar({ today, vacationStart, vacationEnd, handleVac
     return row;
   }
 
-  function getTotalVacationsDays(vacations: Vacation[]) {
-    return vacations.reduce((totalVacationDays, currentVacation) => {
-      totalVacationDays += getDateDifferenceInDays(currentVacation.start, currentVacation.end);
-      return totalVacationDays;
-    }, 0);
-  }
-
-  function getDateDifferenceInDays(start: Date, end: Date) {
-    return moment(end).diff(moment(start), "day") + 1;
-  }
-
   function makeTableTotalRow(daysInMonth: number, vacations: Vacation[]) {
     const row: JSX.Element[] = [];
+    row.push(
+      <div className={`${styles["table-calendar-element"]} ${styles["table-calendar-first-column-element"]}`}>
+        Total
+      </div>
+    );
 
     const vacationsCountByDays: Record<number, number> = {};
     vacations.map((vacation) => {
@@ -155,19 +147,15 @@ export function TableBodyCalendar({ today, vacationStart, vacationEnd, handleVac
       }
     });
 
-    for (let j = 0; j < daysInMonth + 1; j++) {
+    for (let j = 1; j < daysInMonth + 1; j++) {
       const className = makeStylesForTableTotalElement({
         vacationsCount: vacationsCountByDays[j] ?? 0,
         teamMembersCount: teamMembers.length,
         columnNumber: j,
       });
-      row.push(<div className={className}>{makeTableTotalElementContent(j)}</div>);
+      row.push(<div className={className} />);
     }
     return row;
-  }
-
-  function makeTableTotalElementContent(columnNumber: number) {
-    return columnNumber === 0 ? "Total" : "";
   }
 
   if (isDataFetched) {
