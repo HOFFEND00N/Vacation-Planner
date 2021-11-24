@@ -39,7 +39,7 @@ export function TableBodyCalendar({ today, vacationStart, vacationEnd, handleVac
     const daysInMonth = today.daysInMonth();
     table.push(<div className={styles["table-calendar-row"]}>{makeTableHeaderRow(daysInMonth)}</div>);
     for (let i = 0; i < teamMembers.length; i++) {
-      const userVacations = findVacations(vacations, teamMembers[i].id);
+      const userVacations = findUserVacations({ vacations, userId: teamMembers[i].id, year: today.year() });
       table.push(
         <div className={styles["table-calendar-row"]}>
           {makeTableBodyRow({ daysInMonth, rowNumber: i + 1, vacations: userVacations, user: teamMembers[i] })}
@@ -73,9 +73,9 @@ export function TableBodyCalendar({ today, vacationStart, vacationEnd, handleVac
     return row;
   }
 
-  function findVacations(vacations: Vacation[], userId: string) {
+  function findUserVacations({ vacations, userId, year }: { vacations: Vacation[]; userId: string; year: number }) {
     return vacations.filter((vacation) => {
-      return vacation.userId === userId;
+      return vacation.userId === userId && year === vacation.start.getFullYear() && year === vacation.end.getFullYear();
     });
   }
 
