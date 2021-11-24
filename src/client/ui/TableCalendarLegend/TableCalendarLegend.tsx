@@ -5,7 +5,6 @@ import styles from "./table-calendar-legend.css";
 export function TableCalendarLegend() {
   return (
     <div className={styles["table-calendar-legend-container"]}>
-      <div> Calendar legend: </div>
       <TableCalendarLegendItem
         className={"table-calendar-legend-element-vacation-approved"}
         itemName={"Vacation approved"}
