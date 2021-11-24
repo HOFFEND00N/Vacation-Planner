@@ -52,14 +52,21 @@ export function TableBodyCalendar({ today, vacationStart, vacationEnd, handleVac
 
   function makeTableHeaderRow(daysInMonth: number) {
     const row: JSX.Element[] = [];
-    for (let j = 0; j < daysInMonth + 1; j++) {
+    row.push(
+      <div className={`${styles["table-calendar-element"]} ${styles["table-calendar-first-column-element"]}`} />
+    );
+    row.push(
+      <div className={`${styles["table-calendar-element"]} ${styles["table-calendar-element-days-column"]}`}>Days</div>
+    );
+
+    for (let j = 1; j < daysInMonth + 1; j++) {
       row.push(
         <div
           className={`${styles["table-calendar-element"]} ${
             j === 0 ? styles["table-calendar-first-column-element"] : ""
           }`}
         >
-          {makeTableHeaderElementContent(j)}
+          {j}
         </div>
       );
     }
@@ -86,8 +93,18 @@ export function TableBodyCalendar({ today, vacationStart, vacationEnd, handleVac
     const row: JSX.Element[] = [];
     const vacationTypeByDay = getVacationsTypeByDayForCurrentMonth({ vacations, today });
     let isSelectable = false;
+    row.push(
+      <div className={`${styles["table-calendar-element"]} ${styles["table-calendar-first-column-element"]}`}>
+        {teamMembers[rowNumber - 1].name}
+      </div>
+    );
+    row.push(
+      <div className={`${styles["table-calendar-element"]} ${styles["table-calendar-element-days-column"]}`}>
+        {getTotalVacationsDays(vacations)}
+      </div>
+    );
 
-    for (let day = 0; day < daysInMonth + 1; day++) {
+    for (let day = 1; day < daysInMonth + 1; day++) {
       const elementDate = new Date(today.year(), today.month(), day);
       const classNames = makeStylesForTableBodyCalendarElement({
         vacationStart,
@@ -110,20 +127,21 @@ export function TableBodyCalendar({ today, vacationStart, vacationEnd, handleVac
               handleVacationSelect(elementDate);
             },
           })}
-        >
-          {makeTableBodyElementContent(rowNumber, day)}
-        </div>
+        />
       );
     }
     return row;
   }
 
-  function makeTableHeaderElementContent(columnNumber: number) {
-    return columnNumber === 0 ? "" : columnNumber;
+  function getTotalVacationsDays(vacations: Vacation[]) {
+    return vacations.reduce((totalVacationDays, currentVacation) => {
+      totalVacationDays += getDateDifferenceInDays(currentVacation.start, currentVacation.end);
+      return totalVacationDays;
+    }, 0);
   }
 
-  function makeTableBodyElementContent(rowNumber: number, columnNumber: number) {
-    return columnNumber === 0 ? teamMembers[rowNumber - 1].name : "";
+  function getDateDifferenceInDays(start: Date, end: Date) {
+    return moment(end).diff(moment(start), "day") + 1;
   }
 
   function makeTableTotalRow(daysInMonth: number, vacations: Vacation[]) {

@@ -43,3 +43,7 @@
 .table-calendar-total-element-heavy-workload {
   background: red;
 }
+
+.table-calendar-element-days-column {
+  min-width: 45px;
+}
