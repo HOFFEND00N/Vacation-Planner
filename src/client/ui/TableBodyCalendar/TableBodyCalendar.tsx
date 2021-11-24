@@ -64,15 +64,7 @@ export function TableBodyCalendar({ today, vacationStart, vacationEnd, handleVac
     );
 
     for (let j = 1; j < daysInMonth + 1; j++) {
-      row.push(
-        <div
-          className={`${styles["table-calendar-element"]} ${
-            j === 0 ? styles["table-calendar-first-column-element"] : ""
-          }`}
-        >
-          {j}
-        </div>
-      );
+      row.push(<div className={`${styles["table-calendar-element"]}`}>{j}</div>);
     }
     return row;
   }
