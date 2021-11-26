@@ -11,12 +11,15 @@ export function TableCalendarLegend() {
     { className: "table-calendar-legend-total-element-medium-workload", itemName: "Medium workload" },
     { className: "table-calendar-legend-total-element-heavy-workload", itemName: "Heavy workload" },
   ];
-  const LegendItems = legendItemsValues.map((legendItemsValue) => (
-    <TableCalendarLegendItem className={legendItemsValue.className} itemName={legendItemsValue.itemName} />
-  ));
   return (
     <div className={styles["table-calendar-legend-container"]} data-testid={"table-calendar-legend-container"}>
-      {LegendItems}
+      {legendItemsValues.map((legendItemsValue, index) => (
+        <TableCalendarLegendItem
+          className={legendItemsValue.className}
+          itemName={legendItemsValue.itemName}
+          key={index}
+        />
+      ))}
     </div>
   );
 }
