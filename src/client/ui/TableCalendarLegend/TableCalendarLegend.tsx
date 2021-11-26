@@ -16,8 +16,7 @@ export function TableCalendarLegend() {
   ));
   return (
     <div className={styles["table-calendar-legend-container"]} data-testid={"table-calendar-legend-container"}>
-      {" "}
-      {LegendItems}{" "}
+      {LegendItems}
     </div>
   );
 }
