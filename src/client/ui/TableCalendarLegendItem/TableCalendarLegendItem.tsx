@@ -1,4 +1,5 @@
 import React from "react";
+import cn from "classnames";
 import styles from "./table-calendar-legend-item.css";
 
 type tableCalendarLegendItemProps = {
@@ -8,8 +9,8 @@ type tableCalendarLegendItemProps = {
 
 export function TableCalendarLegendItem({ className, itemName }: tableCalendarLegendItemProps) {
   return (
-    <div className={styles["table-calendar-legend-element-container"]}>
-      <div className={`${styles["table-calendar-legend-element"]} ${className}`} />
+    <div className={"table-calendar-legend-element-container"}>
+      <div className={cn(styles["table-calendar-legend-element"], className)} />
       <div> {itemName} </div>
     </div>
   );
