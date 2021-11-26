@@ -55,7 +55,7 @@ export function TableCalendar() {
         <TableCalendarLegend />
         <Button
           className={styles["table-calendar-button"]}
-          {...(vacationStart.isSelected && vacationEnd.isSelected ? { disabled: false } : { disabled: true })}
+          disabled={!vacationStart.isSelected && !vacationEnd.isSelected}
         >
           Plan Vacation
         </Button>
