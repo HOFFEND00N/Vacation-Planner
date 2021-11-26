@@ -14,5 +14,10 @@ export function TableCalendarLegend() {
   const LegendItems = legendItemsValues.map((legendItemsValue) => (
     <TableCalendarLegendItem className={legendItemsValue.className} itemName={legendItemsValue.itemName} />
   ));
-  return <div className={styles["table-calendar-legend-container"]}> {LegendItems} </div>;
+  return (
+    <div className={styles["table-calendar-legend-container"]} data-testid={"table-calendar-legend-container"}>
+      {" "}
+      {LegendItems}{" "}
+    </div>
+  );
 }

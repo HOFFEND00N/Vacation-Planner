@@ -1,6 +1,6 @@
 const config = {
-  moduleFileExtensions: ["ts", "js"],
-  transform: { "\\.ts$": "ts-jest" },
+  moduleFileExtensions: ["ts", "js", "tsx", "jsx"],
+  transform: { "\\.tsx?$": "ts-jest" },
   coverageThreshold: {
     global: {
       branches: 100,
@@ -9,5 +9,9 @@ const config = {
       statements: 100,
     },
   },
+  moduleNameMapper: {
+    "\\.(css|less)$": "identity-obj-proxy",
+  },
+  testEnvironment: "jsdom",
 };
 export default config;
