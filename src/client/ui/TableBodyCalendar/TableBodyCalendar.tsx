@@ -23,10 +23,11 @@ type propsType = {
 
 export function TableBodyCalendar({ today, vacationStart, vacationEnd, handleVacationSelect }: propsType) {
   const [teamMembers, setTeamMembers] = useState<User[]>([]);
+  // TODO: useReducer()
+  // TODO: refactor to use components
   const [vacations, setVacations] = useState<Vacation[]>([]);
   const [isDataFetched, setIsDataFetched] = useState(false);
   const [currentUser, setCurrentUser] = useState<User>({ id: "", name: "" });
-
   useEffect(() => {
     (async () => {
       const { team, currentUser } = await getTeamMembers();
