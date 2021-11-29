@@ -1,3 +1,4 @@
+import cn from "classnames";
 import { VacationType } from "../../../../../domain/vacation";
 import { VacationTypeByDay } from "../../../../../types";
 import styles from "../../table-calendar-body.module.css";
@@ -22,15 +23,15 @@ export function makeStylesForTableCalendarBodyElement({
   let classNames = `${styles["table-calendar-element"]}`;
 
   if (vacationTypeByDay[columnNumber] === VacationType.APPROVED) {
-    classNames = `${classNames} ${styles["table-calendar-element-vacation-approved"]}`;
+    classNames = cn(classNames, styles["table-calendar-element-vacation-approved"]);
   }
   if (vacationTypeByDay[columnNumber] === VacationType.PENDING_APPROVAL) {
-    classNames = `${classNames} ${styles["table-calendar-element-vacation-pending-approval"]}`;
+    classNames = cn(classNames, styles["table-calendar-element-vacation-pending-approval"]);
   }
   if (columnNumber === 0) {
-    classNames = `${classNames} ${styles["table-calendar-first-column-element"]} `;
+    classNames = cn(classNames, styles["table-calendar-first-column-element"]);
   } else if (userId === currentUserId) {
-    classNames = `${classNames} ${styles["table-calendar-element-selectable"]}`;
+    classNames = cn(classNames, styles["table-calendar-element-selectable"]);
   }
 
   if (
@@ -39,7 +40,7 @@ export function makeStylesForTableCalendarBodyElement({
     userId === currentUserId &&
     columnNumber !== 0
   ) {
-    classNames = `${classNames} ${styles["table-calendar-element-selected"]}`;
+    classNames = cn(classNames, styles["table-calendar-element-selected"]);
   }
 
   return classNames;
