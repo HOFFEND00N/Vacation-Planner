@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Button } from "@confirmit/react-button";
 import moment from "moment";
-import { TableCalendarHeader } from "../TableHeaderCalendar/TableCalendarHeader";
-import { TableBodyCalendar } from "../TableBodyCalendar/TableBodyCalendar";
-import { TableCalendarLegend } from "../TableCalendarLegend/TableCalendarLegend";
+import { TableCalendarPager } from "./TableCalendarPager/TableCalendarPager";
+import { TableCalendarBody } from "./TableCalendarBody/TableCalendarBody";
+import { TableCalendarLegend } from "./TableCalendarLegend/TableCalendarLegend";
 import styles from "./table-calendar.module.css";
 
 export function TableCalendar() {
@@ -40,16 +40,16 @@ export function TableCalendar() {
 
   return (
     <div className={styles["table-calendar-container"]}>
-      <TableCalendarHeader
+      <TableCalendarPager
         handlePreviousMonthChange={handlePreviousMonthChange}
         handleNextMonthChange={handleNextMonthChange}
         today={today}
       />
-      <TableBodyCalendar
+      <TableCalendarBody
         today={today}
         vacationStart={vacationStart}
         vacationEnd={vacationEnd}
-        handleVacationSelect={handleVacationSelect}
+        handleOnClick={handleVacationSelect}
       />
       <div className={styles["table-calendar-legend-and-button-container"]}>
         <TableCalendarLegend />

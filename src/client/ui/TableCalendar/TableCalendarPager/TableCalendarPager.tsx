@@ -2,9 +2,9 @@ import React from "react";
 import moment from "moment";
 import { IconButton } from "@confirmit/react-button";
 import { Icon, chevronLeft, chevronRight } from "@confirmit/react-icons";
-import styles from "./table-calendar-header.module.css";
+import styles from "./table-calendar-pager.module.css";
 
-export function TableCalendarHeader({
+export function TableCalendarPager({
   handlePreviousMonthChange,
   handleNextMonthChange,
   today,

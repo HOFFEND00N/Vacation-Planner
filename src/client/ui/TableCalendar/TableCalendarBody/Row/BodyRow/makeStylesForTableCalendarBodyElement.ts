@@ -1,8 +1,8 @@
-import { VacationType } from "../../domain/vacation";
-import { VacationTypeByDay } from "../../types";
-import styles from "./table-body-calendar.module.css";
+import { VacationType } from "../../../../../domain/vacation";
+import { VacationTypeByDay } from "../../../../../types";
+import styles from "../../table-calendar-body.module.css";
 
-export function makeStylesForTableBodyCalendarElement({
+export function makeStylesForTableCalendarBodyElement({
   vacationStart,
   vacationEnd,
   vacationTypeByDay,

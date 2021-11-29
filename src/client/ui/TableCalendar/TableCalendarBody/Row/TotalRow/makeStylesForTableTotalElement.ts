@@ -1,4 +1,4 @@
-import styles from "./table-body-calendar.module.css";
+import styles from "../../table-calendar-body.module.css";
 
 export function makeStylesForTableTotalElement({
   vacationsCount,

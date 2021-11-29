@@ -1,5 +1,5 @@
 import React from "react";
-import { TableCalendarLegendItem } from "../TableCalendarLegendItem/TableCalendarLegendItem";
+import { TableCalendarLegendItem } from "./TableCalendarLegendItem/TableCalendarLegendItem";
 import styles from "./table-calendar-legend.css";
 
 export function TableCalendarLegend() {
