@@ -18,13 +18,22 @@ export function TableCalendarPager({
   }
 
   return (
-    <div className={styles["table-calendar-header"]}>
-      <IconButton className={styles["table-calendar-controls"]} onClick={handlePreviousMonthChange}>
+    <div className={styles["table-calendar-pager"]} data-testid={"table-calendar-pager"}>
+      <IconButton
+        className={styles["table-calendar-controls"]}
+        onClick={handlePreviousMonthChange}
+        data-testid={"table-calendar-controls-previous-month-change"}
+      >
         <Icon path={chevronLeft} />
       </IconButton>
 
-      <div className={styles["table-calendar-header-current-date"]}>{makeCalendarHeader()}</div>
-      <IconButton className={styles["table-calendar-controls"]} onClick={handleNextMonthChange}>
+      <div className={styles["table-calendar-pager-current-date"]}>{makeCalendarHeader()}</div>
+
+      <IconButton
+        className={styles["table-calendar-controls"]}
+        onClick={handleNextMonthChange}
+        data-testid={"table-calendar-controls-next-month-change"}
+      >
         <Icon path={chevronRight} />
       </IconButton>
     </div>
