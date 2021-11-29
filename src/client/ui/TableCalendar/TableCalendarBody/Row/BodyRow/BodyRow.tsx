@@ -46,6 +46,7 @@ export function BodyRow({
         value={""}
         className={classNames}
         handleOnClick={user.id === currentUser.id ? () => handleOnClick(elementDate) : undefined}
+        key={day + 1}
       />
     );
   }
@@ -54,10 +55,12 @@ export function BodyRow({
       <Cell
         value={employeeName}
         className={cn(styles["table-calendar-element"], styles["table-calendar-first-column-element"])}
+        key={0}
       />
       <Cell
         value={getTotalVacationsDays(vacations)}
         className={cn(styles["table-calendar-element"], styles["table-calendar-element-days-column"])}
+        key={1}
       />
       {cells}
     </div>

@@ -23,13 +23,14 @@ export function TotalRow({ vacations, today, daysInMonth, teamMembersCount }: To
       teamMembersCount: teamMembersCount,
       columnNumber: j,
     });
-    cells.push(<Cell value={""} className={classNames} />);
+    cells.push(<Cell value={""} className={classNames} key={j} />);
   }
   return (
     <div className={styles["table-calendar-row"]}>
       <Cell
         value={"Total"}
         className={cn(styles["table-calendar-element"], styles["table-calendar-first-column-element"])}
+        key={0}
       />
       {cells}
     </div>
