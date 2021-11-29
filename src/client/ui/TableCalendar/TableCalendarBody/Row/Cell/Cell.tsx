@@ -4,7 +4,7 @@ type CellProps = { value: number | string; className: string; handleOnClick?: Re
 
 export function Cell({ value, className, handleOnClick }: CellProps) {
   return (
-    <div className={className} onClick={handleOnClick}>
+    <div className={className} onClick={handleOnClick} data-testid={""}>
       {value}
     </div>
   );
