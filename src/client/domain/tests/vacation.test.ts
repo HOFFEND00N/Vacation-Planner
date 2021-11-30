@@ -4,10 +4,11 @@ import {
   getDateDifferenceInDays,
   getTotalVacationsDays,
   getVacationIntervalForCurrentMonth,
+  getVacationsTypeByDayForCurrentMonth,
   Vacation,
   VacationType,
 } from "../vacation";
-import { VacationInterval } from "../../types";
+import { VacationInterval, VacationTypeByDay } from "../../types";
 
 //case when vacation starts in one year and ends in another is impossible
 describe("find user vacations", () => {
@@ -215,7 +216,7 @@ describe("get date difference in days", () => {
 });
 
 describe("get vacation interval for current month", () => {
-  test("pass same dates, expect to return interval with one day difference", () => {
+  test("pass one day vacation, expect to return interval with one day difference", () => {
     const expectedIntervalForCurrentMonth: VacationInterval = { start: 1, end: 2 };
 
     const actualIntervalForCurrentMonth = getVacationIntervalForCurrentMonth({
@@ -232,7 +233,7 @@ describe("get vacation interval for current month", () => {
     expect(actualIntervalForCurrentMonth).toEqual(expectedIntervalForCurrentMonth);
   });
 
-  test("pass dates with same month and year, expect to return correct interval", () => {
+  test("pass vacation in one month, expect to return from vacation start to vacation end", () => {
     const expectedIntervalForCurrentMonth: VacationInterval = { start: 1, end: 13 };
 
     const actualIntervalForCurrentMonth = getVacationIntervalForCurrentMonth({
@@ -249,12 +250,12 @@ describe("get vacation interval for current month", () => {
     expect(actualIntervalForCurrentMonth).toEqual(expectedIntervalForCurrentMonth);
   });
 
-  test("pass dates before and after current month, expect to return whole month interval", () => {
+  test("pass vacation with start before current month, vacation end after current month, expect to return whole month interval", () => {
     const expectedIntervalForCurrentMonth: VacationInterval = { start: 1, end: 28 };
 
     const actualIntervalForCurrentMonth = getVacationIntervalForCurrentMonth({
       vacation: {
-        start: new Date("1-31-2021"),
+        start: new Date("1-28-2021"),
         end: new Date("3-1-2021"),
         userId: "2",
         type: VacationType.APPROVED,
@@ -266,7 +267,7 @@ describe("get vacation interval for current month", () => {
     expect(actualIntervalForCurrentMonth).toEqual(expectedIntervalForCurrentMonth);
   });
 
-  test("pass dates before and in current month, expect to return from month begin to vacation end", () => {
+  test("pass vacation with start before current month, vacation end in current month, expect to return from month begin to vacation end", () => {
     const expectedIntervalForCurrentMonth: VacationInterval = { start: 1, end: 14 };
 
     const actualIntervalForCurrentMonth = getVacationIntervalForCurrentMonth({
@@ -283,7 +284,7 @@ describe("get vacation interval for current month", () => {
     expect(actualIntervalForCurrentMonth).toEqual(expectedIntervalForCurrentMonth);
   });
 
-  test("pass dates after and in current month, expect to return from vacation begin to month end", () => {
+  test("pass vacation with vacation in current month, vacation end in next month, expect to return from vacation begin to month end", () => {
     const expectedIntervalForCurrentMonth: VacationInterval = { start: 20, end: 28 };
 
     const actualIntervalForCurrentMonth = getVacationIntervalForCurrentMonth({
@@ -298,5 +299,137 @@ describe("get vacation interval for current month", () => {
     });
 
     expect(actualIntervalForCurrentMonth).toEqual(expectedIntervalForCurrentMonth);
+  });
+
+  test("pass vacation with dates for previous year, expect to return default interval", () => {
+    const expectedIntervalForCurrentMonth: VacationInterval = { start: -1, end: -1 };
+
+    const actualIntervalForCurrentMonth = getVacationIntervalForCurrentMonth({
+      vacation: {
+        start: new Date("2-20-2020"),
+        end: new Date("3-14-2020"),
+        userId: "2",
+        type: VacationType.APPROVED,
+        id: "vacation 1",
+      },
+      today: moment("2-11-2021"),
+    });
+
+    expect(actualIntervalForCurrentMonth).toEqual(expectedIntervalForCurrentMonth);
+  });
+
+  test("pass vacation with dates for current year but previous month, expect to return default interval", () => {
+    const expectedIntervalForCurrentMonth: VacationInterval = { start: -1, end: -1 };
+
+    const actualIntervalForCurrentMonth = getVacationIntervalForCurrentMonth({
+      vacation: {
+        start: new Date("2-20-2021"),
+        end: new Date("2-26-2021"),
+        userId: "2",
+        type: VacationType.APPROVED,
+        id: "vacation 1",
+      },
+      today: moment("5-11-2021"),
+    });
+
+    expect(actualIntervalForCurrentMonth).toEqual(expectedIntervalForCurrentMonth);
+  });
+
+  test("pass vacation with dates for current year but next month, expect to return default interval", () => {
+    const expectedIntervalForCurrentMonth: VacationInterval = { start: -1, end: -1 };
+
+    const actualIntervalForCurrentMonth = getVacationIntervalForCurrentMonth({
+      vacation: {
+        start: new Date("7-20-2021"),
+        end: new Date("8-26-2021"),
+        userId: "2",
+        type: VacationType.APPROVED,
+        id: "vacation 1",
+      },
+      today: moment("5-11-2021"),
+    });
+
+    expect(actualIntervalForCurrentMonth).toEqual(expectedIntervalForCurrentMonth);
+  });
+});
+
+describe("get vacations type by day for current month", () => {
+  test("pass no vacations, expect to return empty object", () => {
+    const expectedVacationsTypeByDayForCurrentMonth: VacationTypeByDay = {};
+
+    const actualVacationsTypeByDayForCurrentMonth = getVacationsTypeByDayForCurrentMonth({
+      vacations: [],
+      today: moment("1-11-2021"),
+    });
+
+    expect(actualVacationsTypeByDayForCurrentMonth).toEqual(expectedVacationsTypeByDayForCurrentMonth);
+  });
+
+  test("pass one approved vacation, expect to return correct object", () => {
+    const expectedVacationsTypeByDayForCurrentMonth: VacationTypeByDay = {
+      20: VacationType.APPROVED,
+      21: VacationType.APPROVED,
+      22: VacationType.APPROVED,
+      23: VacationType.APPROVED,
+      24: VacationType.APPROVED,
+      25: VacationType.APPROVED,
+      26: VacationType.APPROVED,
+    };
+
+    const actualVacationsTypeByDayForCurrentMonth = getVacationsTypeByDayForCurrentMonth({
+      vacations: [
+        {
+          start: new Date("2-20-2021"),
+          end: new Date("2-26-2021"),
+          userId: "2",
+          type: VacationType.APPROVED,
+          id: "vacation 1",
+        },
+      ],
+      today: moment("2-11-2021"),
+    });
+
+    expect(actualVacationsTypeByDayForCurrentMonth).toEqual(expectedVacationsTypeByDayForCurrentMonth);
+  });
+
+  test("pass one approved vacation and one pending for approval, expect to return correct object", () => {
+    const expectedVacationsTypeByDayForCurrentMonth: VacationTypeByDay = {
+      1: VacationType.PENDING_APPROVAL,
+      2: VacationType.PENDING_APPROVAL,
+      3: VacationType.PENDING_APPROVAL,
+      4: VacationType.PENDING_APPROVAL,
+      5: VacationType.PENDING_APPROVAL,
+      6: VacationType.PENDING_APPROVAL,
+      7: VacationType.PENDING_APPROVAL,
+      20: VacationType.APPROVED,
+      21: VacationType.APPROVED,
+      22: VacationType.APPROVED,
+      23: VacationType.APPROVED,
+      24: VacationType.APPROVED,
+      25: VacationType.APPROVED,
+      26: VacationType.APPROVED,
+    };
+
+    const actualVacationsTypeByDayForCurrentMonth = getVacationsTypeByDayForCurrentMonth({
+      vacations: [
+        {
+          start: new Date("2-1-2021"),
+          end: new Date("2-7-2021"),
+          userId: "2",
+          type: VacationType.PENDING_APPROVAL,
+          id: "vacation 2",
+        },
+        {
+          start: new Date("2-20-2021"),
+          end: new Date("2-26-2021"),
+          userId: "2",
+          type: VacationType.APPROVED,
+          id: "vacation 1",
+        },
+      ],
+      today: moment("2-11-2021"),
+    });
+
+    expect(actualVacationsTypeByDayForCurrentMonth).toEqual(expectedVacationsTypeByDayForCurrentMonth);
   });
 });
