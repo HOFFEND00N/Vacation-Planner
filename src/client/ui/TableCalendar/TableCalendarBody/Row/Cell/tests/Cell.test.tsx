@@ -11,7 +11,7 @@ describe("Cell ", () => {
     expect(screen.getByText("test value")).toBeInTheDocument();
   });
 
-  test("cell onClick fired", () => {
+  test("cell onClick event fired", () => {
     const mockOnClick = jest.fn();
 
     render(<Cell value={"test value"} className={"test class name"} handleOnClick={mockOnClick} />);
