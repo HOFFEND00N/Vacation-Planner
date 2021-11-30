@@ -30,17 +30,18 @@ export function findUserVacations({
 
 export function getTotalVacationsDays(vacations: Vacation[]) {
   return vacations.reduce((totalVacationDays, currentVacation) => {
-    totalVacationDays += getDateDifferenceInDays(currentVacation.start, currentVacation.end);
+    totalVacationDays += getDateDifferenceInDays({ start: currentVacation.start, end: currentVacation.end });
     return totalVacationDays;
   }, 0);
 }
 
-function getDateDifferenceInDays(start: Date, end: Date) {
+export function getDateDifferenceInDays({ start, end }: { start: Date; end: Date }) {
   return moment(end).diff(moment(start), "day") + 1;
 }
 
 //6 variants of vacation dates in case of month: prev/current, current/current, current/next, prev/next.
 // prev/prev, next/next - dont care about this cases.
+//TODO: rename today variable
 export function getVacationIntervalForCurrentMonth({ vacation, today }: { vacation: Vacation; today: Moment }) {
   const vacationInterval: VacationInterval = { start: -1, end: -1 };
   if (vacation.start.getFullYear() === today.year() && vacation.end.getFullYear() === today.year()) {
