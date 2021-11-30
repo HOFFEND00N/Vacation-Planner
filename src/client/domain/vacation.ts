@@ -39,6 +39,21 @@ export function getDateDifferenceInDays({ start, end }: { start: Date; end: Date
   return moment(end).diff(moment(start), "day") + 1;
 }
 
+export function getVacationsTypeByDayForCurrentMonth({ vacations, today }: { vacations: Vacation[]; today: Moment }) {
+  const vacationTypeByDay: VacationTypeByDay = {};
+
+  vacations.map((vacation) => {
+    const vacationInterval = getVacationIntervalForCurrentMonth({ vacation, today });
+
+    for (let i = vacationInterval.start; i < vacationInterval.end + 1; i++) {
+      vacationTypeByDay[i] = vacation.type;
+    }
+    return vacationTypeByDay;
+  });
+
+  return vacationTypeByDay;
+}
+
 //6 variants of vacation dates in case of month: prev/current, current/current, current/next, prev/next.
 // prev/prev, next/next - dont care about this cases.
 //TODO: rename today variable
@@ -60,19 +75,4 @@ export function getVacationIntervalForCurrentMonth({ vacation, today }: { vacati
     }
   }
   return vacationInterval;
-}
-
-export function getVacationsTypeByDayForCurrentMonth({ vacations, today }: { vacations: Vacation[]; today: Moment }) {
-  const vacationTypeByDay: VacationTypeByDay = {};
-
-  vacations.map((vacation) => {
-    const vacationInterval = getVacationIntervalForCurrentMonth({ vacation, today });
-
-    for (let i = vacationInterval.start; i < vacationInterval.end + 1; i++) {
-      vacationTypeByDay[i] = vacation.type;
-    }
-    return vacationTypeByDay;
-  });
-
-  return vacationTypeByDay;
 }
