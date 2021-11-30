@@ -51,8 +51,7 @@ export function BodyRow({
     );
   }
   return (
-    //TODO: add info about element in data-testid
-    <div className={styles["table-calendar-row"]} data-testid={user.id}>
+    <div className={styles["table-calendar-row"]} data-testid={`table-calendar-row ${user.id}`}>
       <Cell
         value={employeeName}
         className={cn(styles["table-calendar-element"], styles["table-calendar-first-column-element"])}

@@ -21,7 +21,7 @@ describe("Body row", () => {
       />
     );
 
-    expect(screen.getByTestId("user 1")).toBeInTheDocument();
+    expect(screen.getByTestId("table-calendar-row user 1")).toBeInTheDocument();
   });
 
   test("cell onClick event fired", () => {
