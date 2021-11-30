@@ -1,5 +1,5 @@
 import React from "react";
-import { Moment } from "moment";
+import moment from "moment";
 import cn from "classnames";
 import styles from "../../table-calendar-body.module.css";
 import { User } from "../../../../../domain/user";
@@ -24,7 +24,7 @@ export function BodyRow({
   vacationStart: { date: Date; isSelected: boolean };
   vacationEnd: { date: Date; isSelected: boolean };
   currentUser: User;
-  today: Moment;
+  today: moment.Moment;
   handleOnClick: (date: Date) => void;
   employeeName: string;
 }) {
@@ -51,7 +51,8 @@ export function BodyRow({
     );
   }
   return (
-    <div className={styles["table-calendar-row"]}>
+    //TODO: add info about element in data-testid
+    <div className={styles["table-calendar-row"]} data-testid={user.id}>
       <Cell
         value={employeeName}
         className={cn(styles["table-calendar-element"], styles["table-calendar-first-column-element"])}
