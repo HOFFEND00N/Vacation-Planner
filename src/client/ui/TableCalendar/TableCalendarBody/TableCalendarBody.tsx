@@ -18,7 +18,6 @@ type propsType = {
 export function TableCalendarBody({ today, vacationStart, vacationEnd, handleOnClick }: propsType) {
   const [teamMembers, setTeamMembers] = useState<User[]>([]);
   // TODO: useReducer()
-  // TODO: refactor to use components
   const [vacations, setVacations] = useState<Vacation[]>([]);
   const [isDataFetched, setIsDataFetched] = useState(false);
   const [currentUser, setCurrentUser] = useState<User>({ id: "", name: "" });

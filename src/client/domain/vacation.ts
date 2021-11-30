@@ -56,7 +56,6 @@ export function getVacationsTypeByDayForCurrentMonth({ vacations, today }: { vac
 
 //6 variants of vacation dates in case of month: prev/current, current/current, current/next, prev/next.
 // prev/prev, next/next - dont care about this cases.
-//TODO: rename today variable
 export function getVacationIntervalForCurrentMonth({ vacation, today }: { vacation: Vacation; today: Moment }) {
   const vacationInterval: VacationInterval = { start: -1, end: -1 };
   if (vacation.start.getFullYear() === today.year() && vacation.end.getFullYear() === today.year()) {
