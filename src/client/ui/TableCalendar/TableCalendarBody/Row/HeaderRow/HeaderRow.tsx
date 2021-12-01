@@ -9,7 +9,7 @@ export function HeaderRow({ daysInMonth }: { daysInMonth: number }) {
     cells.push(<Cell value={j} className={styles["table-calendar-element"]} key={j + 1} />);
   }
   return (
-    <div className={styles["table-calendar-row"]} data-testid={"table-calendar-row"}>
+    <div className={styles["table-calendar-row"]} data-testid={"table-calendar-header-row"}>
       <Cell
         value={""}
         className={cn(styles["table-calendar-element"], styles["table-calendar-first-column-element"])}

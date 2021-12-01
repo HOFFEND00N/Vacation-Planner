@@ -9,7 +9,7 @@ describe("Header row", () => {
 
     render(<HeaderRow daysInMonth={daysInMonth} />);
 
-    expect(screen.getByTestId("table-calendar-row")).toBeInTheDocument();
+    expect(screen.getByTestId("table-calendar-header-row")).toBeInTheDocument();
     expect(screen.getByText("Days")).toBeInTheDocument();
     expect(screen.getAllByTestId("table-cell").length).toEqual(daysInMonth + 2);
   });
