@@ -12,7 +12,7 @@ export function makeStylesForTableTotalElement({
   let classNames = `${styles["table-calendar-element"]}`;
 
   if (columnNumber === 0) {
-    classNames = `${classNames} ${styles["table-calendar-first-column-element"]} `;
+    classNames = `${classNames} ${styles["table-calendar-first-column-element"]}`;
   } else {
     const percentage = (vacationsCount / teamMembersCount) * 100;
     if (percentage < 25) {
