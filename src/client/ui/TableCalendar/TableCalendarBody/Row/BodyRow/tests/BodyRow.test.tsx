@@ -7,11 +7,13 @@ import "@testing-library/jest-dom";
 
 describe("Body row", () => {
   test("rendered", () => {
+    const daysInMonth = 31;
+
     render(
       <BodyRow
         today={moment(new Date(1))}
         handleOnClick={() => undefined}
-        daysInMonth={31}
+        daysInMonth={daysInMonth}
         user={{ id: "user 1", name: "user 1" }}
         employeeName={"user 2"}
         vacations={[]}
@@ -22,6 +24,7 @@ describe("Body row", () => {
     );
 
     expect(screen.getByTestId("table-calendar-row user 1")).toBeInTheDocument();
+    expect(screen.getAllByTestId("table-cell").length).toEqual(daysInMonth + 2);
   });
 
   test("cell onClick event fired", () => {
