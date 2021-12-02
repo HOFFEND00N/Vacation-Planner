@@ -60,7 +60,7 @@ export function TableCalendarBody({ today, vacationStart, vacationEnd, handleOnC
   if (state.isDataFetched) {
     const daysInMonth = today.daysInMonth();
     return (
-      <div>
+      <div data-testid={"table-calendar-body"}>
         <HeaderRow daysInMonth={daysInMonth} />
         {state.teamMembers.map((teamMember) => {
           const userVacations = findUserVacations({
