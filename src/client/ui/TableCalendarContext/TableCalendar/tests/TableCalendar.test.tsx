@@ -4,11 +4,11 @@ import "@testing-library/jest-dom";
 import moment from "moment";
 import userEvent from "@testing-library/user-event";
 import { TableCalendar } from "../TableCalendar";
-import { getTeamMembers } from "../../../application/getTeamMembers";
-import { getVacations } from "../../../application/getVacations";
+import { getTeamMembers } from "../../../../application/getTeamMembers";
+import { getVacations } from "../../../../application/getVacations";
 
-jest.mock("../../../application/getVacations");
-jest.mock("../../../application/getTeamMembers");
+jest.mock("../../../../application/getVacations");
+jest.mock("../../../../application/getTeamMembers");
 
 test("Table calendar rendered, then month change to next, then month change to previous, then click on selectable cell, then click on not selectable cell", async () => {
   (getTeamMembers as jest.Mock).mockReturnValue({

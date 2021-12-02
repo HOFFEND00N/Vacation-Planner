@@ -1,5 +1,5 @@
-import { User } from "../../../domain/user";
-import { Vacation } from "../../../domain/vacation";
+import { User } from "../../../../domain/user";
+import { Vacation } from "../../../../domain/vacation";
 
 export type StateType = {
   isDataFetched: boolean;

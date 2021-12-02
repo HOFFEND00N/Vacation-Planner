@@ -3,7 +3,7 @@ import React from "react";
 import moment from "moment";
 import { PlanVacation } from "../PlanVacation";
 import { Menu } from "../Menu/Menu";
-import { TableCalendar } from "../TableCalendar/TableCalendar";
+import { TableCalendar } from "../TableCalendarContext/TableCalendar/TableCalendar";
 import styles from "./app.module.css";
 
 export function App() {

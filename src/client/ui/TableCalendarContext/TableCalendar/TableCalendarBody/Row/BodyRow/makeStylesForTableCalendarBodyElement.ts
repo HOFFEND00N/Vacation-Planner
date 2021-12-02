@@ -1,6 +1,6 @@
 import cn from "classnames";
-import { VacationType } from "../../../../../domain/vacation";
-import { VacationTypeByDay } from "../../../../../types";
+import { VacationType } from "../../../../../../domain/vacation";
+import { VacationTypeByDay } from "../../../../../../types";
 import styles from "../../table-calendar-body.module.css";
 
 export function makeStylesForTableCalendarBodyElement({

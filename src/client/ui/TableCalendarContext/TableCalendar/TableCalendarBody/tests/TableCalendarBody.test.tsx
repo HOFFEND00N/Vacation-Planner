@@ -4,11 +4,12 @@ import "@testing-library/jest-dom";
 import moment from "moment";
 import userEvent from "@testing-library/user-event";
 import { TableCalendarBody } from "../TableCalendarBody";
-import { getTeamMembers } from "../../../../application/getTeamMembers";
-import { getVacations } from "../../../../application/getVacations";
+import { getTeamMembers } from "../../../../../application/getTeamMembers";
+import { getVacations } from "../../../../../application/getVacations";
+import { TableCalendarContext } from "../../../TableCalendarContext";
 
-jest.mock("../../../../application/getVacations");
-jest.mock("../../../../application/getTeamMembers");
+jest.mock("../../../../../application/getVacations");
+jest.mock("../../../../../application/getTeamMembers");
 
 test("render notification about team members searching, then renders a component, then click on selectable cell, then click on not selectable cell", async () => {
   (getTeamMembers as jest.Mock).mockReturnValue({
@@ -22,12 +23,13 @@ test("render notification about team members searching, then renders a component
   const mockOnClick = jest.fn();
 
   render(
-    <TableCalendarBody
-      today={moment(new Date("1-11-2021"))}
-      vacationStart={{ date: new Date(1), isSelected: false }}
-      vacationEnd={{ date: new Date(1), isSelected: false }}
-      handleOnClick={mockOnClick}
-    />
+    <TableCalendarContext.Provider value={{ handleOnClick: mockOnClick }}>
+      <TableCalendarBody
+        today={moment(new Date("1-11-2021"))}
+        vacationStart={{ date: new Date(1), isSelected: false }}
+        vacationEnd={{ date: new Date(1), isSelected: false }}
+      />
+    </TableCalendarContext.Provider>
   );
 
   expect(screen.getByText("Please wait, searching your teammates...")).toBeInTheDocument();

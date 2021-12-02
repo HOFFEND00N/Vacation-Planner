@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "@confirmit/react-button";
 import moment from "moment";
+import { TableCalendarContext } from "../TableCalendarContext";
 import { TableCalendarPager } from "./TableCalendarPager/TableCalendarPager";
 import { TableCalendarBody } from "./TableCalendarBody/TableCalendarBody";
 import { TableCalendarLegend } from "./TableCalendarLegend/TableCalendarLegend";
@@ -45,12 +46,10 @@ export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
         handleNextMonthChange={handleNextMonthChange}
         today={today}
       />
-      <TableCalendarBody
-        today={today}
-        vacationStart={vacationStart}
-        vacationEnd={vacationEnd}
-        handleOnClick={handleVacationSelect}
-      />
+      <TableCalendarContext.Provider value={{ handleOnClick: handleVacationSelect }}>
+        <TableCalendarBody today={today} vacationStart={vacationStart} vacationEnd={vacationEnd} />
+      </TableCalendarContext.Provider>
+
       <div className={styles["table-calendar-legend-and-button-container"]}>
         <TableCalendarLegend />
         <Button

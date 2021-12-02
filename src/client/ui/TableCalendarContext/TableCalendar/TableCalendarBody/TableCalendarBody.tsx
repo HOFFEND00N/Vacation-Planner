@@ -1,8 +1,8 @@
 import React, { useEffect, useReducer } from "react";
 import moment from "moment";
-import { getTeamMembers } from "../../../application/getTeamMembers";
-import { getVacations } from "../../../application/getVacations";
-import { findUserVacations } from "../../../domain/vacation";
+import { getTeamMembers } from "../../../../application/getTeamMembers";
+import { getVacations } from "../../../../application/getVacations";
+import { findUserVacations } from "../../../../domain/vacation";
 import { BodyRow } from "./Row/BodyRow/BodyRow";
 import { HeaderRow } from "./Row/HeaderRow/HeaderRow";
 import { TotalRow } from "./Row/TotalRow/TotalRow";
@@ -12,10 +12,9 @@ type propsType = {
   today: moment.Moment;
   vacationStart: { date: Date; isSelected: boolean };
   vacationEnd: { date: Date; isSelected: boolean };
-  handleOnClick: (date: Date) => void;
 };
 
-export function TableCalendarBody({ today, vacationStart, vacationEnd, handleOnClick }: propsType) {
+export function TableCalendarBody({ today, vacationStart, vacationEnd }: propsType) {
   const [state, dispatch] = useReducer(reducer, initialState);
   useEffect(() => {
     (async () => {
@@ -38,7 +37,6 @@ export function TableCalendarBody({ today, vacationStart, vacationEnd, handleOnC
           });
           return (
             <BodyRow
-              handleOnClick={handleOnClick}
               daysInMonth={daysInMonth}
               today={today}
               vacationStart={vacationStart}

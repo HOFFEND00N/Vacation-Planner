@@ -2,8 +2,12 @@ import React from "react";
 import moment from "moment";
 import cn from "classnames";
 import styles from "../../table-calendar-body.module.css";
-import { User } from "../../../../../domain/user";
-import { getTotalVacationsDays, getVacationsTypeByDayForCurrentMonth, Vacation } from "../../../../../domain/vacation";
+import { User } from "../../../../../../domain/user";
+import {
+  getTotalVacationsDays,
+  getVacationsTypeByDayForCurrentMonth,
+  Vacation,
+} from "../../../../../../domain/vacation";
 import { Cell } from "../Cell/Cell";
 import { makeStylesForTableCalendarBodyElement } from "./makeStylesForTableCalendarBodyElement";
 
@@ -15,7 +19,6 @@ export function BodyRow({
   vacationEnd,
   currentUser,
   today,
-  handleOnClick,
   employeeName,
 }: {
   daysInMonth: number;
@@ -25,7 +28,6 @@ export function BodyRow({
   vacationEnd: { date: Date; isSelected: boolean };
   currentUser: User;
   today: moment.Moment;
-  handleOnClick: (date: Date) => void;
   employeeName: string;
 }) {
   const cells: JSX.Element[] = [];
@@ -45,7 +47,7 @@ export function BodyRow({
       <Cell
         value={""}
         className={classNames}
-        handleOnClick={user.id === currentUser.id ? () => handleOnClick(elementDate) : undefined}
+        date={user.id === currentUser.id ? elementDate : undefined}
         key={day + 1}
       />
     );

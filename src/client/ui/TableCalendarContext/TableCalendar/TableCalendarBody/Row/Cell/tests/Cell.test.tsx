@@ -3,6 +3,7 @@ import React from "react";
 import userEvent from "@testing-library/user-event";
 import { Cell } from "../Cell";
 import "@testing-library/jest-dom";
+import { TableCalendarContext } from "../../../../../TableCalendarContext";
 
 describe("Cell ", () => {
   test("rendered", async () => {
@@ -14,7 +15,11 @@ describe("Cell ", () => {
   test("cell onClick event fired", () => {
     const mockOnClick = jest.fn();
 
-    render(<Cell value={"test value"} className={"test class name"} handleOnClick={mockOnClick} />);
+    render(
+      <TableCalendarContext.Provider value={{ handleOnClick: mockOnClick }}>
+        <Cell value={"test value"} className={"test class name"} date={new Date("1-11-2021")} />
+      </TableCalendarContext.Provider>
+    );
     userEvent.click(screen.getByText("test value"));
 
     expect(mockOnClick).toBeCalledTimes(1);

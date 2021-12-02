@@ -4,6 +4,7 @@ import moment from "moment";
 import userEvent from "@testing-library/user-event";
 import { BodyRow } from "../BodyRow";
 import "@testing-library/jest-dom";
+import { TableCalendarContext } from "../../../../../TableCalendarContext";
 
 describe("Body row", () => {
   test("rendered", () => {
@@ -12,7 +13,6 @@ describe("Body row", () => {
     render(
       <BodyRow
         today={moment(new Date(1))}
-        handleOnClick={() => undefined}
         daysInMonth={daysInMonth}
         user={{ id: "user 1", name: "user 1" }}
         employeeName={"user 2"}
@@ -31,17 +31,18 @@ describe("Body row", () => {
     const mockOnClick = jest.fn();
 
     render(
-      <BodyRow
-        today={moment(new Date(1))}
-        handleOnClick={mockOnClick}
-        daysInMonth={31}
-        user={{ id: "user 1", name: "user 1" }}
-        employeeName={"user 2"}
-        vacations={[]}
-        currentUser={{ id: "user 1", name: "user 3" }}
-        vacationStart={{ date: new Date(1), isSelected: false }}
-        vacationEnd={{ date: new Date(1), isSelected: false }}
-      />
+      <TableCalendarContext.Provider value={{ handleOnClick: mockOnClick }}>
+        <BodyRow
+          today={moment(new Date(1))}
+          daysInMonth={31}
+          user={{ id: "user 1", name: "user 1" }}
+          employeeName={"user 2"}
+          vacations={[]}
+          currentUser={{ id: "user 1", name: "user 3" }}
+          vacationStart={{ date: new Date(1), isSelected: false }}
+          vacationEnd={{ date: new Date(1), isSelected: false }}
+        />
+      </TableCalendarContext.Provider>
     );
     userEvent.click(screen.getAllByTestId("table-cell")[2]);
 
@@ -54,7 +55,6 @@ describe("Body row", () => {
     render(
       <BodyRow
         today={moment(new Date(1))}
-        handleOnClick={mockOnClick}
         daysInMonth={31}
         user={{ id: "user 1", name: "user 1" }}
         employeeName={"user 2"}
