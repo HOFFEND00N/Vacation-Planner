@@ -2,11 +2,11 @@ import React, { useEffect, useReducer } from "react";
 import moment from "moment";
 import { getTeamMembers } from "../../../application/getTeamMembers";
 import { getVacations } from "../../../application/getVacations";
-import { User } from "../../../domain/user";
-import { findUserVacations, Vacation } from "../../../domain/vacation";
+import { findUserVacations } from "../../../domain/vacation";
 import { BodyRow } from "./Row/BodyRow/BodyRow";
 import { HeaderRow } from "./Row/HeaderRow/HeaderRow";
 import { TotalRow } from "./Row/TotalRow/TotalRow";
+import { initialState, reducer } from "./reducer";
 
 type propsType = {
   today: moment.Moment;
@@ -15,39 +15,7 @@ type propsType = {
   handleOnClick: (date: Date) => void;
 };
 
-type stateType = {
-  isDataFetched: boolean;
-  teamMembers: User[];
-  currentUser: User;
-  vacations: Vacation[];
-};
-
-type actionType = stateType & { type: string };
-
 export function TableCalendarBody({ today, vacationStart, vacationEnd, handleOnClick }: propsType) {
-  const initialState: stateType = {
-    isDataFetched: false,
-    teamMembers: [],
-    currentUser: { id: "", name: "" },
-    vacations: [],
-  };
-
-  const reducer = (state: stateType, action: actionType): stateType => {
-    switch (action.type) {
-      case "set state": {
-        return {
-          isDataFetched: true,
-          teamMembers: action.teamMembers,
-          currentUser: action.currentUser,
-          vacations: action.vacations,
-        };
-      }
-      default: {
-        throw new Error();
-      }
-    }
-  };
-
   const [state, dispatch] = useReducer(reducer, initialState);
   useEffect(() => {
     (async () => {
