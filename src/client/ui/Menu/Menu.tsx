@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styles from "./menu-module.css";
 
 export function Menu() {
   return (
-    <ul style={{ listStyle: "none", display: "flex", justifyContent: "flex-start" }}>
+    <ul className={styles.menu}>
       <li>
         <Link to="/plan-vacation">Plan Vacation </Link>
       </li>
-      <li style={{ paddingLeft: 10 }}>
+      <li className={styles["menu-item"]}>
         <Link to="/home">Home </Link>
       </li>
     </ul>
