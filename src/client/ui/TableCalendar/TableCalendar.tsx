@@ -56,6 +56,7 @@ export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
         <Button
           className={styles["table-calendar-button"]}
           disabled={!vacationStart.isSelected && !vacationEnd.isSelected}
+          data-testid={"plan-vacation-button"}
         >
           Plan Vacation
         </Button>
