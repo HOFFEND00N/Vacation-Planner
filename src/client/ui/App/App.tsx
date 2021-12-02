@@ -1,8 +1,9 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import React from "react";
+import moment from "moment";
 import { PlanVacation } from "../PlanVacation";
-import { Home } from "../Home";
 import { Menu } from "../Menu";
+import { TableCalendar } from "../TableCalendar/TableCalendar";
 import styles from "./app.module.css";
 
 export function App() {
@@ -17,7 +18,7 @@ export function App() {
             <PlanVacation />
           </Route>
           <Route path={["/home", "/"]}>
-            <Home />
+            <TableCalendar currentDate={moment()} />;
           </Route>
         </Switch>
       </div>
