@@ -6,8 +6,8 @@ import { TableCalendarBody } from "./TableCalendarBody/TableCalendarBody";
 import { TableCalendarLegend } from "./TableCalendarLegend/TableCalendarLegend";
 import styles from "./table-calendar.module.css";
 
-export function TableCalendar() {
-  const [today, setToday] = useState(moment());
+export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
+  const [today, setToday] = useState(currentDate);
   const [vacationStart, setVacationStart] = useState<{ date: Date; isSelected: boolean }>({
     date: new Date(0),
     isSelected: false,
@@ -39,7 +39,7 @@ export function TableCalendar() {
   }
 
   return (
-    <div className={styles["table-calendar-container"]}>
+    <div className={styles["table-calendar-container"]} data-testid={"table-calendar-container"}>
       <TableCalendarPager
         handlePreviousMonthChange={handlePreviousMonthChange}
         handleNextMonthChange={handleNextMonthChange}
