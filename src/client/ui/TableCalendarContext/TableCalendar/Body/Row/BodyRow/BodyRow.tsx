@@ -1,7 +1,6 @@
 import React from "react";
 import moment from "moment";
 import cn from "classnames";
-import styles from "../../body.css";
 import { User } from "../../../../../../domain/user";
 import {
   getTotalVacationsDays,
@@ -9,6 +8,7 @@ import {
   Vacation,
 } from "../../../../../../domain/vacation";
 import { Cell } from "../Cell";
+import "./body-row.css";
 import { makeStylesForTableCalendarBodyElement } from "./makeStylesForTableCalendarBodyElement";
 
 export function BodyRow({
@@ -53,13 +53,9 @@ export function BodyRow({
     );
   }
   return (
-    <div className={styles["row"]} data-testid={`row ${user.id}`}>
-      <Cell value={employeeName} className={cn(styles["row__cell"], styles["row__first-column-cell"])} key={0} />
-      <Cell
-        value={getTotalVacationsDays(vacations)}
-        className={cn(styles["row__cell"], styles["row__cell-days-column"])}
-        key={1}
-      />
+    <div className={"row"} data-testid={`row ${user.id}`}>
+      <Cell value={employeeName} className={cn("row__cell", "row__first-column-cell")} key={0} />
+      <Cell value={getTotalVacationsDays(vacations)} className={cn("row__cell", "row__cell-days-column")} key={1} />
       {cells}
     </div>
   );

@@ -4,11 +4,11 @@ import moment from "moment";
 import { PlanVacation } from "../PlanVacation";
 import { Menu } from "../Menu";
 import { TableCalendar } from "../TableCalendarContext/TableCalendar";
-import styles from "./app.module.css";
+import "./app.css";
 
 export function App() {
   return (
-    <BrowserRouter className={styles["*"]}>
+    <BrowserRouter className={"*"}>
       <div>
         <Menu />
         <hr />

@@ -1,4 +1,4 @@
-import styles from "../../body.css";
+import "../../body.css";
 
 export function makeStylesForTableTotalElement({
   vacationsCount,
@@ -9,18 +9,18 @@ export function makeStylesForTableTotalElement({
   teamMembersCount: number;
   columnNumber: number;
 }) {
-  let classNames = `${styles["row__cell"]}`;
+  let classNames = `${"row__cell"}`;
 
   if (columnNumber === 0) {
-    classNames = `${classNames} ${styles["row__first-column-cell"]}`;
+    classNames = `${classNames} ${"row__first-column-cell"}`;
   } else {
     const percentage = (vacationsCount / teamMembersCount) * 100;
     if (percentage < 25) {
-      classNames = `${classNames} ${styles["row__total-cell__weak-workload"]}`;
+      classNames = `${classNames} ${"row__total-cell__weak-workload"}`;
     } else if (percentage >= 25 && percentage < 50) {
-      classNames = `${classNames} ${styles["row__total-cell__medium-workload"]}`;
+      classNames = `${classNames} ${"row__total-cell__medium-workload"}`;
     } else {
-      classNames = `${classNames} ${styles["row__total-cell__heavy-workload"]}`;
+      classNames = `${classNames} ${"row__total-cell__heavy-workload"}`;
     }
   }
   return classNames;

@@ -16,34 +16,6 @@
   flex-grow: 1;
 }
 
-.row__cell__vacation-approved {
-  background-color: darkgrey;
-}
-
-.row__cell__vacation-pending-approval {
-  background: repeating-linear-gradient(45deg, black, black 2%, transparent 10%, transparent 18%);
-}
-
-.row__cell__selectable:hover {
-  cursor: pointer;
-}
-
-.row__cell__selected {
-  background: lightskyblue;
-}
-
-.row__total-cell__weak-workload {
-  background: lawngreen;
-}
-
-.row__total-cell__medium-workload {
-  background: yellow;
-}
-
-.row__total-cell__heavy-workload {
-  background: red;
-}
-
 .row__cell-days-column {
   min-width: 45px;
 }

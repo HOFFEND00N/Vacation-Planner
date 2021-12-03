@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@confirmit/react-button";
 import { TableCalendarStateType } from "../TableCalendar";
-import styles from "./footer.css";
+import "./footer.css";
 import { Legend } from "./Legend";
 import { SelectedDates } from "./SelectedDates";
 
@@ -13,11 +13,11 @@ export function Footer({
   vacationEnd: TableCalendarStateType;
 }) {
   return (
-    <div className={styles["footer-container"]} data-testid={"footer-container"}>
+    <div className={"footer-container"} data-testid={"footer-container"}>
       <Legend />
       <SelectedDates vacationStart={vacationStart} vacationEnd={vacationEnd} />
       <Button
-        className={styles["footer-container__button"]}
+        className={"footer-container__button"}
         disabled={!vacationStart.isSelected && !vacationEnd.isSelected}
         data-testid={"plan-vacation-button"}
       >

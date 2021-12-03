@@ -1,6 +1,6 @@
 import React from "react";
 import { LegendItem } from "./LegendItem";
-import styles from "./legend.css";
+import "./legend.css";
 
 export function Legend() {
   const legendItemsValues = [
@@ -12,7 +12,7 @@ export function Legend() {
     { className: "legend-item__total__heavy-workload", itemName: "Heavy workload" },
   ];
   return (
-    <div className={styles["legend-container"]} data-testid={"legend-container"}>
+    <div className={"legend-container"} data-testid={"legend-container"}>
       {legendItemsValues.map((legendItemsValue, index) => (
         <LegendItem className={legendItemsValue.className} itemName={legendItemsValue.itemName} key={index} />
       ))}

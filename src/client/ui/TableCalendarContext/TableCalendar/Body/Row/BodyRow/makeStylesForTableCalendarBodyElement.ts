@@ -1,8 +1,8 @@
 import cn from "classnames";
 import { VacationType } from "../../../../../../domain/vacation";
 import { VacationTypeByDay } from "../../../../../../types";
-import styles from "../../body.css";
 import { TableCalendarStateType } from "../../../TableCalendar";
+import "./body-row.css";
 
 export function makeStylesForTableCalendarBodyElement({
   vacationStart,
@@ -21,18 +21,18 @@ export function makeStylesForTableCalendarBodyElement({
   userId: string;
   currentUserId: string;
 }) {
-  let classNames = `${styles["row__cell"]}`;
+  let classNames = `${"row__cell"}`;
 
   if (vacationTypeByDay[columnNumber] === VacationType.APPROVED) {
-    classNames = cn(classNames, styles["row__cell__vacation-approved"]);
+    classNames = cn(classNames, "row__cell__vacation-approved");
   }
   if (vacationTypeByDay[columnNumber] === VacationType.PENDING_APPROVAL) {
-    classNames = cn(classNames, styles["row__cell__vacation-pending-approval"]);
+    classNames = cn(classNames, "row__cell__vacation-pending-approval");
   }
   if (columnNumber === 0) {
-    classNames = cn(classNames, styles["row__first-column-cell"]);
+    classNames = cn(classNames, "row__first-column-cell");
   } else if (userId === currentUserId) {
-    classNames = cn(classNames, styles["row__cell__selectable"]);
+    classNames = cn(classNames, "row__cell__selectable");
   }
 
   if (
@@ -41,7 +41,7 @@ export function makeStylesForTableCalendarBodyElement({
     userId === currentUserId &&
     columnNumber !== 0
   ) {
-    classNames = cn(classNames, styles["row__cell__selected"]);
+    classNames = cn(classNames, "row__cell__selected");
   }
 
   return classNames;

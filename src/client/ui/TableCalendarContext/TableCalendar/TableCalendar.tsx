@@ -3,7 +3,7 @@ import moment from "moment";
 import { TableCalendarContext } from "../TableCalendarContext";
 import { Pager } from "./Pager";
 import { Body } from "./Body";
-import styles from "./table-calendar.css";
+import "./table-calendar.css";
 import { Footer } from "./Footer";
 
 export type TableCalendarStateType = {
@@ -49,7 +49,7 @@ export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
   }
 
   return (
-    <div className={styles["table-calendar-container"]} data-testid={"table-calendar-container"}>
+    <div className={"table-calendar-container"} data-testid={"table-calendar-container"}>
       <Pager
         handlePreviousMonthChange={handlePreviousMonthChange}
         handleNextMonthChange={handleNextMonthChange}
