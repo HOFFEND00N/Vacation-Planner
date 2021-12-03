@@ -1,7 +1,7 @@
 import React from "react";
 import moment from "moment";
 import cn from "classnames";
-import styles from "../../body.module.css";
+import styles from "../../body.css";
 import { User } from "../../../../../../domain/user";
 import {
   getTotalVacationsDays,

@@ -1,7 +1,7 @@
 import React from "react";
 import { Moment } from "moment";
 import cn from "classnames";
-import styles from "../../body.module.css";
+import styles from "../../body.css";
 import { Cell } from "../Cell/Cell";
 import { getVacationIntervalForCurrentMonth, Vacation } from "../../../../../../domain/vacation";
 import { makeStylesForTableTotalElement } from "./makeStylesForTableTotalElement";

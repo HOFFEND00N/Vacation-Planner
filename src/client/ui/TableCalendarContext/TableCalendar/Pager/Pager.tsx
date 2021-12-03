@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import { IconButton } from "@confirmit/react-button";
 import { Icon, chevronLeft, chevronRight } from "@confirmit/react-icons";
-import styles from "./pager.module.css";
+import styles from "./pager.css";
 import { makePagerName } from "./makePagerName";
 
 export function Pager({

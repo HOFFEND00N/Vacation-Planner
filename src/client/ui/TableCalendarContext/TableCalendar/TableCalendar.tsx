@@ -5,7 +5,7 @@ import { TableCalendarContext } from "../TableCalendarContext";
 import { Pager } from "./Pager/Pager";
 import { TableCalendarBody } from "./TableCalendarBody/TableCalendarBody";
 import { TableCalendarLegend } from "./TableCalendarLegend/TableCalendarLegend";
-import styles from "./table-calendar.module.css";
+import styles from "./table-calendar.css";
 
 export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
   const [today, setToday] = useState(currentDate);

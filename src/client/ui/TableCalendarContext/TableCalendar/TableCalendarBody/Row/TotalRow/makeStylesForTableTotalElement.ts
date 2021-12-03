@@ -1,4 +1,4 @@
-import styles from "../../body.module.css";
+import styles from "../../body.css";
 
 export function makeStylesForTableTotalElement({
   vacationsCount,
