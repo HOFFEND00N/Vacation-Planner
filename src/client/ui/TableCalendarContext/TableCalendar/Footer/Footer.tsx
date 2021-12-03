@@ -13,7 +13,7 @@ export function Footer({
   vacationEnd: TableCalendarStateType;
 }) {
   return (
-    <div className={styles["footer-container"]}>
+    <div className={styles["footer-container"]} data-testid={"footer-container"}>
       <Legend />
       <SelectedDates vacationStart={vacationStart} vacationEnd={vacationEnd} />
       <Button
