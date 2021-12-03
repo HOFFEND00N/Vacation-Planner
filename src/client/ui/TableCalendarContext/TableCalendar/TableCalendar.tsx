@@ -1,19 +1,23 @@
 import React, { useState } from "react";
-import { Button } from "@confirmit/react-button";
 import moment from "moment";
 import { TableCalendarContext } from "../TableCalendarContext";
 import { Pager } from "./Pager";
 import { Body } from "./Body";
-import { Legend } from "./Legend";
 import styles from "./table-calendar.css";
+import { Footer } from "./Footer";
+
+export type TableCalendarStateType = {
+  date: Date;
+  isSelected: boolean;
+};
 
 export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
   const [today, setToday] = useState(currentDate);
-  const [vacationStart, setVacationStart] = useState<{ date: Date; isSelected: boolean }>({
+  const [vacationStart, setVacationStart] = useState<TableCalendarStateType>({
     date: new Date(0),
     isSelected: false,
   });
-  const [vacationEnd, setVacationEnd] = useState<{ date: Date; isSelected: boolean }>({
+  const [vacationEnd, setVacationEnd] = useState<TableCalendarStateType>({
     date: new Date(0),
     isSelected: false,
   });
@@ -24,7 +28,12 @@ export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
       setVacationStart({ isSelected: true, date });
       setVacationEnd({ isSelected: false, date });
     } else if (!vacationEnd.isSelected) {
-      setVacationEnd({ isSelected: true, date });
+      if (date > vacationStart.date) {
+        setVacationEnd({ isSelected: true, date });
+      } else {
+        setVacationStart({ isSelected: true, date });
+        setVacationEnd({ isSelected: false, date });
+      }
     } else {
       setVacationStart({ isSelected: true, date });
       setVacationEnd({ isSelected: false, date });
@@ -49,17 +58,7 @@ export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
       <TableCalendarContext.Provider value={{ handleOnClick: handleVacationSelect }}>
         <Body today={today} vacationStart={vacationStart} vacationEnd={vacationEnd} />
       </TableCalendarContext.Provider>
-
-      <div className={styles["legend-and-button-container"]}>
-        <Legend />
-        <Button
-          className={styles["legend-and-button-container__button"]}
-          disabled={!vacationStart.isSelected && !vacationEnd.isSelected}
-          data-testid={"plan-vacation-button"}
-        >
-          Plan Vacation
-        </Button>
-      </div>
+      <Footer vacationStart={vacationStart} vacationEnd={vacationEnd} />
     </div>
   );
 }

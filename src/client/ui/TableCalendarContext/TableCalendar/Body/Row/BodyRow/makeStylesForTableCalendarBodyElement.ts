@@ -2,6 +2,7 @@ import cn from "classnames";
 import { VacationType } from "../../../../../../domain/vacation";
 import { VacationTypeByDay } from "../../../../../../types";
 import styles from "../../body.css";
+import { TableCalendarStateType } from "../../../TableCalendar";
 
 export function makeStylesForTableCalendarBodyElement({
   vacationStart,
@@ -12,8 +13,8 @@ export function makeStylesForTableCalendarBodyElement({
   userId,
   currentUserId,
 }: {
-  vacationStart: { date: Date; isSelected: boolean };
-  vacationEnd: { date: Date; isSelected: boolean };
+  vacationStart: TableCalendarStateType;
+  vacationEnd: TableCalendarStateType;
   vacationTypeByDay: VacationTypeByDay;
   columnNumber: number;
   elementDate: Date;
@@ -35,8 +36,8 @@ export function makeStylesForTableCalendarBodyElement({
   }
 
   if (
-    elementDate >= vacationStart.date &&
-    elementDate <= vacationEnd.date &&
+    elementDate >= vacationStart?.date &&
+    elementDate <= vacationEnd?.date &&
     userId === currentUserId &&
     columnNumber !== 0
   ) {

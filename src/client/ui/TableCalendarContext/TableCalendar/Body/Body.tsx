@@ -3,6 +3,7 @@ import moment from "moment";
 import { getTeamMembers } from "../../../../application/getTeamMembers";
 import { getVacations } from "../../../../application/getVacations";
 import { findUserVacations } from "../../../../domain/vacation";
+import { TableCalendarStateType } from "../TableCalendar";
 import { BodyRow } from "./Row/BodyRow";
 import { HeaderRow } from "./Row/HeaderRow";
 import { TotalRow } from "./Row/TotalRow";
@@ -10,8 +11,8 @@ import { initialState, reducer } from "./reducer";
 
 type propsType = {
   today: moment.Moment;
-  vacationStart: { date: Date; isSelected: boolean };
-  vacationEnd: { date: Date; isSelected: boolean };
+  vacationStart: TableCalendarStateType;
+  vacationEnd: TableCalendarStateType;
 };
 
 export function Body({ today, vacationStart, vacationEnd }: propsType) {

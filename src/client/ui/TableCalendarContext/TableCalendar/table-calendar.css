@@ -4,14 +4,3 @@
     flex-direction: column;
     margin: 0 auto;
 }
-
-.legend-and-button-container {
-    display: flex;
-}
-
-.legend-and-button-container__button{
-    max-width: 140px;
-    margin-left: auto;
-    margin-top: 15px;
-    max-height: 40px;
-}

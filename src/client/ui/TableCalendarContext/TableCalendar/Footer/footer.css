@@ -1,0 +1,10 @@
+.footer-container {
+    display: flex;
+    margin-top: 15px;
+    justify-content: space-between;
+}
+
+.footer-container__button{
+    max-width: 140px;
+    max-height: 40px;
+}

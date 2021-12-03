@@ -1,5 +1,4 @@
 .legend-container{
     display: flex;
-    margin-top: 15px;
     flex-direction: column;
 }

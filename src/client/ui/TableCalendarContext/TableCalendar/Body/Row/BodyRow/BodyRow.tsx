@@ -8,7 +8,7 @@ import {
   getVacationsTypeByDayForCurrentMonth,
   Vacation,
 } from "../../../../../../domain/vacation";
-import { Cell } from "../Cell/Cell";
+import { Cell } from "../Cell";
 import { makeStylesForTableCalendarBodyElement } from "./makeStylesForTableCalendarBodyElement";
 
 export function BodyRow({
@@ -36,10 +36,10 @@ export function BodyRow({
     const elementDate = new Date(today.year(), today.month(), day);
     const classNames = makeStylesForTableCalendarBodyElement({
       vacationStart,
+      vacationEnd,
       elementDate,
       columnNumber: day,
       vacationTypeByDay,
-      vacationEnd,
       userId: user.id,
       currentUserId: currentUser.id,
     });
