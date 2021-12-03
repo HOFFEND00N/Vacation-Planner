@@ -1,8 +1,8 @@
 import React from "react";
-import { TableCalendarLegendItem } from "./TableCalendarLegendItem/TableCalendarLegendItem";
+import { LegendItem } from "./LegendItem/LegendItem";
 import styles from "./legend.css";
 
-export function TableCalendarLegend() {
+export function Legend() {
   const legendItemsValues = [
     { className: "legend-item__vacation-approved", itemName: "Vacation approved" },
     { className: "legend-item__vacation-pending-approval", itemName: "Vacation pending approval" },
@@ -14,11 +14,7 @@ export function TableCalendarLegend() {
   return (
     <div className={styles["legend-container"]} data-testid={"legend-container"}>
       {legendItemsValues.map((legendItemsValue, index) => (
-        <TableCalendarLegendItem
-          className={legendItemsValue.className}
-          itemName={legendItemsValue.itemName}
-          key={index}
-        />
+        <LegendItem className={legendItemsValue.className} itemName={legendItemsValue.itemName} key={index} />
       ))}
     </div>
   );

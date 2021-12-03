@@ -14,7 +14,7 @@ type propsType = {
   vacationEnd: { date: Date; isSelected: boolean };
 };
 
-export function TableCalendarBody({ today, vacationStart, vacationEnd }: propsType) {
+export function Body({ today, vacationStart, vacationEnd }: propsType) {
   const [state, dispatch] = useReducer(reducer, initialState);
   useEffect(() => {
     (async () => {

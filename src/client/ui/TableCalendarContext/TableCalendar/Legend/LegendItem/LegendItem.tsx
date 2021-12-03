@@ -7,7 +7,7 @@ type tableCalendarLegendItemProps = {
   itemName: string;
 };
 
-export function TableCalendarLegendItem({ className, itemName }: tableCalendarLegendItemProps) {
+export function LegendItem({ className, itemName }: tableCalendarLegendItemProps) {
   return (
     <div className={"legend-item-container"} data-testid={"legend-item-container"}>
       <div className={cn(styles["legend-item"], className)} />

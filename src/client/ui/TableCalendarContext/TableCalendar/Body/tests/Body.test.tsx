@@ -3,7 +3,7 @@ import React from "react";
 import "@testing-library/jest-dom";
 import moment from "moment";
 import userEvent from "@testing-library/user-event";
-import { TableCalendarBody } from "../TableCalendarBody";
+import { Body } from "../Body";
 import { getTeamMembers } from "../../../../../application/getTeamMembers";
 import { getVacations } from "../../../../../application/getVacations";
 import { TableCalendarContext } from "../../../TableCalendarContext";
@@ -24,7 +24,7 @@ test("render notification about team members searching, then renders a component
 
   render(
     <TableCalendarContext.Provider value={{ handleOnClick: mockOnClick }}>
-      <TableCalendarBody
+      <Body
         today={moment(new Date("1-11-2021"))}
         vacationStart={{ date: new Date(1), isSelected: false }}
         vacationEnd={{ date: new Date(1), isSelected: false }}

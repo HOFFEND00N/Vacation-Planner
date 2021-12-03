@@ -3,8 +3,8 @@ import { Button } from "@confirmit/react-button";
 import moment from "moment";
 import { TableCalendarContext } from "../TableCalendarContext";
 import { Pager } from "./Pager/Pager";
-import { TableCalendarBody } from "./TableCalendarBody/TableCalendarBody";
-import { TableCalendarLegend } from "./TableCalendarLegend/TableCalendarLegend";
+import { Body } from "./Body/Body";
+import { Legend } from "./Legend/Legend";
 import styles from "./table-calendar.css";
 
 export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
@@ -47,11 +47,11 @@ export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
         today={today}
       />
       <TableCalendarContext.Provider value={{ handleOnClick: handleVacationSelect }}>
-        <TableCalendarBody today={today} vacationStart={vacationStart} vacationEnd={vacationEnd} />
+        <Body today={today} vacationStart={vacationStart} vacationEnd={vacationEnd} />
       </TableCalendarContext.Provider>
 
       <div className={styles["legend-and-button-container"]}>
-        <TableCalendarLegend />
+        <Legend />
         <Button
           className={styles["legend-and-button-container__button"]}
           disabled={!vacationStart.isSelected && !vacationEnd.isSelected}
