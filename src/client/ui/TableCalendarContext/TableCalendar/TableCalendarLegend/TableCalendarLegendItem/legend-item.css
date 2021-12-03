@@ -1,9 +1,9 @@
-.table-calendar-legend-element-container {
+.legend-item-container {
     display: flex;
     align-items: center;
 }
 
-.table-calendar-legend-element {
+.legend-item {
     padding: 5px;
     border-style: solid;
     border-width: 1px;
@@ -13,26 +13,26 @@
     margin: 0 7px;
 }
 
-.table-calendar-legend-element-vacation-approved {
+.legend-item__vacation-approved {
     background-color: darkgrey;
 }
 
-.table-calendar-legend-element-vacation-pending-approval {
+.legend-item__vacation-pending-approval {
     background: repeating-linear-gradient(45deg, black, black 2%, transparent 10%, transparent 18%);
 }
 
-.table-calendar-legend-element-selected{
+.legend-item__selected{
     background: lightskyblue;
 }
 
-.table-calendar-legend-total-element-weak-workload{
+.legend-item__total__weak-workload{
     background: lawngreen;
 }
 
-.table-calendar-legend-total-element-medium-workload{
+.legend-item__total__medium-workload{
     background: yellow;
 }
 
-.table-calendar-legend-total-element-heavy-workload{
+.legend-item__total__heavy-workload{
     background: red;
 }

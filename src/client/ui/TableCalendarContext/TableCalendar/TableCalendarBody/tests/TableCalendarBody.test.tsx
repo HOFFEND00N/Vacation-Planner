@@ -37,11 +37,11 @@ test("render notification about team members searching, then renders a component
   await waitForElementToBeRemoved(screen.getByText("Please wait, searching your teammates..."));
   expect(screen.getByTestId("table-calendar-body")).toBeInTheDocument();
 
-  const currentUserRow = screen.getByTestId("table-calendar-row user 1");
+  const currentUserRow = screen.getByTestId("row user 1");
   userEvent.click(within(currentUserRow).getAllByTestId("table-cell")[2]);
   expect(mockOnClick).toBeCalledTimes(1);
 
-  const userRow = screen.getByTestId("table-calendar-row user 2");
+  const userRow = screen.getByTestId("row user 2");
   userEvent.click(within(userRow).getAllByTestId("table-cell")[2]);
   expect(mockOnClick).toBeCalledTimes(1);
 });

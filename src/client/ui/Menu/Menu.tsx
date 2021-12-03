@@ -8,7 +8,7 @@ export function Menu() {
       <li>
         <Link to="/plan-vacation">Plan Vacation </Link>
       </li>
-      <li className={styles["menu-item"]}>
+      <li className={styles["menu__item"]}>
         <Link to="/home">Home </Link>
       </li>
     </ul>

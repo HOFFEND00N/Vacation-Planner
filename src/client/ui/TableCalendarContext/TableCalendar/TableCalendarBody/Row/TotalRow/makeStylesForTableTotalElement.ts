@@ -1,4 +1,4 @@
-import styles from "../../table-calendar-body.module.css";
+import styles from "../../body.module.css";
 
 export function makeStylesForTableTotalElement({
   vacationsCount,
@@ -9,18 +9,18 @@ export function makeStylesForTableTotalElement({
   teamMembersCount: number;
   columnNumber: number;
 }) {
-  let classNames = `${styles["table-calendar-element"]}`;
+  let classNames = `${styles["row__cell"]}`;
 
   if (columnNumber === 0) {
-    classNames = `${classNames} ${styles["table-calendar-first-column-element"]}`;
+    classNames = `${classNames} ${styles["row__first-column-cell"]}`;
   } else {
     const percentage = (vacationsCount / teamMembersCount) * 100;
     if (percentage < 25) {
-      classNames = `${classNames} ${styles["table-calendar-total-element-weak-workload"]}`;
+      classNames = `${classNames} ${styles["row__total-cell__weak-workload"]}`;
     } else if (percentage >= 25 && percentage < 50) {
-      classNames = `${classNames} ${styles["table-calendar-total-element-medium-workload"]}`;
+      classNames = `${classNames} ${styles["row__total-cell__medium-workload"]}`;
     } else {
-      classNames = `${classNames} ${styles["table-calendar-total-element-heavy-workload"]}`;
+      classNames = `${classNames} ${styles["row__total-cell__heavy-workload"]}`;
     }
   }
   return classNames;

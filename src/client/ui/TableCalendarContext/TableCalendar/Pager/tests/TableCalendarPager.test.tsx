@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import React from "react";
 import moment from "moment";
 import userEvent from "@testing-library/user-event";
-import { TableCalendarPager } from "../TableCalendarPager";
+import { Pager } from "../Pager";
 import "@testing-library/jest-dom";
 
 describe("table calendar legend tests", () => {
@@ -12,14 +12,14 @@ describe("table calendar legend tests", () => {
     const today = moment("25-12-2021", "DD-MM-YYYY");
 
     render(
-      <TableCalendarPager
+      <Pager
         handlePreviousMonthChange={mockOnPreviousMonthChange}
         handleNextMonthChange={mockOnNextMonthChange}
         today={today}
       />
     );
 
-    expect(screen.getByTestId("table-calendar-pager")).toBeInTheDocument();
+    expect(screen.getByTestId("pager")).toBeInTheDocument();
     expect(screen.getByText("December 2021")).toBeInTheDocument();
   });
 
@@ -29,7 +29,7 @@ describe("table calendar legend tests", () => {
     const today = moment("25-12-2021", "DD-MM-YYYY");
 
     render(
-      <TableCalendarPager
+      <Pager
         handlePreviousMonthChange={mockOnPreviousMonthChange}
         handleNextMonthChange={mockOnNextMonthChange}
         today={today}
@@ -46,7 +46,7 @@ describe("table calendar legend tests", () => {
     const today = moment("25-12-2021", "DD-MM-YYYY");
 
     render(
-      <TableCalendarPager
+      <Pager
         handlePreviousMonthChange={mockOnPreviousMonthChange}
         handleNextMonthChange={mockOnNextMonthChange}
         today={today}

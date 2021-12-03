@@ -2,10 +2,10 @@ import React from "react";
 import moment from "moment";
 import { IconButton } from "@confirmit/react-button";
 import { Icon, chevronLeft, chevronRight } from "@confirmit/react-icons";
-import styles from "./table-calendar-pager.module.css";
+import styles from "./pager.module.css";
 import { makePagerName } from "./makePagerName";
 
-export function TableCalendarPager({
+export function Pager({
   handlePreviousMonthChange,
   handleNextMonthChange,
   today,
@@ -15,7 +15,7 @@ export function TableCalendarPager({
   today: moment.Moment;
 }) {
   return (
-    <div className={styles["table-calendar-pager"]} data-testid={"table-calendar-pager"}>
+    <div className={styles["pager"]} data-testid={"pager"}>
       <IconButton
         className={styles["table-calendar-controls"]}
         onClick={handlePreviousMonthChange}
@@ -24,7 +24,7 @@ export function TableCalendarPager({
         <Icon path={chevronLeft} />
       </IconButton>
 
-      <div className={styles["table-calendar-pager-current-date"]}>{makePagerName(today)}</div>
+      <div className={styles["pager-current-date"]}>{makePagerName(today)}</div>
 
       <IconButton
         className={styles["table-calendar-controls"]}

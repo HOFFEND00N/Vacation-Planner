@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "@confirmit/react-button";
 import moment from "moment";
 import { TableCalendarContext } from "../TableCalendarContext";
-import { TableCalendarPager } from "./TableCalendarPager/TableCalendarPager";
+import { Pager } from "./Pager/Pager";
 import { TableCalendarBody } from "./TableCalendarBody/TableCalendarBody";
 import { TableCalendarLegend } from "./TableCalendarLegend/TableCalendarLegend";
 import styles from "./table-calendar.module.css";
@@ -41,7 +41,7 @@ export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
 
   return (
     <div className={styles["table-calendar-container"]} data-testid={"table-calendar-container"}>
-      <TableCalendarPager
+      <Pager
         handlePreviousMonthChange={handlePreviousMonthChange}
         handleNextMonthChange={handleNextMonthChange}
         today={today}
@@ -50,10 +50,10 @@ export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
         <TableCalendarBody today={today} vacationStart={vacationStart} vacationEnd={vacationEnd} />
       </TableCalendarContext.Provider>
 
-      <div className={styles["table-calendar-legend-and-button-container"]}>
+      <div className={styles["legend-and-button-container"]}>
         <TableCalendarLegend />
         <Button
-          className={styles["table-calendar-button"]}
+          className={styles["legend-and-button-container__button"]}
           disabled={!vacationStart.isSelected && !vacationEnd.isSelected}
           data-testid={"plan-vacation-button"}
         >

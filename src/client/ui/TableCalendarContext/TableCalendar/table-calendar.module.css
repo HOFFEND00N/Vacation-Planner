@@ -5,13 +5,13 @@
     margin: 0 auto;
 }
 
-.table-calendar-button{
+.legend-and-button-container {
+    display: flex;
+}
+
+.legend-and-button-container__button{
     max-width: 140px;
     margin-left: auto;
     margin-top: 15px;
     max-height: 40px;
-}
-
-.table-calendar-legend-and-button-container {
-    display: flex;
 }

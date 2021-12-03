@@ -23,7 +23,7 @@ describe("Body row", () => {
       />
     );
 
-    expect(screen.getByTestId("table-calendar-row user 1")).toBeInTheDocument();
+    expect(screen.getByTestId("row user 1")).toBeInTheDocument();
     expect(screen.getAllByTestId("table-cell").length).toEqual(daysInMonth + 2);
   });
 

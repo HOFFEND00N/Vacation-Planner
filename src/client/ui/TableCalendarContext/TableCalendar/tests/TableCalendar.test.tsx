@@ -25,8 +25,8 @@ test("Table calendar rendered, then month change to next, then month change to p
 
   //renders all components
   expect(screen.getByTestId("table-calendar-container")).toBeInTheDocument();
-  expect(screen.getByTestId("table-calendar-pager")).toBeInTheDocument();
-  expect(screen.getByTestId("table-calendar-legend-container")).toBeInTheDocument();
+  expect(screen.getByTestId("pager")).toBeInTheDocument();
+  expect(screen.getByTestId("legend-container")).toBeInTheDocument();
   expect(screen.getByText("Please wait, searching your teammates...")).toBeInTheDocument();
 
   //team members has been fetched, component updates
@@ -49,34 +49,32 @@ test("Table calendar rendered, then month change to next, then month change to p
   expect(planVacationButton).toHaveAttribute("disabled");
 
   //user selects start vacation date, plan vacation button is enabled
-  const currentUserRow = screen.getByTestId("table-calendar-row user 1");
+  const currentUserRow = screen.getByTestId("row user 1");
   userEvent.click(within(currentUserRow).getAllByTestId("table-cell")[2]);
-  expect(within(currentUserRow).getAllByTestId("table-cell")[2]).toHaveClass("table-calendar-element-selected");
+  expect(within(currentUserRow).getAllByTestId("table-cell")[2]).toHaveClass("row__cell__selected");
   expect(planVacationButton.attributes.getNamedItem("disabled")).toEqual(null);
 
   //user selects end vacation date, plan vacation button is enabled
   userEvent.click(within(currentUserRow).getAllByTestId("table-cell")[4]);
-  expect(within(currentUserRow).getAllByTestId("table-cell")[2]).toHaveClass("table-calendar-element-selected");
-  expect(within(currentUserRow).getAllByTestId("table-cell")[3]).toHaveClass("table-calendar-element-selected");
-  expect(within(currentUserRow).getAllByTestId("table-cell")[4]).toHaveClass("table-calendar-element-selected");
+  expect(within(currentUserRow).getAllByTestId("table-cell")[2]).toHaveClass("row__cell__selected");
+  expect(within(currentUserRow).getAllByTestId("table-cell")[3]).toHaveClass("row__cell__selected");
+  expect(within(currentUserRow).getAllByTestId("table-cell")[4]).toHaveClass("row__cell__selected");
   expect(planVacationButton.attributes.getNamedItem("disabled")).toEqual(null);
 
   //user selects new start vacation date, plan vacation button is enabled
   userEvent.click(within(currentUserRow).getAllByTestId("table-cell")[3]);
-  expect(within(currentUserRow).getAllByTestId("table-cell")[3]).toHaveClass("table-calendar-element-selected");
-  expect(
-    within(currentUserRow).getAllByTestId("table-cell")[2].classList.contains("table-calendar-element-selected")
-  ).toEqual(false);
-  expect(
-    within(currentUserRow).getAllByTestId("table-cell")[4].classList.contains("table-calendar-element-selected")
-  ).toEqual(false);
+  expect(within(currentUserRow).getAllByTestId("table-cell")[3]).toHaveClass("row__cell__selected");
+  expect(within(currentUserRow).getAllByTestId("table-cell")[2].classList.contains("row__cell__selected")).toEqual(
+    false
+  );
+  expect(within(currentUserRow).getAllByTestId("table-cell")[4].classList.contains("row__cell__selected")).toEqual(
+    false
+  );
   expect(planVacationButton.attributes.getNamedItem("disabled")).toEqual(null);
 
   //user tries select different person row, plan vacation button is enabled
-  const userRow = screen.getByTestId("table-calendar-row user 2");
+  const userRow = screen.getByTestId("row user 2");
   userEvent.click(within(userRow).getAllByTestId("table-cell")[2]);
-  expect(within(userRow).getAllByTestId("table-cell")[2].classList.contains("table-calendar-element-selected")).toEqual(
-    false
-  );
+  expect(within(userRow).getAllByTestId("table-cell")[2].classList.contains("row__cell__selected")).toEqual(false);
   expect(planVacationButton.attributes.getNamedItem("disabled")).toEqual(null);
 });

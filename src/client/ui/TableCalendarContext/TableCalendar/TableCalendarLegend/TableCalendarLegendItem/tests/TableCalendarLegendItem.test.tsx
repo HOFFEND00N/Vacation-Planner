@@ -6,6 +6,6 @@ import "@testing-library/jest-dom";
 test("table calendar legend rendered", async () => {
   render(<TableCalendarLegendItem itemName={"test item name"} className={"test class name"} />);
 
-  expect(screen.getByTestId("table-calendar-legend-element-container")).toBeInTheDocument();
+  expect(screen.getByTestId("legend-item-container")).toBeInTheDocument();
   expect(screen.getByText("test item name")).toBeInTheDocument();
 });

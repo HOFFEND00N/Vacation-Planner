@@ -1,6 +1,6 @@
 import React from "react";
 import cn from "classnames";
-import styles from "./table-calendar-legend-item.css";
+import styles from "./legend-item.css";
 
 type tableCalendarLegendItemProps = {
   className: string;
@@ -9,8 +9,8 @@ type tableCalendarLegendItemProps = {
 
 export function TableCalendarLegendItem({ className, itemName }: tableCalendarLegendItemProps) {
   return (
-    <div className={"table-calendar-legend-element-container"} data-testid={"table-calendar-legend-element-container"}>
-      <div className={cn(styles["table-calendar-legend-element"], className)} />
+    <div className={"legend-item-container"} data-testid={"legend-item-container"}>
+      <div className={cn(styles["legend-item"], className)} />
       <div> {itemName} </div>
     </div>
   );

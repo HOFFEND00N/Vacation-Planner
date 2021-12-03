@@ -2,7 +2,7 @@ import { makeStylesForTableTotalElement } from "../makeStylesForTableTotalElemen
 
 describe("make styles for table total Element", () => {
   test("pass 0 vacations, expect to return weak workload styles", () => {
-    const expectedStyles = "table-calendar-element table-calendar-total-element-weak-workload";
+    const expectedStyles = "row__cell row__total-cell__weak-workload";
 
     const actualStyles = makeStylesForTableTotalElement({
       vacationsCount: 0,
@@ -14,7 +14,7 @@ describe("make styles for table total Element", () => {
   });
 
   test("pass column number = 0, expect to return first column element styles", () => {
-    const expectedStyles = "table-calendar-element table-calendar-first-column-element";
+    const expectedStyles = "row__cell row__first-column-cell";
 
     const actualStyles = makeStylesForTableTotalElement({
       vacationsCount: 0,
@@ -26,7 +26,7 @@ describe("make styles for table total Element", () => {
   });
 
   test("pass vacation count = 1 and team members count = 8, expect to return weak workload styles", () => {
-    const expectedStyles = "table-calendar-element table-calendar-total-element-weak-workload";
+    const expectedStyles = "row__cell row__total-cell__weak-workload";
 
     const actualStyles = makeStylesForTableTotalElement({
       vacationsCount: 1,
@@ -38,7 +38,7 @@ describe("make styles for table total Element", () => {
   });
 
   test("pass vacation count = 2 and team members count = 8, expect to return medium workload styles", () => {
-    const expectedStyles = "table-calendar-element table-calendar-total-element-medium-workload";
+    const expectedStyles = "row__cell row__total-cell__medium-workload";
 
     const actualStyles = makeStylesForTableTotalElement({
       vacationsCount: 2,
@@ -50,7 +50,7 @@ describe("make styles for table total Element", () => {
   });
 
   test("pass vacation count = 4 and team members count = 8, expect to return heavy workload styles", () => {
-    const expectedStyles = "table-calendar-element table-calendar-total-element-heavy-workload";
+    const expectedStyles = "row__cell row__total-cell__heavy-workload";
 
     const actualStyles = makeStylesForTableTotalElement({
       vacationsCount: 4,

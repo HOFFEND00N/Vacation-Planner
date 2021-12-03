@@ -1,7 +1,7 @@
 import cn from "classnames";
 import { VacationType } from "../../../../../../domain/vacation";
 import { VacationTypeByDay } from "../../../../../../types";
-import styles from "../../table-calendar-body.module.css";
+import styles from "../../body.module.css";
 
 export function makeStylesForTableCalendarBodyElement({
   vacationStart,
@@ -20,18 +20,18 @@ export function makeStylesForTableCalendarBodyElement({
   userId: string;
   currentUserId: string;
 }) {
-  let classNames = `${styles["table-calendar-element"]}`;
+  let classNames = `${styles["row__cell"]}`;
 
   if (vacationTypeByDay[columnNumber] === VacationType.APPROVED) {
-    classNames = cn(classNames, styles["table-calendar-element-vacation-approved"]);
+    classNames = cn(classNames, styles["row__cell__vacation-approved"]);
   }
   if (vacationTypeByDay[columnNumber] === VacationType.PENDING_APPROVAL) {
-    classNames = cn(classNames, styles["table-calendar-element-vacation-pending-approval"]);
+    classNames = cn(classNames, styles["row__cell__vacation-pending-approval"]);
   }
   if (columnNumber === 0) {
-    classNames = cn(classNames, styles["table-calendar-first-column-element"]);
+    classNames = cn(classNames, styles["row__first-column-cell"]);
   } else if (userId === currentUserId) {
-    classNames = cn(classNames, styles["table-calendar-element-selectable"]);
+    classNames = cn(classNames, styles["row__cell__selectable"]);
   }
 
   if (
@@ -40,7 +40,7 @@ export function makeStylesForTableCalendarBodyElement({
     userId === currentUserId &&
     columnNumber !== 0
   ) {
-    classNames = cn(classNames, styles["table-calendar-element-selected"]);
+    classNames = cn(classNames, styles["row__cell__selected"]);
   }
 
   return classNames;
