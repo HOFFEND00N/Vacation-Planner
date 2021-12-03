@@ -1,5 +1,5 @@
 import React from "react";
-import { LegendItem } from "./LegendItem/LegendItem";
+import { LegendItem } from "./LegendItem";
 import styles from "./legend.css";
 
 export function Legend() {

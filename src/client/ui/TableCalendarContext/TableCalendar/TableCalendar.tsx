@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Button } from "@confirmit/react-button";
 import moment from "moment";
 import { TableCalendarContext } from "../TableCalendarContext";
-import { Pager } from "./Pager/Pager";
-import { Body } from "./Body/Body";
-import { Legend } from "./Legend/Legend";
+import { Pager } from "./Pager";
+import { Body } from "./Body";
+import { Legend } from "./Legend";
 import styles from "./table-calendar.css";
 
 export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {

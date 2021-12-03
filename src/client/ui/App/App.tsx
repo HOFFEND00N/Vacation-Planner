@@ -2,8 +2,8 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import React from "react";
 import moment from "moment";
 import { PlanVacation } from "../PlanVacation";
-import { Menu } from "../Menu/Menu";
-import { TableCalendar } from "../TableCalendarContext/TableCalendar/TableCalendar";
+import { Menu } from "../Menu";
+import { TableCalendar } from "../TableCalendarContext/TableCalendar";
 import styles from "./app.module.css";
 
 export function App() {
