@@ -1,5 +1,5 @@
 import cn from "classnames";
-import { VacationType } from "../../../../../../domain/vacation";
+import { VacationType } from "../../../../../../domain/Vacation/vacation";
 import { VacationTypeByDay } from "../../../../../../types";
 import { TableCalendarStateType } from "../../../TableCalendar";
 import "./body-row.css";

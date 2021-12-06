@@ -1,4 +1,4 @@
-import { Vacation } from "../domain/vacation";
+import { Vacation } from "../domain/Vacation/vacation";
 
 export async function getVacations(usersIds: string[]): Promise<Vacation[]> {
   const queryStringElements: string[] = [];

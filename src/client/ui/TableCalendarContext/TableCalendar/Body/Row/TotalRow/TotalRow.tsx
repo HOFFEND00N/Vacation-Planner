@@ -3,7 +3,7 @@ import { Moment } from "moment";
 import cn from "classnames";
 import "./total-row.css";
 import { Cell } from "../Cell";
-import { getVacationsCountByDays, Vacation } from "../../../../../../domain/vacation";
+import { getVacationsCountByDays, Vacation } from "../../../../../../domain/Vacation/vacation";
 import { makeStylesForTableTotalElement } from "./makeStylesForTableTotalElement";
 
 type TotalRowProps = { vacations: Vacation[]; today: Moment; daysInMonth: number; teamMembersCount: number };

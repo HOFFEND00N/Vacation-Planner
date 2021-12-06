@@ -1,6 +1,6 @@
 import { VacationTypeByDay } from "../../../../../../../types";
 import { makeStylesForTableCalendarBodyElement } from "../makeStylesForTableCalendarBodyElement";
-import { VacationType } from "../../../../../../../domain/vacation";
+import { VacationType } from "../../../../../../../domain/Vacation/vacation";
 
 describe("make styles for table body calendar element", () => {
   test("in second column with no vacations has one class name", () => {
