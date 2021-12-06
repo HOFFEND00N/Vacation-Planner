@@ -19,7 +19,6 @@ export function PlanVacation() {
     setUploadState(UploadStates.Uploading);
     const res = await planVacation();
     //TODO: FTP server, web server, time server
-    //TODO: react context (problem with passing props)
     console.log(res.json());
     alert(`file = ${files[0].name}, vacation start = ${vacationStart}, vacation end = ${vacationEnd}`);
   };
