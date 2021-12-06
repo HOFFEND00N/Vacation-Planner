@@ -35,12 +35,12 @@ test("Table calendar rendered, then month change to next, then month change to p
   expect(screen.getByText("January 2021")).toBeInTheDocument();
 
   //user click to view next month
-  const nextMonthButton = screen.getByTestId("table-calendar-controls-next-month-change");
+  const nextMonthButton = screen.getByTestId("pager__controls-next-month-change");
   userEvent.click(nextMonthButton);
   expect(screen.getByText("February 2021")).toBeInTheDocument();
 
   //user click to view previous month
-  const previousMonthButton = screen.getByTestId("table-calendar-controls-previous-month-change");
+  const previousMonthButton = screen.getByTestId("pager__controls-previous-month-change");
   userEvent.click(previousMonthButton);
   expect(screen.getByText("January 2021")).toBeInTheDocument();
 

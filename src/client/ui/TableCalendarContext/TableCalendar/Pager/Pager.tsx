@@ -17,19 +17,19 @@ export function Pager({
   return (
     <div className={"pager"} data-testid={"pager"}>
       <IconButton
-        className={"table-calendar-controls"}
+        className={"pager__controls"}
         onClick={handlePreviousMonthChange}
-        data-testid={"table-calendar-controls-previous-month-change"}
+        data-testid={"pager__controls-previous-month-change"}
       >
         <Icon path={chevronLeft} />
       </IconButton>
 
-      <div className={"pager-current-date"}>{makePagerName(today)}</div>
+      <div className={"pager__current-date"}>{makePagerName(today)}</div>
 
       <IconButton
-        className={"table-calendar-controls"}
+        className={"pager__controls"}
         onClick={handleNextMonthChange}
-        data-testid={"table-calendar-controls-next-month-change"}
+        data-testid={"pager__controls-next-month-change"}
       >
         <Icon path={chevronRight} />
       </IconButton>

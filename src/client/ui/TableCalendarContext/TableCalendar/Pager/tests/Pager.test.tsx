@@ -35,7 +35,7 @@ describe("table calendar pager tests", () => {
         today={today}
       />
     );
-    userEvent.click(screen.getByTestId("table-calendar-controls-previous-month-change"));
+    userEvent.click(screen.getByTestId("pager__controls-previous-month-change"));
 
     expect(mockOnPreviousMonthChange).toBeCalledTimes(1);
   });
@@ -52,7 +52,7 @@ describe("table calendar pager tests", () => {
         today={today}
       />
     );
-    userEvent.click(screen.getByTestId("table-calendar-controls-next-month-change"));
+    userEvent.click(screen.getByTestId("pager__controls-next-month-change"));
 
     expect(mockOnNextMonthChange).toBeCalledTimes(1);
   });

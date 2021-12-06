@@ -5,13 +5,13 @@
   text-align: center;
 }
 
-.pager-current-date {
+.pager__current-date {
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-width: 110px;
 }
 
-.table-calendar-controls:hover {
+.pager__controls:hover {
   background-color: lightgrey;
 }
