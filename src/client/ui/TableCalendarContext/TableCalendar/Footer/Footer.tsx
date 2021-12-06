@@ -17,7 +17,7 @@ export function Footer({
       <Legend />
       <SelectedDates vacationStart={vacationStart} vacationEnd={vacationEnd} />
       <Button
-        className={"footer-container__button"}
+        className={"footer-container__plan-vacation-button"}
         disabled={!vacationStart.isSelected && !vacationEnd.isSelected}
         data-testid={"plan-vacation-button"}
       >
