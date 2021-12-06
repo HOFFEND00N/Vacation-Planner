@@ -1,16 +1,6 @@
-import { User } from "../../../../domain/user";
-import { Vacation } from "../../../../domain/vacation";
+import { BodyReducerActionType, BodyReducerStateType } from "../../../../types";
 
-export type StateType = {
-  isDataFetched: boolean;
-  teamMembers: User[];
-  currentUser: User;
-  vacations: Vacation[];
-};
-
-export type ActionType = StateType & { type: string };
-
-export const reducer = (state: StateType, action: ActionType): StateType => {
+export const reducer = (state: BodyReducerStateType, action: BodyReducerActionType): BodyReducerStateType => {
   switch (action.type) {
     case "set state": {
       return {
@@ -26,7 +16,7 @@ export const reducer = (state: StateType, action: ActionType): StateType => {
   }
 };
 
-export const initialState: StateType = {
+export const bodyReducerInitialState: BodyReducerStateType = {
   isDataFetched: false,
   teamMembers: [],
   currentUser: { id: "", name: "" },

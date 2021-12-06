@@ -7,7 +7,7 @@ import { TableCalendarStateType } from "../TableCalendar";
 import { BodyRow } from "./Row/BodyRow";
 import { HeaderRow } from "./Row/HeaderRow";
 import { TotalRow } from "./Row/TotalRow";
-import { initialState, reducer } from "./reducer";
+import { bodyReducerInitialState, reducer } from "./reducer";
 
 type propsType = {
   today: moment.Moment;
@@ -16,7 +16,7 @@ type propsType = {
 };
 
 export function Body({ today, vacationStart, vacationEnd }: propsType) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, bodyReducerInitialState);
   useEffect(() => {
     (async () => {
       const { teamMembers, currentUser } = await getTeamMembers();

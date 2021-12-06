@@ -1,8 +1,9 @@
-import { initialState, reducer, StateType } from "../reducer";
+import { bodyReducerInitialState, reducer } from "../reducer";
+import { BodyReducerStateType } from "../../../../../types";
 
 describe("reducer", () => {
   test("updates state correctly", () => {
-    const expectedState: StateType = {
+    const expectedState: BodyReducerStateType = {
       isDataFetched: true,
       currentUser: { id: "user 1", name: "user 1" },
       teamMembers: [
@@ -12,7 +13,7 @@ describe("reducer", () => {
       vacations: [],
     };
 
-    const actualState = reducer(initialState, {
+    const actualState = reducer(bodyReducerInitialState, {
       type: "set state",
       isDataFetched: true,
       currentUser: { id: "user 1", name: "user 1" },
@@ -28,7 +29,7 @@ describe("reducer", () => {
 
   test("throw error because of invalid action type", () => {
     expect(() =>
-      reducer(initialState, {
+      reducer(bodyReducerInitialState, {
         type: "unknown command",
         isDataFetched: false,
         currentUser: { id: "", name: "" },
