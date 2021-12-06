@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 import { Pager } from "../Pager";
 import "@testing-library/jest-dom";
 
-describe("table calendar legend tests", () => {
+describe("table calendar pager tests", () => {
   test("rendered", async () => {
     const mockOnPreviousMonthChange = jest.fn();
     const mockOnNextMonthChange = jest.fn();
