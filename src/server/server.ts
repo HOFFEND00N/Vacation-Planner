@@ -23,9 +23,6 @@ import { entryParser } from "./ADHelpers/entryParser";
   const server = express();
 
   server.use(sso.auth());
-  // server.use((req, res) => {
-  //   res.send(req.sso);
-  // })
   if (process.env.mode === "production") {
     server.use(express.static("dist"));
   }
@@ -74,7 +71,6 @@ import { entryParser } from "./ADHelpers/entryParser";
 
     const user = await findUser(activeDirectory, "Ivan.Petrov");
 
-    // await dbConnection.models[MODELS_NAMES.USER].create({ firstName: "Ivan", lastName: "Petrov", id: user.objectGUID });
     const vacation = await dbConnection.models[MODELS_NAMES.VACATION].findAll({ where: { userId: user.objectGUID } });
     res.send(vacation);
   });
