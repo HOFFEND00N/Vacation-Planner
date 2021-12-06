@@ -1,0 +1,65 @@
+.application-container {
+  max-width: 1000px;
+  margin: 20px auto 0;
+}
+
+.application {
+  display: flex;
+  justify-content: space-between;
+  min-height: 200px;
+}
+
+.vacation-dates {
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+}
+
+.vacation-dates__item {
+  max-width: 200px;
+}
+
+.vacation-application {
+  min-height: 100px;
+}
+
+.vacation-dates__line-between {
+  height: 4px;
+  width: 25px;
+  background-color: #7f7f7f;
+  margin: 0 10px;
+}
+
+.additional-vacation-days {
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+}
+
+.additional-vacation-days__header {
+  margin-right: 10px;
+}
+
+.dropzone-container__header {
+  margin-bottom: 10px;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.buttons-container__item {
+  margin-left: 10px;
+}
+
+.buttons-container__print-application-button {
+  min-height: 1.267rem;
+}
+
+.application__right-page-half {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
