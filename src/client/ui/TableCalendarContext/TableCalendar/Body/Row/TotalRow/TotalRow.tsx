@@ -3,19 +3,13 @@ import { Moment } from "moment";
 import cn from "classnames";
 import "./total-row.css";
 import { Cell } from "../Cell";
-import { getVacationIntervalForCurrentMonth, Vacation } from "../../../../../../domain/vacation";
+import { getVacationsCountByDays, Vacation } from "../../../../../../domain/vacation";
 import { makeStylesForTableTotalElement } from "./makeStylesForTableTotalElement";
 
 type TotalRowProps = { vacations: Vacation[]; today: Moment; daysInMonth: number; teamMembersCount: number };
 
 export function TotalRow({ vacations, today, daysInMonth, teamMembersCount }: TotalRowProps) {
-  const vacationsCountByDays: Record<number, number> = {};
-  vacations.map((vacation) => {
-    const vacationInterval = getVacationIntervalForCurrentMonth({ vacation, today });
-    for (let i = vacationInterval.start; i < vacationInterval.end + 1; i++) {
-      vacationsCountByDays[i] = (vacationsCountByDays[i] ?? 0) + 1;
-    }
-  });
+  const vacationsCountByDays = getVacationsCountByDays({ vacations, today });
   const cells: JSX.Element[] = [];
   for (let j = 1; j < daysInMonth + 1; j++) {
     const classNames = makeStylesForTableTotalElement({

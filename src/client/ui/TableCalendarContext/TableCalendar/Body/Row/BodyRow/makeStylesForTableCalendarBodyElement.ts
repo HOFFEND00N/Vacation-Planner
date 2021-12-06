@@ -21,7 +21,7 @@ export function makeStylesForTableCalendarBodyElement({
   userId: string;
   currentUserId: string;
 }) {
-  let classNames = `${"row__cell"}`;
+  let classNames = `row__cell`;
 
   if (vacationTypeByDay[columnNumber] === VacationType.APPROVED) {
     classNames = cn(classNames, "row__cell__vacation-approved");
