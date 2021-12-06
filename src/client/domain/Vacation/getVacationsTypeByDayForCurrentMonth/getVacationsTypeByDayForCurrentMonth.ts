@@ -1,7 +1,7 @@
 import { Moment } from "moment";
 import { VacationTypeByDay } from "../../../types";
 import { Vacation } from "../vacation";
-import { getVacationIntervalForCurrentMonth } from "../getVacationIntervalForCurrentMonth/getVacationIntervalForCurrentMonth.test";
+import { getVacationIntervalForCurrentMonth } from "../getVacationIntervalForCurrentMonth/getVacationIntervalForCurrentMonth";
 
 export function getVacationsTypeByDayForCurrentMonth({ vacations, today }: { vacations: Vacation[]; today: Moment }) {
   const vacationTypeByDay: VacationTypeByDay = {};
