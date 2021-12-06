@@ -4,11 +4,13 @@ import webpack from "webpack";
 import getCSSModuleLoader from "./getCSSModuleLoader.js";
 import config from "./developmentConfig.json"
 
-//TODO: pass only necessary fields
-const envKeys = Object.keys(config).reduce((prev, next) => {
-  prev[`${next}`] = JSON.stringify(config[next]);
-  return prev;
-}, {});
+// Used JSON.stringify to add quotes to string, because plugin does a direct text replacement,
+// the value given to it must include actual quotes inside of the string itself.
+const variablesToReplace = {
+  SITE_PROTOCOL: JSON.stringify(config.SITE_PROTOCOL),
+  SITE_DOMAIN: JSON.stringify(config.SITE_DOMAIN),
+  SITE_SERVER_PORT: JSON.stringify(config.SITE_SERVER_PORT),
+};
 
 const webpackProdConfigBabel = {
   entry: "./src/client/ui/index.tsx",
@@ -31,7 +33,7 @@ const webpackProdConfigBabel = {
       template: "./public/index.html",
     }),
     new ESLintPlugin(),
-    new webpack.DefinePlugin(envKeys),
+    new webpack.DefinePlugin(variablesToReplace),
   ],
   mode: "production",
   resolve: {
