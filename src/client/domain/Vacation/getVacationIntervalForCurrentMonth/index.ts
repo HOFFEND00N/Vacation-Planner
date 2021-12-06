@@ -1,0 +1,1 @@
+export { getVacationIntervalForCurrentMonth } from "./getVacationIntervalForCurrentMonth";

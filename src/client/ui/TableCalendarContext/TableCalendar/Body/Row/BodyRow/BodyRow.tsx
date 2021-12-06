@@ -5,8 +5,8 @@ import { User } from "../../../../../../domain/user";
 import { Vacation } from "../../../../../../domain/Vacation/vacation";
 import { Cell } from "../Cell";
 import "./body-row.css";
-import { getVacationsTypeByDayForCurrentMonth } from "../../../../../../domain/Vacation/getVacationsTypeByDayForCurrentMonth/getVacationsTypeByDayForCurrentMonth";
-import { getTotalVacationsDays } from "../../../../../../domain/Vacation/getTotalVacationDays/getTotalVacationDays";
+import { getVacationsTypeByDayForCurrentMonth } from "../../../../../../domain/Vacation/getVacationsTypeByDayForCurrentMonth";
+import { getTotalVacationsDays } from "../../../../../../domain/Vacation/getTotalVacationDays";
 import { makeStylesForTableCalendarBodyElement } from "./makeStylesForTableCalendarBodyElement";
 
 export function BodyRow({

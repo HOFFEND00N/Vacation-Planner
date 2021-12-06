@@ -1,5 +1,5 @@
 import moment from "moment";
-import { getVacationIntervalForCurrentMonth } from "../getVacationIntervalForCurrentMonth/getVacationIntervalForCurrentMonth";
+import { getVacationIntervalForCurrentMonth } from "../getVacationIntervalForCurrentMonth";
 import { Vacation, VacationCountByDays } from "../vacation";
 
 export function getVacationsCountByDays({ vacations, today }: { vacations: Vacation[]; today: moment.Moment }) {

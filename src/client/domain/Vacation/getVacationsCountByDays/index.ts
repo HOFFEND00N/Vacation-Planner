@@ -1,0 +1,1 @@
+export { getVacationsCountByDays } from "./getVacationsCountByDays";
