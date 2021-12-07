@@ -54,12 +54,13 @@
   margin-left: 10px;
 }
 
-.buttons-container__print-application-button {
-  min-height: 1.267rem;
+.print-application-button {
+  flex-shrink: 1;
 }
 
-.application__right-page-half {
+.right-page-half {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }

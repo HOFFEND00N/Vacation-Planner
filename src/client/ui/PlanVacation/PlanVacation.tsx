@@ -71,8 +71,11 @@ export function PlanVacation() {
             {isUsedAdditionalVacationDays ? <AdditionalVacationDays /> : undefined}
           </div>
         </div>
-        <div className={"application__right-page-half"}>
-          <Button className={"buttons-container__print-application-button"}> Print application </Button>
+        <div className={"right-page-half"}>
+          <Button className={"right-page-half__print-application-button"} appearance={Appearances.primarySuccess}>
+            {" "}
+            Print application{" "}
+          </Button>
           <div>
             <div className={"dropzone-container__header"}>Upload a vacation application</div>
             <Dropzone
