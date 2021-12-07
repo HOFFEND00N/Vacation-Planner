@@ -11,7 +11,6 @@ import { setupDBConnection } from "./DBHelpers/setupDBConnection";
 import { setupDBModels } from "./DBHelpers/setupDBModels";
 import { findUserTeam } from "./ADHelpers/findUserTeam";
 import { findGroupMembers } from "./ADHelpers/findGroupMembers";
-import { findUser } from "./ADHelpers/findUser";
 import { entryParser } from "./ADHelpers/entryParser";
 
 (async () => {
@@ -58,21 +57,6 @@ import { entryParser } from "./ADHelpers/entryParser";
     } catch (e) {
       console.log(e);
     }
-  });
-
-  server.get("/test", async (req, res) => {
-    const activeDirectory = new ActiveDirectory({
-      url: "ldap://firmglobal.com",
-      baseDN: "dc=firmglobal,dc=com",
-      username: `${process.env.login}@forsta.com`,
-      password: process.env.password,
-      entryParser: entryParser,
-    });
-
-    const user = await findUser(activeDirectory, "Ivan.Petrov");
-
-    const vacation = await dbConnection.models[MODELS_NAMES.VACATION].findAll({ where: { userId: user.objectGUID } });
-    res.send(vacation);
   });
 
   server.get("/vacations", async (req, res) => {
