@@ -6,7 +6,7 @@
   "scripts": {
     "dev-client": "webpack serve --config webpack.dev.config.babel.js",
     "dev-server": "cross-env mode=development babel-watch src/server/server.ts --extensions .ts --config-file ./babel.config.json --inspect",
-    "start:Dev": "npm-run-all --parallel dev-client dev-server",
+    "start:dev": "npm-run-all --parallel dev-client dev-server",
     "build:client": "webpack --config webpack.prod.config.babel.js",
     "build:server": "babel src --ignore \"**/tests/**\",\"src/client\" --out-dir dist --extensions \".ts\"",
     "build:all": "npm run build:client && npm run build:server",
