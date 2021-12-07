@@ -3,5 +3,4 @@ package-lock.json
 .idea
 dist
 coverage
-.env.json
 developmentConfig.json
