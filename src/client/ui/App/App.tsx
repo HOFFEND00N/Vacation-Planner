@@ -8,7 +8,7 @@ import "./app.css";
 
 export function App() {
   return (
-    <BrowserRouter className={"*"}>
+    <BrowserRouter>
       <div>
         <Menu />
         <hr />
