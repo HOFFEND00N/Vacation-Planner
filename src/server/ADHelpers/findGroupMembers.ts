@@ -1,4 +1,4 @@
-import { IActiveDirectory, ITeamMember } from "../../types";
+import { IActiveDirectory, ITeamMember } from "../types";
 
 export async function findGroupMembers({
   groupName,

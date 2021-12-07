@@ -1,4 +1,4 @@
-import { IActiveDirectory, ITeamMember } from "../../types";
+import { IActiveDirectory, ITeamMember } from "../types";
 
 export function findUser(activeDirectory: IActiveDirectory, username: string): Promise<ITeamMember> {
   return new Promise((resolve, reject) => {

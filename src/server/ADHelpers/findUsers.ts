@@ -1,4 +1,4 @@
-import { IActiveDirectory } from "../../types";
+import { IActiveDirectory } from "../types";
 
 export function findUsers(LDAPQuery: string, activeDirectory: IActiveDirectory) {
   return new Promise((resolve, reject) => {
