@@ -1,1 +1,0 @@
-export { findUserVacations } from "./findUserVacations";

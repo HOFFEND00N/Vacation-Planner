@@ -1,1 +1,0 @@
-export { getTotalVacationsDays } from "./getTotalVacationDays";

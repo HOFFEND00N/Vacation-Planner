@@ -1,4 +1,4 @@
-import { getDateDifferenceInDays } from "./getDateDifferenceInDays";
+import { getDateDifferenceInDays } from "../getDateDifferenceInDays";
 
 describe("get date difference in days", () => {
   test("pass the same dates, expect to return 1", () => {

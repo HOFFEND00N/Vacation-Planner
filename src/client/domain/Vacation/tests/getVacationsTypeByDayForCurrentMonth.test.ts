@@ -1,7 +1,7 @@
 import moment from "moment";
 import { VacationTypeByDay } from "../../../types";
 import { VacationType } from "../vacation";
-import { getVacationsTypeByDayForCurrentMonth } from "./getVacationsTypeByDayForCurrentMonth";
+import { getVacationsTypeByDayForCurrentMonth } from "../getVacationsTypeByDayForCurrentMonth";
 
 describe("get vacations type by day for current month", () => {
   test("pass no vacations, expect to return empty object", () => {

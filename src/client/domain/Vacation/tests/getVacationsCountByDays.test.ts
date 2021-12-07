@@ -1,6 +1,6 @@
 import moment from "moment";
 import { VacationCountByDays, VacationType } from "../vacation";
-import { getVacationsCountByDays } from "./getVacationsCountByDays";
+import { getVacationsCountByDays } from "../getVacationsCountByDays";
 
 describe("get vacations count by days", () => {
   test("pass zero vacation expect to return empty object", () => {

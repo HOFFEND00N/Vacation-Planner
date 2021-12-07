@@ -1,5 +1,5 @@
 import { Vacation, VacationType } from "../vacation";
-import { findUserVacations } from "./findUserVacations";
+import { findUserVacations } from "../findUserVacations";
 
 //case when vacation starts in one year and ends in another is impossible
 describe("find user vacations", () => {

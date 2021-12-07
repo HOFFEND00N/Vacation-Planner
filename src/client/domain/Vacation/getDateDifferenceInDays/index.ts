@@ -1,1 +1,0 @@
-export { getDateDifferenceInDays } from "./getDateDifferenceInDays";

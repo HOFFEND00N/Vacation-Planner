@@ -1,7 +1,7 @@
 import moment from "moment";
 import { VacationInterval } from "../../../types";
 import { VacationType } from "../vacation";
-import { getVacationIntervalForCurrentMonth } from "./getVacationIntervalForCurrentMonth";
+import { getVacationIntervalForCurrentMonth } from "../getVacationIntervalForCurrentMonth";
 
 describe("get vacation interval for current month", () => {
   test("pass one day vacation, expect to return interval with one day difference", () => {

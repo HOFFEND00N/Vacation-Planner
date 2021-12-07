@@ -1,5 +1,5 @@
-import { Vacation } from "../vacation";
-import { getDateDifferenceInDays } from "../getDateDifferenceInDays";
+import { Vacation } from "./vacation";
+import { getDateDifferenceInDays } from "./getDateDifferenceInDays";
 
 export function getTotalVacationsDays(vacations: Vacation[]) {
   return vacations.reduce((totalVacationDays, currentVacation) => {
