@@ -84,7 +84,6 @@
     "activedirectory": "0.7.2",
     "classnames": "2.x",
     "core-js": "3.18.2",
-    "crypto-js": "4.1.1",
     "express": "4.17.1",
     "moment": "2.29.1",
     "nconf": "0.11.3",
