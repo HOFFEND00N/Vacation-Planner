@@ -10,79 +10,107 @@ import { getVacations } from "../../../application/getVacations";
 jest.mock("../../../application/getVacations");
 jest.mock("../../../application/getTeamMembers");
 
-test("should render table calendar, change month to next, then change month to previous, then click on selectable cell, then click on not selectable cell", async () => {
-  (getTeamMembers as jest.Mock).mockReturnValue({
-    teamMembers: [
-      { id: "user 2", name: "user 2" },
-      { id: "user 1", name: "user 1" },
-    ],
-    currentUser: { id: "user 1", name: "user 1" },
+describe("Table calendar", () => {
+  let currentTableCalendarDate;
+  beforeEach(() => {
+    (getTeamMembers as jest.Mock).mockReturnValue({
+      teamMembers: [
+        { id: "user 2", name: "user 2" },
+        { id: "user 1", name: "user 1" },
+      ],
+      currentUser: { id: "user 1", name: "user 1" },
+    });
+    (getVacations as jest.Mock).mockReturnValue([]);
+    currentTableCalendarDate = moment(new Date("1-11-2021"));
   });
-  (getVacations as jest.Mock).mockReturnValue([]);
 
-  const currentTableCalendarDate = moment(new Date("1-11-2021"));
-  render(<TableCalendar currentDate={currentTableCalendarDate} />);
+  test("should render, plan vacation button is disabled, then click on not selectable cell", async () => {
+    render(<TableCalendar currentDate={currentTableCalendarDate} />);
 
-  //renders all components
-  expect(screen.getByTestId("table-calendar-container")).toBeInTheDocument();
-  expect(screen.getByTestId("pager")).toBeInTheDocument();
-  expect(screen.getByTestId("legend-container")).toBeInTheDocument();
-  expect(screen.getByText("Please wait, searching your teammates...")).toBeInTheDocument();
+    expect(screen.getByTestId("table-calendar-container")).toBeInTheDocument();
+    expect(screen.getByTestId("pager")).toBeInTheDocument();
+    expect(screen.getByTestId("legend-container")).toBeInTheDocument();
+    expect(screen.getByText("Please wait, searching your teammates...")).toBeInTheDocument();
 
-  //team members has been fetched, component updates
-  await waitForElementToBeRemoved(screen.getByText("Please wait, searching your teammates..."));
-  expect(screen.getByTestId("table-calendar-body")).toBeInTheDocument();
-  expect(screen.getByText("January 2021")).toBeInTheDocument();
+    await waitForElementToBeRemoved(screen.getByText("Please wait, searching your teammates..."));
+    expect(screen.getByTestId("table-calendar-body")).toBeInTheDocument();
+    expect(screen.getByText("January 2021")).toBeInTheDocument();
 
-  //user click to view next month
-  const nextMonthButton = screen.getByTestId("pager__controls-next-month-change");
-  userEvent.click(nextMonthButton);
-  expect(screen.getByText("February 2021")).toBeInTheDocument();
+    const planVacationButton = screen.getByTestId("plan-vacation-button");
+    expect(planVacationButton).toHaveAttribute("disabled");
+  });
 
-  //user click to view previous month
-  const previousMonthButton = screen.getByTestId("pager__controls-previous-month-change");
-  userEvent.click(previousMonthButton);
-  expect(screen.getByText("January 2021")).toBeInTheDocument();
+  test("should change month to next", async () => {
+    render(<TableCalendar currentDate={currentTableCalendarDate} />);
+    await waitForElementToBeRemoved(screen.getByText("Please wait, searching your teammates..."));
 
-  //check that plan vacation button is disabled
-  const planVacationButton = screen.getByTestId("plan-vacation-button");
-  expect(planVacationButton).toHaveAttribute("disabled");
+    const nextMonthButton = screen.getByTestId("pager__controls-next-month-change");
+    userEvent.click(nextMonthButton);
+    expect(screen.getByText("February 2021")).toBeInTheDocument();
+  });
 
-  //user selects start vacation date, plan vacation button is enabled
-  const currentUserRow = screen.getByTestId("row user 1");
-  userEvent.click(within(currentUserRow).getAllByTestId("table-cell")[3]);
-  expect(within(currentUserRow).getAllByTestId("table-cell")[3]).toHaveClass("row__cell__selected");
-  expect(planVacationButton.attributes.getNamedItem("disabled")).toEqual(null);
+  test("should change month to previous", async () => {
+    render(<TableCalendar currentDate={currentTableCalendarDate} />);
+    await waitForElementToBeRemoved(screen.getByText("Please wait, searching your teammates..."));
 
-  //user selects end vacation date, plan vacation button is enabled
-  userEvent.click(within(currentUserRow).getAllByTestId("table-cell")[5]);
-  expect(within(currentUserRow).getAllByTestId("table-cell")[3]).toHaveClass("row__cell__selected");
-  expect(within(currentUserRow).getAllByTestId("table-cell")[4]).toHaveClass("row__cell__selected");
-  expect(within(currentUserRow).getAllByTestId("table-cell")[5]).toHaveClass("row__cell__selected");
-  expect(planVacationButton.attributes.getNamedItem("disabled")).toEqual(null);
+    const previousMonthButton = screen.getByTestId("pager__controls-previous-month-change");
+    userEvent.click(previousMonthButton);
+    expect(screen.getByText("December 2020")).toBeInTheDocument();
+  });
 
-  //user selects new start vacation date, plan vacation button is enabled
-  userEvent.click(within(currentUserRow).getAllByTestId("table-cell")[4]);
-  expect(within(currentUserRow).getAllByTestId("table-cell")[4]).toHaveClass("row__cell__selected");
-  expect(within(currentUserRow).getAllByTestId("table-cell")[3].classList.contains("row__cell__selected")).toEqual(
-    false
-  );
-  expect(within(currentUserRow).getAllByTestId("table-cell")[5].classList.contains("row__cell__selected")).toEqual(
-    false
-  );
-  expect(planVacationButton.attributes.getNamedItem("disabled")).toEqual(null);
+  test("should select start and end vacation dates", async () => {
+    render(<TableCalendar currentDate={currentTableCalendarDate} />);
+    await waitForElementToBeRemoved(screen.getByText("Please wait, searching your teammates..."));
 
-  //user selects end vacation date, but vacation end date < start vacation date => new start vacation date selected, plan vacation button is enabled
-  userEvent.click(within(currentUserRow).getAllByTestId("table-cell")[3]);
-  expect(within(currentUserRow).getAllByTestId("table-cell")[3]).toHaveClass("row__cell__selected");
-  expect(within(currentUserRow).getAllByTestId("table-cell")[4].classList.contains("row__cell__selected")).toEqual(
-    false
-  );
-  expect(planVacationButton.attributes.getNamedItem("disabled")).toEqual(null);
+    //user selects start vacation date, plan vacation button is enabled
+    const planVacationButton = screen.getByTestId("plan-vacation-button");
+    const currentUserRow = screen.getByTestId("row user 1");
+    userEvent.click(within(currentUserRow).getAllByTestId("table-cell")[3]);
+    expect(within(currentUserRow).getAllByTestId("table-cell")[3]).toHaveClass("row__cell__selected");
+    expect(planVacationButton.attributes.getNamedItem("disabled")).toEqual(null);
 
-  //user tries select different person row, plan vacation button is enabled
-  const userRow = screen.getByTestId("row user 2");
-  userEvent.click(within(userRow).getAllByTestId("table-cell")[2]);
-  expect(within(userRow).getAllByTestId("table-cell")[2].classList.contains("row__cell__selected")).toEqual(false);
-  expect(planVacationButton.attributes.getNamedItem("disabled")).toEqual(null);
+    //user selects end vacation date, plan vacation button is enabled
+    userEvent.click(within(currentUserRow).getAllByTestId("table-cell")[5]);
+    expect(within(currentUserRow).getAllByTestId("table-cell")[3]).toHaveClass("row__cell__selected");
+    expect(within(currentUserRow).getAllByTestId("table-cell")[4]).toHaveClass("row__cell__selected");
+    expect(within(currentUserRow).getAllByTestId("table-cell")[5]).toHaveClass("row__cell__selected");
+    expect(planVacationButton.attributes.getNamedItem("disabled")).toEqual(null);
+  });
+
+  test("should select start vacation date, then select it again", async () => {
+    render(<TableCalendar currentDate={currentTableCalendarDate} />);
+    await waitForElementToBeRemoved(screen.getByText("Please wait, searching your teammates..."));
+
+    const planVacationButton = screen.getByTestId("plan-vacation-button");
+    const currentUserRow = screen.getByTestId("row user 1");
+    //user selects new start vacation date, plan vacation button is enabled
+    userEvent.click(within(currentUserRow).getAllByTestId("table-cell")[4]);
+    expect(within(currentUserRow).getAllByTestId("table-cell")[4]).toHaveClass("row__cell__selected");
+    expect(within(currentUserRow).getAllByTestId("table-cell")[3].classList.contains("row__cell__selected")).toEqual(
+      false
+    );
+    expect(within(currentUserRow).getAllByTestId("table-cell")[5].classList.contains("row__cell__selected")).toEqual(
+      false
+    );
+    expect(planVacationButton.attributes.getNamedItem("disabled")).toEqual(null);
+
+    //user selects end vacation date, but vacation end date < start vacation date => new start vacation date selected, plan vacation button is enabled
+    userEvent.click(within(currentUserRow).getAllByTestId("table-cell")[3]);
+    expect(within(currentUserRow).getAllByTestId("table-cell")[3]).toHaveClass("row__cell__selected");
+    expect(within(currentUserRow).getAllByTestId("table-cell")[4].classList.contains("row__cell__selected")).toEqual(
+      false
+    );
+    expect(planVacationButton.attributes.getNamedItem("disabled")).toEqual(null);
+  });
+
+  test("should not select start vacation date", async () => {
+    render(<TableCalendar currentDate={currentTableCalendarDate} />);
+    await waitForElementToBeRemoved(screen.getByText("Please wait, searching your teammates..."));
+
+    const planVacationButton = screen.getByTestId("plan-vacation-button");
+    const userRow = screen.getByTestId("row user 2");
+    userEvent.click(within(userRow).getAllByTestId("table-cell")[2]);
+    expect(within(userRow).getAllByTestId("table-cell")[2].classList.contains("row__cell__selected")).toEqual(false);
+    expect(planVacationButton).toHaveAttribute("disabled");
+  });
 });
