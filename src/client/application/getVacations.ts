@@ -1,10 +1,7 @@
 import { Vacation } from "../domain/Vacation/vacation";
 
 export async function getVacations(usersIds: string[]): Promise<Vacation[]> {
-  const queryStringElements: string[] = [];
-  for (const usersId of usersIds) {
-    queryStringElements.push(`id=${usersId}`);
-  }
+  const queryStringElements = usersIds.map((usersId) => `id=${usersId}`);
   const url = `${SITE_PROTOCOL}${SITE_DOMAIN}${SITE_SERVER_PORT}/vacations?${queryStringElements.join("&")}`;
 
   const response = await fetch(url, { method: "get" });
