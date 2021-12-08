@@ -1,5 +1,5 @@
 import moment from "moment";
 
-export function makePagerName(today: moment.Moment) {
-  return `${today.format("MMMM")} ${today.year()}`;
+export function makePagerName(currentTableCalendarDate: moment.Moment) {
+  return `${currentTableCalendarDate.format("MMMM")} ${currentTableCalendarDate.year()}`;
 }

@@ -10,7 +10,12 @@ describe("Total row", () => {
     const daysInMonth = 31;
 
     render(
-      <TotalRow today={moment(new Date("1-11-2021"))} daysInMonth={daysInMonth} vacations={[]} teamMembersCount={8} />
+      <TotalRow
+        currentTableCalendarDate={moment(new Date("1-11-2021"))}
+        daysInMonth={daysInMonth}
+        vacations={[]}
+        teamMembersCount={8}
+      />
     );
 
     expect(screen.getByTestId("table-calendar-total-row")).toBeInTheDocument();
@@ -23,7 +28,7 @@ describe("Total row", () => {
 
     render(
       <TotalRow
-        today={moment(new Date("1-11-2021"))}
+        currentTableCalendarDate={moment(new Date("1-11-2021"))}
         daysInMonth={daysInMonth}
         vacations={[
           {

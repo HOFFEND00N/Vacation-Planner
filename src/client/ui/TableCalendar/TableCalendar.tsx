@@ -12,7 +12,7 @@ export type TableCalendarStateType = {
 };
 
 export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
-  const [today, setToday] = useState(currentDate);
+  const [currentTableCalendarDate, setCurrentTableCalendarDate] = useState(currentDate);
   const [vacationStart, setVacationStart] = useState<TableCalendarStateType>({
     date: new Date(0),
     isSelected: false,
@@ -41,11 +41,11 @@ export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
   };
 
   function handlePreviousMonthChange() {
-    setToday(today.clone().subtract(1, "months"));
+    setCurrentTableCalendarDate(currentTableCalendarDate.clone().subtract(1, "months"));
   }
 
   function handleNextMonthChange() {
-    setToday(today.clone().add(1, "months"));
+    setCurrentTableCalendarDate(currentTableCalendarDate.clone().add(1, "months"));
   }
 
   return (
@@ -53,10 +53,14 @@ export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
       <Pager
         handlePreviousMonthChange={handlePreviousMonthChange}
         handleNextMonthChange={handleNextMonthChange}
-        today={today}
+        currentTableCalendarDate={currentTableCalendarDate}
       />
       <TableCalendarContext.Provider value={{ handleOnClick: handleVacationSelect }}>
-        <Body today={today} vacationStart={vacationStart} vacationEnd={vacationEnd} />
+        <Body
+          currentTableCalendarDate={currentTableCalendarDate}
+          vacationStart={vacationStart}
+          vacationEnd={vacationEnd}
+        />
       </TableCalendarContext.Provider>
       <Footer vacationStart={vacationStart} vacationEnd={vacationEnd} />
     </div>

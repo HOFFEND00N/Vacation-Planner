@@ -12,7 +12,7 @@ describe("Body row", () => {
 
     render(
       <BodyRow
-        today={moment(new Date(1))}
+        currentTableCalendarDate={moment(new Date(1))}
         daysInMonth={daysInMonth}
         user={{ id: "user 1", name: "user 1" }}
         employeeName={"user 2"}
@@ -33,7 +33,7 @@ describe("Body row", () => {
     render(
       <TableCalendarContext.Provider value={{ handleOnClick: mockOnClick }}>
         <BodyRow
-          today={moment(new Date(1))}
+          currentTableCalendarDate={moment(new Date(1))}
           daysInMonth={31}
           user={{ id: "user 1", name: "user 1" }}
           employeeName={"user 2"}
@@ -54,7 +54,7 @@ describe("Body row", () => {
 
     render(
       <BodyRow
-        today={moment(new Date(1))}
+        currentTableCalendarDate={moment(new Date(1))}
         daysInMonth={31}
         user={{ id: "user 1", name: "user 1" }}
         employeeName={"user 2"}

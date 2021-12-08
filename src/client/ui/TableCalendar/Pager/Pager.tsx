@@ -8,11 +8,11 @@ import { makePagerName } from "./makePagerName";
 export function Pager({
   handlePreviousMonthChange,
   handleNextMonthChange,
-  today,
+  currentTableCalendarDate,
 }: {
   handlePreviousMonthChange: () => void;
   handleNextMonthChange: () => void;
-  today: moment.Moment;
+  currentTableCalendarDate: moment.Moment;
 }) {
   return (
     <div className={"pager"} data-testid={"pager"}>
@@ -24,7 +24,7 @@ export function Pager({
         <Icon path={chevronLeft} />
       </IconButton>
 
-      <div className={"pager__current-date"}>{makePagerName(today)}</div>
+      <div className={"pager__current-date"}>{makePagerName(currentTableCalendarDate)}</div>
 
       <IconButton
         className={"pager__controls"}

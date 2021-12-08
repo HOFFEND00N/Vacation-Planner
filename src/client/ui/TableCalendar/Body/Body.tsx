@@ -10,12 +10,12 @@ import { TotalRow } from "./Row/TotalRow";
 import { bodyReducerInitialState, reducer } from "./reducer";
 
 type propsType = {
-  today: moment.Moment;
+  currentTableCalendarDate: moment.Moment;
   vacationStart: TableCalendarStateType;
   vacationEnd: TableCalendarStateType;
 };
 
-export function Body({ today, vacationStart, vacationEnd }: propsType) {
+export function Body({ currentTableCalendarDate, vacationStart, vacationEnd }: propsType) {
   const [state, dispatch] = useReducer(reducer, bodyReducerInitialState);
   useEffect(() => {
     (async () => {
@@ -26,7 +26,7 @@ export function Body({ today, vacationStart, vacationEnd }: propsType) {
   }, []);
 
   if (state.isDataFetched) {
-    const daysInMonth = today.daysInMonth();
+    const daysInMonth = currentTableCalendarDate.daysInMonth();
     return (
       <div data-testid={"table-calendar-body"}>
         <HeaderRow daysInMonth={daysInMonth} />
@@ -34,12 +34,12 @@ export function Body({ today, vacationStart, vacationEnd }: propsType) {
           const userVacations = findUserVacations({
             vacations: state.vacations,
             userId: teamMember.id,
-            year: today.year(),
+            year: currentTableCalendarDate.year(),
           });
           return (
             <BodyRow
               daysInMonth={daysInMonth}
-              today={today}
+              currentTableCalendarDate={currentTableCalendarDate}
               vacationStart={vacationStart}
               vacationEnd={vacationEnd}
               currentUser={state.currentUser}
@@ -51,7 +51,7 @@ export function Body({ today, vacationStart, vacationEnd }: propsType) {
           );
         })}
         <TotalRow
-          today={today}
+          currentTableCalendarDate={currentTableCalendarDate}
           daysInMonth={daysInMonth}
           vacations={state.vacations}
           teamMembersCount={state.teamMembers.length}

@@ -16,7 +16,7 @@ export function BodyRow({
   vacationStart,
   vacationEnd,
   currentUser,
-  today,
+  currentTableCalendarDate,
   employeeName,
 }: {
   daysInMonth: number;
@@ -25,13 +25,16 @@ export function BodyRow({
   vacationStart: { date: Date; isSelected: boolean };
   vacationEnd: { date: Date; isSelected: boolean };
   currentUser: User;
-  today: moment.Moment;
+  currentTableCalendarDate: moment.Moment;
   employeeName: string;
 }) {
   const cells: JSX.Element[] = [];
-  const vacationTypeByDay = getVacationsTypeByDayForCurrentMonth({ vacations, today });
+  const vacationTypeByDay = getVacationsTypeByDayForCurrentMonth({
+    vacations,
+    currentTableCalendarDate: currentTableCalendarDate,
+  });
   for (let day = 1; day < daysInMonth + 1; day++) {
-    const elementDate = new Date(today.year(), today.month(), day);
+    const elementDate = new Date(currentTableCalendarDate.year(), currentTableCalendarDate.month(), day);
     const classNames = makeStylesForTableCalendarBodyElement({
       vacationStart,
       vacationEnd,

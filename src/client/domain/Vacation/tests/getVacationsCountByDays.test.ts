@@ -6,7 +6,10 @@ describe("get vacations count by days", () => {
   test("should return empty object, when zero vacation passed", () => {
     const expectedVacationsCountByDays: VacationCountByDays = {};
 
-    const actualVacationsCountByDays = getVacationsCountByDays({ vacations: [], today: moment(new Date("1-11-2021")) });
+    const actualVacationsCountByDays = getVacationsCountByDays({
+      vacations: [],
+      currentTableCalendarDate: moment(new Date("1-11-2021")),
+    });
 
     expect(actualVacationsCountByDays).toEqual(expectedVacationsCountByDays);
   });
@@ -24,7 +27,7 @@ describe("get vacations count by days", () => {
           id: "vacation 1",
         },
       ],
-      today: moment(new Date("1-1-2021")),
+      currentTableCalendarDate: moment(new Date("1-1-2021")),
     });
 
     expect(actualVacationsCountByDays).toEqual(expectedVacationsCountByDays);
@@ -50,7 +53,7 @@ describe("get vacations count by days", () => {
           id: "vacation 1",
         },
       ],
-      today: moment(new Date("1-1-2021")),
+      currentTableCalendarDate: moment(new Date("1-1-2021")),
     });
 
     expect(actualVacationsCountByDays).toEqual(expectedVacationsCountByDays);

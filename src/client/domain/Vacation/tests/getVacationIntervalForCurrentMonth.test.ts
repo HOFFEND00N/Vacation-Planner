@@ -15,7 +15,7 @@ describe("get vacation interval for current month", () => {
         type: VacationType.APPROVED,
         id: "vacation 1",
       },
-      today: moment(new Date("1-1-2021")),
+      currentTableCalendarDate: moment(new Date("1-1-2021")),
     });
 
     expect(actualIntervalForCurrentMonth).toEqual(expectedIntervalForCurrentMonth);
@@ -32,7 +32,7 @@ describe("get vacation interval for current month", () => {
         type: VacationType.APPROVED,
         id: "vacation 1",
       },
-      today: moment(new Date("1-11-2021")),
+      currentTableCalendarDate: moment(new Date("1-11-2021")),
     });
 
     expect(actualIntervalForCurrentMonth).toEqual(expectedIntervalForCurrentMonth);
@@ -49,7 +49,7 @@ describe("get vacation interval for current month", () => {
         type: VacationType.APPROVED,
         id: "vacation 1",
       },
-      today: moment(new Date("2-11-2021")),
+      currentTableCalendarDate: moment(new Date("2-11-2021")),
     });
 
     expect(actualIntervalForCurrentMonth).toEqual(expectedIntervalForCurrentMonth);
@@ -66,7 +66,7 @@ describe("get vacation interval for current month", () => {
         type: VacationType.APPROVED,
         id: "vacation 1",
       },
-      today: moment(new Date("2-11-2021")),
+      currentTableCalendarDate: moment(new Date("2-11-2021")),
     });
 
     expect(actualIntervalForCurrentMonth).toEqual(expectedIntervalForCurrentMonth);
@@ -83,7 +83,7 @@ describe("get vacation interval for current month", () => {
         type: VacationType.APPROVED,
         id: "vacation 1",
       },
-      today: moment(new Date("2-11-2021")),
+      currentTableCalendarDate: moment(new Date("2-11-2021")),
     });
 
     expect(actualIntervalForCurrentMonth).toEqual(expectedIntervalForCurrentMonth);
@@ -100,7 +100,7 @@ describe("get vacation interval for current month", () => {
         type: VacationType.APPROVED,
         id: "vacation 1",
       },
-      today: moment(new Date("2-11-2021")),
+      currentTableCalendarDate: moment(new Date("2-11-2021")),
     });
 
     expect(actualIntervalForCurrentMonth).toEqual(expectedIntervalForCurrentMonth);
@@ -117,7 +117,7 @@ describe("get vacation interval for current month", () => {
         type: VacationType.APPROVED,
         id: "vacation 1",
       },
-      today: moment(new Date("5-11-2021")),
+      currentTableCalendarDate: moment(new Date("5-11-2021")),
     });
 
     expect(actualIntervalForCurrentMonth).toEqual(expectedIntervalForCurrentMonth);
@@ -134,7 +134,7 @@ describe("get vacation interval for current month", () => {
         type: VacationType.APPROVED,
         id: "vacation 1",
       },
-      today: moment(new Date("5-11-2021")),
+      currentTableCalendarDate: moment(new Date("5-11-2021")),
     });
 
     expect(actualIntervalForCurrentMonth).toEqual(expectedIntervalForCurrentMonth);

@@ -25,7 +25,7 @@ test("should render notification about team members searching, then render a com
   render(
     <TableCalendarContext.Provider value={{ handleOnClick: mockOnClick }}>
       <Body
-        today={moment(new Date("1-11-2021"))}
+        currentTableCalendarDate={moment(new Date("1-11-2021"))}
         vacationStart={{ date: new Date(1), isSelected: false }}
         vacationEnd={{ date: new Date(1), isSelected: false }}
       />

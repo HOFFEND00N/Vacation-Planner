@@ -9,7 +9,7 @@ describe("get vacations type by day for current month", () => {
 
     const actualVacationsTypeByDayForCurrentMonth = getVacationsTypeByDayForCurrentMonth({
       vacations: [],
-      today: moment(new Date("1-11-2021")),
+      currentTableCalendarDate: moment(new Date("1-11-2021")),
     });
 
     expect(actualVacationsTypeByDayForCurrentMonth).toEqual(expectedVacationsTypeByDayForCurrentMonth);
@@ -36,7 +36,7 @@ describe("get vacations type by day for current month", () => {
           id: "vacation 1",
         },
       ],
-      today: moment(new Date("2-11-2021")),
+      currentTableCalendarDate: moment(new Date("2-11-2021")),
     });
 
     expect(actualVacationsTypeByDayForCurrentMonth).toEqual(expectedVacationsTypeByDayForCurrentMonth);
@@ -77,7 +77,7 @@ describe("get vacations type by day for current month", () => {
           id: "vacation 1",
         },
       ],
-      today: moment(new Date("2-11-2021")),
+      currentTableCalendarDate: moment(new Date("2-11-2021")),
     });
 
     expect(actualVacationsTypeByDayForCurrentMonth).toEqual(expectedVacationsTypeByDayForCurrentMonth);

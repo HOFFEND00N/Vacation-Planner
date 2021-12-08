@@ -7,10 +7,18 @@ import { Vacation } from "../../../../../domain/Vacation/vacation";
 import { getVacationsCountByDays } from "../../../../../domain/Vacation/getVacationsCountByDays";
 import { makeStylesForTableTotalElement } from "./makeStylesForTableTotalElement";
 
-type TotalRowProps = { vacations: Vacation[]; today: Moment; daysInMonth: number; teamMembersCount: number };
+type TotalRowProps = {
+  vacations: Vacation[];
+  currentTableCalendarDate: Moment;
+  daysInMonth: number;
+  teamMembersCount: number;
+};
 
-export function TotalRow({ vacations, today, daysInMonth, teamMembersCount }: TotalRowProps) {
-  const vacationsCountByDays = getVacationsCountByDays({ vacations, today });
+export function TotalRow({ vacations, currentTableCalendarDate, daysInMonth, teamMembersCount }: TotalRowProps) {
+  const vacationsCountByDays = getVacationsCountByDays({
+    vacations,
+    currentTableCalendarDate: currentTableCalendarDate,
+  });
   const cells: JSX.Element[] = [];
   for (let j = 1; j < daysInMonth + 1; j++) {
     const classNames = makeStylesForTableTotalElement({

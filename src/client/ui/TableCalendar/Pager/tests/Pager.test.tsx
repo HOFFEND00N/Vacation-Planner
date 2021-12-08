@@ -9,13 +9,13 @@ describe("table calendar pager tests", () => {
   test("should render", async () => {
     const mockOnPreviousMonthChange = jest.fn();
     const mockOnNextMonthChange = jest.fn();
-    const today = moment("25-12-2021", "DD-MM-YYYY");
+    const currentTableCalendarDate = moment("25-12-2021", "DD-MM-YYYY");
 
     render(
       <Pager
         handlePreviousMonthChange={mockOnPreviousMonthChange}
         handleNextMonthChange={mockOnNextMonthChange}
-        today={today}
+        currentTableCalendarDate={currentTableCalendarDate}
       />
     );
 
@@ -26,13 +26,13 @@ describe("table calendar pager tests", () => {
   test("should fire previous month change event", () => {
     const mockOnPreviousMonthChange = jest.fn();
     const mockOnNextMonthChange = jest.fn();
-    const today = moment("25-12-2021", "DD-MM-YYYY");
+    const currentTableCalendarDate = moment("25-12-2021", "DD-MM-YYYY");
 
     render(
       <Pager
         handlePreviousMonthChange={mockOnPreviousMonthChange}
         handleNextMonthChange={mockOnNextMonthChange}
-        today={today}
+        currentTableCalendarDate={currentTableCalendarDate}
       />
     );
     userEvent.click(screen.getByTestId("pager__controls-previous-month-change"));
@@ -43,13 +43,13 @@ describe("table calendar pager tests", () => {
   test("should fire next month change event", () => {
     const mockOnPreviousMonthChange = jest.fn();
     const mockOnNextMonthChange = jest.fn();
-    const today = moment("25-12-2021", "DD-MM-YYYY");
+    const currentTableCalendarDate = moment("25-12-2021", "DD-MM-YYYY");
 
     render(
       <Pager
         handlePreviousMonthChange={mockOnPreviousMonthChange}
         handleNextMonthChange={mockOnNextMonthChange}
-        today={today}
+        currentTableCalendarDate={currentTableCalendarDate}
       />
     );
     userEvent.click(screen.getByTestId("pager__controls-next-month-change"));

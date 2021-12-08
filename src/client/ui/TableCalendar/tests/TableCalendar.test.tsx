@@ -20,8 +20,8 @@ test("should render table calendar, change month to next, then change month to p
   });
   (getVacations as jest.Mock).mockReturnValue([]);
 
-  const today = moment(new Date("1-11-2021"));
-  render(<TableCalendar currentDate={today} />);
+  const currentTableCalendarDate = moment(new Date("1-11-2021"));
+  render(<TableCalendar currentDate={currentTableCalendarDate} />);
 
   //renders all components
   expect(screen.getByTestId("table-calendar-container")).toBeInTheDocument();
