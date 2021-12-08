@@ -3,7 +3,7 @@ import { findUserVacations } from "../findUserVacations";
 
 //case when vacation starts in one year and ends in another is impossible
 describe("find user vacations", () => {
-  test("nothing passed, expect to return empty array", () => {
+  test("should return empty array, when nothing passed", () => {
     const expectedVacations: Vacation[] = [];
 
     const actualVacations = findUserVacations({ vacations: [], userId: "1", year: 1 });
@@ -11,7 +11,7 @@ describe("find user vacations", () => {
     expect(actualVacations).toEqual(expectedVacations);
   });
 
-  test("no vacations for specified user passed, expect to return empty array", () => {
+  test("should return empty array, when no vacations for specified user passed", () => {
     const expectedVacations: Vacation[] = [];
 
     const actualVacations = findUserVacations({
@@ -31,7 +31,7 @@ describe("find user vacations", () => {
     expect(actualVacations).toEqual(expectedVacations);
   });
 
-  test("vacations for specified user passed for different year, expect to return empty array", () => {
+  test("should return empty array, when vacations for specified user passed for different year", () => {
     const expectedVacations: Vacation[] = [];
 
     const actualVacations = findUserVacations({
@@ -51,7 +51,7 @@ describe("find user vacations", () => {
     expect(actualVacations).toEqual(expectedVacations);
   });
 
-  test("vacations for specified user passed, expect to return one vacation", () => {
+  test("should return one vacation, when vacations for specified user passed", () => {
     const expectedVacations: Vacation[] = [
       {
         start: new Date("1-1-2021"),
@@ -79,7 +79,7 @@ describe("find user vacations", () => {
     expect(actualVacations).toEqual(expectedVacations);
   });
 
-  test("vacations for specified user passed, expect to return two vacations", () => {
+  test("should return two vacations, when vacations for specified user passed", () => {
     const expectedVacations: Vacation[] = [
       {
         start: new Date("1-1-2021"),

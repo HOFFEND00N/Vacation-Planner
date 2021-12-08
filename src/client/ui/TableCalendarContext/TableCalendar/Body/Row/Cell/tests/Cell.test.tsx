@@ -6,13 +6,13 @@ import "@testing-library/jest-dom";
 import { TableCalendarContext } from "../../../../../TableCalendarContext";
 
 describe("Cell ", () => {
-  test("rendered", async () => {
+  test("should render", async () => {
     render(<Cell value={"test value"} className={"test class name"} />);
 
     expect(screen.getByText("test value")).toBeInTheDocument();
   });
 
-  test("cell onClick event fired", () => {
+  test("should fire cell onClick event", () => {
     const mockOnClick = jest.fn();
 
     render(

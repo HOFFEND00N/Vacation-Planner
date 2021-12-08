@@ -6,7 +6,7 @@ import { Pager } from "../Pager";
 import "@testing-library/jest-dom";
 
 describe("table calendar pager tests", () => {
-  test("rendered", async () => {
+  test("should render", async () => {
     const mockOnPreviousMonthChange = jest.fn();
     const mockOnNextMonthChange = jest.fn();
     const today = moment("25-12-2021", "DD-MM-YYYY");
@@ -23,7 +23,7 @@ describe("table calendar pager tests", () => {
     expect(screen.getByText("December 2021")).toBeInTheDocument();
   });
 
-  test("previous month change event fired", () => {
+  test("should fire previous month change event", () => {
     const mockOnPreviousMonthChange = jest.fn();
     const mockOnNextMonthChange = jest.fn();
     const today = moment("25-12-2021", "DD-MM-YYYY");
@@ -40,7 +40,7 @@ describe("table calendar pager tests", () => {
     expect(mockOnPreviousMonthChange).toBeCalledTimes(1);
   });
 
-  test("next month change event fired", () => {
+  test("should fire next month change event", () => {
     const mockOnPreviousMonthChange = jest.fn();
     const mockOnNextMonthChange = jest.fn();
     const today = moment("25-12-2021", "DD-MM-YYYY");

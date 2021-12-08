@@ -6,7 +6,7 @@ import { TotalRow } from "../TotalRow";
 import { VacationType } from "../../../../../../../domain/Vacation/vacation";
 
 describe("Total row", () => {
-  test("rendered, 0 vacation passed", () => {
+  test("should render, when 0 vacation passed", () => {
     const daysInMonth = 31;
 
     render(
@@ -18,7 +18,7 @@ describe("Total row", () => {
     expect(screen.getAllByTestId("table-cell").length).toEqual(daysInMonth + 1);
   });
 
-  test("rendered, two vacation passed", () => {
+  test("should render, when two vacation passed", () => {
     const daysInMonth = 31;
 
     render(

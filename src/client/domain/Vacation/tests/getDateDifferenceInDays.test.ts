@@ -1,7 +1,7 @@
 import { getDateDifferenceInDays } from "../getDateDifferenceInDays";
 
 describe("get date difference in days", () => {
-  test("pass the same dates, expect to return 1", () => {
+  test("should return 1, when the same dates passed", () => {
     const expectedDateDifferenceInDays = 1;
 
     const actualDateDifferenceInDays = getDateDifferenceInDays({
@@ -12,7 +12,7 @@ describe("get date difference in days", () => {
     expect(actualDateDifferenceInDays).toEqual(expectedDateDifferenceInDays);
   });
 
-  test("pass different dates, expect to return 2", () => {
+  test("should return 2, when different dates in one month passed", () => {
     const expectedDateDifferenceInDays = 2;
 
     const actualDateDifferenceInDays = getDateDifferenceInDays({
@@ -23,7 +23,7 @@ describe("get date difference in days", () => {
     expect(actualDateDifferenceInDays).toEqual(expectedDateDifferenceInDays);
   });
 
-  test("pass different dates, expect to return 33", () => {
+  test("should return 33, when different dates in different months passed", () => {
     const expectedDateDifferenceInDays = 33;
 
     const actualDateDifferenceInDays = getDateDifferenceInDays({

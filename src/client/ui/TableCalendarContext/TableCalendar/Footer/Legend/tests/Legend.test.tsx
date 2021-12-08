@@ -3,7 +3,7 @@ import React from "react";
 import { Legend } from "../Legend";
 import "@testing-library/jest-dom";
 
-test("table calendar legend rendered", async () => {
+test("should render table calendar legend", async () => {
   render(<Legend />);
 
   expect(screen.getByTestId("legend-container")).toBeInTheDocument();

@@ -2,7 +2,7 @@ import { VacationType } from "../vacation";
 import { getTotalVacationsDays } from "../getTotalVacationDays";
 
 describe("get total vacations days", () => {
-  test("no vacations passed, expect to return 0", () => {
+  test("should return 0, when no vacations passed", () => {
     const expectedTotalVacationDays = 0;
 
     const actualTotalVacationDays = getTotalVacationsDays([]);
@@ -10,7 +10,7 @@ describe("get total vacations days", () => {
     expect(actualTotalVacationDays).toEqual(expectedTotalVacationDays);
   });
 
-  test("one vacation passed, expect to return 12", () => {
+  test("should return 12, when one vacation passed", () => {
     const expectedTotalVacationDays = 12;
 
     const actualTotalVacationDays = getTotalVacationsDays([
@@ -26,7 +26,7 @@ describe("get total vacations days", () => {
     expect(actualTotalVacationDays).toEqual(expectedTotalVacationDays);
   });
 
-  test("two vacation passed, expect to return 21", () => {
+  test("should return 21, when two vacations passed", () => {
     const expectedTotalVacationDays = 21;
 
     const actualTotalVacationDays = getTotalVacationsDays([

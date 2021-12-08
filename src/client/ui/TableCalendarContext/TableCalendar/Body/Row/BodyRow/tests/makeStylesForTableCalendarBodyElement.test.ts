@@ -3,7 +3,7 @@ import { makeStylesForTableCalendarBodyElement } from "../makeStylesForTableCale
 import { VacationType } from "../../../../../../../domain/Vacation/vacation";
 
 describe("make styles for table body calendar element", () => {
-  test("in second column with no vacations has one class name", () => {
+  test("should have default class name, if second column cell without vacations passed", () => {
     const expectedClassNames = "row__cell";
     const vacationStart = { date: new Date(0), isSelected: false };
     const vacationEnd = { date: new Date(0), isSelected: false };
@@ -26,7 +26,7 @@ describe("make styles for table body calendar element", () => {
     expect(actualClassNames).toEqual(expectedClassNames);
   });
 
-  test("in first column with no vacations has two class names", () => {
+  test("should have default and first column class names, if first column cell without vacations passed", () => {
     const expectedClassNames = "row__cell row__first-column-cell";
     const vacationStart = { date: new Date(0), isSelected: false };
     const vacationEnd = { date: new Date(0), isSelected: false };
@@ -49,7 +49,7 @@ describe("make styles for table body calendar element", () => {
     expect(actualClassNames).toEqual(expectedClassNames);
   });
 
-  test("in second column with vacation approved has two class names", () => {
+  test("should have default and vacation approved class names, if second column cell with vacation approved", () => {
     const expectedClassNames = "row__cell row__cell__vacation-approved";
     const vacationStart = { date: new Date(0), isSelected: false };
     const vacationEnd = { date: new Date(0), isSelected: false };
@@ -72,7 +72,7 @@ describe("make styles for table body calendar element", () => {
     expect(actualClassNames).toEqual(expectedClassNames);
   });
 
-  test("in second column with vacation pending approval has two class names", () => {
+  test("should have default and vacation pending approval class names, if second column cell with vacation pending approval", () => {
     const expectedClassNames = "row__cell row__cell__vacation-pending-approval";
     const vacationStart = { date: new Date(0), isSelected: false };
     const vacationEnd = { date: new Date(0), isSelected: false };
@@ -95,7 +95,7 @@ describe("make styles for table body calendar element", () => {
     expect(actualClassNames).toEqual(expectedClassNames);
   });
 
-  test("in second column in current user row, with no vacation has two class names", () => {
+  test("should have default and selectable class names, if second column in current user row, with no vacation", () => {
     const expectedClassNames = "row__cell row__cell__selectable";
     const vacationStart = { date: new Date(0), isSelected: false };
     const vacationEnd = { date: new Date(0), isSelected: false };
@@ -118,7 +118,7 @@ describe("make styles for table body calendar element", () => {
     expect(actualClassNames).toEqual(expectedClassNames);
   });
 
-  test("in second column with vacation selected has three class names", () => {
+  test("should have default, selectable, and selected class names, if second column cell with vacation selected", () => {
     const expectedClassNames = "row__cell row__cell__selectable row__cell__selected";
     const vacationStart = { date: new Date("1-1-2021"), isSelected: true };
     const vacationEnd = { date: new Date("11-1-2021"), isSelected: true };

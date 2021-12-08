@@ -4,7 +4,7 @@ import { VacationType } from "../vacation";
 import { getVacationsTypeByDayForCurrentMonth } from "../getVacationsTypeByDayForCurrentMonth";
 
 describe("get vacations type by day for current month", () => {
-  test("pass no vacations, expect to return empty object", () => {
+  test("should return empty object, when no vacations passed", () => {
     const expectedVacationsTypeByDayForCurrentMonth: VacationTypeByDay = {};
 
     const actualVacationsTypeByDayForCurrentMonth = getVacationsTypeByDayForCurrentMonth({
@@ -15,7 +15,7 @@ describe("get vacations type by day for current month", () => {
     expect(actualVacationsTypeByDayForCurrentMonth).toEqual(expectedVacationsTypeByDayForCurrentMonth);
   });
 
-  test("pass one approved vacation, expect to return correct object", () => {
+  test("should return correct object, when one approved vacation passed", () => {
     const expectedVacationsTypeByDayForCurrentMonth: VacationTypeByDay = {
       20: VacationType.APPROVED,
       21: VacationType.APPROVED,
@@ -42,7 +42,7 @@ describe("get vacations type by day for current month", () => {
     expect(actualVacationsTypeByDayForCurrentMonth).toEqual(expectedVacationsTypeByDayForCurrentMonth);
   });
 
-  test("pass one approved vacation and one pending for approval, expect to return correct object", () => {
+  test("should return correct object, when one approved vacation and one pending for approval passed", () => {
     const expectedVacationsTypeByDayForCurrentMonth: VacationTypeByDay = {
       1: VacationType.PENDING_APPROVAL,
       2: VacationType.PENDING_APPROVAL,

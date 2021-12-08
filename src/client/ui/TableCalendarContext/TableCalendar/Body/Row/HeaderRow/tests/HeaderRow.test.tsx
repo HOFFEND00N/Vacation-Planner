@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import { HeaderRow } from "../HeaderRow";
 
 describe("Header row", () => {
-  test("rendered", () => {
+  test("should render", () => {
     const daysInMonth = 31;
 
     render(<HeaderRow daysInMonth={daysInMonth} />);

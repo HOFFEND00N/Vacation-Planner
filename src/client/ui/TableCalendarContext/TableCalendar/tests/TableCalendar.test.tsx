@@ -10,7 +10,7 @@ import { getVacations } from "../../../../application/getVacations";
 jest.mock("../../../../application/getVacations");
 jest.mock("../../../../application/getTeamMembers");
 
-test("Table calendar rendered, then month change to next, then month change to previous, then click on selectable cell, then click on not selectable cell", async () => {
+test("should render table calendar, change month to next, then change month to previous, then click on selectable cell, then click on not selectable cell", async () => {
   (getTeamMembers as jest.Mock).mockReturnValue({
     teamMembers: [
       { id: "user 2", name: "user 2" },

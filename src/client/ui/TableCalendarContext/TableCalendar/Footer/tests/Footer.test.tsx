@@ -3,8 +3,8 @@ import React from "react";
 import "@testing-library/jest-dom";
 import { Footer } from "../Footer";
 
-describe("Footer rendered", () => {
-  test("no vacations selected", () => {
+describe("Footer", () => {
+  test("should render, do not select vacation", () => {
     render(
       <Footer
         vacationStart={{ isSelected: false, date: new Date(1) }}
@@ -21,7 +21,7 @@ describe("Footer rendered", () => {
     expect(planVacationButton).toHaveAttribute("disabled");
   });
 
-  test("vacation start selected", () => {
+  test("should render, select vacation start", () => {
     render(
       <Footer
         vacationStart={{ isSelected: true, date: new Date("1-11-2021") }}
@@ -38,7 +38,7 @@ describe("Footer rendered", () => {
     expect(planVacationButton.attributes.getNamedItem("disabled")).toEqual(null);
   });
 
-  test("vacation start and vacation end selected", () => {
+  test("should render, select vacation start and vacation end", () => {
     render(
       <Footer
         vacationStart={{ isSelected: true, date: new Date("1-11-2021") }}

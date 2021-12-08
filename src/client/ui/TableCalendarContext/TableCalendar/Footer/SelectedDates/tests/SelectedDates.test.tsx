@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import { SelectedDates } from "../SelectedDates";
 
 describe("Selected dates", () => {
-  test("rendered and empty", () => {
+  test("should render and be empty", () => {
     render(
       <SelectedDates
         vacationStart={{ isSelected: false, date: new Date(1) }}
@@ -16,7 +16,7 @@ describe("Selected dates", () => {
     expect(screen.getByTestId("selected-dates")).toBeEmptyDOMElement();
   });
 
-  test("rendered and display vacation start", () => {
+  test("should render and display vacation start", () => {
     render(
       <SelectedDates
         vacationStart={{ isSelected: true, date: new Date("1-11-2021") }}
@@ -28,7 +28,7 @@ describe("Selected dates", () => {
     expect(screen.getByText("Mon Jan 11 2021")).toBeInTheDocument();
   });
 
-  test("rendered and display vacation start and vacation end", () => {
+  test("should render and display vacation start and vacation end", () => {
     render(
       <SelectedDates
         vacationStart={{ isSelected: true, date: new Date("1-11-2021") }}

@@ -11,7 +11,7 @@ import { TableCalendarContext } from "../../../TableCalendarContext";
 jest.mock("../../../../../application/getVacations");
 jest.mock("../../../../../application/getTeamMembers");
 
-test("render notification about team members searching, then renders a component, then click on selectable cell, then click on not selectable cell", async () => {
+test("should render notification about team members searching, then render a component, then click on selectable cell, then click on not selectable cell", async () => {
   (getTeamMembers as jest.Mock).mockReturnValue({
     teamMembers: [
       { id: "user 2", name: "user 2" },

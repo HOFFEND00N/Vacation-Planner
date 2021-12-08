@@ -7,7 +7,7 @@ import "@testing-library/jest-dom";
 import { TableCalendarContext } from "../../../../../TableCalendarContext";
 
 describe("Body row", () => {
-  test("rendered", () => {
+  test("should render", () => {
     const daysInMonth = 31;
 
     render(
@@ -27,7 +27,7 @@ describe("Body row", () => {
     expect(screen.getAllByTestId("table-cell").length).toEqual(daysInMonth + 2);
   });
 
-  test("cell onClick event fired", () => {
+  test("should fire cell onClick event, when user clicks", () => {
     const mockOnClick = jest.fn();
 
     render(
@@ -49,7 +49,7 @@ describe("Body row", () => {
     expect(mockOnClick).toBeCalledTimes(1);
   });
 
-  test("cell onClick event do not fired, because cell is not selectable", () => {
+  test(" should not fire cell onClick event, if cell is not selectable", () => {
     const mockOnClick = jest.fn();
 
     render(

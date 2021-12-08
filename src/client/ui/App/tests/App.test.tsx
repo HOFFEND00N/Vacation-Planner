@@ -10,7 +10,7 @@ import { getVacations } from "../../../application/getVacations";
 jest.mock("../../../application/getVacations");
 jest.mock("../../../application/getTeamMembers");
 
-test("App rendered, one day vacation selected, navigate to plan vacation page", async () => {
+test("should render App, select one day vacation, navigate to plan vacation page", async () => {
   (getTeamMembers as jest.Mock).mockReturnValue({
     teamMembers: [
       { id: "user 2", name: "user 2" },
