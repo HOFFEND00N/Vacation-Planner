@@ -3,14 +3,17 @@ import { Button } from "@confirmit/react-button";
 import { DatePicker } from "@confirmit/react-date-picker";
 import moment from "moment";
 import Dropzone, { UploadStates } from "@confirmit/react-dropzone";
+import { useLocation } from "react-router-dom";
 import { planVacation } from "../application/planVacation";
 
 export function PlanVacation() {
   const [uploadState, setUploadState] = useState(UploadStates.Idle);
   const [files, setFiles] = useState<File[]>([]);
   const [selectedFileName, setSelectedFileName] = useState("");
-  const [vacationStart, setVacationStart] = useState(moment());
-  const [vacationEnd, setVacationEnd] = useState(moment());
+
+  const location = useLocation();
+  const [vacationStart, setVacationStart] = useState(moment(location.state.vacationStart.date));
+  const [vacationEnd, setVacationEnd] = useState(moment(location.state.vacationEnd.date));
 
   const handleSubmit = async () => {
     if (files.length === 0) {
