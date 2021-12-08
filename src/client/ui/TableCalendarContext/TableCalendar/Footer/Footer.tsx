@@ -1,9 +1,10 @@
 import React from "react";
 import { Button } from "@confirmit/react-button";
+import { useHistory } from "react-router-dom";
 import { TableCalendarStateType } from "../TableCalendar";
-import "./footer.css";
 import { Legend } from "./Legend";
 import { SelectedDates } from "./SelectedDates";
+import "./footer.css";
 
 export function Footer({
   vacationStart,
@@ -12,6 +13,12 @@ export function Footer({
   vacationStart: TableCalendarStateType;
   vacationEnd: TableCalendarStateType;
 }) {
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push("/plan-vacation");
+  };
+
   return (
     <div className={"footer-container"} data-testid={"footer-container"}>
       <Legend />
@@ -20,6 +27,7 @@ export function Footer({
         className={"footer-container__plan-vacation-button"}
         disabled={!vacationStart.isSelected && !vacationEnd.isSelected}
         data-testid={"plan-vacation-button"}
+        onClick={handleClick}
       >
         Plan Vacation
       </Button>
