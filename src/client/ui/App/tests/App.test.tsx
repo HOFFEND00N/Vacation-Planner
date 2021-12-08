@@ -1,6 +1,8 @@
 import React from "react";
 import { render, screen, waitForElementToBeRemoved } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { createMemoryHistory } from "history";
+import { Router } from "react-router-dom";
 import { App } from "../App";
 import { getTeamMembers } from "../../../application/getTeamMembers";
 import { getVacations } from "../../../application/getVacations";
@@ -17,11 +19,15 @@ test("App rendered", async () => {
     currentUser: { id: "user 1", name: "user 1" },
   });
   (getVacations as jest.Mock).mockReturnValue([]);
+  const history = createMemoryHistory();
 
-  render(<App />);
+  render(
+    <Router history={history}>
+      <App />
+    </Router>
+  );
 
   expect(screen.getByText("Please wait, searching your teammates...")).toBeInTheDocument();
-  expect(screen.getByRole("list")).toBeInTheDocument();
 
   await waitForElementToBeRemoved(screen.getByText("Please wait, searching your teammates..."));
   expect(screen.getByTestId("table-calendar-body")).toBeInTheDocument();
