@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import moment from "moment";
-import { TableCalendarContext } from "../TableCalendarContext";
+import { TableCalendarContext } from "./TableCalendarContext/TableCalendarContext";
 import { Pager } from "./Pager";
 import { Body } from "./Body";
 import "./table-calendar.css";

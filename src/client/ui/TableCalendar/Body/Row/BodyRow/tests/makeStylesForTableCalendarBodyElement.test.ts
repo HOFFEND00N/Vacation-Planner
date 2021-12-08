@@ -1,6 +1,6 @@
-import { VacationTypeByDay } from "../../../../../../../types";
+import { VacationTypeByDay } from "../../../../../../types";
 import { makeStylesForTableCalendarBodyElement } from "../makeStylesForTableCalendarBodyElement";
-import { VacationType } from "../../../../../../../domain/Vacation/vacation";
+import { VacationType } from "../../../../../../domain/Vacation/vacation";
 
 describe("make styles for table body calendar element", () => {
   test("should have default class name, if second column cell without vacations passed", () => {

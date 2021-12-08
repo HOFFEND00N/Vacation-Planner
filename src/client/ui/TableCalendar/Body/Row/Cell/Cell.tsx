@@ -1,5 +1,5 @@
 import React from "react";
-import { TableCalendarContext } from "../../../../TableCalendarContext";
+import { TableCalendarContext } from "../../../TableCalendarContext/TableCalendarContext";
 
 type CellProps = { value: number | string; className: string; date?: Date };
 

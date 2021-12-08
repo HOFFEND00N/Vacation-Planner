@@ -4,12 +4,12 @@ import "@testing-library/jest-dom";
 import moment from "moment";
 import userEvent from "@testing-library/user-event";
 import { Body } from "../Body";
-import { getTeamMembers } from "../../../../../application/getTeamMembers";
-import { getVacations } from "../../../../../application/getVacations";
-import { TableCalendarContext } from "../../../TableCalendarContext";
+import { getTeamMembers } from "../../../../application/getTeamMembers";
+import { getVacations } from "../../../../application/getVacations";
+import { TableCalendarContext } from "../../TableCalendarContext/TableCalendarContext";
 
-jest.mock("../../../../../application/getVacations");
-jest.mock("../../../../../application/getTeamMembers");
+jest.mock("../../../../application/getVacations");
+jest.mock("../../../../application/getTeamMembers");
 
 test("should render notification about team members searching, then render a component, then click on selectable cell, then click on not selectable cell", async () => {
   (getTeamMembers as jest.Mock).mockReturnValue({

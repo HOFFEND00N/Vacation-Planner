@@ -2,7 +2,7 @@ import { Switch, Route } from "react-router-dom";
 import React from "react";
 import moment from "moment";
 import { PlanVacation } from "../PlanVacation";
-import { TableCalendar } from "../TableCalendarContext/TableCalendar";
+import { TableCalendar } from "../TableCalendar";
 import "./app.css";
 
 export function App() {

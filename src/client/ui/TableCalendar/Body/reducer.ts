@@ -1,4 +1,4 @@
-import { BodyReducerActionType, BodyReducerStateType } from "../../../../types";
+import { BodyReducerActionType, BodyReducerStateType } from "../../../types";
 
 export const reducer = (state: BodyReducerStateType, action: BodyReducerActionType): BodyReducerStateType => {
   switch (action.type) {

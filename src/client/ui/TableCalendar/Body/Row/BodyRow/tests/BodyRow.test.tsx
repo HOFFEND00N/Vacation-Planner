@@ -4,7 +4,7 @@ import moment from "moment";
 import userEvent from "@testing-library/user-event";
 import { BodyRow } from "../BodyRow";
 import "@testing-library/jest-dom";
-import { TableCalendarContext } from "../../../../../TableCalendarContext";
+import { TableCalendarContext } from "../../../../TableCalendarContext/TableCalendarContext";
 
 describe("Body row", () => {
   test("should render", () => {

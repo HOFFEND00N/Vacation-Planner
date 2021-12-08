@@ -1,5 +1,5 @@
 import { bodyReducerInitialState, reducer } from "../reducer";
-import { BodyReducerStateType } from "../../../../../types";
+import { BodyReducerStateType } from "../../../../types";
 
 describe("reducer", () => {
   test("updates state correctly", () => {

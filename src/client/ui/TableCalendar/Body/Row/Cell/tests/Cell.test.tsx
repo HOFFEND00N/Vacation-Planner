@@ -3,7 +3,7 @@ import React from "react";
 import userEvent from "@testing-library/user-event";
 import { Cell } from "../Cell";
 import "@testing-library/jest-dom";
-import { TableCalendarContext } from "../../../../../TableCalendarContext";
+import { TableCalendarContext } from "../../../../TableCalendarContext/TableCalendarContext";
 
 describe("Cell ", () => {
   test("should render", async () => {

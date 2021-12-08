@@ -1,9 +1,9 @@
 import React, { useEffect, useReducer } from "react";
 import moment from "moment";
-import { getTeamMembers } from "../../../../application/getTeamMembers";
-import { getVacations } from "../../../../application/getVacations";
+import { getTeamMembers } from "../../../application/getTeamMembers";
+import { getVacations } from "../../../application/getVacations";
 import { TableCalendarStateType } from "../TableCalendar";
-import { findUserVacations } from "../../../../domain/Vacation/findUserVacations";
+import { findUserVacations } from "../../../domain/Vacation/findUserVacations";
 import { BodyRow } from "./Row/BodyRow";
 import { HeaderRow } from "./Row/HeaderRow";
 import { TotalRow } from "./Row/TotalRow";

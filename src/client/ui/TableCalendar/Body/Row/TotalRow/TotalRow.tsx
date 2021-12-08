@@ -3,8 +3,8 @@ import { Moment } from "moment";
 import cn from "classnames";
 import "./total-row.css";
 import { Cell } from "../Cell";
-import { Vacation } from "../../../../../../domain/Vacation/vacation";
-import { getVacationsCountByDays } from "../../../../../../domain/Vacation/getVacationsCountByDays";
+import { Vacation } from "../../../../../domain/Vacation/vacation";
+import { getVacationsCountByDays } from "../../../../../domain/Vacation/getVacationsCountByDays";
 import { makeStylesForTableTotalElement } from "./makeStylesForTableTotalElement";
 
 type TotalRowProps = { vacations: Vacation[]; today: Moment; daysInMonth: number; teamMembersCount: number };
