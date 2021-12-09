@@ -11,7 +11,7 @@ import { TableCalendarContext } from "../../TableCalendarContext/TableCalendarCo
 jest.mock("../../../../application/getVacations");
 jest.mock("../../../../application/getTeamMembers");
 
-test("should render notification about team members searching, then render a component, then click on selectable cell, then click on not selectable cell", async () => {
+test("body should render notification about team members searching, then render a component, then click on selectable cell, then click on not selectable cell", async () => {
   (getTeamMembers as jest.Mock).mockReturnValue({
     teamMembers: [
       { id: "user 2", name: "user 2" },
@@ -28,6 +28,9 @@ test("should render notification about team members searching, then render a com
         currentTableCalendarDate={moment(new Date("1-11-2021"))}
         vacationStart={{ date: new Date(1), isSelected: false }}
         vacationEnd={{ date: new Date(1), isSelected: false }}
+        setErrorMessage={() => {
+          //
+        }}
       />
     </TableCalendarContext.Provider>
   );
