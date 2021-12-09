@@ -2,9 +2,9 @@ import cn from "classnames";
 import { VacationType } from "../../../../../domain/Vacation/vacation";
 import { VacationTypeByDay } from "../../../../../types";
 import { TableCalendarStateType } from "../../../TableCalendar";
-import "./body-row.css";
+import "./user-data-row.css";
 
-export function makeStylesForTableCalendarBodyElement({
+export function makeStylesForUserDataRowElement({
   vacationStart,
   vacationEnd,
   vacationTypeByDay,

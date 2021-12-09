@@ -2,16 +2,16 @@ import { render, screen } from "@testing-library/react";
 import React from "react";
 import moment from "moment";
 import userEvent from "@testing-library/user-event";
-import { BodyRow } from "../BodyRow";
+import { UserDataRow } from "../UserDataRow";
 import "@testing-library/jest-dom";
 import { TableCalendarContext } from "../../../../TableCalendarContext/TableCalendarContext";
 
-describe("Body row", () => {
+describe("User data row", () => {
   test("should render", () => {
     const daysInMonth = 31;
 
     render(
-      <BodyRow
+      <UserDataRow
         currentTableCalendarDate={moment(new Date(1))}
         daysInMonth={daysInMonth}
         user={{ id: "user 1", name: "user 1" }}
@@ -32,7 +32,7 @@ describe("Body row", () => {
 
     render(
       <TableCalendarContext.Provider value={{ handleClick: mockOnClick }}>
-        <BodyRow
+        <UserDataRow
           currentTableCalendarDate={moment(new Date(1))}
           daysInMonth={31}
           user={{ id: "user 1", name: "user 1" }}
@@ -53,7 +53,7 @@ describe("Body row", () => {
     const mockOnClick = jest.fn();
 
     render(
-      <BodyRow
+      <UserDataRow
         currentTableCalendarDate={moment(new Date(1))}
         daysInMonth={31}
         user={{ id: "user 1", name: "user 1" }}

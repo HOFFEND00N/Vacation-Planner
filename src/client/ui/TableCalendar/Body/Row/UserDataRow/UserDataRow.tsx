@@ -4,13 +4,13 @@ import cn from "classnames";
 import { User } from "../../../../../domain/user";
 import { Vacation } from "../../../../../domain/Vacation/vacation";
 import { Cell } from "../Cell";
-import "./body-row.css";
+import "./user-data-row.css";
 import { getVacationsTypeByDayForCurrentMonth } from "../../../../../domain/Vacation/getVacationsTypeByDayForCurrentMonth";
 import { getTotalVacationsDays } from "../../../../../domain/Vacation/getTotalVacationsDays";
 import { TableCalendarStateType } from "../../../TableCalendar";
-import { makeStylesForTableCalendarBodyElement } from "./makeStylesForTableCalendarBodyElement";
+import { makeStylesForUserDataRowElement } from "./makeStylesForUserDataRowElement";
 
-export function BodyRow({
+export function UserDataRow({
   daysInMonth,
   vacations,
   user,
@@ -36,7 +36,7 @@ export function BodyRow({
   });
   for (let day = 1; day < daysInMonth + 1; day++) {
     const elementDate = new Date(currentTableCalendarDate.year(), currentTableCalendarDate.month(), day);
-    const classNames = makeStylesForTableCalendarBodyElement({
+    const classNames = makeStylesForUserDataRowElement({
       vacationStart,
       vacationEnd,
       elementDate,

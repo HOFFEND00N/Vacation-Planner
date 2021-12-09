@@ -4,7 +4,7 @@ import { getTeamMembers } from "../../../application/getTeamMembers";
 import { getVacations } from "../../../application/getVacations";
 import { TableCalendarStateType } from "../TableCalendar";
 import { findUserVacations } from "../../../domain/Vacation/findUserVacations";
-import { BodyRow } from "./Row/BodyRow";
+import { UserDataRow } from "./Row/UserDataRow";
 import { HeaderRow } from "./Row/HeaderRow";
 import { TotalRow } from "./Row/TotalRow";
 import { bodyReducerInitialState, loadData, reducer } from "./reducer";
@@ -45,7 +45,7 @@ export function Body({ currentTableCalendarDate, vacationStart, vacationEnd, set
           year: currentTableCalendarDate.year(),
         });
         return (
-          <BodyRow
+          <UserDataRow
             daysInMonth={daysInMonth}
             currentTableCalendarDate={currentTableCalendarDate}
             vacationStart={vacationStart}

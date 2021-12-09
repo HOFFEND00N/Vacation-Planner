@@ -1,5 +1,5 @@
 import { VacationTypeByDay } from "../../../../../../types";
-import { makeStylesForTableCalendarBodyElement } from "../makeStylesForTableCalendarBodyElement";
+import { makeStylesForUserDataRowElement } from "../makeStylesForUserDataRowElement";
 import { VacationType } from "../../../../../../domain/Vacation/vacation";
 
 describe("make styles for table body calendar element", () => {
@@ -13,7 +13,7 @@ describe("make styles for table body calendar element", () => {
     const userId = "1";
     const currentUserId = "2";
 
-    const actualClassNames = makeStylesForTableCalendarBodyElement({
+    const actualClassNames = makeStylesForUserDataRowElement({
       vacationStart,
       vacationEnd,
       vacationTypeByDay,
@@ -36,7 +36,7 @@ describe("make styles for table body calendar element", () => {
     const userId = "1";
     const currentUserId = "2";
 
-    const actualClassNames = makeStylesForTableCalendarBodyElement({
+    const actualClassNames = makeStylesForUserDataRowElement({
       vacationStart,
       vacationEnd,
       vacationTypeByDay,
@@ -59,7 +59,7 @@ describe("make styles for table body calendar element", () => {
     const userId = "1";
     const currentUserId = "2";
 
-    const actualClassNames = makeStylesForTableCalendarBodyElement({
+    const actualClassNames = makeStylesForUserDataRowElement({
       vacationStart,
       vacationEnd,
       vacationTypeByDay,
@@ -82,7 +82,7 @@ describe("make styles for table body calendar element", () => {
     const userId = "1";
     const currentUserId = "2";
 
-    const actualClassNames = makeStylesForTableCalendarBodyElement({
+    const actualClassNames = makeStylesForUserDataRowElement({
       vacationStart,
       vacationEnd,
       vacationTypeByDay,
@@ -105,7 +105,7 @@ describe("make styles for table body calendar element", () => {
     const userId = "1";
     const currentUserId = "1";
 
-    const actualClassNames = makeStylesForTableCalendarBodyElement({
+    const actualClassNames = makeStylesForUserDataRowElement({
       vacationStart,
       vacationEnd,
       vacationTypeByDay,
@@ -128,7 +128,7 @@ describe("make styles for table body calendar element", () => {
     const userId = "1";
     const currentUserId = "1";
 
-    const actualClassNames = makeStylesForTableCalendarBodyElement({
+    const actualClassNames = makeStylesForUserDataRowElement({
       vacationStart,
       vacationEnd,
       vacationTypeByDay,
