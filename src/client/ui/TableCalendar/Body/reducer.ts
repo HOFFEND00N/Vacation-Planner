@@ -2,7 +2,7 @@ import { BodyReducerActionType, BodyReducerStateType } from "../../../types";
 
 export const reducer = (state: BodyReducerStateType, action: BodyReducerActionType): BodyReducerStateType => {
   switch (action.type) {
-    case "set state": {
+    case "load user data": {
       return {
         isDataFetched: true,
         teamMembers: action.teamMembers,

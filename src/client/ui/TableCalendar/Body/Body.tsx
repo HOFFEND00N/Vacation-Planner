@@ -23,7 +23,7 @@ export function Body({ currentTableCalendarDate, vacationStart, vacationEnd, set
       try {
         const { teamMembers, currentUser } = await getTeamMembers();
         const vacations = await getVacations(teamMembers.map((teamMember) => teamMember.id));
-        dispatch({ isDataFetched: true, teamMembers, currentUser, vacations, type: "set state" });
+        dispatch({ isDataFetched: true, teamMembers, currentUser, vacations, type: "load user data" });
       } catch (error) {
         setErrorMessage(error.message);
       }

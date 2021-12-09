@@ -14,7 +14,7 @@ describe("reducer", () => {
     };
 
     const actualState = reducer(bodyReducerInitialState, {
-      type: "set state",
+      type: "load user data",
       isDataFetched: true,
       currentUser: { id: "user 1", name: "user 1" },
       teamMembers: [
