@@ -14,7 +14,7 @@ describe("get vacations count by days", () => {
     expect(actualVacationsCountByDays).toEqual(expectedVacationsCountByDays);
   });
 
-  test("should return correct object, when one vacation passed", () => {
+  test("should return 1 for all days, when one vacation passed", () => {
     const expectedVacationsCountByDays: VacationCountByDays = { 1: 1, 2: 1 };
 
     const actualVacationsCountByDays = getVacationsCountByDays({
@@ -33,7 +33,7 @@ describe("get vacations count by days", () => {
     expect(actualVacationsCountByDays).toEqual(expectedVacationsCountByDays);
   });
 
-  test("should return correct object, when two vacations passed", () => {
+  test("should return 1 for first 2 days and return 2 for second 2 days, when two vacations passed", () => {
     const expectedVacationsCountByDays: VacationCountByDays = { 1: 2, 2: 2, 3: 1, 4: 1 };
 
     const actualVacationsCountByDays = getVacationsCountByDays({
