@@ -10,7 +10,7 @@ export function HeaderRow({ daysInMonth }: { daysInMonth: number }) {
   }
   return (
     <div className={"row"} data-testid={"table-calendar-header-row"}>
-      <Cell value={""} className={cn("row__cell", "row__first-column-cell")} key={0} />
+      <Cell value={""} className={"row__cell"} key={0} />
       <Cell value={"Days"} className={cn("row__cell", "row__cell-days-column")} key={1} />
       {cells}
     </div>

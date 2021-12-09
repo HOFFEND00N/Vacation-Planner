@@ -29,9 +29,7 @@ export function makeStylesForUserDataRowElement({
   if (vacationTypeByDay[columnNumber] === VacationType.PENDING_APPROVAL) {
     classNames = cn(classNames, "row__cell--vacation-pending-approval");
   }
-  if (columnNumber === 0) {
-    classNames = cn(classNames, "row__first-column-cell");
-  } else if (userId === currentUserId) {
+  if (userId === currentUserId) {
     classNames = cn(classNames, "row__cell--selectable");
   }
 

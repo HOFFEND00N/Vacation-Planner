@@ -6,19 +6,6 @@ describe("make styles for table total Element", () => {
 
     const actualStyles = makeStylesForTableTotalElement({
       vacationsCount: 0,
-      columnNumber: 1,
-      teamMembersCount: 8,
-    });
-
-    expect(actualStyles).toEqual(expectedStyles);
-  });
-
-  test("should return first column element styles, when column number = 0 passed", () => {
-    const expectedStyles = "row__cell row__first-column-cell";
-
-    const actualStyles = makeStylesForTableTotalElement({
-      vacationsCount: 0,
-      columnNumber: 0,
       teamMembersCount: 8,
     });
 
@@ -30,7 +17,6 @@ describe("make styles for table total Element", () => {
 
     const actualStyles = makeStylesForTableTotalElement({
       vacationsCount: 1,
-      columnNumber: 1,
       teamMembersCount: 8,
     });
 
@@ -42,7 +28,6 @@ describe("make styles for table total Element", () => {
 
     const actualStyles = makeStylesForTableTotalElement({
       vacationsCount: 2,
-      columnNumber: 1,
       teamMembersCount: 8,
     });
 
@@ -54,7 +39,6 @@ describe("make styles for table total Element", () => {
 
     const actualStyles = makeStylesForTableTotalElement({
       vacationsCount: 4,
-      columnNumber: 1,
       teamMembersCount: 8,
     });
 

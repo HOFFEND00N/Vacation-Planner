@@ -26,29 +26,6 @@ describe("make styles for table body calendar element", () => {
     expect(actualClassNames).toEqual(expectedClassNames);
   });
 
-  test("should have default and first column class names, if first column cell without vacations passed", () => {
-    const expectedClassNames = "row__cell row__first-column-cell";
-    const vacationStart = { date: new Date(0), isSelected: false };
-    const vacationEnd = { date: new Date(0), isSelected: false };
-    const vacationTypeByDay: VacationTypeByDay = {};
-    const columnNumber = 0;
-    const elementDate = new Date("1-1-2021");
-    const userId = "1";
-    const currentUserId = "2";
-
-    const actualClassNames = makeStylesForUserDataRowElement({
-      vacationStart,
-      vacationEnd,
-      vacationTypeByDay,
-      columnNumber,
-      elementDate,
-      userId,
-      currentUserId,
-    });
-
-    expect(actualClassNames).toEqual(expectedClassNames);
-  });
-
   test("should have default and vacation approved class names, if second column cell with vacation approved", () => {
     const expectedClassNames = "row__cell row__cell--vacation-approved";
     const vacationStart = { date: new Date(0), isSelected: false };
