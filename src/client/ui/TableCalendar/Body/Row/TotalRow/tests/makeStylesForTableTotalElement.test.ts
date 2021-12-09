@@ -2,7 +2,7 @@ import { makeStylesForTableTotalElement } from "../makeStylesForTableTotalElemen
 
 describe("make styles for table total Element", () => {
   test("should return weak workload styles, when 0 vacations passed", () => {
-    const expectedStyles = "row__cell row__total-cell__weak-workload";
+    const expectedStyles = "row__cell row__total-cell--weak-workload";
 
     const actualStyles = makeStylesForTableTotalElement({
       vacationsCount: 0,
@@ -26,7 +26,7 @@ describe("make styles for table total Element", () => {
   });
 
   test("should return weak workload styles, when vacation count = 1 and team members count = 8 passed", () => {
-    const expectedStyles = "row__cell row__total-cell__weak-workload";
+    const expectedStyles = "row__cell row__total-cell--weak-workload";
 
     const actualStyles = makeStylesForTableTotalElement({
       vacationsCount: 1,
@@ -38,7 +38,7 @@ describe("make styles for table total Element", () => {
   });
 
   test("should return medium workload styles, when vacation count = 2 and team members count = 8 passed", () => {
-    const expectedStyles = "row__cell row__total-cell__medium-workload";
+    const expectedStyles = "row__cell row__total-cell--medium-workload";
 
     const actualStyles = makeStylesForTableTotalElement({
       vacationsCount: 2,
@@ -50,7 +50,7 @@ describe("make styles for table total Element", () => {
   });
 
   test("should return heavy workload styles, when vacation count = 4 and team members count = 8 passed", () => {
-    const expectedStyles = "row__cell row__total-cell__heavy-workload";
+    const expectedStyles = "row__cell row__total-cell--heavy-workload";
 
     const actualStyles = makeStylesForTableTotalElement({
       vacationsCount: 4,

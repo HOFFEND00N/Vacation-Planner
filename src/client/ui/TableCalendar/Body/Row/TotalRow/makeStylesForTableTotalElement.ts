@@ -16,11 +16,11 @@ export function makeStylesForTableTotalElement({
   } else {
     const percentage = (vacationsCount / teamMembersCount) * 100;
     if (percentage < 25) {
-      classNames = `${classNames} row__total-cell__weak-workload`;
+      classNames = `${classNames} row__total-cell--weak-workload`;
     } else if (percentage >= 25 && percentage < 50) {
-      classNames = `${classNames} row__total-cell__medium-workload`;
+      classNames = `${classNames} row__total-cell--medium-workload`;
     } else {
-      classNames = `${classNames} row__total-cell__heavy-workload`;
+      classNames = `${classNames} row__total-cell--heavy-workload`;
     }
   }
   return classNames;

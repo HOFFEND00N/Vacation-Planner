@@ -1,17 +1,17 @@
 @import "../../body.css";
 
-.row__cell__vacation-approved {
+.row__cell--vacation-approved {
   background-color: darkgrey;
 }
 
-.row__cell__vacation-pending-approval {
+.row__cell--vacation-pending-approval {
   background: repeating-linear-gradient(45deg, black, black 2%, transparent 10%, transparent 18%);
 }
 
-.row__cell__selectable:hover {
+.row__cell--selectable:hover {
   cursor: pointer;
 }
 
-.row__cell__selected {
+.row__cell--selected {
   background: lightskyblue;
 }

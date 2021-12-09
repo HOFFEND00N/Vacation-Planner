@@ -50,7 +50,7 @@ describe("make styles for table body calendar element", () => {
   });
 
   test("should have default and vacation approved class names, if second column cell with vacation approved", () => {
-    const expectedClassNames = "row__cell row__cell__vacation-approved";
+    const expectedClassNames = "row__cell row__cell--vacation-approved";
     const vacationStart = { date: new Date(0), isSelected: false };
     const vacationEnd = { date: new Date(0), isSelected: false };
     const vacationTypeByDay: VacationTypeByDay = { 1: VacationType.APPROVED };
@@ -73,7 +73,7 @@ describe("make styles for table body calendar element", () => {
   });
 
   test("should have default and vacation pending approval class names, if second column cell with vacation pending approval", () => {
-    const expectedClassNames = "row__cell row__cell__vacation-pending-approval";
+    const expectedClassNames = "row__cell row__cell--vacation-pending-approval";
     const vacationStart = { date: new Date(0), isSelected: false };
     const vacationEnd = { date: new Date(0), isSelected: false };
     const vacationTypeByDay: VacationTypeByDay = { 1: VacationType.PENDING_APPROVAL };
@@ -96,7 +96,7 @@ describe("make styles for table body calendar element", () => {
   });
 
   test("should have default and selectable class names, if second column in current user row, with no vacation", () => {
-    const expectedClassNames = "row__cell row__cell__selectable";
+    const expectedClassNames = "row__cell row__cell--selectable";
     const vacationStart = { date: new Date(0), isSelected: false };
     const vacationEnd = { date: new Date(0), isSelected: false };
     const vacationTypeByDay: VacationTypeByDay = {};
@@ -119,7 +119,7 @@ describe("make styles for table body calendar element", () => {
   });
 
   test("should have default, selectable, and selected class names, if second column cell with vacation selected", () => {
-    const expectedClassNames = "row__cell row__cell__selectable row__cell__selected";
+    const expectedClassNames = "row__cell row__cell--selectable row__cell--selected";
     const vacationStart = { date: new Date("1-1-2021"), isSelected: true };
     const vacationEnd = { date: new Date("11-1-2021"), isSelected: true };
     const vacationTypeByDay: VacationTypeByDay = {};

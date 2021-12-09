@@ -24,15 +24,15 @@ export function makeStylesForUserDataRowElement({
   let classNames = `row__cell`;
 
   if (vacationTypeByDay[columnNumber] === VacationType.APPROVED) {
-    classNames = cn(classNames, "row__cell__vacation-approved");
+    classNames = cn(classNames, "row__cell--vacation-approved");
   }
   if (vacationTypeByDay[columnNumber] === VacationType.PENDING_APPROVAL) {
-    classNames = cn(classNames, "row__cell__vacation-pending-approval");
+    classNames = cn(classNames, "row__cell--vacation-pending-approval");
   }
   if (columnNumber === 0) {
     classNames = cn(classNames, "row__first-column-cell");
   } else if (userId === currentUserId) {
-    classNames = cn(classNames, "row__cell__selectable");
+    classNames = cn(classNames, "row__cell--selectable");
   }
 
   if (
@@ -43,7 +43,7 @@ export function makeStylesForUserDataRowElement({
     userId === currentUserId &&
     columnNumber !== 0
   ) {
-    classNames = cn(classNames, "row__cell__selected");
+    classNames = cn(classNames, "row__cell--selected");
   }
 
   return classNames;

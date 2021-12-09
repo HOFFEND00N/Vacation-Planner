@@ -66,14 +66,14 @@ describe("Table calendar", () => {
     const planVacationButton = screen.getByTestId("plan-vacation-button");
     const currentUserRow = screen.getByTestId("row user 1");
     userEvent.click(within(currentUserRow).getAllByTestId("table-cell")[3]);
-    expect(within(currentUserRow).getAllByTestId("table-cell")[3]).toHaveClass("row__cell__selected");
+    expect(within(currentUserRow).getAllByTestId("table-cell")[3]).toHaveClass("row__cell--selected");
     expect(planVacationButton.attributes.getNamedItem("disabled")).toEqual(null);
 
     //user selects end vacation date, plan vacation button is enabled
     userEvent.click(within(currentUserRow).getAllByTestId("table-cell")[5]);
-    expect(within(currentUserRow).getAllByTestId("table-cell")[3]).toHaveClass("row__cell__selected");
-    expect(within(currentUserRow).getAllByTestId("table-cell")[4]).toHaveClass("row__cell__selected");
-    expect(within(currentUserRow).getAllByTestId("table-cell")[5]).toHaveClass("row__cell__selected");
+    expect(within(currentUserRow).getAllByTestId("table-cell")[3]).toHaveClass("row__cell--selected");
+    expect(within(currentUserRow).getAllByTestId("table-cell")[4]).toHaveClass("row__cell--selected");
+    expect(within(currentUserRow).getAllByTestId("table-cell")[5]).toHaveClass("row__cell--selected");
     expect(planVacationButton.attributes.getNamedItem("disabled")).toEqual(null);
   });
 
@@ -85,19 +85,19 @@ describe("Table calendar", () => {
     const currentUserRow = screen.getByTestId("row user 1");
     //user selects new start vacation date, plan vacation button is enabled
     userEvent.click(within(currentUserRow).getAllByTestId("table-cell")[4]);
-    expect(within(currentUserRow).getAllByTestId("table-cell")[4]).toHaveClass("row__cell__selected");
-    expect(within(currentUserRow).getAllByTestId("table-cell")[3].classList.contains("row__cell__selected")).toEqual(
+    expect(within(currentUserRow).getAllByTestId("table-cell")[4]).toHaveClass("row__cell--selected");
+    expect(within(currentUserRow).getAllByTestId("table-cell")[3].classList.contains("row__cell--selected")).toEqual(
       false
     );
-    expect(within(currentUserRow).getAllByTestId("table-cell")[5].classList.contains("row__cell__selected")).toEqual(
+    expect(within(currentUserRow).getAllByTestId("table-cell")[5].classList.contains("row__cell--selected")).toEqual(
       false
     );
     expect(planVacationButton.attributes.getNamedItem("disabled")).toEqual(null);
 
     //user selects end vacation date, but vacation end date < start vacation date => new start vacation date selected, plan vacation button is enabled
     userEvent.click(within(currentUserRow).getAllByTestId("table-cell")[3]);
-    expect(within(currentUserRow).getAllByTestId("table-cell")[3]).toHaveClass("row__cell__selected");
-    expect(within(currentUserRow).getAllByTestId("table-cell")[4].classList.contains("row__cell__selected")).toEqual(
+    expect(within(currentUserRow).getAllByTestId("table-cell")[3]).toHaveClass("row__cell--selected");
+    expect(within(currentUserRow).getAllByTestId("table-cell")[4].classList.contains("row__cell--selected")).toEqual(
       false
     );
     expect(planVacationButton.attributes.getNamedItem("disabled")).toEqual(null);
@@ -110,7 +110,7 @@ describe("Table calendar", () => {
     const planVacationButton = screen.getByTestId("plan-vacation-button");
     const userRow = screen.getByTestId("row user 2");
     userEvent.click(within(userRow).getAllByTestId("table-cell")[2]);
-    expect(within(userRow).getAllByTestId("table-cell")[2].classList.contains("row__cell__selected")).toEqual(false);
+    expect(within(userRow).getAllByTestId("table-cell")[2].classList.contains("row__cell--selected")).toEqual(false);
     expect(planVacationButton).toHaveAttribute("disabled");
   });
 

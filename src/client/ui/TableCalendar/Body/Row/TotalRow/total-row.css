@@ -1,13 +1,13 @@
 @import "../../body.css";
 
-.row__total-cell__weak-workload {
+.row__total-cell--weak-workload {
   background: lawngreen;
 }
 
-.row__total-cell__medium-workload {
+.row__total-cell--medium-workload {
   background: yellow;
 }
 
-.row__total-cell__heavy-workload {
+.row__total-cell--heavy-workload {
   background: red;
 }
