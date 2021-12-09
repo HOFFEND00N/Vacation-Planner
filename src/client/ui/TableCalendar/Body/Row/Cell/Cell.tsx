@@ -9,7 +9,7 @@ export function Cell({ value, className, date }: CellProps) {
       {(context) => (
         <div
           className={className}
-          onClick={() => (date !== undefined ? context.handleOnClick(date) : undefined)}
+          onClick={() => (date !== undefined ? context.handleClick(date) : undefined)}
           data-testid={"table-cell"}
         >
           {value}

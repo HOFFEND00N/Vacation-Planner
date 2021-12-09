@@ -31,7 +31,7 @@ describe("Body row", () => {
     const mockOnClick = jest.fn();
 
     render(
-      <TableCalendarContext.Provider value={{ handleOnClick: mockOnClick }}>
+      <TableCalendarContext.Provider value={{ handleClick: mockOnClick }}>
         <BodyRow
           currentTableCalendarDate={moment(new Date(1))}
           daysInMonth={31}

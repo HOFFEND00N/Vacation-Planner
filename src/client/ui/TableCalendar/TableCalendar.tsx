@@ -31,7 +31,7 @@ export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
         handleNextMonthChange={handleNextMonthChange}
         currentTableCalendarDate={currentTableCalendarDate}
       />
-      <TableCalendarContext.Provider value={{ handleOnClick: handleVacationSelected }}>
+      <TableCalendarContext.Provider value={{ handleClick: handleVacationSelected }}>
         <Body
           currentTableCalendarDate={currentTableCalendarDate}
           vacationStart={vacationStart}

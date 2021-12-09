@@ -1,8 +1,7 @@
 import React from "react";
 import { render, screen, waitForElementToBeRemoved } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { createMemoryHistory } from "history";
-import { Router } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { App } from "../App";
 import { getTeamMembers } from "../../../application/getTeamMembers";
 import { getVacations } from "../../../application/getVacations";
@@ -19,12 +18,11 @@ test("should render App, select one day vacation, navigate to plan vacation page
     currentUser: { id: "user 1", name: "user 1" },
   });
   (getVacations as jest.Mock).mockReturnValue([]);
-  const history = createMemoryHistory();
 
   render(
-    <Router history={history}>
+    <BrowserRouter>
       <App />
-    </Router>
+    </BrowserRouter>
   );
 
   expect(screen.getByText("Please wait, searching your teammates...")).toBeInTheDocument();

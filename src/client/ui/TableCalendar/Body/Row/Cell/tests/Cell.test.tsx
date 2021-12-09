@@ -16,7 +16,7 @@ describe("Cell ", () => {
     const mockOnClick = jest.fn();
 
     render(
-      <TableCalendarContext.Provider value={{ handleOnClick: mockOnClick }}>
+      <TableCalendarContext.Provider value={{ handleClick: mockOnClick }}>
         <Cell value={"test value"} className={"test class name"} date={new Date("1-11-2021")} />
       </TableCalendarContext.Provider>
     );
