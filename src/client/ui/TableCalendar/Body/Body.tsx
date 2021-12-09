@@ -17,7 +17,10 @@ type propsType = {
 };
 
 export function Body({ currentTableCalendarDate, vacationStart, vacationEnd, setErrorMessage }: propsType) {
-  const [state, dispatch] = useReducer(reducer, bodyReducerInitialState);
+  const [{ isDataFetched, currentUser, teamMembers, vacations }, dispatch] = useReducer(
+    reducer,
+    bodyReducerInitialState
+  );
   useEffect(() => {
     (async () => {
       try {
@@ -30,7 +33,7 @@ export function Body({ currentTableCalendarDate, vacationStart, vacationEnd, set
     })();
   }, []);
 
-  if (!state.isDataFetched) {
+  if (!isDataFetched) {
     return <h1> Please wait, searching your teammates... </h1>;
   }
 
@@ -38,9 +41,9 @@ export function Body({ currentTableCalendarDate, vacationStart, vacationEnd, set
   return (
     <div data-testid={"table-calendar-body"}>
       <HeaderRow daysInMonth={daysInMonth} />
-      {state.teamMembers.map((teamMember) => {
+      {teamMembers.map((teamMember) => {
         const userVacations = findUserVacations({
-          vacations: state.vacations,
+          vacations: vacations,
           userId: teamMember.id,
           year: currentTableCalendarDate.year(),
         });
@@ -50,7 +53,7 @@ export function Body({ currentTableCalendarDate, vacationStart, vacationEnd, set
             currentTableCalendarDate={currentTableCalendarDate}
             vacationStart={vacationStart}
             vacationEnd={vacationEnd}
-            currentUser={state.currentUser}
+            currentUser={currentUser}
             vacations={userVacations}
             employeeName={teamMember.name}
             user={teamMember}
@@ -61,8 +64,8 @@ export function Body({ currentTableCalendarDate, vacationStart, vacationEnd, set
       <TotalRow
         currentTableCalendarDate={currentTableCalendarDate}
         daysInMonth={daysInMonth}
-        vacations={state.vacations}
-        teamMembersCount={state.teamMembers.length}
+        vacations={vacations}
+        teamMembersCount={teamMembers.length}
       />
     </div>
   );
