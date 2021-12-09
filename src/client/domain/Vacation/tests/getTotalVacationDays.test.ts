@@ -1,5 +1,5 @@
 import { VacationType } from "../vacation";
-import { getTotalVacationsDays } from "../getTotalVacationDays";
+import { getTotalVacationsDays } from "../getTotalVacationsDays";
 
 describe("get total vacations days", () => {
   test("should return 0, when no vacations passed", () => {
