@@ -15,6 +15,7 @@ export type TableCalendarStateType = {
 export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
   const [currentTableCalendarDate, setCurrentTableCalendarDate] = useState(currentDate);
   const { vacationStart, vacationEnd, handleVacationSelected } = useVacationSelected();
+  const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
 
   function handlePreviousMonthChange() {
     setCurrentTableCalendarDate(currentTableCalendarDate.clone().subtract(1, "months"));
@@ -22,6 +23,10 @@ export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
 
   function handleNextMonthChange() {
     setCurrentTableCalendarDate(currentTableCalendarDate.clone().add(1, "months"));
+  }
+
+  if (errorMessage) {
+    return <h1>Something went wrong... Please try again later.</h1>;
   }
 
   return (
@@ -36,6 +41,7 @@ export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
           currentTableCalendarDate={currentTableCalendarDate}
           vacationStart={vacationStart}
           vacationEnd={vacationEnd}
+          setErrorMessage={setErrorMessage}
         />
       </TableCalendarContext.Provider>
       <Footer vacationStart={vacationStart} vacationEnd={vacationEnd} />
