@@ -16,6 +16,14 @@ export const reducer = (state: BodyReducerStateType, action: BodyReducerActionTy
   }
 };
 
+export const loadData = ({ isDataFetched, teamMembers, currentUser, vacations }) => ({
+  type: "load user data",
+  isDataFetched,
+  teamMembers,
+  currentUser,
+  vacations,
+});
+
 export const bodyReducerInitialState: BodyReducerStateType = {
   isDataFetched: false,
   teamMembers: [],

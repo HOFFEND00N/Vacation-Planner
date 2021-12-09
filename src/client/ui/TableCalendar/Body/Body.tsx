@@ -7,7 +7,7 @@ import { findUserVacations } from "../../../domain/Vacation/findUserVacations";
 import { BodyRow } from "./Row/BodyRow";
 import { HeaderRow } from "./Row/HeaderRow";
 import { TotalRow } from "./Row/TotalRow";
-import { bodyReducerInitialState, reducer } from "./reducer";
+import { bodyReducerInitialState, loadData, reducer } from "./reducer";
 
 type propsType = {
   currentTableCalendarDate: moment.Moment;
@@ -23,7 +23,7 @@ export function Body({ currentTableCalendarDate, vacationStart, vacationEnd, set
       try {
         const { teamMembers, currentUser } = await getTeamMembers();
         const vacations = await getVacations(teamMembers.map((teamMember) => teamMember.id));
-        dispatch({ isDataFetched: true, teamMembers, currentUser, vacations, type: "load user data" });
+        dispatch(loadData({ isDataFetched: true, teamMembers, currentUser, vacations }));
       } catch (error) {
         setErrorMessage(error.message);
       }
