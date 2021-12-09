@@ -3,11 +3,9 @@ import { TableCalendarStateType } from "./TableCalendar";
 
 export function useVacationSelected() {
   const [vacationStart, setVacationStart] = useState<TableCalendarStateType>({
-    date: new Date(0),
     isSelected: false,
   });
   const [vacationEnd, setVacationEnd] = useState<TableCalendarStateType>({
-    date: new Date(0),
     isSelected: false,
   });
 
@@ -17,7 +15,7 @@ export function useVacationSelected() {
       setVacationStart({ isSelected: true, date });
       setVacationEnd({ isSelected: false, date });
     } else if (!vacationEnd.isSelected) {
-      if (date > vacationStart.date) {
+      if (vacationStart.date && date > vacationStart.date) {
         setVacationEnd({ isSelected: true, date });
       } else {
         setVacationStart({ isSelected: true, date });

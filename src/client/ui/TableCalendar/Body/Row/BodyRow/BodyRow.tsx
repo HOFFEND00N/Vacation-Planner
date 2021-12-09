@@ -7,6 +7,7 @@ import { Cell } from "../Cell";
 import "./body-row.css";
 import { getVacationsTypeByDayForCurrentMonth } from "../../../../../domain/Vacation/getVacationsTypeByDayForCurrentMonth";
 import { getTotalVacationsDays } from "../../../../../domain/Vacation/getTotalVacationDays";
+import { TableCalendarStateType } from "../../../TableCalendar";
 import { makeStylesForTableCalendarBodyElement } from "./makeStylesForTableCalendarBodyElement";
 
 export function BodyRow({
@@ -22,8 +23,8 @@ export function BodyRow({
   daysInMonth: number;
   vacations: Vacation[];
   user: User;
-  vacationStart: { date: Date; isSelected: boolean };
-  vacationEnd: { date: Date; isSelected: boolean };
+  vacationStart: TableCalendarStateType;
+  vacationEnd: TableCalendarStateType;
   currentUser: User;
   currentTableCalendarDate: moment.Moment;
   employeeName: string;

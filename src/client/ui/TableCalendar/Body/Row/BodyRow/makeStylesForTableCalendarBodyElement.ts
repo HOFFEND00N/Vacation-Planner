@@ -36,8 +36,10 @@ export function makeStylesForTableCalendarBodyElement({
   }
 
   if (
-    elementDate >= vacationStart?.date &&
-    elementDate <= vacationEnd?.date &&
+    vacationStart.date &&
+    vacationEnd.date &&
+    elementDate >= vacationStart.date &&
+    elementDate <= vacationEnd.date &&
     userId === currentUserId &&
     columnNumber !== 0
   ) {

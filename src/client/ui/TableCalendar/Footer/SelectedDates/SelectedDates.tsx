@@ -9,10 +9,10 @@ export function SelectedDates({
   vacationEnd: TableCalendarStateType;
 }) {
   let selectedDates = "";
-  if (vacationStart.isSelected) {
+  if (vacationStart.isSelected && vacationStart.date) {
     selectedDates = vacationStart.date.toDateString();
   }
-  if (vacationEnd.isSelected) {
+  if (vacationEnd.isSelected && vacationEnd.date) {
     selectedDates = `${selectedDates} - ${vacationEnd.date.toDateString()}`;
   }
   return <div data-testid={"selected-dates"}>{selectedDates}</div>;

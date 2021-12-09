@@ -8,7 +8,7 @@ import { Footer } from "./Footer";
 import { useVacationSelected } from "./useVacationSelected";
 
 export type TableCalendarStateType = {
-  date: Date;
+  date?: Date;
   isSelected: boolean;
 };
 
