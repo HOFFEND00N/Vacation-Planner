@@ -5,6 +5,7 @@ import { Pager } from "./Pager";
 import { Body } from "./Body";
 import "./table-calendar.css";
 import { Footer } from "./Footer";
+import { useVacationSelected } from "./useVacationSelected";
 
 export type TableCalendarStateType = {
   date: Date;
@@ -13,32 +14,7 @@ export type TableCalendarStateType = {
 
 export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
   const [currentTableCalendarDate, setCurrentTableCalendarDate] = useState(currentDate);
-  const [vacationStart, setVacationStart] = useState<TableCalendarStateType>({
-    date: new Date(0),
-    isSelected: false,
-  });
-  const [vacationEnd, setVacationEnd] = useState<TableCalendarStateType>({
-    date: new Date(0),
-    isSelected: false,
-  });
-
-  const handleVacationSelect = (date: Date) => {
-    if (!vacationStart.isSelected) {
-      //set end vacation date === start vacation date, because we paint vacation in interval between the two
-      setVacationStart({ isSelected: true, date });
-      setVacationEnd({ isSelected: false, date });
-    } else if (!vacationEnd.isSelected) {
-      if (date > vacationStart.date) {
-        setVacationEnd({ isSelected: true, date });
-      } else {
-        setVacationStart({ isSelected: true, date });
-        setVacationEnd({ isSelected: false, date });
-      }
-    } else {
-      setVacationStart({ isSelected: true, date });
-      setVacationEnd({ isSelected: false, date });
-    }
-  };
+  const { vacationStart, vacationEnd, handleVacationSelected } = useVacationSelected();
 
   function handlePreviousMonthChange() {
     setCurrentTableCalendarDate(currentTableCalendarDate.clone().subtract(1, "months"));
@@ -55,7 +31,7 @@ export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
         handleNextMonthChange={handleNextMonthChange}
         currentTableCalendarDate={currentTableCalendarDate}
       />
-      <TableCalendarContext.Provider value={{ handleOnClick: handleVacationSelect }}>
+      <TableCalendarContext.Provider value={{ handleOnClick: handleVacationSelected }}>
         <Body
           currentTableCalendarDate={currentTableCalendarDate}
           vacationStart={vacationStart}
