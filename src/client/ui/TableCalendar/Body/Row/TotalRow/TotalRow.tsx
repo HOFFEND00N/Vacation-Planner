@@ -27,11 +27,11 @@ export function TotalRow({ vacations, currentTableCalendarDate, daysInMonth, tea
       teamMembersCount,
     });
     const classNames = makeStylesForTableTotalElement(dayWorkloadPercentage);
-    cells.push(<Cell value={""} className={classNames} key={j} />);
+    cells.push(<Cell value={""} classNames={classNames} key={j} />);
   }
   return (
     <Row dataTestId={"table-calendar-total-row"}>
-      <Cell value={"Total"} className={"cell"} key={0} />
+      <Cell value={"Total"} key={0} />
       {cells}
     </Row>
   );

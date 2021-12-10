@@ -1,6 +1,5 @@
 import React from "react";
 import moment from "moment";
-import cn from "classnames";
 import { User } from "../../../../../domain/user";
 import { Vacation } from "../../../../../domain/Vacation/vacation";
 import { Cell } from "../Cell";
@@ -49,7 +48,7 @@ export function UserDataRow({
     cells.push(
       <Cell
         value={""}
-        className={classNames}
+        classNames={classNames}
         date={user.id === currentUser.id ? elementDate : undefined}
         key={day + 1}
       />
@@ -57,8 +56,8 @@ export function UserDataRow({
   }
   return (
     <Row dataTestId={`row ${user.id}`}>
-      <Cell value={employeeName} className={"cell"} key={0} />
-      <Cell value={getTotalVacationsDays(vacations)} className={cn("cell", "cell-days-column")} key={1} />
+      <Cell value={employeeName} key={0} />
+      <Cell value={getTotalVacationsDays(vacations)} isDaysColumn={true} key={1} />
       {cells}
     </Row>
   );

@@ -1,14 +1,18 @@
 import React, { useContext } from "react";
 import { TableCalendarContext } from "../../../TableCalendarContext/TableCalendarContext";
 
-type CellProps = { value: number | string; className: string; date?: Date };
+type CellProps = { value: number | string; classNames?: string; isDaysColumn?: boolean; date?: Date };
 
-export function Cell({ value, className, date }: CellProps) {
+export function Cell({ value, isDaysColumn, date, classNames }: CellProps) {
   const tableCalendarContext = useContext(TableCalendarContext);
+
+  if (isDaysColumn) {
+    classNames = `${classNames} cell-days-column`;
+  }
 
   return (
     <div
-      className={className}
+      className={`cell ${classNames}`}
       onClick={() => (date !== undefined ? tableCalendarContext.handleClick(date) : undefined)}
       data-testid={"table-cell"}
     >

@@ -7,7 +7,7 @@ import { TableCalendarContext } from "../../../../TableCalendarContext/TableCale
 
 describe("Cell ", () => {
   test("should render", async () => {
-    render(<Cell value={"test value"} className={"test class name"} />);
+    render(<Cell value={"test value"} classNames={"test class name"} />);
 
     expect(screen.getByText("test value")).toBeInTheDocument();
   });
@@ -17,7 +17,7 @@ describe("Cell ", () => {
 
     render(
       <TableCalendarContext.Provider value={{ handleClick: mockOnClick }}>
-        <Cell value={"test value"} className={"test class name"} date={new Date("1-11-2021")} />
+        <Cell value={"test value"} classNames={"test class name"} date={new Date("1-11-2021")} />
       </TableCalendarContext.Provider>
     );
     userEvent.click(screen.getByText("test value"));
