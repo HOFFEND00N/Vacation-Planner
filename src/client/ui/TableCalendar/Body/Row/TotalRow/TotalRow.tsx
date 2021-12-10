@@ -5,6 +5,7 @@ import { Cell } from "../Cell";
 import { Vacation } from "../../../../../domain/Vacation/vacation";
 import { getVacationsCountByDays } from "../../../../../domain/Vacation/getVacationsCountByDays";
 import { makeStylesForTableTotalElement } from "./makeStylesForTableTotalElement";
+import { calculateDaylWorkloadPercentage } from "./calculateDaylWorkloadPercentage";
 
 type TotalRowProps = {
   vacations: Vacation[];
@@ -20,10 +21,11 @@ export function TotalRow({ vacations, currentTableCalendarDate, daysInMonth, tea
   });
   const cells: JSX.Element[] = [];
   for (let j = 1; j < daysInMonth + 1; j++) {
-    const classNames = makeStylesForTableTotalElement({
+    const dayWorkloadPercentage = calculateDaylWorkloadPercentage({
       vacationsCount: vacationsCountByDays[j] ?? 0,
-      teamMembersCount: teamMembersCount,
+      teamMembersCount,
     });
+    const classNames = makeStylesForTableTotalElement(dayWorkloadPercentage);
     cells.push(<Cell value={""} className={classNames} key={j} />);
   }
   return (
