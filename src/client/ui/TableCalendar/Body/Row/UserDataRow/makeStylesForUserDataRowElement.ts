@@ -1,47 +1,54 @@
 import cn from "classnames";
 import { VacationType } from "../../../../../domain/Vacation/vacation";
-import { VacationTypeByDay } from "../../../../../types";
 import { TableCalendarStateType } from "../../../TableCalendar";
 import "./user-data-row.css";
+import { isCellSelectable } from "./isCellSelectable";
+import { isCellSelected } from "./isCellSelected";
 
 export function makeStylesForUserDataRowElement({
   vacationStart,
   vacationEnd,
-  vacationTypeByDay,
   columnNumber,
-  elementDate,
+  cellDate,
   userId,
   currentUserId,
+  vacationType,
 }: {
   vacationStart: TableCalendarStateType;
   vacationEnd: TableCalendarStateType;
-  vacationTypeByDay: VacationTypeByDay;
   columnNumber: number;
-  elementDate: Date;
+  cellDate: Date;
   userId: string;
   currentUserId: string;
+  vacationType?: VacationType;
 }) {
   let classNames = `cell`;
 
-  if (vacationTypeByDay[columnNumber] === VacationType.APPROVED) {
-    classNames = cn(classNames, "cell--vacation-approved");
-  }
-  if (vacationTypeByDay[columnNumber] === VacationType.PENDING_APPROVAL) {
-    classNames = cn(classNames, "cell--vacation-pending-approval");
-  }
-  if (userId === currentUserId) {
-    classNames = cn(classNames, "cell--selectable");
+  switch (vacationType) {
+    case VacationType.APPROVED:
+      classNames = cn(classNames, "cell--vacation-approved");
+      break;
+    case VacationType.PENDING_APPROVAL:
+      classNames = cn(classNames, "cell--vacation-pending-approval");
+      break;
+    default:
+      break;
   }
 
-  if (
-    vacationStart.date &&
-    vacationEnd.date &&
-    elementDate >= vacationStart.date &&
-    elementDate <= vacationEnd.date &&
-    userId === currentUserId &&
-    columnNumber !== 0
-  ) {
-    classNames = cn(classNames, "cell--selected");
+  if (isCellSelectable({ userId, currentUserId })) {
+    classNames = cn(classNames, "cell--selectable");
+    if (
+      vacationStart.date &&
+      vacationEnd.date &&
+      isCellSelected({
+        vacationStartDate: vacationStart.date,
+        vacationEndDate: vacationEnd.date,
+        cellDate,
+        columnNumber,
+      })
+    ) {
+      classNames = cn(classNames, "cell--selected");
+    }
   }
 
   return classNames;

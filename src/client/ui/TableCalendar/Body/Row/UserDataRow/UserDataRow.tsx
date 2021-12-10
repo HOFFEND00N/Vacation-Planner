@@ -39,11 +39,11 @@ export function UserDataRow({
     const classNames = makeStylesForUserDataRowElement({
       vacationStart,
       vacationEnd,
-      elementDate,
+      cellDate: elementDate,
       columnNumber: day,
-      vacationTypeByDay,
       userId: user.id,
       currentUserId: currentUser.id,
+      vacationType: vacationTypeByDay[day],
     });
     cells.push(
       <Cell

@@ -18,7 +18,7 @@ describe("make styles for table body calendar element", () => {
       vacationEnd,
       vacationTypeByDay,
       columnNumber,
-      elementDate,
+      cellDate: elementDate,
       userId,
       currentUserId,
     });
@@ -41,7 +41,7 @@ describe("make styles for table body calendar element", () => {
       vacationEnd,
       vacationTypeByDay,
       columnNumber,
-      elementDate,
+      cellDate: elementDate,
       userId,
       currentUserId,
     });
@@ -64,7 +64,7 @@ describe("make styles for table body calendar element", () => {
       vacationEnd,
       vacationTypeByDay,
       columnNumber,
-      elementDate,
+      cellDate: elementDate,
       userId,
       currentUserId,
     });
@@ -87,7 +87,7 @@ describe("make styles for table body calendar element", () => {
       vacationEnd,
       vacationTypeByDay,
       columnNumber,
-      elementDate,
+      cellDate: elementDate,
       userId,
       currentUserId,
     });
@@ -110,7 +110,7 @@ describe("make styles for table body calendar element", () => {
       vacationEnd,
       vacationTypeByDay,
       columnNumber,
-      elementDate,
+      cellDate: elementDate,
       userId,
       currentUserId,
     });
