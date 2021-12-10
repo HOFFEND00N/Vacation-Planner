@@ -16,7 +16,10 @@ export function Footer({
   const history = useHistory();
 
   const handleClick = () => {
-    history.push({ pathname: "/plan-vacation", state: { vacationStart: vacationStart, vacationEnd: vacationEnd } });
+    history.push({
+      pathname: "/plan-vacation",
+      state: { vacationStart: vacationStart, vacationEnd: vacationEnd.isSelected ? vacationEnd : vacationStart },
+    });
   };
 
   return (

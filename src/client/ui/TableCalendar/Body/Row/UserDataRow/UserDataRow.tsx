@@ -37,8 +37,8 @@ export function UserDataRow({
   for (let day = 1; day < daysInMonth + 1; day++) {
     const elementDate = new Date(currentTableCalendarDate.year(), currentTableCalendarDate.month(), day);
     const classNames = makeStylesForUserDataRowElement({
-      vacationStart,
-      vacationEnd,
+      vacationStartDate: vacationStart.date,
+      vacationEndDate: vacationEnd.date,
       cellDate: elementDate,
       columnNumber: day,
       userId: user.id,

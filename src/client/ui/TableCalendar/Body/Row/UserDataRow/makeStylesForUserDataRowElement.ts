@@ -1,21 +1,20 @@
 import cn from "classnames";
 import { VacationType } from "../../../../../domain/Vacation/vacation";
-import { TableCalendarStateType } from "../../../TableCalendar";
 import "./user-data-row.css";
 import { isCellSelectable } from "./isCellSelectable";
 import { isCellSelected } from "./isCellSelected";
 
 export function makeStylesForUserDataRowElement({
-  vacationStart,
-  vacationEnd,
+  vacationStartDate,
+  vacationEndDate,
   columnNumber,
   cellDate,
   userId,
   currentUserId,
   vacationType,
 }: {
-  vacationStart: TableCalendarStateType;
-  vacationEnd: TableCalendarStateType;
+  vacationStartDate?: Date;
+  vacationEndDate?: Date;
   columnNumber: number;
   cellDate: Date;
   userId: string;
@@ -38,11 +37,9 @@ export function makeStylesForUserDataRowElement({
   if (isCellSelectable({ userId, currentUserId })) {
     classNames = cn(classNames, "cell--selectable");
     if (
-      vacationStart.date &&
-      vacationEnd.date &&
       isCellSelected({
-        vacationStartDate: vacationStart.date,
-        vacationEndDate: vacationEnd.date,
+        vacationStartDate: vacationStartDate,
+        vacationEndDate: vacationEndDate,
         cellDate,
         columnNumber,
       })

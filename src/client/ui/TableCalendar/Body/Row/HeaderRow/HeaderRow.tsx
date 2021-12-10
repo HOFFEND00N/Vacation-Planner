@@ -11,7 +11,7 @@ export function HeaderRow({ daysInMonth }: { daysInMonth: number }) {
   return (
     <Row dataTestId={"table-calendar-header-row"}>
       <Cell value={""} key={0} />
-      <Cell value={"Days"} classNames={"cell-days-column"} key={1} />
+      <Cell value={"Days"} isDaysColumn={true} key={1} />
       {cells}
     </Row>
   );
