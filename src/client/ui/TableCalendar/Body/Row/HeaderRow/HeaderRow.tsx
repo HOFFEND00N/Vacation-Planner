@@ -2,6 +2,7 @@ import React from "react";
 import cn from "classnames";
 import "../../body.css";
 import { Cell } from "../Cell";
+import { Row } from "../Row";
 
 export function HeaderRow({ daysInMonth }: { daysInMonth: number }) {
   const cells: JSX.Element[] = [];
@@ -9,10 +10,10 @@ export function HeaderRow({ daysInMonth }: { daysInMonth: number }) {
     cells.push(<Cell value={j} className={"cell"} key={j + 1} />);
   }
   return (
-    <div className={"row"} data-testid={"table-calendar-header-row"}>
+    <Row dataTestId={"table-calendar-header-row"}>
       <Cell value={""} className={"cell"} key={0} />
       <Cell value={"Days"} className={cn("cell", "cell-days-column")} key={1} />
       {cells}
-    </div>
+    </Row>
   );
 }

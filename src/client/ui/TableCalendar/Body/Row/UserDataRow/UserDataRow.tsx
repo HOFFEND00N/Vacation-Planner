@@ -8,6 +8,7 @@ import "./user-data-row.css";
 import { getVacationsTypeByDayForCurrentMonth } from "../../../../../domain/Vacation/getVacationsTypeByDayForCurrentMonth";
 import { getTotalVacationsDays } from "../../../../../domain/Vacation/getTotalVacationsDays";
 import { TableCalendarStateType } from "../../../TableCalendar";
+import { Row } from "../Row";
 import { makeStylesForUserDataRowElement } from "./makeStylesForUserDataRowElement";
 
 export function UserDataRow({
@@ -55,10 +56,10 @@ export function UserDataRow({
     );
   }
   return (
-    <div className={"row"} data-testid={`row ${user.id}`}>
+    <Row dataTestId={`row ${user.id}`}>
       <Cell value={employeeName} className={"cell"} key={0} />
       <Cell value={getTotalVacationsDays(vacations)} className={cn("cell", "cell-days-column")} key={1} />
       {cells}
-    </div>
+    </Row>
   );
 }

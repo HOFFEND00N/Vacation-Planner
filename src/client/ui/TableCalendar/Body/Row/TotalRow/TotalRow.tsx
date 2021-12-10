@@ -4,6 +4,7 @@ import "./total-row.css";
 import { Cell } from "../Cell";
 import { Vacation } from "../../../../../domain/Vacation/vacation";
 import { getVacationsCountByDays } from "../../../../../domain/Vacation/getVacationsCountByDays";
+import { Row } from "../Row";
 import { makeStylesForTableTotalElement } from "./makeStylesForTableTotalElement";
 import { calculateDaylWorkloadPercentage } from "./calculateDaylWorkloadPercentage";
 
@@ -29,9 +30,9 @@ export function TotalRow({ vacations, currentTableCalendarDate, daysInMonth, tea
     cells.push(<Cell value={""} className={classNames} key={j} />);
   }
   return (
-    <div className={"row"} data-testid={"table-calendar-total-row"}>
+    <Row dataTestId={"table-calendar-total-row"}>
       <Cell value={"Total"} className={"cell"} key={0} />
       {cells}
-    </div>
+    </Row>
   );
 }
