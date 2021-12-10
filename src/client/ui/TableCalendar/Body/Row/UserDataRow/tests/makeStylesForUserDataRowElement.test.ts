@@ -1,4 +1,3 @@
-import { VacationTypeByDay } from "../../../../../../types";
 import { makeStylesForUserDataRowElement } from "../makeStylesForUserDataRowElement";
 import { VacationType } from "../../../../../../domain/Vacation/vacation";
 
@@ -7,7 +6,6 @@ describe("make styles for table body calendar element", () => {
     const expectedClassNames = "cell";
     const vacationStart = { date: new Date(0), isSelected: false };
     const vacationEnd = { date: new Date(0), isSelected: false };
-    const vacationTypeByDay: VacationTypeByDay = {};
     const columnNumber = 1;
     const elementDate = new Date("1-1-2021");
     const userId = "1";
@@ -16,7 +14,6 @@ describe("make styles for table body calendar element", () => {
     const actualClassNames = makeStylesForUserDataRowElement({
       vacationStart,
       vacationEnd,
-      vacationTypeByDay,
       columnNumber,
       cellDate: elementDate,
       userId,
@@ -30,7 +27,6 @@ describe("make styles for table body calendar element", () => {
     const expectedClassNames = "cell cell--vacation-approved";
     const vacationStart = { date: new Date(0), isSelected: false };
     const vacationEnd = { date: new Date(0), isSelected: false };
-    const vacationTypeByDay: VacationTypeByDay = { 1: VacationType.APPROVED };
     const columnNumber = 1;
     const elementDate = new Date("1-1-2021");
     const userId = "1";
@@ -39,11 +35,11 @@ describe("make styles for table body calendar element", () => {
     const actualClassNames = makeStylesForUserDataRowElement({
       vacationStart,
       vacationEnd,
-      vacationTypeByDay,
       columnNumber,
       cellDate: elementDate,
       userId,
       currentUserId,
+      vacationType: VacationType.APPROVED,
     });
 
     expect(actualClassNames).toEqual(expectedClassNames);
@@ -53,7 +49,6 @@ describe("make styles for table body calendar element", () => {
     const expectedClassNames = "cell cell--vacation-pending-approval";
     const vacationStart = { date: new Date(0), isSelected: false };
     const vacationEnd = { date: new Date(0), isSelected: false };
-    const vacationTypeByDay: VacationTypeByDay = { 1: VacationType.PENDING_APPROVAL };
     const columnNumber = 1;
     const elementDate = new Date("1-1-2021");
     const userId = "1";
@@ -62,11 +57,11 @@ describe("make styles for table body calendar element", () => {
     const actualClassNames = makeStylesForUserDataRowElement({
       vacationStart,
       vacationEnd,
-      vacationTypeByDay,
       columnNumber,
       cellDate: elementDate,
       userId,
       currentUserId,
+      vacationType: VacationType.PENDING_APPROVAL,
     });
 
     expect(actualClassNames).toEqual(expectedClassNames);
@@ -76,7 +71,6 @@ describe("make styles for table body calendar element", () => {
     const expectedClassNames = "cell cell--selectable";
     const vacationStart = { date: new Date(0), isSelected: false };
     const vacationEnd = { date: new Date(0), isSelected: false };
-    const vacationTypeByDay: VacationTypeByDay = {};
     const columnNumber = 1;
     const elementDate = new Date("1-1-2021");
     const userId = "1";
@@ -85,7 +79,6 @@ describe("make styles for table body calendar element", () => {
     const actualClassNames = makeStylesForUserDataRowElement({
       vacationStart,
       vacationEnd,
-      vacationTypeByDay,
       columnNumber,
       cellDate: elementDate,
       userId,
@@ -99,7 +92,6 @@ describe("make styles for table body calendar element", () => {
     const expectedClassNames = "cell cell--selectable cell--selected";
     const vacationStart = { date: new Date("1-1-2021"), isSelected: true };
     const vacationEnd = { date: new Date("11-1-2021"), isSelected: true };
-    const vacationTypeByDay: VacationTypeByDay = {};
     const columnNumber = 1;
     const elementDate = new Date("1-1-2021");
     const userId = "1";
@@ -108,7 +100,6 @@ describe("make styles for table body calendar element", () => {
     const actualClassNames = makeStylesForUserDataRowElement({
       vacationStart,
       vacationEnd,
-      vacationTypeByDay,
       columnNumber,
       cellDate: elementDate,
       userId,
