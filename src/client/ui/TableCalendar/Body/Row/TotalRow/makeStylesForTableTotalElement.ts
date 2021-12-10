@@ -7,7 +7,7 @@ export function makeStylesForTableTotalElement({
   vacationsCount: number;
   teamMembersCount: number;
 }) {
-  let classNames = `row__cell`;
+  let classNames = `cell`;
 
   const percentage = (vacationsCount / teamMembersCount) * 100;
   if (percentage < 25) {

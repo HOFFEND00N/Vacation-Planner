@@ -28,7 +28,7 @@ export function TotalRow({ vacations, currentTableCalendarDate, daysInMonth, tea
   }
   return (
     <div className={"row"} data-testid={"table-calendar-total-row"}>
-      <Cell value={"Total"} className={"row__cell"} key={0} />
+      <Cell value={"Total"} className={"cell"} key={0} />
       {cells}
     </div>
   );

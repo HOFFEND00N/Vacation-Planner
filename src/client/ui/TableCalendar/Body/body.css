@@ -3,7 +3,7 @@
   justify-content: center;
 }
 
-.row__cell {
+.cell {
   padding: 5px;
   border-style: solid;
   border-width: 1px;
@@ -12,10 +12,10 @@
   text-align: center;
 }
 
-.row__cell:first-child {
+.cell:first-child {
   flex-grow: 1;
 }
 
-.row__cell-days-column {
+.cell-days-column {
   min-width: 45px;
 }

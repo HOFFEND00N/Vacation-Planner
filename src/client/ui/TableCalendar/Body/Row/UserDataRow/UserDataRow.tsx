@@ -56,8 +56,8 @@ export function UserDataRow({
   }
   return (
     <div className={"row"} data-testid={`row ${user.id}`}>
-      <Cell value={employeeName} className={"row__cell"} key={0} />
-      <Cell value={getTotalVacationsDays(vacations)} className={cn("row__cell", "row__cell-days-column")} key={1} />
+      <Cell value={employeeName} className={"cell"} key={0} />
+      <Cell value={getTotalVacationsDays(vacations)} className={cn("cell", "cell-days-column")} key={1} />
       {cells}
     </div>
   );
