@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import moment from "moment";
+import { useLocation } from "react-router-dom";
 import { TableCalendarContext } from "./TableCalendarContext/TableCalendarContext";
 import { Pager } from "./Pager";
 import { Body } from "./Body";
@@ -9,7 +10,14 @@ import { useVacationSelected } from "./useVacationSelected";
 
 export const TableCalendar = ({ currentDate }: { currentDate: moment.Moment }) => {
   const [currentTableCalendarDate, setCurrentTableCalendarDate] = useState(currentDate);
-  const { vacationStart, vacationEnd, handleVacationSelected } = useVacationSelected();
+  const location = useLocation();
+
+  const selectedVacationStart = location.state?.vacationStart;
+  const selectedVacationEnd = location.state?.vacationEnd;
+  const { vacationStart, vacationEnd, handleVacationSelected } = useVacationSelected({
+    initialVacationStart: selectedVacationStart,
+    initialVacationEnd: selectedVacationEnd,
+  });
 
   const handlePreviousMonthChange = () => {
     setCurrentTableCalendarDate(currentTableCalendarDate.clone().subtract(1, "months"));

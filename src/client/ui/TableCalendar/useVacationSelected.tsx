@@ -5,13 +5,22 @@ export type TableCalendarStateType = {
   isSelected: boolean;
 };
 
-export const useVacationSelected = () => {
-  const [vacationStart, setVacationStart] = useState<TableCalendarStateType>({
+export const useVacationSelected = ({
+  initialVacationStart,
+  initialVacationEnd,
+}: {
+  initialVacationStart?: TableCalendarStateType;
+  initialVacationEnd?: TableCalendarStateType;
+}) => {
+  const defaultVacation: TableCalendarStateType = {
     isSelected: false,
-  });
-  const [vacationEnd, setVacationEnd] = useState<TableCalendarStateType>({
-    isSelected: false,
-  });
+  };
+
+  initialVacationStart = !initialVacationStart ? defaultVacation : initialVacationStart;
+  initialVacationEnd = !initialVacationEnd ? defaultVacation : initialVacationEnd;
+
+  const [vacationStart, setVacationStart] = useState<TableCalendarStateType>(initialVacationStart);
+  const [vacationEnd, setVacationEnd] = useState<TableCalendarStateType>(initialVacationEnd);
 
   const handleVacationSelected = (date: Date) => {
     if (!vacationStart.isSelected) {

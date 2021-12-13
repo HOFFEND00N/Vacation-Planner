@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Appearances, Button } from "@confirmit/react-button";
 import { DatePicker } from "@confirmit/react-date-picker";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import moment from "moment";
 import Dropzone, { UploadStates } from "@confirmit/react-dropzone";
 import { CheckBox } from "@confirmit/react-toggle";
@@ -14,8 +14,8 @@ export function PlanVacation() {
   const [files, setFiles] = useState<File[]>([]);
   const [selectedFileName, setSelectedFileName] = useState("");
   const location = useLocation();
-  const [vacationStart, setVacationStart] = useState(moment(location.state.vacationStart.date));
-  const [vacationEnd, setVacationEnd] = useState(moment(location.state.vacationEnd.date));
+  const [vacationStartDate, setVacationStartDate] = useState(moment(location.state.vacationStart.date));
+  const [vacationEndDate, setVacationEndDate] = useState(moment(location.state.vacationEnd.date));
   const [isUsedAdditionalVacationDays, setIsUsedAdditionalVacationDays] = useState(false);
 
   const handleSubmit = async () => {
@@ -26,15 +26,15 @@ export function PlanVacation() {
     const res = await planVacation();
     //TODO: FTP server, web server, time server
     console.log(res.json());
-    alert(`file = ${files[0].name}, vacation start = ${vacationStart}, vacation end = ${vacationEnd}`);
+    alert(`file = ${files[0].name}, vacation start = ${vacationStartDate}, vacation end = ${vacationEndDate}`);
   };
 
-  const handleDateStartChange = (startDate) => {
-    setVacationStart(startDate);
+  const handleDateStartChange = (startDate: moment.Moment) => {
+    setVacationStartDate(startDate);
   };
 
-  const handleDateEndChange = (endDate) => {
-    setVacationEnd(endDate);
+  const handleDateEndChange = (endDate: moment.Moment) => {
+    setVacationEndDate(endDate);
   };
 
   const handleFileSelected = (selectedFiles: File[]) => {
@@ -51,15 +51,26 @@ export function PlanVacation() {
     setIsUsedAdditionalVacationDays(!isUsedAdditionalVacationDays);
   };
 
+  const history = useHistory();
+  const handleCancel = () => {
+    history.push({
+      pathname: "/",
+      state: {
+        vacationStart: { isSelected: true, date: vacationStartDate.toDate() },
+        vacationEnd: { isSelected: true, date: vacationEndDate.toDate() },
+      },
+    });
+  };
+
   return (
     <div className={"application-container"}>
       <div className={"application"}>
         <div>
           Vacation dates
           <div className={"vacation-dates"}>
-            <DatePicker date={vacationStart} onChange={handleDateStartChange} className={"vacation-dates__item"} />
+            <DatePicker date={vacationStartDate} onChange={handleDateStartChange} className={"vacation-dates__item"} />
             <hr className={"vacation-dates__line-between"} />
-            <DatePicker date={vacationEnd} onChange={handleDateEndChange} className={"vacation-dates__item"} />
+            <DatePicker date={vacationEndDate} onChange={handleDateEndChange} className={"vacation-dates__item"} />
           </div>
           <div>
             <div className={"additional-vacation-days"}>
@@ -90,7 +101,7 @@ export function PlanVacation() {
       </div>
 
       <div className={"buttons-container"}>
-        <Button className={"buttons-container__item"} appearance={Appearances.primaryDanger}>
+        <Button className={"buttons-container__item"} appearance={Appearances.primaryDanger} onClick={handleCancel}>
           Cancel
         </Button>
         <Button className={"buttons-container__item"} appearance={Appearances.primarySuccess} onClick={handleSubmit}>
