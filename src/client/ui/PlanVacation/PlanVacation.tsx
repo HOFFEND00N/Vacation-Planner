@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Appearances, Button } from "@confirmit/react-button";
 import { DatePicker } from "@confirmit/react-date-picker";
+import { useLocation } from "react-router-dom";
 import moment from "moment";
 import Dropzone, { UploadStates } from "@confirmit/react-dropzone";
 import { CheckBox } from "@confirmit/react-toggle";
@@ -12,8 +13,9 @@ export function PlanVacation() {
   const [uploadState, setUploadState] = useState(UploadStates.Idle);
   const [files, setFiles] = useState<File[]>([]);
   const [selectedFileName, setSelectedFileName] = useState("");
-  const [vacationStart, setVacationStart] = useState(moment());
-  const [vacationEnd, setVacationEnd] = useState(moment());
+  const location = useLocation();
+  const [vacationStart, setVacationStart] = useState(moment(location.state.vacationStart.date));
+  const [vacationEnd, setVacationEnd] = useState(moment(location.state.vacationEnd.date));
   const [isUsedAdditionalVacationDays, setIsUsedAdditionalVacationDays] = useState(false);
 
   const handleSubmit = async () => {
@@ -73,8 +75,7 @@ export function PlanVacation() {
         </div>
         <div className={"right-page-half"}>
           <Button className={"right-page-half__print-application-button"} appearance={Appearances.primarySuccess}>
-            {" "}
-            Print application{" "}
+            Print application
           </Button>
           <div>
             <div className={"dropzone-container__header"}>Upload a vacation application</div>

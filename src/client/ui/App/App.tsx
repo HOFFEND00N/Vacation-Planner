@@ -2,8 +2,8 @@ import { Switch, Route } from "react-router-dom";
 import React from "react";
 import moment from "moment";
 import { ThemeContext, theme } from "@confirmit/react-themes";
+import { PlanVacation } from "../PlanVacation/PlanVacation";
 import Banner from "@confirmit/react-banner";
-import { PlanVacation } from "../PlanVacation";
 import { TableCalendar } from "../TableCalendar";
 import "./app.css";
 
