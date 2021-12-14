@@ -1,15 +1,15 @@
-export const CONFIG = {
-  SITE_PROTOCOL: "SITE_PROTOCOL",
-  SITE_DOMAIN: "SITE_DOMAIN",
-  SITE_SERVER_PORT: "SITE_SERVER_PORT",
-  SITE_CLIENT_PORT: "SITE_CLIENT_PORT",
-  DB_CONNECTION: "DB_CONNECTION",
-};
+export enum CONFIG {
+  SITE_PROTOCOL = "SITE_PROTOCOL",
+  SITE_DOMAIN = "SITE_DOMAIN",
+  SITE_SERVER_PORT = "SITE_SERVER_PORT",
+  SITE_CLIENT_PORT = "SITE_CLIENT_PORT",
+  DB_CONNECTION = "DB_CONNECTION",
+}
 
-export const MODELS_NAMES = {
-  USER: "User",
-  VACATION: "Vacation",
-};
+export enum MODELS_NAMES {
+  USER = "User",
+  VACATION = "Vacation",
+}
 
 export const TEAMS = [
   "Reporting Yaroslavl",
