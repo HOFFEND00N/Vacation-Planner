@@ -6,7 +6,7 @@ describe("useVacationSelected", () => {
     const expectedVacationStart = { isSelected: true, date: new Date("1-11-2021") };
     const expectedVacationEnd = { isSelected: false };
 
-    const { result } = renderHook(useVacationSelected);
+    const { result } = renderHook(() => useVacationSelected({}));
 
     act(() => {
       result.current.handleVacationSelected(new Date("1-11-2021"));
@@ -20,7 +20,7 @@ describe("useVacationSelected", () => {
     const expectedVacationStart = { isSelected: true, date: new Date("1-11-2021") };
     const expectedVacationEnd = { isSelected: true, date: new Date("1-15-2021") };
 
-    const { result } = renderHook(() => useVacationSelected());
+    const { result } = renderHook(() => useVacationSelected({}));
     act(() => {
       result.current.handleVacationSelected(new Date("1-11-2021"));
     });
@@ -36,7 +36,7 @@ describe("useVacationSelected", () => {
     const expectedVacationStart = { isSelected: true, date: new Date("1-21-2021") };
     const expectedVacationEnd = { isSelected: false };
 
-    const { result } = renderHook(() => useVacationSelected());
+    const { result } = renderHook(() => useVacationSelected({}));
     act(() => {
       result.current.handleVacationSelected(new Date("1-11-2021"));
     });
@@ -55,7 +55,7 @@ describe("useVacationSelected", () => {
     const expectedVacationStart = { isSelected: true, date: new Date("1-5-2021") };
     const expectedVacationEnd = { isSelected: false };
 
-    const { result } = renderHook(() => useVacationSelected());
+    const { result } = renderHook(() => useVacationSelected({}));
     act(() => {
       result.current.handleVacationSelected(new Date("1-11-2021"));
     });

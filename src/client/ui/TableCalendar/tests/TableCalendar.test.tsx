@@ -9,6 +9,18 @@ import { getVacations } from "../../../application/getVacations";
 
 jest.mock("../../../application/getVacations");
 jest.mock("../../../application/getTeamMembers");
+jest.mock("react-router-dom", () => ({
+  useLocation: jest.fn().mockReturnValue({
+    pathname: "/",
+    search: "",
+    hash: "",
+    state: null,
+    key: "5nvxpbdafa",
+  }),
+  useHistory: () => ({
+    push: jest.fn(),
+  }),
+}));
 jest.mock("../../../constants.ts", () => {
   return {};
 });
