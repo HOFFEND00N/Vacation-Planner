@@ -1,4 +1,4 @@
-import { Vacation } from "./vacation";
+import { Vacation } from "../types";
 
 export function findUserVacations({
   vacations,

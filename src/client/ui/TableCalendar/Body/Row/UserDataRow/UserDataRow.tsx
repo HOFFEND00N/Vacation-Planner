@@ -1,13 +1,12 @@
 import React from "react";
 import moment from "moment";
-import { User } from "../../../../../domain/user";
-import { Vacation } from "../../../../../domain/Vacation/vacation";
 import { Cell } from "../Cell";
 import "./user-data-row.css";
 import { getVacationsTypeByDayForCurrentMonth } from "../../../../../domain/Vacation/getVacationsTypeByDayForCurrentMonth";
 import { getTotalVacationsDays } from "../../../../../domain/Vacation/getTotalVacationsDays";
 import { TableCalendarStateType } from "../../../TableCalendar";
 import { Row } from "../Row";
+import { User, Vacation } from "../../../../../domain/types";
 import { makeStylesForUserDataRowElement } from "./makeStylesForUserDataRowElement";
 
 export function UserDataRow({

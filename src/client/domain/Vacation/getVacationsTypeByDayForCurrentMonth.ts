@@ -1,6 +1,6 @@
 import { Moment } from "moment";
 import { VacationTypeByDay } from "../../types";
-import { Vacation } from "./vacation";
+import { Vacation } from "../types";
 import { getVacationIntervalForCurrentMonth } from "./getVacationIntervalForCurrentMonth";
 
 export function getVacationsTypeByDayForCurrentMonth({

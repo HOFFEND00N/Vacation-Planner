@@ -3,7 +3,7 @@ import React from "react";
 import "@testing-library/jest-dom";
 import moment from "moment";
 import { TotalRow } from "../TotalRow";
-import { VacationType } from "../../../../../../domain/Vacation/vacation";
+import { VacationType } from "../../../../../../domain/types";
 
 describe("Total row", () => {
   test("should render, when 0 vacation passed", () => {

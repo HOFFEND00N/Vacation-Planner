@@ -1,4 +1,4 @@
-import { Vacation } from "./vacation";
+import { Vacation } from "../types";
 import { getDateDifferenceInDays } from "./getDateDifferenceInDays";
 
 export function getTotalVacationsDays(vacations: Vacation[]) {

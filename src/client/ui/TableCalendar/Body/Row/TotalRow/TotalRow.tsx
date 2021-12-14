@@ -2,9 +2,9 @@ import React from "react";
 import { Moment } from "moment";
 import "./total-row.css";
 import { Cell } from "../Cell";
-import { Vacation } from "../../../../../domain/Vacation/vacation";
 import { getVacationsCountByDays } from "../../../../../domain/Vacation/getVacationsCountByDays";
 import { Row } from "../Row";
+import { Vacation } from "../../../../../domain/types";
 import { makeStylesForTableTotalElement } from "./makeStylesForTableTotalElement";
 import { calculateDaylWorkloadPercentage } from "./calculateDaylWorkloadPercentage";
 

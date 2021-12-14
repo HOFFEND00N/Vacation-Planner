@@ -1,5 +1,4 @@
-import { Vacation, VacationType } from "./domain/Vacation/vacation";
-import { User } from "./domain/user";
+import { User, Vacation, VacationType } from "./domain/types";
 
 export type VacationTypeByDay = Record<number, VacationType>;
 

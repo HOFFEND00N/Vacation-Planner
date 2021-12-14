@@ -1,6 +1,6 @@
 import cn from "classnames";
-import { VacationType } from "../../../../../domain/Vacation/vacation";
 import "./user-data-row.css";
+import { VacationType } from "../../../../../domain/types";
 import { isCellSelectable } from "./isCellSelectable";
 import { isCellSelected } from "./isCellSelected";
 

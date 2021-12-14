@@ -6,7 +6,7 @@ import { UserDataRow } from "../UserDataRow";
 import "@testing-library/jest-dom";
 import { TableCalendarContext } from "../../../../TableCalendarContext/TableCalendarContext";
 
-describe("User data row", () => {
+describe("UserType data row", () => {
   test("should render", () => {
     const daysInMonth = 31;
 

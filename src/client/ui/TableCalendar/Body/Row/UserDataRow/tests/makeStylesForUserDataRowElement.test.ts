@@ -1,5 +1,5 @@
 import { makeStylesForUserDataRowElement } from "../makeStylesForUserDataRowElement";
-import { VacationType } from "../../../../../../domain/Vacation/vacation";
+import { VacationType } from "../../../../../../domain/types";
 
 describe("make styles for table body calendar element", () => {
   test("should have default class name, if second column cell without vacations passed", () => {

@@ -1,3 +1,7 @@
+export type User = {
+  name: string;
+  id: string;
+};
 export type Vacation = {
   id: string;
   start: Date;
