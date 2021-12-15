@@ -120,4 +120,39 @@ describe("find user vacations", () => {
 
     expect(actualVacations).toEqual(expectedVacations);
   });
+
+  test("should return one vacation, when vacations for different users passed", () => {
+    const expectedVacations: Vacation[] = [
+      {
+        start: new Date("1-1-2021"),
+        end: new Date("1-11-2021"),
+        userId: "1",
+        type: VacationType.APPROVED,
+        id: "vacation 1",
+      },
+    ];
+
+    const actualVacations = findUserVacations({
+      vacations: [
+        {
+          start: new Date("1-1-2021"),
+          end: new Date("1-11-2021"),
+          userId: "1",
+          type: VacationType.APPROVED,
+          id: "vacation 1",
+        },
+        {
+          start: new Date("1-21-2021"),
+          end: new Date("1-28-2021"),
+          userId: "2",
+          type: VacationType.APPROVED,
+          id: "vacation 2",
+        },
+      ],
+      userId: "1",
+      year: 2021,
+    });
+
+    expect(actualVacations).toEqual(expectedVacations);
+  });
 });
