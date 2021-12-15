@@ -9,6 +9,9 @@ import { getVacations } from "../../../application/getVacations";
 
 jest.mock("../../../application/getVacations");
 jest.mock("../../../application/getTeamMembers");
+jest.mock("../../../constants.ts", () => {
+  return {};
+});
 
 describe("Table calendar", () => {
   let currentTableCalendarDate;

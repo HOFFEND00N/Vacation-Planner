@@ -8,6 +8,9 @@ import { getVacations } from "../../../application/getVacations";
 
 jest.mock("../../../application/getVacations");
 jest.mock("../../../application/getTeamMembers");
+jest.mock("../../../constants.ts", () => {
+  return {};
+});
 
 test("should render App, select one day vacation, navigate to plan vacation page", async () => {
   (getTeamMembers as jest.Mock).mockReturnValue({

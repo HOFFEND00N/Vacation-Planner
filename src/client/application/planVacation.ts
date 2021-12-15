@@ -1,3 +1,5 @@
+import { BASE_SERVER_URL } from "../constants";
+
 export async function planVacation() {
-  return await fetch(`${SITE_PROTOCOL}${SITE_DOMAIN}${SITE_SERVER_PORT}/plan-vacation`, { method: "post" });
+  return await fetch(`${BASE_SERVER_URL}/plan-vacation`, { method: "post" });
 }

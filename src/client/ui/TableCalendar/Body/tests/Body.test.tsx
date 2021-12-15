@@ -10,6 +10,9 @@ import { TableCalendarContext } from "../../TableCalendarContext/TableCalendarCo
 
 jest.mock("../../../../application/getVacations");
 jest.mock("../../../../application/getTeamMembers");
+jest.mock("../../../../constants.ts", () => {
+  return {};
+});
 
 beforeEach(() => {
   (getTeamMembers as jest.Mock).mockReturnValue({

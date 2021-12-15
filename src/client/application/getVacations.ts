@@ -1,8 +1,9 @@
 import { Vacation } from "../domain/types";
+import { BASE_SERVER_URL } from "../constants";
 
 export async function getVacations(usersIds: string[]): Promise<Vacation[]> {
   const queryStringElements = usersIds.map((usersId) => `id=${usersId}`);
-  const url = `${SITE_PROTOCOL}${SITE_DOMAIN}${SITE_SERVER_PORT}/vacations?${queryStringElements.join("&")}`;
+  const url = `${BASE_SERVER_URL}/vacations?${queryStringElements.join("&")}`;
 
   const response = await fetch(url, { method: "get" });
   const parsedResponse = await response.json();
