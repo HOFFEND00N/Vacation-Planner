@@ -12,7 +12,7 @@ describe("get date difference in days", () => {
     expect(actualDateDifferenceInDays).toEqual(expectedDateDifferenceInDays);
   });
 
-  test("should return 2, when different dates in one month passed", () => {
+  test("should return 2, when 2 dates next to each other are passed", () => {
     const expectedDateDifferenceInDays = 2;
 
     const actualDateDifferenceInDays = getDateDifferenceInDays({
