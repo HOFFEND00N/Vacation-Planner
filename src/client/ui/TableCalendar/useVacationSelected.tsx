@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { TableCalendarStateType } from "./TableCalendar";
+
+export type TableCalendarStateType = {
+  date?: Date;
+  isSelected: boolean;
+};
 
 export function useVacationSelected() {
   const [vacationStart, setVacationStart] = useState<TableCalendarStateType>({

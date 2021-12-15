@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@confirmit/react-button";
 import { useHistory } from "react-router-dom";
-import { TableCalendarStateType } from "../TableCalendar";
+import { TableCalendarStateType } from "../useVacationSelected";
 import { Legend } from "./Legend";
 import { SelectedDates } from "./SelectedDates";
 import "./footer.css";

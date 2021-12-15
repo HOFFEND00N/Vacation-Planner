@@ -30,7 +30,7 @@ describe("Table calendar", () => {
   test("should render, plan vacation button is disabled, then click on not selectable cell", async () => {
     render(<TableCalendar currentDate={currentTableCalendarDate} />);
 
-    expect(screen.getByTestId("table-calendar-container")).toBeInTheDocument();
+    expect(screen.getByTestId("table-calendar")).toBeInTheDocument();
     expect(screen.getByTestId("pager")).toBeInTheDocument();
     expect(screen.getByTestId("legend-container")).toBeInTheDocument();
     expect(screen.getByText("Please wait, searching your teammates...")).toBeInTheDocument();

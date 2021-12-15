@@ -1,5 +1,5 @@
 import React from "react";
-import { TableCalendarStateType } from "../../TableCalendar";
+import { TableCalendarStateType } from "../../useVacationSelected";
 
 export function SelectedDates({
   vacationStart,

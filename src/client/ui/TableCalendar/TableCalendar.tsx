@@ -7,11 +7,6 @@ import "./table-calendar.css";
 import { Footer } from "./Footer";
 import { useVacationSelected } from "./useVacationSelected";
 
-export type TableCalendarStateType = {
-  date?: Date;
-  isSelected: boolean;
-};
-
 export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
   const [currentTableCalendarDate, setCurrentTableCalendarDate] = useState(currentDate);
   const { vacationStart, vacationEnd, handleVacationSelected } = useVacationSelected();
@@ -30,7 +25,7 @@ export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
   }
 
   return (
-    <div className={"table-calendar-container"} data-testid={"table-calendar-container"}>
+    <div className={"table-calendar"} data-testid={"table-calendar"}>
       <Pager
         handlePreviousMonthChange={handlePreviousMonthChange}
         handleNextMonthChange={handleNextMonthChange}

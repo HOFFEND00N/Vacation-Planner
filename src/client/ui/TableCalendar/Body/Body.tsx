@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction, useEffect, useReducer } from "react";
 import moment from "moment";
 import { getTeamMembers } from "../../../application/getTeamMembers";
 import { getVacations } from "../../../application/getVacations";
-import { TableCalendarStateType } from "../TableCalendar";
+import { TableCalendarStateType } from "../useVacationSelected";
 import { findUserVacations } from "../../../domain/Vacation/findUserVacations";
 import { UserDataRow } from "./Row/UserDataRow";
 import { HeaderRow } from "./Row/HeaderRow";
