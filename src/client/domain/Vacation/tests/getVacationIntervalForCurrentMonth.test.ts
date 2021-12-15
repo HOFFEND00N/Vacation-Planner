@@ -89,7 +89,7 @@ describe("get vacation interval for current month", () => {
     expect(actualIntervalForCurrentMonth).toEqual(expectedIntervalForCurrentMonth);
   });
 
-  test("should return default interval, when vacation with dates for previous year passed", () => {
+  test("should return default interval, when vacation with dates for not current year passed", () => {
     const expectedIntervalForCurrentMonth: VacationInterval = { start: -1, end: -1 };
 
     const actualIntervalForCurrentMonth = getVacationIntervalForCurrentMonth({
