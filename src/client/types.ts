@@ -15,3 +15,8 @@ export type BodyReducerStateType = {
 };
 
 export type BodyReducerActionType = BodyReducerStateType & { type: string };
+
+export enum HttpMethod {
+  GET = "get",
+  POST = "post",
+}

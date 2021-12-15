@@ -1,8 +1,10 @@
 import { User } from "../domain/types";
 import { BASE_SERVER_URL } from "../constants";
+import { HttpMethod } from "../types";
+import { sendRequestToServer } from "./sendRequestToServer";
 
 export async function getTeamMembers(): Promise<{ teamMembers: User[]; currentUser: User }> {
-  const response = await fetch(`${BASE_SERVER_URL}/team-members`, { method: "get" });
-  const parsedResponse = await response.json();
-  return { teamMembers: parsedResponse.team, currentUser: parsedResponse.currentUser };
+  const url = `${BASE_SERVER_URL}/team-members`;
+  const response = await sendRequestToServer({ url, method: HttpMethod.GET });
+  return { teamMembers: response.team, currentUser: response.currentUser };
 }

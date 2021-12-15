@@ -1,4 +1,4 @@
-export enum CONFIG {
+export enum Config {
   SITE_PROTOCOL = "SITE_PROTOCOL",
   SITE_DOMAIN = "SITE_DOMAIN",
   SITE_SERVER_PORT = "SITE_SERVER_PORT",
@@ -6,7 +6,7 @@ export enum CONFIG {
   DB_CONNECTION = "DB_CONNECTION",
 }
 
-export enum MODELS_NAMES {
+export enum ModelsNames {
   USER = "User",
   VACATION = "Vacation",
 }

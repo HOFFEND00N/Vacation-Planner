@@ -22,7 +22,7 @@ export function PlanVacation() {
     setUploadState(UploadStates.Uploading);
     const res = await planVacation();
     //TODO: FTP server, web server, time server
-    console.log(res.json());
+    console.log(res);
     alert(`file = ${files[0].name}, vacation start = ${vacationStart}, vacation end = ${vacationEnd}`);
   };
 

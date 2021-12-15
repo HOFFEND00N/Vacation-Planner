@@ -1,5 +1,8 @@
 import { BASE_SERVER_URL } from "../constants";
+import { HttpMethod } from "../types";
+import { sendRequestToServer } from "./sendRequestToServer";
 
 export async function planVacation() {
-  return await fetch(`${BASE_SERVER_URL}/plan-vacation`, { method: "post" });
+  const url = `${BASE_SERVER_URL}/plan-vacation`;
+  return await sendRequestToServer({ url, method: HttpMethod.POST });
 }

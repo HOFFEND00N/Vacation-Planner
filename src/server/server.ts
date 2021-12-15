@@ -4,7 +4,7 @@ import nconf from "nconf";
 import { sso } from "node-expose-sspi";
 import ActiveDirectory from "activedirectory";
 import { Op } from "sequelize";
-import { CONFIG, MODELS_NAMES, TEAMS } from "../constants";
+import { Config, ModelsNames, TEAMS } from "../constants";
 import { makeIndexHtml } from "./makeIndexHtml";
 import { setupConfig } from "./setupConfig";
 import { setupDBConnection } from "./DBHelpers/setupDBConnection";
@@ -17,7 +17,7 @@ import { entryParser } from "./ADHelpers/entryParser";
   setupConfig();
   const dbConnection = await setupDBConnection();
   await setupDBModels(dbConnection);
-  const port = nconf.get(CONFIG.SITE_SERVER_PORT);
+  const port = nconf.get(Config.SITE_SERVER_PORT);
 
   const server = express();
 
@@ -62,7 +62,7 @@ import { entryParser } from "./ADHelpers/entryParser";
   server.get("/vacations", async (req, res) => {
     const usersIds = req.query.id as string[];
 
-    const usersVacations = await dbConnection.models[MODELS_NAMES.VACATION].findAll({
+    const usersVacations = await dbConnection.models[ModelsNames.VACATION].findAll({
       where: { userId: { [Op.or]: usersIds } },
     });
 

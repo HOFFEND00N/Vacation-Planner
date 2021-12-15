@@ -1,9 +1,9 @@
 import { Sequelize } from "sequelize";
 import nconf from "nconf";
-import { CONFIG } from "../../constants";
+import { Config } from "../../constants";
 
 export async function setupDBConnection() {
-  const sequelize = new Sequelize(nconf.get(CONFIG.DB_CONNECTION));
+  const sequelize = new Sequelize(nconf.get(Config.DB_CONNECTION));
 
   try {
     await sequelize.authenticate();
