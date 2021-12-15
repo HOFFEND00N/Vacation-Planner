@@ -11,7 +11,7 @@ export function App() {
       <Route path="/plan-vacation">
         <PlanVacation />
       </Route>
-      <Route path={["/home", "/"]}>
+      <Route path="/">
         <TableCalendar currentDate={moment()} />;
       </Route>
     </Switch>
