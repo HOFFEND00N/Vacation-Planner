@@ -12,32 +12,29 @@ export function getVacationIntervalForCurrentMonth({
   currentTableCalendarDate: Moment;
 }) {
   const vacationInterval: VacationInterval = { start: -1, end: -1 };
-  if (
+  const isVacationInCurrentYear =
     vacation.start.getFullYear() === currentTableCalendarDate.year() &&
-    vacation.end.getFullYear() === currentTableCalendarDate.year()
-  ) {
-    if (
-      vacation.start.getMonth() < currentTableCalendarDate.month() &&
-      vacation.end.getMonth() === currentTableCalendarDate.month()
-    ) {
+    vacation.end.getFullYear() === currentTableCalendarDate.year();
+
+  const isVacationEndInCurrentMonth = vacation.end.getMonth() === currentTableCalendarDate.month();
+  const isVacationStartInCurrentMonth = vacation.start.getMonth() === currentTableCalendarDate.month();
+  const isVacationStartInPreviousMonths = vacation.start.getMonth() < currentTableCalendarDate.month();
+  const isVacationEndInNextMonths = vacation.end.getMonth() > currentTableCalendarDate.month();
+
+  if (isVacationInCurrentYear) {
+    if (isVacationStartInPreviousMonths && isVacationEndInCurrentMonth) {
       vacationInterval.start = 1;
       vacationInterval.end = vacation.end.getDate();
-    } else if (
-      vacation.start.getMonth() === currentTableCalendarDate.month() &&
-      vacation.end.getMonth() === currentTableCalendarDate.month()
-    ) {
+    }
+    if (isVacationStartInCurrentMonth && isVacationEndInCurrentMonth) {
       vacationInterval.start = vacation.start.getDate();
       vacationInterval.end = vacation.end.getDate();
-    } else if (
-      vacation.start.getMonth() === currentTableCalendarDate.month() &&
-      vacation.end.getMonth() > currentTableCalendarDate.month()
-    ) {
+    }
+    if (isVacationStartInCurrentMonth && isVacationEndInNextMonths) {
       vacationInterval.start = vacation.start.getDate();
       vacationInterval.end = currentTableCalendarDate.daysInMonth();
-    } else if (
-      vacation.start.getMonth() < currentTableCalendarDate.month() &&
-      vacation.end.getMonth() > currentTableCalendarDate.month()
-    ) {
+    }
+    if (isVacationStartInPreviousMonths && isVacationEndInNextMonths) {
       vacationInterval.start = 1;
       vacationInterval.end = currentTableCalendarDate.daysInMonth();
     }
