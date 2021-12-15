@@ -14,7 +14,7 @@ export async function findGroupMembers({
       }
 
       if (!users) {
-        console.log("Group: " + groupName + " not found.");
+        reject(new Error("Group: " + groupName + " not found."));
       } else {
         resolve(users);
       }
