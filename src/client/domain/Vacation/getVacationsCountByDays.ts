@@ -10,10 +10,10 @@ export function getVacationsCountByDays({
   currentTableCalendarDate: moment.Moment;
 }) {
   const vacationsCountByDays: VacationCountByDays = {};
-  vacations.map((vacation) => {
+  vacations.forEach((vacation) => {
     const vacationInterval = getVacationIntervalForCurrentMonth({
       vacation,
-      currentTableCalendarDate: currentTableCalendarDate,
+      currentTableCalendarDate,
     });
     for (let i = vacationInterval.start; i < vacationInterval.end + 1; i++) {
       vacationsCountByDays[i] = (vacationsCountByDays[i] ?? 0) + 1;
