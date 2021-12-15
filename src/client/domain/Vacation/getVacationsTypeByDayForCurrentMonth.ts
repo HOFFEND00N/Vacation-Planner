@@ -12,10 +12,10 @@ export function getVacationsTypeByDayForCurrentMonth({
 }) {
   const vacationTypeByDay: VacationTypeByDay = {};
 
-  vacations.map((vacation) => {
+  vacations.forEach((vacation) => {
     const vacationInterval = getVacationIntervalForCurrentMonth({
       vacation,
-      currentTableCalendarDate: currentTableCalendarDate,
+      currentTableCalendarDate,
     });
 
     for (let i = vacationInterval.start; i < vacationInterval.end + 1; i++) {
