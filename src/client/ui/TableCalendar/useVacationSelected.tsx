@@ -8,11 +8,9 @@ export type TableCalendarStateType = {
 export function useVacationSelected() {
   const [vacationStart, setVacationStart] = useState<TableCalendarStateType>({
     isSelected: false,
-    date: undefined,
   });
   const [vacationEnd, setVacationEnd] = useState<TableCalendarStateType>({
     isSelected: false,
-    date: undefined,
   });
 
   function handleVacationSelected(date: Date) {
