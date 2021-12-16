@@ -33,9 +33,9 @@ export async function findUserTeam({
   if (userTeams.length > 1)
     console.log(
       `${username} is a member of several teams: ${userTeamsMembership.map((userTeamMembership) => {
-        if (userTeamMembership.isMember) return userTeamMembership;
+        if (userTeamMembership.isMember) return userTeamMembership.team;
       })}`
     );
 
-  return userTeams[0];
+  return userTeams[0] ?? "";
 }
