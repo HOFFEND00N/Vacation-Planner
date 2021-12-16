@@ -79,22 +79,22 @@
     "webpack": "5.51.1",
     "webpack-cli": "4.8.0",
     "webpack-dev-server": "4.1.0",
-    "webpack-node-externals": "3.0.0"
+    "webpack-node-externals": "3.0.0",
+    "moment": "2.29.1",
+    "classnames": "2.x",
+    "core-js": "3.18.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-router-dom": "5.2.1",
+    "react-transition-group": "4.4.2"
   },
   "dependencies": {
     "activedirectory": "0.7.2",
-    "classnames": "2.x",
-    "core-js": "3.18.2",
     "express": "4.17.1",
-    "moment": "2.29.1",
     "nconf": "0.11.3",
     "node-expose-sspi": "0.1.59",
     "pg": "8.7.1",
     "pg-hstore": "2.3.4",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-router-dom": "5.2.1",
-    "react-transition-group": "4.4.2",
     "sequelize": "6.6.5"
   },
   "lint-staged": {
