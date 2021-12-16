@@ -2,7 +2,7 @@ import { findGroupMembers } from "../findGroupMembers";
 import { IActiveDirectory, ITeamMember } from "../../types";
 
 describe("find group member", () => {
-  test("should return error, when connection to AD fails", async () => {
+  test("should return error, when getUsersForGroup return error", async () => {
     const expectedError = new Error("something went wrong");
 
     const ad: IActiveDirectory = {
