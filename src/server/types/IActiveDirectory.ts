@@ -12,10 +12,4 @@ export interface IActiveDirectory {
     groupName: string,
     callback: (error: Error | null, users?: ITeamMember[]) => void
   ) => void;
-
-  findUser: (
-    options: { attributes: string[] },
-    username: string,
-    callback: (error: Error | null, user?: ITeamMember) => void
-  ) => void;
 }

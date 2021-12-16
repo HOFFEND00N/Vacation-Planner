@@ -13,7 +13,6 @@ describe("find group member", () => {
       ) => {
         callback(expectedError, [{ dn: "", description: "", displayName: "", userPrincipalName: "", objectGUID: "" }]);
       },
-      findUser: jest.fn(),
       isUserMemberOf: jest.fn(),
     };
 
@@ -37,7 +36,6 @@ describe("find group member", () => {
       ) => {
         callback(null);
       },
-      findUser: jest.fn(),
       isUserMemberOf: jest.fn(),
     };
 
@@ -91,7 +89,6 @@ describe("find group member", () => {
           },
         ]);
       },
-      findUser: jest.fn(),
       isUserMemberOf: jest.fn(),
     };
 
