@@ -23,7 +23,7 @@ describe("get date difference in days", () => {
     expect(actualDateDifferenceInDays).toEqual(expectedDateDifferenceInDays);
   });
 
-  test("should return 33, when different dates in different months passed", () => {
+  test("should correctly calculate difference between dates, when they have different months", () => {
     const expectedDateDifferenceInDays = 33;
 
     const actualDateDifferenceInDays = getDateDifferenceInDays({
