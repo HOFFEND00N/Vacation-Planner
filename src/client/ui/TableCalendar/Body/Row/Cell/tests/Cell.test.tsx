@@ -18,7 +18,7 @@ describe("Cell ", () => {
 
     render(
       <TableCalendarContext.Provider value={{ handleClick: mockOnClick, currentTableCalendarDate: moment() }}>
-        <Cell value={"test value"} classNames={"test class name"} date={new Date("1-11-2021")} />
+        <Cell value={"test value"} classNames={"test class name"} date={new Date("1-11-2021")} isCellSelectable />
       </TableCalendarContext.Provider>
     );
     userEvent.click(screen.getByText("test value"));

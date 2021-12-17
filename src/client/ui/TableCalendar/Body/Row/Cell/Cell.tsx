@@ -2,9 +2,15 @@ import React, { useContext } from "react";
 import cn from "classnames";
 import { TableCalendarContext } from "../../../TableCalendarContext/TableCalendarContext";
 
-type CellProps = { value?: number | string; classNames?: string; isDaysColumn?: boolean; date?: Date };
+type CellProps = {
+  value?: number | string;
+  classNames?: string;
+  isDaysColumn?: boolean;
+  date?: Date;
+  isCellSelectable?: boolean;
+};
 
-export const Cell = ({ value, isDaysColumn, date, classNames }: CellProps) => {
+export const Cell = ({ value, isDaysColumn, date, classNames, isCellSelectable }: CellProps) => {
   const tableCalendarContext = useContext(TableCalendarContext);
 
   if (isDaysColumn) {
@@ -14,7 +20,7 @@ export const Cell = ({ value, isDaysColumn, date, classNames }: CellProps) => {
   return (
     <div
       className={cn("cell", classNames)}
-      onClick={() => (date !== undefined ? tableCalendarContext.handleClick(date) : undefined)}
+      onClick={() => (isCellSelectable ? tableCalendarContext.handleClick(date as Date) : undefined)}
       data-testid={"table-cell"}
     >
       {value}
