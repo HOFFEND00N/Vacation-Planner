@@ -25,7 +25,7 @@ export const TableCalendar = ({ currentDate }: { currentDate: moment.Moment }) =
   }
 
   return (
-    <div className={"table-calendar"} data-testid={"table-calendar"}>
+    <div className="table-calendar" data-testid={"table-calendar"}>
       <TableCalendarContext.Provider
         value={{ handleClick: handleVacationSelected, currentTableCalendarDate: currentTableCalendarDate }}
       >

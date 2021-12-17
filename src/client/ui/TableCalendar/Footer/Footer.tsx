@@ -23,11 +23,11 @@ export const Footer = ({
   };
 
   return (
-    <div className={"footer-container"} data-testid={"footer-container"}>
+    <div className="footer-container" data-testid={"footer-container"}>
       <Legend />
       <SelectedDates vacationStart={vacationStart} vacationEnd={vacationEnd} />
       <Button
-        className={"footer-container__plan-vacation-button"}
+        className="footer-container__plan-vacation-button"
         disabled={!vacationStart.isSelected && !vacationEnd.isSelected}
         data-testid={"plan-vacation-button"}
         onClick={handleClick}

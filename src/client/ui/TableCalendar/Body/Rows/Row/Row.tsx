@@ -7,7 +7,7 @@ type RowProps = {
 
 export const Row: React.FC<RowProps> = ({ children, dataTestId }) => {
   return (
-    <div data-testid={dataTestId} className={"row"}>
+    <div data-testid={dataTestId} className="row">
       {children}
     </div>
   );

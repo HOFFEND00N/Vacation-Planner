@@ -12,7 +12,7 @@ export const Legend = () => {
     { className: "legend-item__total__heavy-workload", itemName: "Heavy workload" },
   ];
   return (
-    <div className={"legend-container"} data-testid={"legend-container"}>
+    <div className="legend-container" data-testid={"legend-container"}>
       {legendItemsValues.map((legendItemsValue, index) => (
         <LegendItem className={legendItemsValue.className} itemName={legendItemsValue.itemName} key={index} />
       ))}
