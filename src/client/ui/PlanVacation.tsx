@@ -6,7 +6,7 @@ import Dropzone, { UploadStates } from "@confirmit/react-dropzone";
 import { useLocation } from "react-router-dom";
 import { planVacation } from "../application/planVacation";
 
-export function PlanVacation() {
+export const PlanVacation = () => {
   const [uploadState, setUploadState] = useState(UploadStates.Idle);
   const [files, setFiles] = useState<File[]>([]);
   const [selectedFileName, setSelectedFileName] = useState("");
@@ -60,4 +60,4 @@ export function PlanVacation() {
       <Button onClick={handleSubmit}> Отправить </Button>
     </>
   );
-}
+};

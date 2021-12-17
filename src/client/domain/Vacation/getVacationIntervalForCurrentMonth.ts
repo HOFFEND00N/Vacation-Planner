@@ -4,13 +4,13 @@ import { Vacation } from "../types";
 
 //6 variants of vacation dates in case of month: prev/current, current/current, current/next, prev/next.
 // prev/prev, next/next - dont care about this cases.
-export function getVacationIntervalForCurrentMonth({
+export const getVacationIntervalForCurrentMonth = ({
   vacation,
   currentTableCalendarDate,
 }: {
   vacation: Vacation;
   currentTableCalendarDate: Moment;
-}) {
+}) => {
   const vacationInterval: VacationInterval = { start: -1, end: -1 };
   const isVacationInCurrentYear =
     vacation.start.getFullYear() === currentTableCalendarDate.year() &&
@@ -40,4 +40,4 @@ export function getVacationIntervalForCurrentMonth({
     }
   }
   return vacationInterval;
-}
+};

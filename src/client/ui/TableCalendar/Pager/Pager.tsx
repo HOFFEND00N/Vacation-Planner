@@ -5,13 +5,13 @@ import "./pager.css";
 import { TableCalendarContext } from "../TableCalendarContext/TableCalendarContext";
 import { makePagerName } from "./makePagerName";
 
-export function Pager({
+export const Pager = ({
   handlePreviousMonthChange,
   handleNextMonthChange,
 }: {
   handlePreviousMonthChange: () => void;
   handleNextMonthChange: () => void;
-}) {
+}) => {
   const tableCalendarContext = useContext(TableCalendarContext);
 
   return (
@@ -35,4 +35,4 @@ export function Pager({
       </IconButton>
     </div>
   );
-}
+};

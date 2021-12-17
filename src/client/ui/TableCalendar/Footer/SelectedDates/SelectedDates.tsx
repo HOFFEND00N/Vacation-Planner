@@ -1,13 +1,13 @@
 import React from "react";
 import { TableCalendarStateType } from "../../useVacationSelected";
 
-export function SelectedDates({
+export const SelectedDates = ({
   vacationStart,
   vacationEnd,
 }: {
   vacationStart: TableCalendarStateType;
   vacationEnd: TableCalendarStateType;
-}) {
+}) => {
   let selectedDates = "";
   if (vacationStart.isSelected && vacationStart.date) {
     selectedDates = vacationStart.date.toDateString();
@@ -16,4 +16,4 @@ export function SelectedDates({
     selectedDates = `${selectedDates} - ${vacationEnd.date.toDateString()}`;
   }
   return <div data-testid={"selected-dates"}>{selectedDates}</div>;
-}
+};

@@ -9,7 +9,7 @@ import { User, Vacation } from "../../../../../domain/types";
 import { TableCalendarContext } from "../../../TableCalendarContext/TableCalendarContext";
 import { makeStylesForUserDataRowElement } from "./makeStylesForUserDataRowElement";
 
-export function UserDataRow({
+export const UserDataRow = ({
   daysInMonth,
   vacations,
   user,
@@ -25,7 +25,7 @@ export function UserDataRow({
   vacationEnd: TableCalendarStateType;
   currentUser: User;
   employeeName: string;
-}) {
+}) => {
   const tableCalendarContext = useContext(TableCalendarContext);
 
   const cells: JSX.Element[] = [];
@@ -64,4 +64,4 @@ export function UserDataRow({
       {cells}
     </Row>
   );
-}
+};

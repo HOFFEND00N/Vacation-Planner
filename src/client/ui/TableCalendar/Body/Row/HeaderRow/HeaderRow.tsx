@@ -3,7 +3,7 @@ import "../../body.css";
 import { Cell } from "../Cell";
 import { Row } from "../Row";
 
-export function HeaderRow({ daysInMonth }: { daysInMonth: number }) {
+export const HeaderRow = ({ daysInMonth }: { daysInMonth: number }) => {
   const cells: JSX.Element[] = [];
   for (let j = 1; j < daysInMonth + 1; j++) {
     cells.push(<Cell value={j} key={j + 1} />);
@@ -15,4 +15,4 @@ export function HeaderRow({ daysInMonth }: { daysInMonth: number }) {
       {cells}
     </Row>
   );
-}
+};

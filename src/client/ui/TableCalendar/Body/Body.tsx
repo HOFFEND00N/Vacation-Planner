@@ -15,7 +15,7 @@ type propsType = {
   setErrorMessage: Dispatch<SetStateAction<string | undefined>>;
 };
 
-export function Body({ vacationStart, vacationEnd, setErrorMessage }: propsType) {
+export const Body = ({ vacationStart, vacationEnd, setErrorMessage }: propsType) => {
   const [{ isDataFetched, currentUser, teamMembers, vacations }, dispatch] = useReducer(
     reducer,
     bodyReducerInitialState
@@ -64,4 +64,4 @@ export function Body({ vacationStart, vacationEnd, setErrorMessage }: propsType)
       <TotalRow daysInMonth={daysInMonth} vacations={vacations} teamMembersCount={teamMembers.length} />
     </div>
   );
-}
+};

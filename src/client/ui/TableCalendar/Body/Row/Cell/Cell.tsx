@@ -3,7 +3,7 @@ import { TableCalendarContext } from "../../../TableCalendarContext/TableCalenda
 
 type CellProps = { value: number | string; classNames?: string; isDaysColumn?: boolean; date?: Date };
 
-export function Cell({ value, isDaysColumn, date, classNames }: CellProps) {
+export const Cell = ({ value, isDaysColumn, date, classNames }: CellProps) => {
   const tableCalendarContext = useContext(TableCalendarContext);
 
   if (isDaysColumn) {
@@ -19,4 +19,4 @@ export function Cell({ value, isDaysColumn, date, classNames }: CellProps) {
       {value}
     </div>
   );
-}
+};

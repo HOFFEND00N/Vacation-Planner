@@ -5,7 +5,7 @@ import { PlanVacation } from "../PlanVacation";
 import { TableCalendar } from "../TableCalendar";
 import "./app.css";
 
-export function App() {
+export const App = () => {
   return (
     <Switch>
       <Route path="/plan-vacation">
@@ -16,4 +16,4 @@ export function App() {
       </Route>
     </Switch>
   );
-}
+};

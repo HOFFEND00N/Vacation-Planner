@@ -3,7 +3,7 @@ import { BASE_SERVER_URL } from "../constants";
 import { HttpMethod } from "../types";
 import { sendRequestToServer } from "./sendRequestToServer";
 
-export async function getVacations(usersIds: string[]): Promise<Vacation[]> {
+export const getVacations = async (usersIds: string[]): Promise<Vacation[]> => {
   const queryStringElements = usersIds.map((usersId) => `id=${usersId}`);
   const url = `${BASE_SERVER_URL}/vacations?${queryStringElements.join("&")}`;
 
@@ -14,4 +14,4 @@ export async function getVacations(usersIds: string[]): Promise<Vacation[]> {
     vacation.end = new Date(vacation.end);
     return vacation;
   });
-}
+};

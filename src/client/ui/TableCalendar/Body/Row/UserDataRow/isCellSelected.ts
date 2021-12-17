@@ -1,4 +1,4 @@
-export function isCellSelected({
+export const isCellSelected = ({
   vacationStartDate,
   vacationEndDate,
   cellDate,
@@ -8,7 +8,7 @@ export function isCellSelected({
   vacationEndDate?: Date;
   cellDate: Date;
   columnNumber: number;
-}) {
+}) => {
   if (!vacationStartDate) {
     return false;
   }
@@ -16,4 +16,4 @@ export function isCellSelected({
     vacationEndDate = vacationStartDate;
   }
   return cellDate >= vacationStartDate && cellDate <= vacationEndDate && columnNumber !== 0;
-}
+};

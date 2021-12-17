@@ -1,7 +1,7 @@
 import nconf from "nconf";
 import { Config } from "../constants";
 
-export function makeIndexHtml() {
+export const makeIndexHtml = () => {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,4 +14,4 @@ export function makeIndexHtml() {
 </body>
 </html>
 `;
-}
+};

@@ -1,14 +1,14 @@
 import { IActiveDirectory, ITeamMember } from "../types";
 
-export async function findGroupMembers({
+export const findGroupMembers = async ({
   groupName,
   activeDirectory,
 }: {
   groupName: string;
   activeDirectory: IActiveDirectory;
-}): Promise<ITeamMember[]> {
+}): Promise<ITeamMember[]> => {
   return new Promise((resolve, reject) => {
-    activeDirectory.getUsersForGroup({ attributes: [] }, groupName, function (error, users) {
+    activeDirectory.getUsersForGroup({ attributes: [] }, groupName, (error, users) => {
       if (error) {
         reject(error);
       }
@@ -20,4 +20,4 @@ export async function findGroupMembers({
       }
     });
   });
-}
+};

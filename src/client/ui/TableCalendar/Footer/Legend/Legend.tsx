@@ -2,7 +2,7 @@ import React from "react";
 import { LegendItem } from "./LegendItem";
 import "./legend.css";
 
-export function Legend() {
+export const Legend = () => {
   const legendItemsValues = [
     { className: "legend-item__vacation-approved", itemName: "Vacation approved" },
     { className: "legend-item__vacation-pending-approval", itemName: "Vacation pending approval" },
@@ -18,4 +18,4 @@ export function Legend() {
       ))}
     </div>
   );
-}
+};

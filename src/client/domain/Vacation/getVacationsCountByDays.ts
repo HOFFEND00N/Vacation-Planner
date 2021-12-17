@@ -2,13 +2,13 @@ import moment from "moment";
 import { Vacation, VacationCountByDays } from "../types";
 import { getVacationIntervalForCurrentMonth } from "./getVacationIntervalForCurrentMonth";
 
-export function getVacationsCountByDays({
+export const getVacationsCountByDays = ({
   vacations,
   currentTableCalendarDate,
 }: {
   vacations: Vacation[];
   currentTableCalendarDate: moment.Moment;
-}) {
+}) => {
   const vacationsCountByDays: VacationCountByDays = {};
   vacations.forEach((vacation) => {
     const vacationInterval = getVacationIntervalForCurrentMonth({
@@ -20,4 +20,4 @@ export function getVacationsCountByDays({
     }
   });
   return vacationsCountByDays;
-}
+};

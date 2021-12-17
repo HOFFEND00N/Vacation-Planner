@@ -4,7 +4,7 @@ import { VacationType } from "../../../../../domain/types";
 import { isCellSelectable } from "./isCellSelectable";
 import { isCellSelected } from "./isCellSelected";
 
-export function makeStylesForUserDataRowElement({
+export const makeStylesForUserDataRowElement = ({
   vacationStartDate,
   vacationEndDate,
   columnNumber,
@@ -20,7 +20,7 @@ export function makeStylesForUserDataRowElement({
   userId: string;
   currentUserId: string;
   vacationType?: VacationType;
-}) {
+}) => {
   let classNames = `cell`;
 
   switch (vacationType) {
@@ -49,4 +49,4 @@ export function makeStylesForUserDataRowElement({
   }
 
   return classNames;
-}
+};

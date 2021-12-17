@@ -1,5 +1,5 @@
 import nconf from "nconf";
 
-export function setupConfig() {
+export const setupConfig = () => {
   nconf.argv().env().file({ file: "developmentConfig.json" });
-}
+};

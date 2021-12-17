@@ -6,13 +6,13 @@ import { Legend } from "./Legend";
 import { SelectedDates } from "./SelectedDates";
 import "./footer.css";
 
-export function Footer({
+export const Footer = ({
   vacationStart,
   vacationEnd,
 }: {
   vacationStart: TableCalendarStateType;
   vacationEnd: TableCalendarStateType;
-}) {
+}) => {
   const history = useHistory();
 
   const handleClick = () => {
@@ -36,4 +36,4 @@ export function Footer({
       </Button>
     </div>
   );
-}
+};

@@ -14,7 +14,7 @@ type TotalRowProps = {
   teamMembersCount: number;
 };
 
-export function TotalRow({ vacations, daysInMonth, teamMembersCount }: TotalRowProps) {
+export const TotalRow = ({ vacations, daysInMonth, teamMembersCount }: TotalRowProps) => {
   const tableCalendarContext = useContext(TableCalendarContext);
   const vacationsCountByDays = getVacationsCountByDays({
     vacations,
@@ -35,4 +35,4 @@ export function TotalRow({ vacations, daysInMonth, teamMembersCount }: TotalRowP
       {cells}
     </Row>
   );
-}
+};

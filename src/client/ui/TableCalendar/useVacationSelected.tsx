@@ -5,7 +5,7 @@ export type TableCalendarStateType = {
   isSelected: boolean;
 };
 
-export function useVacationSelected() {
+export const useVacationSelected = () => {
   const [vacationStart, setVacationStart] = useState<TableCalendarStateType>({
     isSelected: false,
   });
@@ -13,7 +13,7 @@ export function useVacationSelected() {
     isSelected: false,
   });
 
-  function handleVacationSelected(date: Date) {
+  const handleVacationSelected = (date: Date) => {
     if (!vacationStart.isSelected) {
       setVacationStart({ isSelected: true, date });
       setVacationEnd({ isSelected: false });
@@ -28,7 +28,7 @@ export function useVacationSelected() {
       setVacationStart({ isSelected: true, date });
       setVacationEnd({ isSelected: false });
     }
-  }
+  };
 
   return { vacationStart, vacationEnd, handleVacationSelected };
-}
+};

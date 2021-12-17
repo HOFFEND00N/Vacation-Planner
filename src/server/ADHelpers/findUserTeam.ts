@@ -1,6 +1,6 @@
 import { IActiveDirectory } from "../types";
 
-export async function findUserTeam({
+export const findUserTeam = async ({
   teams,
   username,
   activeDirectory,
@@ -8,11 +8,11 @@ export async function findUserTeam({
   teams: string[];
   username: string;
   activeDirectory: IActiveDirectory;
-}) {
+}) => {
   const ADQueries: Promise<{ team: string; isMember: boolean }>[] = teams.map(
     (team) =>
       new Promise((resolve, reject) => {
-        activeDirectory.isUserMemberOf(username, team, function (error: Error, isMember: boolean) {
+        activeDirectory.isUserMemberOf(username, team, (error: Error, isMember: boolean) => {
           if (error) {
             console.log(error);
             reject(error);
@@ -38,4 +38,4 @@ export async function findUserTeam({
     );
 
   return userTeams[0] ?? "";
-}
+};

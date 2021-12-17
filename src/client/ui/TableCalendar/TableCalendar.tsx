@@ -7,18 +7,18 @@ import "./table-calendar.css";
 import { Footer } from "./Footer";
 import { useVacationSelected } from "./useVacationSelected";
 
-export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
+export const TableCalendar = ({ currentDate }: { currentDate: moment.Moment }) => {
   const [currentTableCalendarDate, setCurrentTableCalendarDate] = useState(currentDate);
   const { vacationStart, vacationEnd, handleVacationSelected } = useVacationSelected();
   const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
 
-  function handlePreviousMonthChange() {
+  const handlePreviousMonthChange = () => {
     setCurrentTableCalendarDate(currentTableCalendarDate.clone().subtract(1, "months"));
-  }
+  };
 
-  function handleNextMonthChange() {
+  const handleNextMonthChange = () => {
     setCurrentTableCalendarDate(currentTableCalendarDate.clone().add(1, "months"));
-  }
+  };
 
   if (errorMessage) {
     return <h1>Something went wrong... Please try again later.</h1>;
@@ -35,4 +35,4 @@ export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
       <Footer vacationStart={vacationStart} vacationEnd={vacationEnd} />
     </div>
   );
-}
+};

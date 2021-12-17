@@ -3,7 +3,7 @@ import { Model, DataTypes, Sequelize } from "sequelize";
 class User extends Model {}
 class Vacation extends Model {}
 
-export async function setupDBModels(sequelize: Sequelize) {
+export const setupDBModels = async (sequelize: Sequelize) => {
   User.init(
     {
       id: {
@@ -46,4 +46,4 @@ export async function setupDBModels(sequelize: Sequelize) {
 
   await Vacation.sync({ alter: true });
   await User.sync({ alter: true });
-}
+};

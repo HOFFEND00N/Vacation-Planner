@@ -1,12 +1,12 @@
 import { WorkloadType } from "../../../../../types";
 
-export function getDayWorkloadType({
+export const getDayWorkloadType = ({
   vacationsCount,
   teamMembersCount,
 }: {
   vacationsCount: number;
   teamMembersCount: number;
-}) {
+}) => {
   const dayWorkloadPercentage = (vacationsCount / teamMembersCount) * 100;
 
   if (dayWorkloadPercentage < 25) {
@@ -16,4 +16,4 @@ export function getDayWorkloadType({
     return WorkloadType.Medium;
   }
   return WorkloadType.Heavy;
-}
+};

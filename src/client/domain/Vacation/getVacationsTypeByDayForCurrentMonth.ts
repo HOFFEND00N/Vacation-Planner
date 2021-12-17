@@ -3,13 +3,13 @@ import { VacationTypeByDay } from "../../types";
 import { Vacation } from "../types";
 import { getVacationIntervalForCurrentMonth } from "./getVacationIntervalForCurrentMonth";
 
-export function getVacationsTypeByDayForCurrentMonth({
+export const getVacationsTypeByDayForCurrentMonth = ({
   vacations,
   currentTableCalendarDate,
 }: {
   vacations: Vacation[];
   currentTableCalendarDate: Moment;
-}) {
+}) => {
   const vacationTypeByDay: VacationTypeByDay = {};
 
   vacations.forEach((vacation) => {
@@ -25,4 +25,4 @@ export function getVacationsTypeByDayForCurrentMonth({
   });
 
   return vacationTypeByDay;
-}
+};
