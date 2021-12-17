@@ -21,18 +21,10 @@ export const makeStylesForUserDataRowElement = ({
   currentUserId: string;
   vacationType?: VacationType;
 }) => {
-  let classNames = `cell`;
-
-  switch (vacationType) {
-    case VacationType.APPROVED:
-      classNames = cn(classNames, "cell--vacation-approved");
-      break;
-    case VacationType.PENDING_APPROVAL:
-      classNames = cn(classNames, "cell--vacation-pending-approval");
-      break;
-    default:
-      break;
-  }
+  let classNames = cn("cell", {
+    ["cell--vacation-approved"]: vacationType === VacationType.APPROVED,
+    ["cell--vacation-pending-approval"]: vacationType === VacationType.PENDING_APPROVAL,
+  });
 
   if (isCellSelectable({ userId, currentUserId })) {
     classNames = cn(classNames, "cell--selectable");
