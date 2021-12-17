@@ -13,6 +13,14 @@ describe("Cell ", () => {
     expect(screen.getByText("test value")).toBeInTheDocument();
   });
 
+  test("should have className, when isDaysColumn props passed", async () => {
+    const expectedClassName = "cell-days-column";
+
+    render(<Cell value={"test value"} classNames={"test class name"} isDaysColumn />);
+
+    expect(screen.getByText("test value").classList.contains(expectedClassName)).toEqual(true);
+  });
+
   test("should fire cell onClick event", () => {
     const mockOnClick = jest.fn();
 
