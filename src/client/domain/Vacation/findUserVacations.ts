@@ -9,7 +9,8 @@ export function findUserVacations({
   userId: string;
   year: number;
 }) {
-  return vacations.filter((vacation) => {
-    return vacation.userId === userId && year === vacation.start.getFullYear() && year === vacation.end.getFullYear();
-  });
+  return vacations.filter(
+    (vacation) =>
+      vacation.userId === userId && year === vacation.start.getFullYear() && year === vacation.end.getFullYear()
+  );
 }
