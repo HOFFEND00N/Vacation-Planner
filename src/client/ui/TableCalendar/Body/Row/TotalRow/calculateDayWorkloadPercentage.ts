@@ -1,4 +1,4 @@
-export function calculateDaylWorkloadPercentage({
+export function calculateDayWorkloadPercentage({
   vacationsCount,
   teamMembersCount,
 }: {
