@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import cn from "classnames";
 import { TableCalendarContext } from "../../../TableCalendarContext/TableCalendarContext";
 
-type CellProps = { value: number | string; classNames?: string; isDaysColumn?: boolean; date?: Date };
+type CellProps = { value?: number | string; classNames?: string; isDaysColumn?: boolean; date?: Date };
 
 export const Cell = ({ value, isDaysColumn, date, classNames }: CellProps) => {
   const tableCalendarContext = useContext(TableCalendarContext);

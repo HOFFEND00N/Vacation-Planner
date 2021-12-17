@@ -49,12 +49,7 @@ export const UserDataRow = ({
       vacationType: vacationTypeByDay[day],
     });
     cells.push(
-      <Cell
-        value={""}
-        classNames={classNames}
-        date={user.id === currentUser.id ? elementDate : undefined}
-        key={day + 1}
-      />
+      <Cell classNames={classNames} date={user.id === currentUser.id ? elementDate : undefined} key={day + 1} />
     );
   }
   return (

@@ -10,7 +10,7 @@ export const HeaderRow = ({ daysInMonth }: { daysInMonth: number }) => {
   }
   return (
     <Row dataTestId={"table-calendar-header-row"}>
-      <Cell value={""} key={0} />
+      <Cell key={0} />
       <Cell value={"Days"} isDaysColumn={true} key={1} />
       {cells}
     </Row>

@@ -27,7 +27,7 @@ export const TotalRow = ({ vacations, daysInMonth, teamMembersCount }: TotalRowP
       teamMembersCount,
     });
     const classNames = makeStylesForTableTotalElement(dayWorkloadType);
-    cells.push(<Cell value={""} classNames={classNames} key={j} />);
+    cells.push(<Cell classNames={classNames} key={j} />);
   }
   return (
     <Row dataTestId={"table-calendar-total-row"}>
