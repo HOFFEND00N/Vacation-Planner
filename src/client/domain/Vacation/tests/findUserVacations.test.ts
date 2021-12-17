@@ -121,7 +121,7 @@ describe("find user vacations", () => {
     expect(actualVacations).toEqual(expectedVacations);
   });
 
-  test("should return one vacation, when vacations for different users passed", () => {
+  test("should return vacations related to the current user only when vacations for different users passed", () => {
     const expectedVacations: Vacation[] = [
       {
         start: new Date("1-1-2021"),
