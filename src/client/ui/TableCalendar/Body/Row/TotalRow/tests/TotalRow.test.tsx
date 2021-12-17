@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import React from "react";
 import "@testing-library/jest-dom";
 import moment from "moment";
@@ -18,7 +18,16 @@ describe("Total row", () => {
       </TableCalendarContext.Provider>
     );
 
-    expect(screen.getByTestId("table-calendar-total-row")).toBeInTheDocument();
+    const totalRow = screen.getByTestId("table-calendar-total-row");
+    expect(totalRow).toBeInTheDocument();
+
+    const totalRowElements = within(totalRow)
+      .getAllByTestId("table-cell")
+      .filter((elem, index) => index > 0);
+    totalRowElements.forEach((element) =>
+      expect(element.classList.contains("row__total-cell--weak-workload")).toEqual(true)
+    );
+
     expect(screen.getByText("Total")).toBeInTheDocument();
     expect(screen.getAllByTestId("table-cell").length).toEqual(daysInMonth + 1);
   });
@@ -41,19 +50,35 @@ describe("Total row", () => {
               id: "vacation 2",
             },
             {
-              start: new Date("1-20-2021"),
-              end: new Date("1-26-2021"),
+              start: new Date("1-5-2021"),
+              end: new Date("1-12-2021"),
               userId: "4",
               type: VacationType.APPROVED,
               id: "vacation 1",
             },
           ]}
-          teamMembersCount={8}
+          teamMembersCount={5}
         />
       </TableCalendarContext.Provider>
     );
 
-    expect(screen.getByTestId("table-calendar-total-row")).toBeInTheDocument();
+    const totalRow = screen.getByTestId("table-calendar-total-row");
+    expect(totalRow).toBeInTheDocument();
+
+    const totalRowWeakWorkloadElements = within(totalRow)
+      .getAllByTestId("table-cell")
+      .filter((elem, index) => index < 5 && index > 7);
+    totalRowWeakWorkloadElements.forEach((element) =>
+      expect(element.classList.contains("row__total-cell--weak-workload")).toEqual(true)
+    );
+
+    const totalRowMediumWorkloadElements = within(totalRow)
+      .getAllByTestId("table-cell")
+      .filter((elem, index) => index > 5 && index < 7);
+    totalRowMediumWorkloadElements.forEach((element) =>
+      expect(element.classList.contains("row__total-cell--medium-workload")).toEqual(true)
+    );
+
     expect(screen.getByText("Total")).toBeInTheDocument();
     expect(screen.getAllByTestId("table-cell").length).toEqual(daysInMonth + 1);
   });
