@@ -54,7 +54,7 @@ describe("UserType data row", () => {
     expect(mockOnClick).toBeCalledTimes(1);
   });
 
-  test(" should not fire cell onClick event, if cell is not selectable", () => {
+  test("should not fire cell onClick event, if cell is not selectable", () => {
     const mockOnClick = jest.fn();
 
     render(
