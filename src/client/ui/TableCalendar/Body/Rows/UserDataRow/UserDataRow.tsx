@@ -4,7 +4,7 @@ import "./user-data-row.css";
 import { getVacationsTypeByDayForCurrentMonth } from "../../../../../domain/Vacation/getVacationsTypeByDayForCurrentMonth";
 import { getTotalVacationsDays } from "../../../../../domain/Vacation/getTotalVacationsDays";
 import { TableCalendarStateType } from "../../../useVacationSelected";
-import { Row } from "../Row";
+import { Row } from "../Row/Row";
 import { User, Vacation } from "../../../../../domain/types";
 import { TableCalendarContext } from "../../../TableCalendarContext/TableCalendarContext";
 import { makeStylesForUserDataRowElement } from "./makeStylesForUserDataRowElement";

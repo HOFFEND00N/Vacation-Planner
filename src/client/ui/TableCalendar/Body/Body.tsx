@@ -4,9 +4,7 @@ import { getVacations } from "../../../application/getVacations";
 import { TableCalendarStateType } from "../useVacationSelected";
 import { findUserVacations } from "../../../domain/Vacation/findUserVacations";
 import { TableCalendarContext } from "../TableCalendarContext/TableCalendarContext";
-import { UserDataRow } from "./Row/UserDataRow";
-import { HeaderRow } from "./Row/HeaderRow";
-import { TotalRow } from "./Row/TotalRow";
+import { UserDataRow, HeaderRow, TotalRow } from "./Rows";
 import { bodyReducerInitialState, loadData, reducer } from "./reducer";
 
 type propsType = {

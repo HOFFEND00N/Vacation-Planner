@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import "./total-row.css";
 import { Cell } from "../Cell";
 import { getVacationsCountByDays } from "../../../../../domain/Vacation/getVacationsCountByDays";
-import { Row } from "../Row";
+import { Row } from "../Row/Row";
 import { Vacation } from "../../../../../domain/types";
 import { TableCalendarContext } from "../../../TableCalendarContext/TableCalendarContext";
 import { makeStylesForTableTotalElement } from "./makeStylesForTableTotalElement";
