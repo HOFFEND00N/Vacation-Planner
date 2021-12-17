@@ -2,7 +2,7 @@ import { IActiveDirectory } from "../../types";
 import { findUserTeam } from "../findUserTeam";
 
 describe("find user team", () => {
-  test("should return error, when isUserMemberOf return error", async () => {
+  test("should throw error, when isUserMemberOf throw error", async () => {
     const expectedError = new Error("something went wrong");
 
     const ad: IActiveDirectory = {

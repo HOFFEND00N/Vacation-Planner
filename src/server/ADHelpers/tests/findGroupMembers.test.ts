@@ -2,7 +2,7 @@ import { findGroupMembers } from "../findGroupMembers";
 import { IActiveDirectory, ITeamMember } from "../../types";
 
 describe("find group member", () => {
-  test("should return error, when getUsersForGroup return error", async () => {
+  test("should throw error, when getUsersForGroup throw error", async () => {
     const expectedError = new Error("something went wrong");
 
     const ad: IActiveDirectory = {
@@ -24,7 +24,7 @@ describe("find group member", () => {
     ).rejects.toEqual(expectedError);
   });
 
-  test("should return error, when group not found", async () => {
+  test("should throw error, when group not found", async () => {
     const groupName = "test group";
     const expectedError = new Error("Group: " + groupName + " not found.");
 
