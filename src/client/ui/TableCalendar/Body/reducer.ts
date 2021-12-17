@@ -1,4 +1,13 @@
-import { BodyReducerActionType, BodyReducerStateType } from "../../../types";
+import { User, Vacation } from "../../../domain/types";
+
+export type BodyReducerStateType = {
+  isDataFetched: boolean;
+  teamMembers: User[];
+  currentUser: User;
+  vacations: Vacation[];
+};
+
+export type BodyReducerActionType = BodyReducerStateType & { type: string };
 
 export const reducer = (state: BodyReducerStateType, action: BodyReducerActionType): BodyReducerStateType => {
   switch (action.type) {
