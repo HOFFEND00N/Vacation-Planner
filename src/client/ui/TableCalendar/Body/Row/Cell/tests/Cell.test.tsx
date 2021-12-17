@@ -25,4 +25,17 @@ describe("Cell ", () => {
 
     expect(mockOnClick).toBeCalledTimes(1);
   });
+
+  test("should not fire onClick, when cell is not selectable", () => {
+    const mockOnClick = jest.fn();
+
+    render(
+      <TableCalendarContext.Provider value={{ handleClick: mockOnClick, currentTableCalendarDate: moment() }}>
+        <Cell value={"test value"} classNames={"test class name"} date={new Date("1-11-2021")} />
+      </TableCalendarContext.Provider>
+    );
+    userEvent.click(screen.getByText("test value"));
+
+    expect(mockOnClick).toBeCalledTimes(0);
+  });
 });
