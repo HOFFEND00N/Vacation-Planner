@@ -1,14 +1,11 @@
 import "../../body.css";
+import cn from "classnames";
+import { WorkloadType } from "../../../../../types";
 
-export function makeStylesForTableTotalElement(dayWorkloadPercentage: number) {
-  let classNames = `cell`;
-
-  if (dayWorkloadPercentage < 25) {
-    classNames = `${classNames} row__total-cell--weak-workload`;
-  } else if (dayWorkloadPercentage >= 25 && dayWorkloadPercentage < 50) {
-    classNames = `${classNames} row__total-cell--medium-workload`;
-  } else {
-    classNames = `${classNames} row__total-cell--heavy-workload`;
-  }
-  return classNames;
+export function makeStylesForTableTotalElement(dayWorkloadType: WorkloadType) {
+  return cn({
+    ["row__total-cell--weak-workload"]: WorkloadType.Weak === dayWorkloadType,
+    ["row__total-cell--medium-workload"]: WorkloadType.Medium === dayWorkloadType,
+    ["row__total-cell--heavy-workload"]: WorkloadType.Heavy === dayWorkloadType,
+  });
 }

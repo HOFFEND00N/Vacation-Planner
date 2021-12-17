@@ -20,3 +20,9 @@ export enum HttpMethod {
   GET = "get",
   POST = "post",
 }
+
+export enum WorkloadType {
+  "Weak" = "Weak",
+  "Medium" = "Medium",
+  "Heavy" = "Heavy",
+}
