@@ -1,24 +1,24 @@
-import React from "react";
-import { Moment } from "moment";
+import React, { useContext } from "react";
 import "./total-row.css";
 import { Cell } from "../Cell";
 import { getVacationsCountByDays } from "../../../../../domain/Vacation/getVacationsCountByDays";
 import { Row } from "../Row";
 import { Vacation } from "../../../../../domain/types";
+import { TableCalendarContext } from "../../../TableCalendarContext/TableCalendarContext";
 import { makeStylesForTableTotalElement } from "./makeStylesForTableTotalElement";
 import { calculateDayWorkloadPercentage } from "./calculateDayWorkloadPercentage";
 
 type TotalRowProps = {
   vacations: Vacation[];
-  currentTableCalendarDate: Moment;
   daysInMonth: number;
   teamMembersCount: number;
 };
 
-export function TotalRow({ vacations, currentTableCalendarDate, daysInMonth, teamMembersCount }: TotalRowProps) {
+export function TotalRow({ vacations, daysInMonth, teamMembersCount }: TotalRowProps) {
+  const tableCalendarContext = useContext(TableCalendarContext);
   const vacationsCountByDays = getVacationsCountByDays({
     vacations,
-    currentTableCalendarDate: currentTableCalendarDate,
+    currentTableCalendarDate: tableCalendarContext.currentTableCalendarDate,
   });
   const cells: JSX.Element[] = [];
   for (let j = 1; j < daysInMonth + 1; j++) {

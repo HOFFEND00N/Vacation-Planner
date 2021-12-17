@@ -9,18 +9,22 @@ import { TableCalendarContext } from "../../../../TableCalendarContext/TableCale
 describe("UserType data row", () => {
   test("should render", () => {
     const daysInMonth = 31;
+    const mockOnClick = jest.fn();
 
     render(
-      <UserDataRow
-        currentTableCalendarDate={moment(new Date(1))}
-        daysInMonth={daysInMonth}
-        user={{ id: "user 1", name: "user 1" }}
-        employeeName={"user 2"}
-        vacations={[]}
-        currentUser={{ id: "user 3", name: "user 3" }}
-        vacationStart={{ date: new Date(1), isSelected: false }}
-        vacationEnd={{ date: new Date(1), isSelected: false }}
-      />
+      <TableCalendarContext.Provider
+        value={{ handleClick: mockOnClick, currentTableCalendarDate: moment(new Date(1)) }}
+      >
+        <UserDataRow
+          daysInMonth={daysInMonth}
+          user={{ id: "user 1", name: "user 1" }}
+          employeeName={"user 2"}
+          vacations={[]}
+          currentUser={{ id: "user 3", name: "user 3" }}
+          vacationStart={{ date: new Date(1), isSelected: false }}
+          vacationEnd={{ date: new Date(1), isSelected: false }}
+        />
+      </TableCalendarContext.Provider>
     );
 
     expect(screen.getByTestId("row user 1")).toBeInTheDocument();
@@ -31,9 +35,10 @@ describe("UserType data row", () => {
     const mockOnClick = jest.fn();
 
     render(
-      <TableCalendarContext.Provider value={{ handleClick: mockOnClick }}>
+      <TableCalendarContext.Provider
+        value={{ handleClick: mockOnClick, currentTableCalendarDate: moment(new Date(1)) }}
+      >
         <UserDataRow
-          currentTableCalendarDate={moment(new Date(1))}
           daysInMonth={31}
           user={{ id: "user 1", name: "user 1" }}
           employeeName={"user 2"}
@@ -53,16 +58,19 @@ describe("UserType data row", () => {
     const mockOnClick = jest.fn();
 
     render(
-      <UserDataRow
-        currentTableCalendarDate={moment(new Date(1))}
-        daysInMonth={31}
-        user={{ id: "user 1", name: "user 1" }}
-        employeeName={"user 2"}
-        vacations={[]}
-        currentUser={{ id: "user 3", name: "user 3" }}
-        vacationStart={{ date: new Date(1), isSelected: false }}
-        vacationEnd={{ date: new Date(1), isSelected: false }}
-      />
+      <TableCalendarContext.Provider
+        value={{ handleClick: mockOnClick, currentTableCalendarDate: moment(new Date(1)) }}
+      >
+        <UserDataRow
+          daysInMonth={31}
+          user={{ id: "user 1", name: "user 1" }}
+          employeeName={"user 2"}
+          vacations={[]}
+          currentUser={{ id: "user 3", name: "user 3" }}
+          vacationStart={{ date: new Date(1), isSelected: false }}
+          vacationEnd={{ date: new Date(1), isSelected: false }}
+        />
+      </TableCalendarContext.Provider>
     );
     userEvent.click(screen.getAllByTestId("table-cell")[2]);
 

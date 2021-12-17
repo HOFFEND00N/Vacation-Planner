@@ -26,18 +26,11 @@ export function TableCalendar({ currentDate }: { currentDate: moment.Moment }) {
 
   return (
     <div className={"table-calendar"} data-testid={"table-calendar"}>
-      <Pager
-        handlePreviousMonthChange={handlePreviousMonthChange}
-        handleNextMonthChange={handleNextMonthChange}
-        currentTableCalendarDate={currentTableCalendarDate}
-      />
-      <TableCalendarContext.Provider value={{ handleClick: handleVacationSelected }}>
-        <Body
-          currentTableCalendarDate={currentTableCalendarDate}
-          vacationStart={vacationStart}
-          vacationEnd={vacationEnd}
-          setErrorMessage={setErrorMessage}
-        />
+      <TableCalendarContext.Provider
+        value={{ handleClick: handleVacationSelected, currentTableCalendarDate: currentTableCalendarDate }}
+      >
+        <Pager handlePreviousMonthChange={handlePreviousMonthChange} handleNextMonthChange={handleNextMonthChange} />
+        <Body vacationStart={vacationStart} vacationEnd={vacationEnd} setErrorMessage={setErrorMessage} />
       </TableCalendarContext.Provider>
       <Footer vacationStart={vacationStart} vacationEnd={vacationEnd} />
     </div>

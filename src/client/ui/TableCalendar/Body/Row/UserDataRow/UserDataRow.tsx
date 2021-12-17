@@ -1,5 +1,4 @@
-import React from "react";
-import moment from "moment";
+import React, { useContext } from "react";
 import { Cell } from "../Cell";
 import "./user-data-row.css";
 import { getVacationsTypeByDayForCurrentMonth } from "../../../../../domain/Vacation/getVacationsTypeByDayForCurrentMonth";
@@ -7,6 +6,7 @@ import { getTotalVacationsDays } from "../../../../../domain/Vacation/getTotalVa
 import { TableCalendarStateType } from "../../../useVacationSelected";
 import { Row } from "../Row";
 import { User, Vacation } from "../../../../../domain/types";
+import { TableCalendarContext } from "../../../TableCalendarContext/TableCalendarContext";
 import { makeStylesForUserDataRowElement } from "./makeStylesForUserDataRowElement";
 
 export function UserDataRow({
@@ -16,7 +16,6 @@ export function UserDataRow({
   vacationStart,
   vacationEnd,
   currentUser,
-  currentTableCalendarDate,
   employeeName,
 }: {
   daysInMonth: number;
@@ -25,16 +24,21 @@ export function UserDataRow({
   vacationStart: TableCalendarStateType;
   vacationEnd: TableCalendarStateType;
   currentUser: User;
-  currentTableCalendarDate: moment.Moment;
   employeeName: string;
 }) {
+  const tableCalendarContext = useContext(TableCalendarContext);
+
   const cells: JSX.Element[] = [];
   const vacationTypeByDay = getVacationsTypeByDayForCurrentMonth({
     vacations,
-    currentTableCalendarDate: currentTableCalendarDate,
+    currentTableCalendarDate: tableCalendarContext.currentTableCalendarDate,
   });
   for (let day = 1; day < daysInMonth + 1; day++) {
-    const elementDate = new Date(currentTableCalendarDate.year(), currentTableCalendarDate.month(), day);
+    const elementDate = new Date(
+      tableCalendarContext.currentTableCalendarDate.year(),
+      tableCalendarContext.currentTableCalendarDate.month(),
+      day
+    );
     const classNames = makeStylesForUserDataRowElement({
       vacationStartDate: vacationStart.date,
       vacationEndDate: vacationEnd.date,

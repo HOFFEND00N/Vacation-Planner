@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import userEvent from "@testing-library/user-event";
+import moment from "moment";
 import { Cell } from "../Cell";
 import "@testing-library/jest-dom";
 import { TableCalendarContext } from "../../../../TableCalendarContext/TableCalendarContext";
@@ -16,7 +17,7 @@ describe("Cell ", () => {
     const mockOnClick = jest.fn();
 
     render(
-      <TableCalendarContext.Provider value={{ handleClick: mockOnClick }}>
+      <TableCalendarContext.Provider value={{ handleClick: mockOnClick, currentTableCalendarDate: moment() }}>
         <Cell value={"test value"} classNames={"test class name"} date={new Date("1-11-2021")} />
       </TableCalendarContext.Provider>
     );

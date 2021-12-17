@@ -31,9 +31,10 @@ describe("Body", () => {
     const mockSetErrorMessage = jest.fn();
 
     render(
-      <TableCalendarContext.Provider value={{ handleClick: mockOnClick }}>
+      <TableCalendarContext.Provider
+        value={{ handleClick: mockOnClick, currentTableCalendarDate: moment(new Date("1-11-2021")) }}
+      >
         <Body
-          currentTableCalendarDate={moment(new Date("1-11-2021"))}
           vacationStart={{ date: new Date(1), isSelected: false }}
           vacationEnd={{ date: new Date(1), isSelected: false }}
           setErrorMessage={mockSetErrorMessage}
@@ -52,9 +53,10 @@ describe("Body", () => {
     const mockSetErrorMessage = jest.fn();
 
     render(
-      <TableCalendarContext.Provider value={{ handleClick: mockOnClick }}>
+      <TableCalendarContext.Provider
+        value={{ handleClick: mockOnClick, currentTableCalendarDate: moment(new Date("1-11-2021")) }}
+      >
         <Body
-          currentTableCalendarDate={moment(new Date("1-11-2021"))}
           vacationStart={{ date: new Date(1), isSelected: false }}
           vacationEnd={{ date: new Date(1), isSelected: false }}
           setErrorMessage={mockSetErrorMessage}
@@ -74,9 +76,10 @@ describe("Body", () => {
     const mockSetErrorMessage = jest.fn();
 
     render(
-      <TableCalendarContext.Provider value={{ handleClick: mockOnClick }}>
+      <TableCalendarContext.Provider
+        value={{ handleClick: mockOnClick, currentTableCalendarDate: moment(new Date("1-11-2021")) }}
+      >
         <Body
-          currentTableCalendarDate={moment(new Date("1-11-2021"))}
           vacationStart={{ date: new Date(1), isSelected: false }}
           vacationEnd={{ date: new Date(1), isSelected: false }}
           setErrorMessage={mockSetErrorMessage}

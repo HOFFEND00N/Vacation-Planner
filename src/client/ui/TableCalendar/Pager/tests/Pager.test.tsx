@@ -4,6 +4,7 @@ import moment from "moment";
 import userEvent from "@testing-library/user-event";
 import { Pager } from "../Pager";
 import "@testing-library/jest-dom";
+import { TableCalendarContext } from "../../TableCalendarContext/TableCalendarContext";
 
 describe("table calendar pager tests", () => {
   test("should render", async () => {
@@ -12,11 +13,11 @@ describe("table calendar pager tests", () => {
     const currentTableCalendarDate = moment("25-12-2021", "DD-MM-YYYY");
 
     render(
-      <Pager
-        handlePreviousMonthChange={mockOnPreviousMonthChange}
-        handleNextMonthChange={mockOnNextMonthChange}
-        currentTableCalendarDate={currentTableCalendarDate}
-      />
+      <TableCalendarContext.Provider
+        value={{ handleClick: jest.fn(), currentTableCalendarDate: currentTableCalendarDate }}
+      >
+        <Pager handlePreviousMonthChange={mockOnPreviousMonthChange} handleNextMonthChange={mockOnNextMonthChange} />
+      </TableCalendarContext.Provider>
     );
 
     expect(screen.getByTestId("pager")).toBeInTheDocument();
@@ -29,11 +30,11 @@ describe("table calendar pager tests", () => {
     const currentTableCalendarDate = moment("25-12-2021", "DD-MM-YYYY");
 
     render(
-      <Pager
-        handlePreviousMonthChange={mockOnPreviousMonthChange}
-        handleNextMonthChange={mockOnNextMonthChange}
-        currentTableCalendarDate={currentTableCalendarDate}
-      />
+      <TableCalendarContext.Provider
+        value={{ handleClick: jest.fn(), currentTableCalendarDate: currentTableCalendarDate }}
+      >
+        <Pager handlePreviousMonthChange={mockOnPreviousMonthChange} handleNextMonthChange={mockOnNextMonthChange} />
+      </TableCalendarContext.Provider>
     );
     userEvent.click(screen.getByTestId("pager__controls-previous-month-change"));
 
@@ -46,11 +47,11 @@ describe("table calendar pager tests", () => {
     const currentTableCalendarDate = moment("25-12-2021", "DD-MM-YYYY");
 
     render(
-      <Pager
-        handlePreviousMonthChange={mockOnPreviousMonthChange}
-        handleNextMonthChange={mockOnNextMonthChange}
-        currentTableCalendarDate={currentTableCalendarDate}
-      />
+      <TableCalendarContext.Provider
+        value={{ handleClick: jest.fn(), currentTableCalendarDate: currentTableCalendarDate }}
+      >
+        <Pager handlePreviousMonthChange={mockOnPreviousMonthChange} handleNextMonthChange={mockOnNextMonthChange} />
+      </TableCalendarContext.Provider>
     );
     userEvent.click(screen.getByTestId("pager__controls-next-month-change"));
 
