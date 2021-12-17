@@ -21,7 +21,7 @@ export const makeStylesForUserDataRowElement = ({
   currentUserId: string;
   vacationType?: VacationType;
 }) => {
-  let classNames = cn("cell", {
+  let classNames = cn({
     ["cell--vacation-approved"]: vacationType === VacationType.APPROVED,
     ["cell--vacation-pending-approval"]: vacationType === VacationType.PENDING_APPROVAL,
   });
