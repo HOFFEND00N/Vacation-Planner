@@ -11,7 +11,7 @@ export const HeaderRow = ({ daysInMonth }: { daysInMonth: number }) => {
   return (
     <Row dataTestId={"table-calendar-header-row"}>
       <Cell key={0} />
-      <Cell value={"Days"} isDaysColumn={true} key={1} />
+      <Cell value={"Days"} isDaysColumn key={1} />
       {cells}
     </Row>
   );

@@ -55,7 +55,7 @@ export const UserDataRow = ({
   return (
     <Row dataTestId={`row ${user.id}`}>
       <Cell value={employeeName} key={0} />
-      <Cell value={getTotalVacationsDays(vacations)} isDaysColumn={true} key={1} />
+      <Cell value={getTotalVacationsDays(vacations)} isDaysColumn key={1} />
       {cells}
     </Row>
   );
