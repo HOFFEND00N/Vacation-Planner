@@ -48,7 +48,7 @@ describe("Body", () => {
     expect(screen.getByTestId("table-calendar-body")).toBeInTheDocument();
   });
 
-  test("should select cell", async () => {
+  test("should select cell, when user click", async () => {
     const mockOnClick = jest.fn();
     const mockSetErrorMessage = jest.fn();
 
@@ -71,7 +71,7 @@ describe("Body", () => {
     expect(mockOnClick).toBeCalledTimes(1);
   });
 
-  test("should not select cell", async () => {
+  test("should not select cell, when user click", async () => {
     const mockOnClick = jest.fn();
     const mockSetErrorMessage = jest.fn();
 
