@@ -9,9 +9,9 @@ export const HeaderRow = ({ daysInMonth }: { daysInMonth: number }) => {
     cells.push(<Cell value={j} key={j + 1} />);
   }
   return (
-    <Row dataTestId={"table-calendar-header-row"}>
+    <Row dataTestId="table-calendar-header-row">
       <Cell key={0} />
-      <Cell value={"Days"} isDaysColumn key={1} />
+      <Cell value="Days" isDaysColumn key={1} />
       {cells}
     </Row>
   );

@@ -30,8 +30,8 @@ export const TotalRow = ({ vacations, daysInMonth, teamMembersCount }: TotalRowP
     cells.push(<Cell classNames={classNames} key={j} />);
   }
   return (
-    <Row dataTestId={"table-calendar-total-row"}>
-      <Cell value={"Total"} key={0} />
+    <Row dataTestId="table-calendar-total-row">
+      <Cell value="Total" key={0} />
       {cells}
     </Row>
   );

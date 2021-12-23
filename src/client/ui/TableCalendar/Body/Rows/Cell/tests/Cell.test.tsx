@@ -8,7 +8,7 @@ import { TableCalendarContext } from "../../../../TableCalendarContext/TableCale
 
 describe("Cell ", () => {
   test("should render", async () => {
-    render(<Cell value={"test value"} classNames={"test class name"} />);
+    render(<Cell value="test value" />);
 
     expect(screen.getByText("test value")).toBeInTheDocument();
   });
@@ -16,7 +16,7 @@ describe("Cell ", () => {
   test("should have className, when isDaysColumn props passed", async () => {
     const expectedClassName = "cell-days-column";
 
-    render(<Cell value={"test value"} classNames={"test class name"} isDaysColumn />);
+    render(<Cell value="test value" isDaysColumn />);
 
     expect(screen.getByText("test value").classList.contains(expectedClassName)).toEqual(true);
   });
@@ -26,7 +26,7 @@ describe("Cell ", () => {
 
     render(
       <TableCalendarContext.Provider value={{ handleClick: mockOnClick, currentTableCalendarDate: moment() }}>
-        <Cell value={"test value"} classNames={"test class name"} date={new Date("1-11-2021")} isCellSelectable />
+        <Cell value="test value" date={new Date("1-11-2021")} isCellSelectable />
       </TableCalendarContext.Provider>
     );
     userEvent.click(screen.getByText("test value"));
@@ -39,7 +39,7 @@ describe("Cell ", () => {
 
     render(
       <TableCalendarContext.Provider value={{ handleClick: mockOnClick, currentTableCalendarDate: moment() }}>
-        <Cell value={"test value"} classNames={"test class name"} date={new Date("1-11-2021")} />
+        <Cell value="test value" date={new Date("1-11-2021")} />
       </TableCalendarContext.Provider>
     );
     userEvent.click(screen.getByText("test value"));

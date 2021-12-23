@@ -38,7 +38,7 @@ export const Body = ({ vacationStart, vacationEnd, setErrorMessage }: propsType)
 
   const daysInMonth = tableCalendarContext.currentTableCalendarDate.daysInMonth();
   return (
-    <div data-testid={"table-calendar-body"}>
+    <div data-testid="table-calendar-body">
       <HeaderRow daysInMonth={daysInMonth} />
       {teamMembers.map((teamMember) => {
         const userVacations = findUserVacations({

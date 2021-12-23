@@ -21,7 +21,7 @@ export const Cell = ({ value, isDaysColumn, date, classNames, isCellSelectable }
     <div
       className={cn("cell", classNames)}
       onClick={() => (isCellSelectable ? tableCalendarContext.handleClick(date as Date) : undefined)}
-      data-testid={"table-cell"}
+      data-testid="table-cell"
     >
       {value}
     </div>

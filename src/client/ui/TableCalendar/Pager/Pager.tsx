@@ -15,11 +15,11 @@ export const Pager = ({
   const tableCalendarContext = useContext(TableCalendarContext);
 
   return (
-    <div className="pager" data-testid={"pager"}>
+    <div className="pager" data-testid="pager">
       <IconButton
         className="pager__controls"
         onClick={handlePreviousMonthChange}
-        data-testid={"pager__controls-previous-month-change"}
+        data-testid="pager__controls-previous-month-change"
       >
         <Icon path={chevronLeft} />
       </IconButton>
@@ -29,7 +29,7 @@ export const Pager = ({
       <IconButton
         className="pager__controls"
         onClick={handleNextMonthChange}
-        data-testid={"pager__controls-next-month-change"}
+        data-testid="pager__controls-next-month-change"
       >
         <Icon path={chevronRight} />
       </IconButton>

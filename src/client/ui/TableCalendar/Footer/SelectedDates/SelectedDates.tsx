@@ -15,5 +15,5 @@ export const SelectedDates = ({
   if (vacationEnd.isSelected && vacationEnd.date) {
     selectedDates = `${selectedDates} - ${vacationEnd.date.toDateString()}`;
   }
-  return <div data-testid={"selected-dates"}>{selectedDates}</div>;
+  return <div data-testid="selected-dates">{selectedDates}</div>;
 };
