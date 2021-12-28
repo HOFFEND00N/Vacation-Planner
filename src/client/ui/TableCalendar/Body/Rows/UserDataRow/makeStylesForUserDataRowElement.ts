@@ -21,24 +21,18 @@ export const makeStylesForUserDataRowElement = ({
   currentUserId: string;
   vacationType?: VacationType;
 }) => {
-  let classNames = cn({
-    ["cell--vacation-approved"]: vacationType === VacationType.APPROVED,
-    ["cell--vacation-pending-approval"]: vacationType === VacationType.PENDING_APPROVAL,
+  const cellSelectable = isCellSelectable({ userId, currentUserId });
+  const cellSelected = isCellSelected({
+    vacationStartDate: vacationStartDate,
+    vacationEndDate: vacationEndDate,
+    cellDate,
+    columnNumber,
   });
 
-  if (isCellSelectable({ userId, currentUserId })) {
-    classNames = cn(classNames, "cell--selectable");
-    if (
-      isCellSelected({
-        vacationStartDate: vacationStartDate,
-        vacationEndDate: vacationEndDate,
-        cellDate,
-        columnNumber,
-      })
-    ) {
-      classNames = cn(classNames, "cell--selected");
-    }
-  }
-
-  return classNames;
+  return cn({
+    ["cell--vacation-approved"]: vacationType === VacationType.APPROVED,
+    ["cell--vacation-pending-approval"]: vacationType === VacationType.PENDING_APPROVAL,
+    ["cell--selectable"]: cellSelectable,
+    ["cell--selected"]: cellSelectable && cellSelected,
+  });
 };
