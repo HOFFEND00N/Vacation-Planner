@@ -13,13 +13,14 @@ type CellProps = {
 export const Cell = ({ value, isDaysColumn, date, classNames, isCellSelectable }: CellProps) => {
   const tableCalendarContext = useContext(TableCalendarContext);
 
-  if (isDaysColumn) {
-    classNames = cn("cell-days-column", classNames);
-  }
+  const cellClassNames = cn("cell", {
+    ["cell-days-column"]: isDaysColumn,
+    [`${classNames}`]: !!classNames,
+  });
 
   return (
     <div
-      className={cn("cell", classNames)}
+      className={cellClassNames}
       onClick={() => (isCellSelectable ? tableCalendarContext.handleClick(date as Date) : undefined)}
       data-testid="table-cell"
     >
