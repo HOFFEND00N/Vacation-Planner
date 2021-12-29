@@ -18,7 +18,7 @@ export const Footer = ({
   const handleClick = () => {
     history.push({
       pathname: "/plan-vacation",
-      state: { vacationStart: vacationStart, vacationEnd: vacationEnd.isSelected ? vacationEnd : vacationStart },
+      state: { vacationStart, vacationEnd: vacationEnd.isSelected ? vacationEnd : vacationStart },
     });
   };
 

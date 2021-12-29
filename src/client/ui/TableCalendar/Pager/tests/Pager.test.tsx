@@ -13,9 +13,7 @@ describe("table calendar pager tests", () => {
     const currentTableCalendarDate = moment("25-12-2021", "DD-MM-YYYY");
 
     render(
-      <TableCalendarContext.Provider
-        value={{ handleClick: jest.fn(), currentTableCalendarDate: currentTableCalendarDate }}
-      >
+      <TableCalendarContext.Provider value={{ handleClick: jest.fn(), currentTableCalendarDate }}>
         <Pager handlePreviousMonthChange={mockOnPreviousMonthChange} handleNextMonthChange={mockOnNextMonthChange} />
       </TableCalendarContext.Provider>
     );
@@ -30,9 +28,7 @@ describe("table calendar pager tests", () => {
     const currentTableCalendarDate = moment("25-12-2021", "DD-MM-YYYY");
 
     render(
-      <TableCalendarContext.Provider
-        value={{ handleClick: jest.fn(), currentTableCalendarDate: currentTableCalendarDate }}
-      >
+      <TableCalendarContext.Provider value={{ handleClick: jest.fn(), currentTableCalendarDate }}>
         <Pager handlePreviousMonthChange={mockOnPreviousMonthChange} handleNextMonthChange={mockOnNextMonthChange} />
       </TableCalendarContext.Provider>
     );
@@ -47,9 +43,7 @@ describe("table calendar pager tests", () => {
     const currentTableCalendarDate = moment("25-12-2021", "DD-MM-YYYY");
 
     render(
-      <TableCalendarContext.Provider
-        value={{ handleClick: jest.fn(), currentTableCalendarDate: currentTableCalendarDate }}
-      >
+      <TableCalendarContext.Provider value={{ handleClick: jest.fn(), currentTableCalendarDate }}>
         <Pager handlePreviousMonthChange={mockOnPreviousMonthChange} handleNextMonthChange={mockOnNextMonthChange} />
       </TableCalendarContext.Provider>
     );

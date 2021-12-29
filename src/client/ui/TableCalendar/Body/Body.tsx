@@ -42,7 +42,7 @@ export const Body = ({ vacationStart, vacationEnd, setErrorMessage }: propsType)
       <HeaderRow daysInMonth={daysInMonth} />
       {teamMembers.map((teamMember) => {
         const userVacations = findUserVacations({
-          vacations: vacations,
+          vacations,
           userId: teamMember.id,
           year: tableCalendarContext.currentTableCalendarDate.year(),
         });

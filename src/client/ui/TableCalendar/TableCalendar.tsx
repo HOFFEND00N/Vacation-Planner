@@ -26,9 +26,7 @@ export const TableCalendar = ({ currentDate }: { currentDate: moment.Moment }) =
 
   return (
     <div className="table-calendar" data-testid="table-calendar">
-      <TableCalendarContext.Provider
-        value={{ handleClick: handleVacationSelected, currentTableCalendarDate: currentTableCalendarDate }}
-      >
+      <TableCalendarContext.Provider value={{ handleClick: handleVacationSelected, currentTableCalendarDate }}>
         <Pager handlePreviousMonthChange={handlePreviousMonthChange} handleNextMonthChange={handleNextMonthChange} />
         <Body vacationStart={vacationStart} vacationEnd={vacationEnd} setErrorMessage={setErrorMessage} />
       </TableCalendarContext.Provider>

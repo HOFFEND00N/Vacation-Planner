@@ -40,7 +40,7 @@ import { entryParser } from "./ADHelpers/entryParser";
       baseDN: "dc=firmglobal,dc=com",
       username: `${process.env.login}@forsta.com`,
       password: Buffer.from(process.env.password!, "base64").toString("ascii"),
-      entryParser: entryParser,
+      entryParser,
     });
 
     try {

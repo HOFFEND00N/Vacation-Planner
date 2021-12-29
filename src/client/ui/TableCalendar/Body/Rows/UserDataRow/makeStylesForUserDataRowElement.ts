@@ -23,8 +23,8 @@ export const makeStylesForUserDataRowElement = ({
 }) => {
   const cellSelectable = isCellSelectable({ userId, currentUserId });
   const cellSelected = isCellSelected({
-    vacationStartDate: vacationStartDate,
-    vacationEndDate: vacationEndDate,
+    vacationStartDate,
+    vacationEndDate,
     cellDate,
     columnNumber,
   });
