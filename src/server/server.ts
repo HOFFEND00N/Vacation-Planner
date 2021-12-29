@@ -39,7 +39,7 @@ import { entryParser } from "./ADHelpers/entryParser";
       url: "ldap://firmglobal.com",
       baseDN: "dc=firmglobal,dc=com",
       username: `${process.env.login}@forsta.com`,
-      password: process.env.password,
+      password: Buffer.from(process.env.password!, "base64").toString("ascii"),
       entryParser: entryParser,
     });
 
