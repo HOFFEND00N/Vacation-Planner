@@ -40,7 +40,7 @@ describe("Total row", () => {
       .getAllByTestId("table-cell")
       .filter((elem, index) => index > 0);
     totalRowElements.forEach((element) =>
-      expect(element.classList.contains("row__total-cell--weak-workload")).toEqual(true)
+      expect(element.classList.contains("total-cell--weak-workload")).toEqual(true)
     );
   });
 
@@ -115,14 +115,14 @@ describe("Total row", () => {
       .getAllByTestId("table-cell")
       .filter((elem, index) => index < 5 && index > 7);
     totalRowWeakWorkloadElements.forEach((element) =>
-      expect(element.classList.contains("row__total-cell--weak-workload")).toEqual(true)
+      expect(element.classList.contains("total-cell--weak-workload")).toEqual(true)
     );
 
     const totalRowMediumWorkloadElements = within(totalRow)
       .getAllByTestId("table-cell")
       .filter((elem, index) => index > 5 && index < 7);
     totalRowMediumWorkloadElements.forEach((element) =>
-      expect(element.classList.contains("row__total-cell--medium-workload")).toEqual(true)
+      expect(element.classList.contains("total-cell--medium-workload")).toEqual(true)
     );
   });
 });

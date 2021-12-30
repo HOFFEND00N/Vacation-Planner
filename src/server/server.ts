@@ -42,7 +42,7 @@ import { entryParser } from "./ADHelpers/entryParser";
       password: Buffer.from(process.env.password!, "base64").toString("ascii"),
       entryParser,
     });
-
+    //TODO: extract logic from controller\ api point
     try {
       const userTeam = await findUserTeam({ teams: TEAMS, username, activeDirectory });
       const teamMembers = await findGroupMembers({ groupName: userTeam, activeDirectory });
@@ -55,6 +55,7 @@ import { entryParser } from "./ADHelpers/entryParser";
         currentUser: { id: "D1E5D597-93FC-4AEA-8FFF-D92CADD0F639", name: "Anna Kozlova" },
       });
     } catch (e) {
+      //TODO: send response about occurred error
       console.log(e);
     }
   });

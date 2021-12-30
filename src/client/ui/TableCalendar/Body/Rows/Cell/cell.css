@@ -1,0 +1,27 @@
+.cell--vacation-approved {
+    background-color: darkgrey;
+}
+
+.cell--vacation-pending-approval {
+    background: repeating-linear-gradient(45deg, black, black 2%, transparent 10%, transparent 18%);
+}
+
+.cell--selectable:hover {
+    cursor: pointer;
+}
+
+.cell--selected {
+    background: lightskyblue;
+}
+
+.total-cell--weak-workload {
+    background: lawngreen;
+}
+
+.total-cell--medium-workload {
+    background: yellow;
+}
+
+.total-cell--heavy-workload {
+    background: red;
+}

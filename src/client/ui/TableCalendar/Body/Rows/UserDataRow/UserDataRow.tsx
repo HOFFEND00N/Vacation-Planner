@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { Cell } from "../Cell";
-import "./user-data-row.css";
 import { getVacationsTypeByDayForCurrentMonth } from "../../../../../domain/Vacation/getVacationsTypeByDayForCurrentMonth";
 import { getTotalVacationsDays } from "../../../../../domain/Vacation/getTotalVacationsDays";
 import { TableCalendarStateType } from "../../../useVacationSelected";
 import { Row } from "../Row/Row";
 import { User, Vacation } from "../../../../../domain/types";
 import { TableCalendarContext } from "../../../TableCalendarContext/TableCalendarContext";
-import { makeStylesForUserDataRowElement } from "./makeStylesForUserDataRowElement";
+import { isCellSelectable } from "./isCellSelectable";
+import { isCellSelected } from "./isCellSelected";
 
 export const UserDataRow = ({
   daysInMonth,
@@ -39,17 +39,23 @@ export const UserDataRow = ({
       tableCalendarContext.currentTableCalendarDate.month(),
       day
     );
-    const classNames = makeStylesForUserDataRowElement({
+
+    const cellSelectable = isCellSelectable({ userId: user.id, currentUserId: currentUser.id });
+    const cellSelected = isCellSelected({
       vacationStartDate: vacationStart.date,
       vacationEndDate: vacationEnd.date,
       cellDate: elementDate,
       columnNumber: day,
-      userId: user.id,
-      currentUserId: currentUser.id,
-      vacationType: vacationTypeByDay[day],
     });
+
     cells.push(
-      <Cell classNames={classNames} date={elementDate} key={day + 1} isCellSelectable={user.id === currentUser.id} />
+      <Cell
+        date={elementDate}
+        key={day + 1}
+        cellSelectable={cellSelectable}
+        cellSelected={cellSelected}
+        vacationType={vacationTypeByDay[day]}
+      />
     );
   }
   return (
