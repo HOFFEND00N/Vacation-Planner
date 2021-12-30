@@ -18,7 +18,7 @@ export const Body = ({ vacationStart, vacationEnd, setErrorMessage }: propsType)
     reducer,
     bodyReducerInitialState
   );
-  const tableCalendarContext = useContext(TableCalendarContext);
+  const { currentTableCalendarDate } = useContext(TableCalendarContext);
 
   useEffect(() => {
     (async () => {
@@ -36,7 +36,7 @@ export const Body = ({ vacationStart, vacationEnd, setErrorMessage }: propsType)
     return <h1> Please wait, searching your teammates... </h1>;
   }
 
-  const daysInMonth = tableCalendarContext.currentTableCalendarDate.daysInMonth();
+  const daysInMonth = currentTableCalendarDate.daysInMonth();
   return (
     <div data-testid="table-calendar-body">
       <HeaderRow daysInMonth={daysInMonth} />
@@ -44,7 +44,7 @@ export const Body = ({ vacationStart, vacationEnd, setErrorMessage }: propsType)
         const userVacations = findUserVacations({
           vacations,
           userId: teamMember.id,
-          year: tableCalendarContext.currentTableCalendarDate.year(),
+          year: currentTableCalendarDate.year(),
         });
         return (
           <UserDataRow
