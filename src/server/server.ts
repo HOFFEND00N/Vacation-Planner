@@ -55,11 +55,10 @@ import { entryParser } from "./ADHelpers/entryParser";
         currentUser: { id: "D1E5D597-93FC-4AEA-8FFF-D92CADD0F639", name: "Anna Kozlova" },
       });
     } catch (e) {
-      //TODO: send response about occurred error
-      console.log(e);
+      res.status(500).send({ error: "Something went wrong, please try again later" });
     }
   });
-
+  //TODO: handle error when DB error occurs
   server.get("/vacations", async (req, res) => {
     const usersIds = req.query.id as string[];
 

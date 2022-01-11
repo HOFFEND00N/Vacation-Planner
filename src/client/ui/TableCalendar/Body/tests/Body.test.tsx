@@ -28,7 +28,6 @@ beforeEach(() => {
 describe("Body", () => {
   test("should render notification about team members searching, then render a component", async () => {
     const mockOnClick = jest.fn();
-    const mockSetErrorMessage = jest.fn();
 
     render(
       <TableCalendarContext.Provider
@@ -37,7 +36,6 @@ describe("Body", () => {
         <Body
           vacationStart={{ date: new Date(1), isSelected: false }}
           vacationEnd={{ date: new Date(1), isSelected: false }}
-          setErrorMessage={mockSetErrorMessage}
         />
       </TableCalendarContext.Provider>
     );
@@ -50,7 +48,6 @@ describe("Body", () => {
 
   test("should select cell, when user click", async () => {
     const mockOnClick = jest.fn();
-    const mockSetErrorMessage = jest.fn();
 
     render(
       <TableCalendarContext.Provider
@@ -59,7 +56,6 @@ describe("Body", () => {
         <Body
           vacationStart={{ date: new Date(1), isSelected: false }}
           vacationEnd={{ date: new Date(1), isSelected: false }}
-          setErrorMessage={mockSetErrorMessage}
         />
       </TableCalendarContext.Provider>
     );
@@ -73,7 +69,6 @@ describe("Body", () => {
 
   test("should not select cell, when user click", async () => {
     const mockOnClick = jest.fn();
-    const mockSetErrorMessage = jest.fn();
 
     render(
       <TableCalendarContext.Provider
@@ -82,7 +77,6 @@ describe("Body", () => {
         <Body
           vacationStart={{ date: new Date(1), isSelected: false }}
           vacationEnd={{ date: new Date(1), isSelected: false }}
-          setErrorMessage={mockSetErrorMessage}
         />
       </TableCalendarContext.Provider>
     );

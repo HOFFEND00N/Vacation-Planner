@@ -1,23 +1,20 @@
-import React, { Dispatch, SetStateAction, useContext, useEffect, useReducer } from "react";
+import React, { useContext, useEffect, useReducer } from "react";
+import { store } from "@confirmit/react-banner";
 import { getTeamMembers } from "../../../application/getTeamMembers";
 import { getVacations } from "../../../application/getVacations";
 import { TableCalendarStateType } from "../useVacationSelected";
 import { findUserVacations } from "../../../domain/Vacation/findUserVacations";
 import { TableCalendarContext } from "../TableCalendarContext/TableCalendarContext";
 import { UserDataRow, HeaderRow, TotalRow } from "./Rows";
-import { bodyReducerInitialState, loadData, reducer } from "./reducer";
+import { SetUserData, reducer, setError } from "./reducer";
 
 type propsType = {
   vacationStart: TableCalendarStateType;
   vacationEnd: TableCalendarStateType;
-  setErrorMessage: Dispatch<SetStateAction<string | undefined>>;
 };
 
-export const Body = ({ vacationStart, vacationEnd, setErrorMessage }: propsType) => {
-  const [{ isDataFetched, currentUser, teamMembers, vacations }, dispatch] = useReducer(
-    reducer,
-    bodyReducerInitialState
-  );
+export const Body = ({ vacationStart, vacationEnd }: propsType) => {
+  const [{ error, currentUser, teamMembers, vacations }, dispatch] = useReducer(reducer, {});
   const { currentTableCalendarDate } = useContext(TableCalendarContext);
 
   useEffect(() => {
@@ -25,14 +22,24 @@ export const Body = ({ vacationStart, vacationEnd, setErrorMessage }: propsType)
       try {
         const { teamMembers, currentUser } = await getTeamMembers();
         const vacations = await getVacations(teamMembers.map((teamMember) => teamMember.id));
-        dispatch(loadData({ isDataFetched: true, teamMembers, currentUser, vacations }));
+        //actually, data is already loaded, I just update state, maybe rename loadData to something more suitable
+        dispatch(SetUserData({ teamMembers, currentUser, vacations }));
       } catch (error) {
-        setErrorMessage(error.message);
+        dispatch(setError({ error }));
       }
     })();
   }, []);
 
-  if (!isDataFetched) {
+  const showError = (error: Error) => {
+    store.error({ text: error.message, closeTimeout: 0 });
+  };
+
+  if (error) {
+    showError(error);
+    return <h1> No data </h1>;
+  }
+
+  if (!currentUser || !vacations || !teamMembers) {
     return <h1> Please wait, searching your teammates... </h1>;
   }
 

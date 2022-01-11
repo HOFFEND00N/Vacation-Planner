@@ -1,22 +1,26 @@
 import { User, Vacation } from "../../../domain/types";
 
 export type BodyReducerStateType = {
-  isDataFetched: boolean;
-  teamMembers: User[];
-  currentUser: User;
-  vacations: Vacation[];
+  error?: Error;
+  teamMembers?: User[];
+  currentUser?: User;
+  vacations?: Vacation[];
 };
 
 export type BodyReducerActionType = BodyReducerStateType & { type: string };
 
 export const reducer = (state: BodyReducerStateType, action: BodyReducerActionType): BodyReducerStateType => {
   switch (action.type) {
-    case "load user data": {
+    case "set user data": {
       return {
-        isDataFetched: true,
         teamMembers: action.teamMembers,
         currentUser: action.currentUser,
         vacations: action.vacations,
+      };
+    }
+    case "set error": {
+      return {
+        error: action.error,
       };
     }
     default: {
@@ -25,17 +29,22 @@ export const reducer = (state: BodyReducerStateType, action: BodyReducerActionTy
   }
 };
 
-export const loadData = ({ isDataFetched, teamMembers, currentUser, vacations }) => ({
-  type: "load user data",
-  isDataFetched,
+export const SetUserData = ({
+  teamMembers,
+  currentUser,
+  vacations,
+}: {
+  teamMembers: User[];
+  currentUser: User;
+  vacations: Vacation[];
+}) => ({
+  type: "set user data",
   teamMembers,
   currentUser,
   vacations,
 });
 
-export const bodyReducerInitialState: BodyReducerStateType = {
-  isDataFetched: false,
-  teamMembers: [],
-  currentUser: { id: "", name: "" },
-  vacations: [],
-};
+export const setError = ({ error }: { error: Error }) => ({
+  type: "set error",
+  error,
+});
