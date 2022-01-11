@@ -2,5 +2,9 @@ import { HttpMethod } from "../types";
 
 export const sendRequestToServer = async ({ url, method }: { url: string; method: HttpMethod }) => {
   const response = await fetch(url, { method });
-  return await response.json();
+  const parsedResponse = await response.json();
+  if (parsedResponse.error) {
+    throw new Error(parsedResponse.error);
+  }
+  return parsedResponse;
 };
