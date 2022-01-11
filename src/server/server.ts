@@ -58,15 +58,18 @@ import { entryParser } from "./ADHelpers/entryParser";
       res.status(500).send({ error: "Something went wrong, please try again later" });
     }
   });
-  //TODO: handle error when DB error occurs
   server.get("/vacations", async (req, res) => {
-    const usersIds = req.query.id as string[];
+    try {
+      const usersIds = req.query.id as string[];
 
-    const usersVacations = await dbConnection.models[ModelsNames.VACATION].findAll({
-      where: { userId: { [Op.or]: usersIds } },
-    });
+      const usersVacations = await dbConnection.models[ModelsNames.VACATION].findAll({
+        where: { userId: { [Op.or]: usersIds } },
+      });
 
-    res.send({ vacations: usersVacations });
+      res.send({ vacations: usersVacations });
+    } catch (e) {
+      res.status(500).send({ error: "Something went wrong, please try again later" });
+    }
   });
 
   server.get("*", (req, res) => {
