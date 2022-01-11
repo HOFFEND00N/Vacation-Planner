@@ -87,4 +87,27 @@ describe("Body", () => {
     userEvent.click(within(userRow).getAllByTestId("table-cell")[2]);
     expect(mockOnClick).toBeCalledTimes(0);
   });
+
+  test("should display error message, when server response with error", async () => {
+    const mockOnClick = jest.fn();
+    (getVacations as jest.Mock).mockImplementation(() => {
+      throw new Error("error");
+    });
+
+    render(
+      <TableCalendarContext.Provider
+        value={{ handleClick: mockOnClick, currentTableCalendarDate: moment(new Date("1-11-2021")) }}
+      >
+        <Body
+          vacationStart={{ date: new Date(1), isSelected: false }}
+          vacationEnd={{ date: new Date(1), isSelected: false }}
+        />
+      </TableCalendarContext.Provider>
+    );
+
+    expect(screen.getByText("Please wait, searching your teammates...")).toBeInTheDocument();
+    await waitForElementToBeRemoved(() => screen.getByText("Please wait, searching your teammates..."));
+
+    expect(screen.getByText("No data")).toBeInTheDocument();
+  });
 });
