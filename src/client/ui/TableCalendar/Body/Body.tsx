@@ -22,7 +22,6 @@ export const Body = ({ vacationStart, vacationEnd }: propsType) => {
       try {
         const { teamMembers, currentUser } = await getTeamMembers();
         const vacations = await getVacations(teamMembers.map((teamMember) => teamMember.id));
-        //actually, data is already loaded, I just update state, maybe rename loadData to something more suitable
         dispatch(setUserData({ teamMembers, currentUser, vacations }));
       } catch (error) {
         dispatch(setError({ error }));
