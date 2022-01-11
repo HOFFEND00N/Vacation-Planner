@@ -6,7 +6,7 @@ import { TableCalendarStateType } from "../useVacationSelected";
 import { findUserVacations } from "../../../domain/Vacation/findUserVacations";
 import { TableCalendarContext } from "../TableCalendarContext/TableCalendarContext";
 import { UserDataRow, HeaderRow, TotalRow } from "./Rows";
-import { SetUserData, reducer, setError } from "./reducer";
+import { setUserData, reducer, setError } from "./reducer";
 
 type propsType = {
   vacationStart: TableCalendarStateType;
@@ -23,7 +23,7 @@ export const Body = ({ vacationStart, vacationEnd }: propsType) => {
         const { teamMembers, currentUser } = await getTeamMembers();
         const vacations = await getVacations(teamMembers.map((teamMember) => teamMember.id));
         //actually, data is already loaded, I just update state, maybe rename loadData to something more suitable
-        dispatch(SetUserData({ teamMembers, currentUser, vacations }));
+        dispatch(setUserData({ teamMembers, currentUser, vacations }));
       } catch (error) {
         dispatch(setError({ error }));
       }

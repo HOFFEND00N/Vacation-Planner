@@ -110,14 +110,4 @@ describe("Table calendar", () => {
     expect(within(userRow).getAllByTestId("table-cell")[2].classList.contains("cell--selected")).toEqual(false);
     expect(planVacationButton).toHaveAttribute("disabled");
   });
-
-  test("should show error message, when error happens while fetching data from server", async () => {
-    (getTeamMembers as jest.Mock).mockImplementation(() => {
-      throw Error("error while fetching data from server");
-    });
-
-    render(<TableCalendar currentDate={currentTableCalendarDate} />);
-
-    expect(screen.getByText("Something went wrong... Please try again later.")).toBeInTheDocument();
-  });
 });

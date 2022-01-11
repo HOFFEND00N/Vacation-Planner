@@ -29,7 +29,7 @@ export const reducer = (state: BodyReducerStateType, action: BodyReducerActionTy
   }
 };
 
-export const SetUserData = ({
+export const setUserData = ({
   teamMembers,
   currentUser,
   vacations,
