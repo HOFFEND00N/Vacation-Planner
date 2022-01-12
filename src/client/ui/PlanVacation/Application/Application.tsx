@@ -21,10 +21,15 @@ export const Application = ({ vacationStart, vacationEnd, additionalVacationDays
 
   return (
     <div className="application">
-      <div className="application-header">Генеральному директору ООО "Конфёрмит" Мастрюкову Д.Л. от {userName}</div>
+      <div className="application-header">
+        <div>Генеральному директору</div>
+        <div>ООО "Конфёрмит" </div>
+        <div>Мастрюкову Д.Л. </div>
+        <div>от {userName} </div>
+      </div>
       <div className="application-headline">Заявление</div>
       <div>
-        Прошу предоставить мне отпуск с {vacationStart.format("DD.MM.YYYY")} до {vacationEnd.format("DD.MM.YYYY")}{" "}
+        Прошу предоставить мне отпуск с {vacationStart.format("DD.MM.YYYY")} до {vacationEnd.format("DD.MM.YYYY")}
         {text}
       </div>
       <div className="application-footer">{moment().format("DD.MM.YYYY")}</div>

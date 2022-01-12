@@ -9,8 +9,10 @@
 }
 
 .application-header {
-    text-align: right;
+    align-items: flex-end;
     padding: 40px 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .application-headline {
