@@ -7,122 +7,125 @@ import { VacationType } from "../../../../../../domain/types";
 import { TableCalendarContext } from "../../../../TableCalendarContext/TableCalendarContext";
 
 describe("Total row", () => {
-  test("should render, when 0 vacation passed", () => {
-    const daysInMonth = 31;
+  describe("0 vacations passed", () => {
+    test("should render", () => {
+      const daysInMonth = 31;
 
-    render(
-      <TableCalendarContext.Provider
-        value={{ handleClick: jest.fn(), currentTableCalendarDate: moment(new Date("1-11-2021")) }}
-      >
-        <TotalRow daysInMonth={daysInMonth} vacations={[]} teamMembersCount={8} />
-      </TableCalendarContext.Provider>
-    );
+      render(
+        <TableCalendarContext.Provider
+          value={{ handleClick: jest.fn(), currentTableCalendarDate: moment(new Date("1-11-2021")) }}
+        >
+          <TotalRow daysInMonth={daysInMonth} vacations={[]} teamMembersCount={8} />
+        </TableCalendarContext.Provider>
+      );
 
-    expect(screen.getByTestId("table-calendar-total-row")).toBeInTheDocument();
-    expect(screen.getByText("Total")).toBeInTheDocument();
-    expect(screen.getAllByTestId("table-cell").length).toEqual(daysInMonth + 1);
+      expect(screen.getByTestId("table-calendar-total-row")).toBeInTheDocument();
+      expect(screen.getByText("Total")).toBeInTheDocument();
+      expect(screen.getAllByTestId("table-cell").length).toEqual(daysInMonth + 1);
+    });
+
+    test("should have weak workload type in all cells", () => {
+      const daysInMonth = 31;
+
+      render(
+        <TableCalendarContext.Provider
+          value={{ handleClick: jest.fn(), currentTableCalendarDate: moment(new Date("1-11-2021")) }}
+        >
+          <TotalRow daysInMonth={daysInMonth} vacations={[]} teamMembersCount={8} />
+        </TableCalendarContext.Provider>
+      );
+
+      const totalRow = screen.getByTestId("table-calendar-total-row");
+
+      const totalRowElements = within(totalRow)
+        .getAllByTestId("table-cell")
+        .filter((elem, index) => index > 0);
+      totalRowElements.forEach((element) =>
+        expect(element.classList.contains("total-cell--weak-workload")).toEqual(true)
+      );
+    });
   });
+  describe("2 vacations passed", () => {
+    test("should render", () => {
+      const daysInMonth = 31;
 
-  test("should have weak workload type in all cells, when 0 vacation passed", () => {
-    const daysInMonth = 31;
+      render(
+        <TableCalendarContext.Provider
+          value={{ handleClick: jest.fn(), currentTableCalendarDate: moment(new Date("1-11-2021")) }}
+        >
+          <TotalRow
+            daysInMonth={daysInMonth}
+            vacations={[
+              {
+                start: new Date("1-1-2021"),
+                end: new Date("1-7-2021"),
+                userId: "2",
+                type: VacationType.PENDING_APPROVAL,
+                id: "vacation 2",
+              },
+              {
+                start: new Date("1-5-2021"),
+                end: new Date("1-12-2021"),
+                userId: "4",
+                type: VacationType.APPROVED,
+                id: "vacation 1",
+              },
+            ]}
+            teamMembersCount={5}
+          />
+        </TableCalendarContext.Provider>
+      );
 
-    render(
-      <TableCalendarContext.Provider
-        value={{ handleClick: jest.fn(), currentTableCalendarDate: moment(new Date("1-11-2021")) }}
-      >
-        <TotalRow daysInMonth={daysInMonth} vacations={[]} teamMembersCount={8} />
-      </TableCalendarContext.Provider>
-    );
+      expect(screen.getByTestId("table-calendar-total-row")).toBeInTheDocument();
+      expect(screen.getByText("Total")).toBeInTheDocument();
+      expect(screen.getAllByTestId("table-cell").length).toEqual(daysInMonth + 1);
+    });
 
-    const totalRow = screen.getByTestId("table-calendar-total-row");
+    test("should have weak workload type in every cell except vacation dates intersection", () => {
+      const daysInMonth = 31;
 
-    const totalRowElements = within(totalRow)
-      .getAllByTestId("table-cell")
-      .filter((elem, index) => index > 0);
-    totalRowElements.forEach((element) =>
-      expect(element.classList.contains("total-cell--weak-workload")).toEqual(true)
-    );
-  });
+      render(
+        <TableCalendarContext.Provider
+          value={{ handleClick: jest.fn(), currentTableCalendarDate: moment(new Date("1-11-2021")) }}
+        >
+          <TotalRow
+            daysInMonth={daysInMonth}
+            vacations={[
+              {
+                start: new Date("1-1-2021"),
+                end: new Date("1-7-2021"),
+                userId: "2",
+                type: VacationType.PENDING_APPROVAL,
+                id: "vacation 2",
+              },
+              {
+                start: new Date("1-5-2021"),
+                end: new Date("1-12-2021"),
+                userId: "4",
+                type: VacationType.APPROVED,
+                id: "vacation 1",
+              },
+            ]}
+            teamMembersCount={5}
+          />
+        </TableCalendarContext.Provider>
+      );
 
-  test("should render, when two vacation passed", () => {
-    const daysInMonth = 31;
+      const totalRow = screen.getByTestId("table-calendar-total-row");
 
-    render(
-      <TableCalendarContext.Provider
-        value={{ handleClick: jest.fn(), currentTableCalendarDate: moment(new Date("1-11-2021")) }}
-      >
-        <TotalRow
-          daysInMonth={daysInMonth}
-          vacations={[
-            {
-              start: new Date("1-1-2021"),
-              end: new Date("1-7-2021"),
-              userId: "2",
-              type: VacationType.PENDING_APPROVAL,
-              id: "vacation 2",
-            },
-            {
-              start: new Date("1-5-2021"),
-              end: new Date("1-12-2021"),
-              userId: "4",
-              type: VacationType.APPROVED,
-              id: "vacation 1",
-            },
-          ]}
-          teamMembersCount={5}
-        />
-      </TableCalendarContext.Provider>
-    );
+      const totalRowWeakWorkloadElements = within(totalRow)
+        .getAllByTestId("table-cell")
+        .filter((elem, index) => index < 5 && index > 7);
+      totalRowWeakWorkloadElements.forEach((element) =>
+        expect(element.classList.contains("total-cell--weak-workload")).toEqual(true)
+      );
 
-    expect(screen.getByTestId("table-calendar-total-row")).toBeInTheDocument();
-    expect(screen.getByText("Total")).toBeInTheDocument();
-    expect(screen.getAllByTestId("table-cell").length).toEqual(daysInMonth + 1);
-  });
-
-  test("should have weak workload type in every cell except vacation dates intersection, when two vacation passed", () => {
-    const daysInMonth = 31;
-
-    render(
-      <TableCalendarContext.Provider
-        value={{ handleClick: jest.fn(), currentTableCalendarDate: moment(new Date("1-11-2021")) }}
-      >
-        <TotalRow
-          daysInMonth={daysInMonth}
-          vacations={[
-            {
-              start: new Date("1-1-2021"),
-              end: new Date("1-7-2021"),
-              userId: "2",
-              type: VacationType.PENDING_APPROVAL,
-              id: "vacation 2",
-            },
-            {
-              start: new Date("1-5-2021"),
-              end: new Date("1-12-2021"),
-              userId: "4",
-              type: VacationType.APPROVED,
-              id: "vacation 1",
-            },
-          ]}
-          teamMembersCount={5}
-        />
-      </TableCalendarContext.Provider>
-    );
-
-    const totalRow = screen.getByTestId("table-calendar-total-row");
-
-    const totalRowWeakWorkloadElements = within(totalRow)
-      .getAllByTestId("table-cell")
-      .filter((elem, index) => index < 5 && index > 7);
-    totalRowWeakWorkloadElements.forEach((element) =>
-      expect(element.classList.contains("total-cell--weak-workload")).toEqual(true)
-    );
-
-    const totalRowMediumWorkloadElements = within(totalRow)
-      .getAllByTestId("table-cell")
-      .filter((elem, index) => index > 5 && index < 7);
-    totalRowMediumWorkloadElements.forEach((element) =>
-      expect(element.classList.contains("total-cell--medium-workload")).toEqual(true)
-    );
+      const totalRowMediumWorkloadElements = within(totalRow)
+        .getAllByTestId("table-cell")
+        .filter((elem, index) => index > 5 && index < 7);
+      totalRowMediumWorkloadElements.forEach((element) =>
+        expect(element.classList.contains("total-cell--medium-workload")).toEqual(true)
+      );
+    });
   });
 });
