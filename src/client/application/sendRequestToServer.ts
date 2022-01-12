@@ -3,7 +3,7 @@ import { HttpMethod } from "../types";
 export const sendRequestToServer = async ({ url, method }: { url: string; method: HttpMethod }) => {
   const response = await fetch(url, { method });
   const parsedResponse = await response.json();
-  if (parsedResponse.error) {
+  if (response.status >= 400) {
     throw new Error(parsedResponse.error);
   }
   return parsedResponse;
