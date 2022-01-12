@@ -10,8 +10,8 @@ type CellProps = {
   classNames?: string;
   isDaysColumn?: boolean;
   date?: Date;
-  cellSelectable?: boolean;
-  cellSelected?: boolean;
+  isSelectable?: boolean;
+  isSelected?: boolean;
   workloadType?: WorkloadType;
   vacationType?: VacationType;
 };
@@ -21,9 +21,9 @@ export const Cell = ({
   isDaysColumn,
   date,
   classNames,
-  cellSelectable,
+  isSelectable,
   workloadType,
-  cellSelected,
+  isSelected,
   vacationType,
 }: CellProps) => {
   const tableCalendarContext = useContext(TableCalendarContext);
@@ -36,14 +36,14 @@ export const Cell = ({
     ["total-cell--heavy-workload"]: WorkloadType.Heavy === workloadType,
     ["cell--vacation-approved"]: vacationType === VacationType.APPROVED,
     ["cell--vacation-pending-approval"]: vacationType === VacationType.PENDING_APPROVAL,
-    ["cell--selectable"]: cellSelectable,
-    ["cell--selected"]: cellSelectable && cellSelected,
+    ["cell--selectable"]: isSelectable,
+    ["cell--selected"]: isSelectable && isSelected,
   });
 
   return (
     <div
       className={cellClassNames}
-      onClick={() => (cellSelectable ? tableCalendarContext.handleClick(date as Date) : undefined)}
+      onClick={() => (isSelectable ? tableCalendarContext.handleClick(date as Date) : undefined)}
       data-testid="table-cell"
     >
       {value}

@@ -40,8 +40,8 @@ export const UserDataRow = ({
       day
     );
 
-    const cellSelectable = isCellSelectable({ userId: user.id, currentUserId: currentUser.id });
-    const cellSelected = isCellSelected({
+    const isSelectable = isCellSelectable({ userId: user.id, currentUserId: currentUser.id });
+    const isSelected = isCellSelected({
       vacationStartDate: vacationStart.date,
       vacationEndDate: vacationEnd.date,
       cellDate: elementDate,
@@ -52,8 +52,8 @@ export const UserDataRow = ({
       <Cell
         date={elementDate}
         key={day + 1}
-        cellSelectable={cellSelectable}
-        cellSelected={cellSelected}
+        isSelectable={isSelectable}
+        isSelected={isSelected}
         vacationType={vacationTypeByDay[day]}
       />
     );
