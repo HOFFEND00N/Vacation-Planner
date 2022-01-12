@@ -6,7 +6,7 @@
 .application-form {
   display: flex;
   justify-content: space-between;
-  min-height: 200px;
+  min-height: 240px;
 }
 
 .vacation-dates {
@@ -55,7 +55,9 @@
 }
 
 .print-application-button {
-  flex-shrink: 1;
+  margin: auto;
+  width: 100%;
+  justify-content: center;
 }
 
 .right-page-half {
