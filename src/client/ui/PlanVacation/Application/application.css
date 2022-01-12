@@ -1,0 +1,23 @@
+.application {
+    display: none;
+}
+
+@media print {
+    .application{
+        display: block;
+    }
+}
+
+.application-header {
+    text-align: right;
+    padding: 40px 0;
+}
+
+.application-headline {
+    text-align: center;
+    padding: 40px 0;
+}
+.application-footer {
+    text-align: right;
+    padding: 40px 80px 40px 0;
+}

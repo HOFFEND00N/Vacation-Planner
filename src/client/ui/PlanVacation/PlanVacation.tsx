@@ -8,6 +8,7 @@ import { CheckBox } from "@confirmit/react-toggle";
 import { planVacation } from "../../application/planVacation";
 import "./plan-vacation.css";
 import { AdditionalVacationDays } from "./AddiionalVacationDays/AdditionalVacationDays";
+import { Application } from "./Application/Application";
 
 export function PlanVacation() {
   const [uploadState, setUploadState] = useState(UploadStates.Idle);
@@ -16,7 +17,7 @@ export function PlanVacation() {
   const location = useLocation();
   const [vacationStartDate, setVacationStartDate] = useState(moment(location.state.vacationStart.date));
   const [vacationEndDate, setVacationEndDate] = useState(moment(location.state.vacationEnd.date));
-  const [isUsedAdditionalVacationDays, setIsUsedAdditionalVacationDays] = useState(false);
+  const [additionalVacationDays, setAdditionalVacationDays] = useState<number | undefined>(undefined);
 
   const handleSubmit = async () => {
     if (files.length === 0) {
@@ -48,7 +49,7 @@ export function PlanVacation() {
   };
 
   const handleUseAdditionalVacationDays = () => {
-    setIsUsedAdditionalVacationDays(!isUsedAdditionalVacationDays);
+    additionalVacationDays === undefined ? setAdditionalVacationDays(0) : setAdditionalVacationDays(undefined);
   };
 
   const history = useHistory();
@@ -62,9 +63,13 @@ export function PlanVacation() {
     });
   };
 
+  const handlePrintApplication = () => {
+    window.print();
+  };
+
   return (
-    <div className={"application-container"}>
-      <div className={"application"}>
+    <div className={"application-form-container"}>
+      <div className={"application-form"}>
         <div>
           Vacation dates
           <div className={"vacation-dates"}>
@@ -77,15 +82,24 @@ export function PlanVacation() {
               <div className={"additional-vacation-days__header"}>Use additional vacation days</div>
               <CheckBox
                 onChange={handleUseAdditionalVacationDays}
-                checked={isUsedAdditionalVacationDays}
+                checked={additionalVacationDays !== undefined}
                 id={"isUseAdditionalVacationDays"}
               />
             </div>
-            {isUsedAdditionalVacationDays ? <AdditionalVacationDays /> : undefined}
+            {additionalVacationDays !== undefined ? (
+              <AdditionalVacationDays
+                additionalVacationDays={additionalVacationDays}
+                setAdditionalVacationDays={setAdditionalVacationDays}
+              />
+            ) : undefined}
           </div>
         </div>
         <div className={"right-page-half"}>
-          <Button className={"right-page-half__print-application-button"} appearance={Appearances.primarySuccess}>
+          <Button
+            className={"right-page-half__print-application-button"}
+            appearance={Appearances.primarySuccess}
+            onClick={handlePrintApplication}
+          >
             Print application
           </Button>
           <div>
@@ -108,6 +122,12 @@ export function PlanVacation() {
           Send
         </Button>
       </div>
+
+      <Application
+        vacationEnd={vacationEndDate}
+        vacationStart={vacationStartDate}
+        additionalVacationDays={additionalVacationDays}
+      />
     </div>
   );
 }
