@@ -37,9 +37,7 @@ describe("Total row", () => {
 
       const totalRow = screen.getByTestId("table-calendar-total-row");
 
-      const totalRowElements = within(totalRow)
-        .getAllByTestId("table-cell")
-        .filter((elem, index) => index > 0);
+      const totalRowElements = within(totalRow).getAllByTestId("table-cell").slice(1);
       totalRowElements.forEach((element) =>
         expect(element.classList.contains("total-cell--weak-workload")).toEqual(true)
       );
@@ -120,9 +118,7 @@ describe("Total row", () => {
         expect(element.classList.contains("total-cell--weak-workload")).toEqual(true)
       );
 
-      const totalRowMediumWorkloadElements = within(totalRow)
-        .getAllByTestId("table-cell")
-        .filter((elem, index) => index > 5 && index < 7);
+      const totalRowMediumWorkloadElements = within(totalRow).getAllByTestId("table-cell").slice(5, 7);
       totalRowMediumWorkloadElements.forEach((element) =>
         expect(element.classList.contains("total-cell--medium-workload")).toEqual(true)
       );
