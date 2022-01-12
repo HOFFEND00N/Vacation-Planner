@@ -6,7 +6,7 @@ import { TableCalendarStateType } from "../useVacationSelected";
 import { findUserVacations } from "../../../domain/Vacation/findUserVacations";
 import { TableCalendarContext } from "../TableCalendarContext/TableCalendarContext";
 import { UserDataRow, HeaderRow, TotalRow } from "./Rows";
-import { setUserData, reducer, setError } from "./reducer";
+import { UserDataLoaded, reducer, errorOccurred } from "./reducer";
 
 type propsType = {
   vacationStart: TableCalendarStateType;
@@ -22,9 +22,9 @@ export const Body = ({ vacationStart, vacationEnd }: propsType) => {
       try {
         const { teamMembers, currentUser } = await getTeamMembers();
         const vacations = await getVacations(teamMembers.map((teamMember) => teamMember.id));
-        dispatch(setUserData({ teamMembers, currentUser, vacations }));
+        dispatch(UserDataLoaded({ teamMembers, currentUser, vacations }));
       } catch (error) {
-        dispatch(setError({ error }));
+        dispatch(errorOccurred(error));
       }
     })();
   }, []);

@@ -29,7 +29,7 @@ export const reducer = (state: BodyReducerStateType, action: BodyReducerActionTy
   }
 };
 
-export const setUserData = ({
+export const UserDataLoaded = ({
   teamMembers,
   currentUser,
   vacations,
@@ -44,7 +44,7 @@ export const setUserData = ({
   vacations,
 });
 
-export const setError = ({ error }: { error: Error }) => ({
+export const errorOccurred = (error: Error) => ({
   type: "set error",
   error,
 });

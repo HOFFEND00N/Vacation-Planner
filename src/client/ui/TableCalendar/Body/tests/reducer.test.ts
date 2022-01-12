@@ -1,4 +1,4 @@
-import { BodyReducerStateType, reducer, setError, setUserData } from "../reducer";
+import { BodyReducerStateType, reducer, errorOccurred, UserDataLoaded } from "../reducer";
 
 describe("reducer", () => {
   test("updates state correctly, when data loaded", () => {
@@ -72,12 +72,10 @@ describe("reducer", () => {
       },
     };
 
-    const actualAction = setError({
-      error: {
-        message: "message",
-        name: "",
-        stack: "",
-      },
+    const actualAction = errorOccurred({
+      message: "message",
+      name: "",
+      stack: "",
     });
 
     expect(actualAction).toEqual(expectedAction);
@@ -94,7 +92,7 @@ describe("reducer", () => {
       vacations: [],
     };
 
-    const actualAction = setUserData({
+    const actualAction = UserDataLoaded({
       currentUser: { id: "user 1", name: "user 1" },
       teamMembers: [
         { id: "user 1", name: "user 1" },
