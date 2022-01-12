@@ -5,7 +5,6 @@ import { getVacations } from "../../../application/getVacations";
 import { TableCalendarStateType } from "../useVacationSelected";
 import { findUserVacations } from "../../../domain/Vacation/findUserVacations";
 import { TableCalendarContext } from "../TableCalendarContext/TableCalendarContext";
-import { AppContext } from "../../App/AppContext/AppContext";
 import { UserDataRow, HeaderRow, TotalRow } from "./Rows";
 import { userDataLoaded, reducer, errorOccurred } from "./reducer";
 
@@ -17,13 +16,11 @@ type propsType = {
 export const Body = ({ vacationStart, vacationEnd }: propsType) => {
   const [{ error, currentUser, teamMembers, vacations }, dispatch] = useReducer(reducer, {});
   const { currentTableCalendarDate } = useContext(TableCalendarContext);
-  const { setCurrentUser } = useContext(AppContext);
 
   useEffect(() => {
     (async () => {
       try {
         const { teamMembers, currentUser } = await getTeamMembers();
-        setCurrentUser(currentUser);
         const vacations = await getVacations(teamMembers.map((teamMember) => teamMember.id));
         dispatch(userDataLoaded({ teamMembers, currentUser, vacations }));
       } catch (error) {

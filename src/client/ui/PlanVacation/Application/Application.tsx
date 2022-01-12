@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./application.css";
 import moment from "moment";
-import { AppContext } from "../../App/AppContext/AppContext";
 
 type ApplicationProps = {
   vacationStart: moment.Moment;
@@ -10,7 +9,6 @@ type ApplicationProps = {
 };
 
 export const Application = ({ vacationStart, vacationEnd, additionalVacationDays }: ApplicationProps) => {
-  const { currentUser } = useContext(AppContext);
   let text = "";
   if (additionalVacationDays) {
     if (additionalVacationDays === 1) {
@@ -22,9 +20,7 @@ export const Application = ({ vacationStart, vacationEnd, additionalVacationDays
 
   return (
     <div className="application">
-      <div className="application-header">
-        Генеральному директору ООО "Конфёрмит" Мастрюкову Д.Л. от {currentUser.name}
-      </div>
+      <div className="application-header">Генеральному директору ООО "Конфёрмит" Мастрюкову Д.Л. от {}</div>
       <div className="application-headline">Заявление</div>
       <div>
         Прошу предоставить мне отпуск с {vacationStart.format("DD.MM.YYYY")} до {vacationEnd.format("DD.MM.YYYY")}{" "}
