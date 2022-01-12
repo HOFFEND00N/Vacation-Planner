@@ -6,9 +6,10 @@ type ApplicationProps = {
   vacationStart: moment.Moment;
   vacationEnd: moment.Moment;
   additionalVacationDays?: number;
+  userName: string;
 };
 
-export const Application = ({ vacationStart, vacationEnd, additionalVacationDays }: ApplicationProps) => {
+export const Application = ({ vacationStart, vacationEnd, additionalVacationDays, userName }: ApplicationProps) => {
   let text = "";
   if (additionalVacationDays) {
     if (additionalVacationDays === 1) {
@@ -20,7 +21,7 @@ export const Application = ({ vacationStart, vacationEnd, additionalVacationDays
 
   return (
     <div className="application">
-      <div className="application-header">Генеральному директору ООО "Конфёрмит" Мастрюкову Д.Л. от {}</div>
+      <div className="application-header">Генеральному директору ООО "Конфёрмит" Мастрюкову Д.Л. от {userName}</div>
       <div className="application-headline">Заявление</div>
       <div>
         Прошу предоставить мне отпуск с {vacationStart.format("DD.MM.YYYY")} до {vacationEnd.format("DD.MM.YYYY")}{" "}

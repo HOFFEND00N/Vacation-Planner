@@ -135,6 +135,7 @@ export function PlanVacation() {
         vacationEnd={vacationEndDate}
         vacationStart={vacationStartDate}
         additionalVacationDays={additionalVacationDays}
+        userName={userName}
       />
     </div>
   );
