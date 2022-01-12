@@ -4,7 +4,7 @@ import nconf from "nconf";
 import { sso } from "node-expose-sspi";
 import ActiveDirectory from "activedirectory";
 import { Op } from "sequelize";
-import { Config, ModelsNames, TEAMS } from "../constants";
+import { Config, LINE_BREAK, ModelsNames, TEAMS } from "../constants";
 import { makeIndexHtml } from "./makeIndexHtml";
 import { setupConfig } from "./setupConfig";
 import { setupDBConnection } from "./DBHelpers/setupDBConnection";
@@ -14,6 +14,13 @@ import { findGroupMembers } from "./ADHelpers/findGroupMembers";
 import { entryParser } from "./ADHelpers/entryParser";
 
 (async () => {
+  if (!process.env.password || !process.env.login) {
+    console.log(LINE_BREAK);
+    console.log("Missing credentials inside environmental variables");
+    console.log(LINE_BREAK);
+    process.exit();
+  }
+
   setupConfig();
   const dbConnection = await setupDBConnection();
   await setupDBModels(dbConnection);

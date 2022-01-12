@@ -20,3 +20,5 @@ export const TEAMS = [
   "HR&ADMIN Yaroslavl",
   "IT Services Russia",
 ];
+
+export const LINE_BREAK = "------------------------------------------------------------";
