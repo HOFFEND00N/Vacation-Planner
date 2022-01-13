@@ -58,7 +58,7 @@ export const userDataLoaded = ({
   vacations,
 });
 
-export const errorOccurred = (error): errorOccurredAction => ({
+export const errorOccurred = (error: Error): errorOccurredAction => ({
   type: reducerActionTypes.ErrorOccurred,
   error,
 });
