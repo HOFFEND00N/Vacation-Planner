@@ -6,7 +6,7 @@ import { TableCalendarStateType } from "../useVacationSelected";
 import { findUserVacations } from "../../../domain/Vacation/findUserVacations";
 import { TableCalendarContext } from "../TableCalendarContext/TableCalendarContext";
 import { UserDataRow, HeaderRow, TotalRow } from "./Rows";
-import { UserDataLoaded, reducer, errorOccurred } from "./reducer";
+import { userDataLoaded, reducer, errorOccurred } from "./reducer";
 
 type propsType = {
   vacationStart: TableCalendarStateType;
@@ -14,7 +14,11 @@ type propsType = {
 };
 
 export const Body = ({ vacationStart, vacationEnd }: propsType) => {
-  const [{ error, currentUser, teamMembers, vacations }, dispatch] = useReducer(reducer, {});
+  const [{ error, currentUser, teamMembers, vacations }, dispatch] = useReducer(reducer, {
+    currentUser: { id: "", name: "" },
+    vacations: [],
+    teamMembers: [],
+  });
   const { currentTableCalendarDate } = useContext(TableCalendarContext);
 
   useEffect(() => {
@@ -22,9 +26,10 @@ export const Body = ({ vacationStart, vacationEnd }: propsType) => {
       try {
         const { teamMembers, currentUser } = await getTeamMembers();
         const vacations = await getVacations(teamMembers.map((teamMember) => teamMember.id));
-        dispatch(UserDataLoaded({ teamMembers, currentUser, vacations }));
+        dispatch(userDataLoaded({ teamMembers, currentUser, vacations }));
       } catch (error) {
         dispatch(errorOccurred(error));
+        showError(error);
       }
     })();
   }, []);
@@ -34,11 +39,10 @@ export const Body = ({ vacationStart, vacationEnd }: propsType) => {
   };
 
   if (error) {
-    showError(error);
     return <h1> No data </h1>;
   }
 
-  if (!currentUser || !vacations || !teamMembers) {
+  if (!currentUser || !vacations || !teamMembers || teamMembers.length === 0) {
     return <h1> Please wait, searching your teammates... </h1>;
   }
 

@@ -1,4 +1,4 @@
-import { BodyReducerStateType, reducer, errorOccurred, UserDataLoaded } from "../reducer";
+import { BodyReducerStateType, errorOccurred, reducer, reducerActionTypes, userDataLoaded } from "../reducer";
 
 describe("reducer", () => {
   test("updates state correctly, when data loaded", () => {
@@ -14,7 +14,7 @@ describe("reducer", () => {
     const actualState = reducer(
       {},
       {
-        type: "set user data",
+        type: reducerActionTypes.UserDataLoaded,
         currentUser: { id: "user 1", name: "user 1" },
         teamMembers: [
           { id: "user 1", name: "user 1" },
@@ -39,7 +39,7 @@ describe("reducer", () => {
     const actualState = reducer(
       {},
       {
-        type: "set error",
+        type: reducerActionTypes.ErrorOccurred,
         error: {
           message: "message",
           name: "",
@@ -51,20 +51,9 @@ describe("reducer", () => {
     expect(actualState).toEqual(expectedState);
   });
 
-  test("throw error because of invalid action type", () => {
-    expect(() =>
-      reducer(
-        {},
-        {
-          type: "unknown command",
-        }
-      )
-    ).toThrow();
-  });
-
   test("add set error action type, when set error called", () => {
     const expectedAction = {
-      type: "set error",
+      type: reducerActionTypes.ErrorOccurred,
       error: {
         message: "message",
         name: "",
@@ -83,7 +72,7 @@ describe("reducer", () => {
 
   test("add set user data, when set user data loaded", () => {
     const expectedAction = {
-      type: "set user data",
+      type: reducerActionTypes.UserDataLoaded,
       currentUser: { id: "user 1", name: "user 1" },
       teamMembers: [
         { id: "user 1", name: "user 1" },
@@ -92,7 +81,7 @@ describe("reducer", () => {
       vacations: [],
     };
 
-    const actualAction = UserDataLoaded({
+    const actualAction = userDataLoaded({
       currentUser: { id: "user 1", name: "user 1" },
       teamMembers: [
         { id: "user 1", name: "user 1" },
