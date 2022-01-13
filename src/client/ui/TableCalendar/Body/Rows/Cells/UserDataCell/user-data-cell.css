@@ -13,15 +13,3 @@
 .cell--selected {
     background: lightskyblue;
 }
-
-.total-cell--weak-workload {
-    background: lawngreen;
-}
-
-.total-cell--medium-workload {
-    background: yellow;
-}
-
-.total-cell--heavy-workload {
-    background: red;
-}

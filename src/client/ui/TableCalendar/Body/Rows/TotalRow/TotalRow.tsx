@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { Cell } from "../Cell";
 import { getVacationsCountByDays } from "../../../../../domain/Vacation/getVacationsCountByDays";
 import { Row } from "../Row/Row";
 import { Vacation } from "../../../../../domain/types";
 import { TableCalendarContext } from "../../../TableCalendarContext/TableCalendarContext";
+import { TotalCell } from "../Cells/TotalCell";
 import { getDayWorkloadType } from "./getDayWorkloadType";
 
 type TotalRowProps = {
@@ -24,11 +24,11 @@ export const TotalRow = ({ vacations, daysInMonth, teamMembersCount }: TotalRowP
       vacationsCount: vacationsCountByDays[j] ?? 0,
       teamMembersCount,
     });
-    cells.push(<Cell key={j} workloadType={dayWorkloadType} />);
+    cells.push(<TotalCell key={j} workloadType={dayWorkloadType} />);
   }
   return (
     <Row dataTestId="table-calendar-total-row">
-      <Cell value="Total" key={0} />
+      <TotalCell value="Total" key={0} />
       {cells}
     </Row>
   );

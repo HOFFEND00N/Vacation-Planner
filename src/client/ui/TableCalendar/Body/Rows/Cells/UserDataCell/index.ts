@@ -1,0 +1,1 @@
+export { UserDataCell } from "./UserDataCell";

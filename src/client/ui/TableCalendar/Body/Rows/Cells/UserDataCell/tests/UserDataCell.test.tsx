@@ -2,13 +2,13 @@ import { render, screen } from "@testing-library/react";
 import React from "react";
 import userEvent from "@testing-library/user-event";
 import moment from "moment";
-import { Cell } from "../Cell";
+import { UserDataCell } from "../UserDataCell";
 import "@testing-library/jest-dom";
-import { TableCalendarContext } from "../../../../TableCalendarContext/TableCalendarContext";
+import { TableCalendarContext } from "../../../../../TableCalendarContext/TableCalendarContext";
 
-describe("Cell ", () => {
+describe("UserDataCell ", () => {
   test("should render", async () => {
-    render(<Cell value="test value" />);
+    render(<UserDataCell value="test value" />);
 
     expect(screen.getByText("test value")).toBeInTheDocument();
   });
@@ -16,7 +16,7 @@ describe("Cell ", () => {
   test("should have className, when isDaysColumn props passed", async () => {
     const expectedClassName = "cell-days-column";
 
-    render(<Cell value="test value" isDaysColumn />);
+    render(<UserDataCell value="test value" isDaysColumn />);
 
     expect(screen.getByText("test value").classList.contains(expectedClassName)).toEqual(true);
   });
@@ -26,7 +26,7 @@ describe("Cell ", () => {
 
     render(
       <TableCalendarContext.Provider value={{ handleClick: mockOnClick, currentTableCalendarDate: moment() }}>
-        <Cell value="test value" date={new Date("1-11-2021")} isSelectable />
+        <UserDataCell value="test value" date={new Date("1-11-2021")} isSelectable />
       </TableCalendarContext.Provider>
     );
     userEvent.click(screen.getByText("test value"));
@@ -39,7 +39,7 @@ describe("Cell ", () => {
 
     render(
       <TableCalendarContext.Provider value={{ handleClick: mockOnClick, currentTableCalendarDate: moment() }}>
-        <Cell value="test value" date={new Date("1-11-2021")} />
+        <UserDataCell value="test value" date={new Date("1-11-2021")} />
       </TableCalendarContext.Provider>
     );
     userEvent.click(screen.getByText("test value"));

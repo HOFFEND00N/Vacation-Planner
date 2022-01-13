@@ -1,7 +1,6 @@
 import React from "react";
-import "../../body.css";
-import { Cell } from "../Cell";
 import { Row } from "../Row/Row";
+import { Cell } from "../Cells/Cell";
 
 export const HeaderRow = ({ daysInMonth }: { daysInMonth: number }) => {
   const cells: JSX.Element[] = [];

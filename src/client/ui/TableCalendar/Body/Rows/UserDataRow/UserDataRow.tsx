@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Cell } from "../Cell";
+import { UserDataCell } from "../Cells/UserDataCell";
 import { getVacationsTypeByDayForCurrentMonth } from "../../../../../domain/Vacation/getVacationsTypeByDayForCurrentMonth";
 import { getTotalVacationsDays } from "../../../../../domain/Vacation/getTotalVacationsDays";
 import { TableCalendarStateType } from "../../../useVacationSelected";
@@ -49,7 +49,7 @@ export const UserDataRow = ({
     });
 
     cells.push(
-      <Cell
+      <UserDataCell
         date={elementDate}
         key={day + 1}
         isSelectable={isSelectable}
@@ -60,8 +60,8 @@ export const UserDataRow = ({
   }
   return (
     <Row dataTestId={`row ${user.id}`}>
-      <Cell value={employeeName} key={0} />
-      <Cell value={getTotalVacationsDays(vacations)} isDaysColumn key={1} />
+      <UserDataCell value={employeeName} key={0} />
+      <UserDataCell value={getTotalVacationsDays(vacations)} isDaysColumn key={1} />
       {cells}
     </Row>
   );
