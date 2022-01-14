@@ -7,21 +7,28 @@ type ApplicationProps = {
   vacationEnd: moment.Moment;
   additionalVacationDays?: number;
   userName: string;
+  currentDate: moment.Moment;
 };
 
-export const Application = ({ vacationStart, vacationEnd, additionalVacationDays, userName }: ApplicationProps) => {
+export const Application = ({
+  vacationStart,
+  vacationEnd,
+  additionalVacationDays,
+  userName,
+  currentDate,
+}: ApplicationProps) => {
   let text = "";
   if (additionalVacationDays) {
     if (additionalVacationDays === 1) {
-      text = `, из них ${additionalVacationDays} дополнительный день отпуска за ${moment().year()} год`;
+      text = `, из них ${additionalVacationDays} дополнительный день отпуска за ${vacationStart.year()} год`;
     } else {
-      text = `, из них ${additionalVacationDays} дополнительных дня отпуска за ${moment().year()} год`;
+      text = `, из них ${additionalVacationDays} дополнительных дня отпуска за ${vacationStart.year()} год`;
     }
   }
 
   return (
-    <div className="application">
-      <div className="application-header">
+    <div className="application" data-testid="application">
+      <div className="application-header" data-testid="application-header">
         <div>Генеральному директору</div>
         <div>ООО "Конфёрмит" </div>
         <div>Мастрюкову Д.Л. </div>
@@ -32,7 +39,7 @@ export const Application = ({ vacationStart, vacationEnd, additionalVacationDays
         Прошу предоставить мне отпуск с {vacationStart.format("DD.MM.YYYY")} до {vacationEnd.format("DD.MM.YYYY")}
         {text}
       </div>
-      <div className="application-footer">{moment().format("DD.MM.YYYY")}</div>
+      <div className="application-footer">{currentDate.format("DD.MM.YYYY")}</div>
     </div>
   );
 };

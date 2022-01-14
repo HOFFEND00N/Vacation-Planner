@@ -8,15 +8,17 @@ import { TableCalendar } from "../TableCalendar";
 import "./app.css";
 
 export const App = () => {
+  const currentDate = moment();
+
   return (
     <ThemeContext.Provider value={theme.themeNames.material}>
       <Banner />
       <Switch>
         <Route path="/plan-vacation">
-          <PlanVacation />
+          <PlanVacation currentDate={currentDate} />
         </Route>
         <Route path="/">
-          <TableCalendar currentDate={moment()} />
+          <TableCalendar currentDate={currentDate} />
         </Route>
       </Switch>
     </ThemeContext.Provider>

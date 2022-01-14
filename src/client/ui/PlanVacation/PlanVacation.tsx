@@ -11,7 +11,7 @@ import "./plan-vacation.css";
 import { AdditionalVacationDays } from "./AddiionalVacationDays/AdditionalVacationDays";
 import { Application } from "./Application/Application";
 
-export function PlanVacation() {
+export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
   const [uploadState, setUploadState] = useState(UploadStates.Idle);
   const [files, setFiles] = useState<File[]>([]);
   const [selectedFileName, setSelectedFileName] = useState("");
@@ -136,6 +136,7 @@ export function PlanVacation() {
         vacationStart={vacationStartDate}
         additionalVacationDays={additionalVacationDays}
         userName={userName}
+        currentDate={currentDate}
       />
     </div>
   );
