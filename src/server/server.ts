@@ -65,6 +65,7 @@ import { entryParser } from "./ADHelpers/entryParser";
       res.status(500).send({ error: "Something went wrong, please try again later" });
     }
   });
+
   server.get("/vacations", async (req, res) => {
     try {
       const usersIds = req.query.id as string[];
