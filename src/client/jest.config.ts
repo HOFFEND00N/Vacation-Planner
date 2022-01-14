@@ -1,4 +1,3 @@
-//TODO: use different configs for frontend/backend tests
 const config = {
   moduleFileExtensions: ["ts", "js", "tsx", "jsx"],
   transform: { "\\.tsx?$": "ts-jest" },
@@ -14,6 +13,6 @@ const config = {
     "\\.(css|less)$": "identity-obj-proxy",
   },
   testEnvironment: "jsdom",
-  coveragePathIgnorePatterns: ["<rootDir>/src/client/application/", "<rootDir>/node_modules/"],
+  coveragePathIgnorePatterns: ["/application/"],
 };
 export default config;
