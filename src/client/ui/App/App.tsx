@@ -16,7 +16,7 @@ export const App = () => {
           <PlanVacation />
         </Route>
         <Route path="/">
-          <TableCalendar currentDate={moment()} />;
+          <TableCalendar currentDate={moment()} />
         </Route>
       </Switch>
     </ThemeContext.Provider>
