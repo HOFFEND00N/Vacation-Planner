@@ -72,5 +72,4 @@ import { getTeamVacations } from "./DBHelpers/getTeamVacations";
   server.listen(port, () => {
     console.log(`The app server is running on port: ${port}`);
   });
-  //TODO: study rest API
 })();
