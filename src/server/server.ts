@@ -14,13 +14,6 @@ import { findGroupMembers } from "./ADHelpers/findGroupMembers";
 import { entryParser } from "./ADHelpers/entryParser";
 
 (async () => {
-  if (!process.env.password || !process.env.login) {
-    console.log(LINE_BREAK);
-    console.log("Missing credentials inside environmental variables");
-    console.log(LINE_BREAK);
-    process.exit();
-  }
-
   setupConfig();
   const dbConnection = await setupDBConnection();
   await setupDBModels(dbConnection);
@@ -29,6 +22,15 @@ import { entryParser } from "./ADHelpers/entryParser";
   const server = express();
 
   server.use(sso.auth());
+  server.use((req, res, next) => {
+    if (!process.env.password || !process.env.login) {
+      console.log(LINE_BREAK);
+      console.log("Missing credentials inside environmental variables");
+      console.log(LINE_BREAK);
+      process.exit();
+    }
+    next();
+  });
   if (process.env.mode === "production") {
     server.use(express.static("dist"));
   }
