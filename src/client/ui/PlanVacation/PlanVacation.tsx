@@ -4,7 +4,6 @@ import { DatePicker } from "@confirmit/react-date-picker";
 import { useHistory, useLocation } from "react-router-dom";
 import moment from "moment";
 import Dropzone, { UploadStates } from "@confirmit/react-dropzone";
-import { CheckBox } from "@confirmit/react-toggle";
 import { TextField } from "@confirmit/react-text-field";
 import { planVacation } from "../../application/planVacation";
 import "./plan-vacation.css";
@@ -50,10 +49,6 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
     setSelectedFileName("");
   };
 
-  const handleUseAdditionalVacationDays = () => {
-    additionalVacationDays === undefined ? setAdditionalVacationDays(0) : setAdditionalVacationDays(undefined);
-  };
-
   const history = useHistory();
   const handleCancel = () => {
     history.push({
@@ -85,22 +80,10 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
             value={userName}
             onChange={setUserName}
           />
-          <div>
-            <div className="additional-vacation-days">
-              <div className="additional-vacation-days__header">Use additional vacation days</div>
-              <CheckBox
-                onChange={handleUseAdditionalVacationDays}
-                checked={additionalVacationDays !== undefined}
-                id={"isUseAdditionalVacationDays"}
-              />
-            </div>
-            {additionalVacationDays !== undefined ? (
-              <AdditionalVacationDays
-                additionalVacationDays={additionalVacationDays}
-                setAdditionalVacationDays={setAdditionalVacationDays}
-              />
-            ) : undefined}
-          </div>
+          <AdditionalVacationDays
+            additionalVacationDays={additionalVacationDays}
+            setAdditionalVacationDays={setAdditionalVacationDays}
+          />
         </div>
         <div className="right-page-half">
           <Button
