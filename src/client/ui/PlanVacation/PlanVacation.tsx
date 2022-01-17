@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Appearances, Button } from "@confirmit/react-button";
-import { DatePicker } from "@confirmit/react-date-picker";
 import { useHistory, useLocation } from "react-router-dom";
 import moment from "moment";
 import Dropzone, { UploadStates } from "@confirmit/react-dropzone";
@@ -9,6 +8,7 @@ import { planVacation } from "../../application/planVacation";
 import "./plan-vacation.css";
 import { AdditionalVacationDays } from "./AddiionalVacationDays/AdditionalVacationDays";
 import { Application } from "./Application/Application";
+import { VacationDates } from "./VacationDates/VacationDates";
 
 export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
   const [uploadState, setUploadState] = useState(UploadStates.Idle);
@@ -31,11 +31,11 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
     alert(`file = ${files[0].name}, vacation start = ${vacationStartDate}, vacation end = ${vacationEndDate}`);
   };
 
-  const handleDateStartChange = (startDate: moment.Moment) => {
+  const handleStartDateChange = (startDate: moment.Moment) => {
     setVacationStartDate(startDate);
   };
 
-  const handleDateEndChange = (endDate: moment.Moment) => {
+  const handleEndDateChange = (endDate: moment.Moment) => {
     setVacationEndDate(endDate);
   };
 
@@ -68,12 +68,12 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
     <div className="application-form-container">
       <div className="application-form">
         <div>
-          Vacation dates
-          <div className="vacation-dates">
-            <DatePicker date={vacationStartDate} onChange={handleDateStartChange} className="vacation-dates__item" />
-            <hr className="vacation-dates__line-between" />
-            <DatePicker date={vacationEndDate} onChange={handleDateEndChange} className="vacation-dates__item" />
-          </div>
+          <VacationDates
+            vacationStartDate={vacationStartDate}
+            vacationEndDate={vacationEndDate}
+            handleDateStartChange={handleStartDateChange}
+            handleDateEndChange={handleEndDateChange}
+          />
           <TextField
             label="Full name in the genitive case"
             placeholder="Иванова И.И."
