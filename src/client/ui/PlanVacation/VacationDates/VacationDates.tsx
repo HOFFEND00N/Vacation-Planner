@@ -9,8 +9,8 @@ export function VacationDates({
   handleDateStartChange,
   handleDateEndChange,
 }: {
-  vacationStartDate: moment.Moment | null;
-  vacationEndDate: moment.Moment | null;
+  vacationStartDate: moment.Moment;
+  vacationEndDate: moment.Moment;
   handleDateStartChange: Dispatch<SetStateAction<moment.Moment | null>>;
   handleDateEndChange: Dispatch<SetStateAction<moment.Moment | null>>;
 }) {
