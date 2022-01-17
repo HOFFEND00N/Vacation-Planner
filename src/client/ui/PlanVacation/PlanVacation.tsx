@@ -6,9 +6,9 @@ import Dropzone, { UploadStates } from "@confirmit/react-dropzone";
 import { TextField } from "@confirmit/react-text-field";
 import { planVacation } from "../../application/planVacation";
 import "./plan-vacation.css";
-import { AdditionalVacationDays } from "./AddiionalVacationDays/AdditionalVacationDays";
-import { Application } from "./Application/Application";
-import { VacationDates } from "./VacationDates/VacationDates";
+import { AdditionalVacationDays } from "./AddiionalVacationDays";
+import { Application } from "./Application";
+import { VacationDates } from "./VacationDates";
 
 export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
   const [uploadState, setUploadState] = useState(UploadStates.Idle);
@@ -27,7 +27,7 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
     setUploadState(UploadStates.Uploading);
     const res = await planVacation();
     //TODO: FTP server, web server, time server
-    console.log(res.json());
+    console.log(res);
     alert(`file = ${files[0].name}, vacation start = ${vacationStartDate}, vacation end = ${vacationEndDate}`);
   };
 

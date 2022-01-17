@@ -32,11 +32,6 @@ import { getTeamVacations } from "./DBHelpers/getTeamVacations";
     server.use(express.static("dist"));
   }
 
-  server.post("/plan-vacation", (req, res) => {
-    res.set("Content-Type", "application/json");
-    res.send({ message: "saved to db" });
-  });
-
   server.get("/team-members", async (req, res) => {
     try {
       // const username = req.sso.user?.adUser?.userPrincipalName;
@@ -59,6 +54,10 @@ import { getTeamVacations } from "./DBHelpers/getTeamVacations";
     } catch (e) {
       res.status(500).send({ error: "Something went wrong, please try again later" });
     }
+  });
+
+  server.post("/vacations", (req, res) => {
+    res.send({ message: "saved to db" });
   });
 
   server.get("*", (req, res) => {
