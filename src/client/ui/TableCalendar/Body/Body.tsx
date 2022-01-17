@@ -14,11 +14,7 @@ type propsType = {
 };
 
 export const Body = ({ vacationStart, vacationEnd }: propsType) => {
-  const [{ error, currentUser, teamMembers, vacations }, dispatch] = useReducer(reducer, {
-    currentUser: { id: "", name: "" },
-    vacations: [],
-    teamMembers: [],
-  });
+  const [{ error, currentUser, teamMembers, vacations }, dispatch] = useReducer(reducer, {});
   const { currentTableCalendarDate } = useContext(TableCalendarContext);
 
   useEffect(() => {
@@ -42,7 +38,7 @@ export const Body = ({ vacationStart, vacationEnd }: propsType) => {
     return <h1> No data </h1>;
   }
 
-  if (!currentUser || !vacations || !teamMembers || teamMembers.length === 0) {
+  if (!currentUser || !vacations || !teamMembers) {
     return <h1> Please wait, searching your teammates... </h1>;
   }
 
