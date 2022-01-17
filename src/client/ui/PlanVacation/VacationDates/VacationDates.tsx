@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { DatePicker } from "@confirmit/react-date-picker";
 import moment from "moment";
+import "./vacation-dates.css";
 
 export function VacationDates({
   vacationStartDate,

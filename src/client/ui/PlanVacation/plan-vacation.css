@@ -9,35 +9,8 @@
   min-height: 240px;
 }
 
-.vacation-dates {
-  margin: 15px 0;
-  display: flex;
-  align-items: center;
-}
-
-.vacation-dates__item {
-  max-width: 200px;
-}
-
 .vacation-application {
   min-height: 100px;
-}
-
-.vacation-dates__line-between {
-  height: 4px;
-  width: 25px;
-  background-color: #7f7f7f;
-  margin: 0 10px;
-}
-
-.additional-vacation-days {
-  margin: 15px 0;
-  display: flex;
-  align-items: center;
-}
-
-.additional-vacation-days__header {
-  margin-right: 10px;
 }
 
 .dropzone-container__header {

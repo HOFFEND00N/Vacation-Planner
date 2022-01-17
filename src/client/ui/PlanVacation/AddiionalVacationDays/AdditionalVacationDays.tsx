@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { TextField } from "@confirmit/react-text-field";
 import { CheckBox } from "@confirmit/react-toggle";
+import "./additional-vacation-days.css";
 
 export function AdditionalVacationDays({
   additionalVacationDays,
