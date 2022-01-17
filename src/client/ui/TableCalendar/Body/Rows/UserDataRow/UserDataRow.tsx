@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
-import { UserDataCell } from "../Cells/UserDataCell";
+import { VacationDataCell } from "../Cells/VacationDataCell";
 import { getVacationsTypeByDayForCurrentMonth } from "../../../../../domain/Vacation/getVacationsTypeByDayForCurrentMonth";
 import { getTotalVacationsDays } from "../../../../../domain/Vacation/getTotalVacationsDays";
 import { TableCalendarStateType } from "../../../useVacationSelected";
 import { Row } from "../Row/Row";
 import { User, Vacation } from "../../../../../domain/types";
 import { TableCalendarContext } from "../../../TableCalendarContext/TableCalendarContext";
+import { DaysColumnCell } from "../Cells/DaysColumnCell";
 import { isCellSelectable } from "./isCellSelectable";
 import { isCellSelected } from "./isCellSelected";
 
@@ -49,9 +50,9 @@ export const UserDataRow = ({
     });
 
     cells.push(
-      <UserDataCell
+      <VacationDataCell
         date={elementDate}
-        key={day + 1}
+        key={day}
         isSelectable={isSelectable}
         isSelected={isSelected}
         vacationType={vacationTypeByDay[day]}
@@ -60,8 +61,8 @@ export const UserDataRow = ({
   }
   return (
     <Row dataTestId={`row ${user.id}`}>
-      <UserDataCell value={employeeName} key={0} />
-      <UserDataCell value={getTotalVacationsDays(vacations)} isDaysColumn key={1} />
+      <VacationDataCell value={employeeName} key={0} />
+      <DaysColumnCell value={getTotalVacationsDays(vacations)} />
       {cells}
     </Row>
   );

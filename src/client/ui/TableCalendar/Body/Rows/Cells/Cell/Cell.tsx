@@ -6,13 +6,11 @@ type CellProps = {
   value?: number | string;
   classNames?: string;
   onClick?: () => void;
-  isDaysColumn?: boolean;
 };
 
-export const Cell = ({ value, classNames, onClick, isDaysColumn }: CellProps) => {
+export const Cell = ({ value, classNames, onClick }: CellProps) => {
   const cellClassNames = cn("cell", {
     [`${classNames}`]: !!classNames,
-    ["cell-days-column"]: isDaysColumn,
   });
 
   return (

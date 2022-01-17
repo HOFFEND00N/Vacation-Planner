@@ -10,7 +10,3 @@
 .cell:first-child {
     flex-grow: 1;
 }
-
-.cell-days-column {
-    min-width: 45px;
-}
