@@ -4,6 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import moment from "moment";
 import Dropzone, { UploadStates } from "@confirmit/react-dropzone";
 import { TextField } from "@confirmit/react-text-field";
+import { store } from "@confirmit/react-banner";
 import { planVacation } from "../../application/planVacation";
 import { AdditionalVacationDays } from "./AddiionalVacationDays";
 import { Application } from "./Application";
@@ -25,13 +26,15 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
       alert("please upload document with vacation request");
     }
     setUploadState(UploadStates.Uploading);
-    const res = await planVacation({
+    await planVacation({
       vacationStartDate: vacationStartDate.toDate(),
       vacationEndDate: vacationEndDate.toDate(),
     });
-    //TODO: FTP server, web server, time server
-    console.log(res);
-    alert(`file = ${files[0].name}, vacation start = ${vacationStartDate}, vacation end = ${vacationEndDate}`);
+    showNotification();
+  };
+
+  const showNotification = () => {
+    store.success({ text: "Vacation successfully planned", closeTimeout: 0 });
   };
 
   const handleStartDateChange = (startDate: moment.Moment) => {
@@ -113,7 +116,7 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
           Cancel
         </Button>
         <Button className="buttons-container__item" appearance={Appearances.primarySuccess} onClick={handleSubmit}>
-          Send
+          Plan vacation
         </Button>
       </div>
 

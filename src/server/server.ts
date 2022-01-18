@@ -10,6 +10,7 @@ import { setupDBConnection } from "./DBHelpers/setupDBConnection";
 import { setupDBModels } from "./DBHelpers/setupDBModels";
 import { getTeamMembers } from "./ADHelpers/getTeamMembers";
 import { getTeamVacations } from "./DBHelpers/getTeamVacations";
+import { createVacation } from "./DBHelpers/createVacation";
 
 (async () => {
   setupConfig();
@@ -58,8 +59,20 @@ import { getTeamVacations } from "./DBHelpers/getTeamVacations";
     }
   });
 
-  server.post("/vacations", jsonParser, (req, res) => {
-    res.send(req.body);
+  server.post("/vacations", jsonParser, async (req, res) => {
+    try {
+      //userId: (req.sso.user?.adUser?.objectGUID as string[])[0] ||| userName: req.sso.user?.displayName as string
+      const vacation = await createVacation({
+        userId: "D1E5D597-93FC-4AEA-8FFF-D92CADD0F639",
+        dbConnection,
+        userName: "Anna Kozlova",
+        vacationStartDate: req.body.vacationStartDate,
+        vacationEndDate: req.body.vacationEndDate,
+      });
+      res.status(200).send(vacation);
+    } catch (e) {
+      res.status(500).send({ error: "Something went wrong, please try again later" });
+    }
   });
 
   server.get("*", (req, res) => {
