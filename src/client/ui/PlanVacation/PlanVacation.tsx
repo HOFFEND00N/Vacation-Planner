@@ -25,7 +25,10 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
       alert("please upload document with vacation request");
     }
     setUploadState(UploadStates.Uploading);
-    const res = await planVacation();
+    const res = await planVacation({
+      vacationStartDate: vacationStartDate.toDate(),
+      vacationEndDate: vacationEndDate.toDate(),
+    });
     //TODO: FTP server, web server, time server
     console.log(res);
     alert(`file = ${files[0].name}, vacation start = ${vacationStartDate}, vacation end = ${vacationEndDate}`);

@@ -15,7 +15,7 @@ const variablesToReplace = {
 const webpackClientConfig = () => {
   return {
     entry: "./src/client/ui/index.tsx",
-    devtool: "inline-source-map",
+    devtool: "eval-source-map",
     devServer: {
       port: config.SITE_CLIENT_PORT || 3001,
       allowedHosts: "all",

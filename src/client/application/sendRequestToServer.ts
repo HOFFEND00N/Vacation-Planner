@@ -1,7 +1,24 @@
 import { HttpMethod } from "../types";
 
-export const sendRequestToServer = async ({ url, method }: { url: string; method: HttpMethod }) => {
-  const response = await fetch(url, { method });
+export const sendRequestToServer = async ({
+  url,
+  method,
+  body,
+}: {
+  url: string;
+  method: HttpMethod;
+  body?: string;
+}) => {
+  const response = await fetch(url, {
+    method,
+    body,
+    headers: body
+      ? {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }
+      : undefined,
+  });
   const parsedResponse = await response.json();
   if (response.status >= 400) {
     throw new Error(parsedResponse.error);

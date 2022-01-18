@@ -2,6 +2,7 @@ import path from "path";
 import express from "express";
 import nconf from "nconf";
 import { sso } from "node-expose-sspi";
+import bodyParser from "body-parser";
 import { Config, LINE_BREAK } from "../constants";
 import { makeIndexHtml } from "./makeIndexHtml";
 import { setupConfig } from "./setupConfig";
@@ -31,6 +32,7 @@ import { getTeamVacations } from "./DBHelpers/getTeamVacations";
   if (process.env.mode === "production") {
     server.use(express.static("dist"));
   }
+  const jsonParser = bodyParser.json();
 
   server.get("/team-members", async (req, res) => {
     try {
@@ -56,8 +58,8 @@ import { getTeamVacations } from "./DBHelpers/getTeamVacations";
     }
   });
 
-  server.post("/vacations", (req, res) => {
-    res.send({ message: "saved to db" });
+  server.post("/vacations", jsonParser, (req, res) => {
+    res.send(req.body);
   });
 
   server.get("*", (req, res) => {
