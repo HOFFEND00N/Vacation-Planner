@@ -10,7 +10,6 @@ export type BodyReducerStateType = {
 export enum reducerActionTypes {
   UserDataLoaded = "user data loaded",
   ErrorOccurred = "error occurred",
-  UserDataLoading = "user data loading",
 }
 
 export type errorOccurredAction = {
@@ -25,13 +24,9 @@ export type userDataLoadedAction = {
   vacations: Vacation[];
 };
 
-export type userDataLoadingAction = {
-  type: reducerActionTypes.UserDataLoading;
-};
+export type BodyReducerActionType = userDataLoadedAction | errorOccurredAction;
 
-export type BodyReducerActionType = userDataLoadedAction | errorOccurredAction | userDataLoadingAction;
-
-export const reducer = (state: BodyReducerStateType, action: BodyReducerActionType) => {
+export const reducer = (state: BodyReducerStateType, action: BodyReducerActionType): BodyReducerStateType => {
   switch (action.type) {
     case reducerActionTypes.UserDataLoaded: {
       return {
@@ -45,8 +40,6 @@ export const reducer = (state: BodyReducerStateType, action: BodyReducerActionTy
         error: action.error,
       };
     }
-    case reducerActionTypes.UserDataLoading:
-      return {};
   }
 };
 

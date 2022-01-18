@@ -50,17 +50,4 @@ describe("reducer", () => {
 
     expect(actualState).toEqual(expectedState);
   });
-
-  test("all fields are undefined, while data is loading", () => {
-    const expectedState = {};
-
-    const actualState = reducer(
-      {},
-      {
-        type: reducerActionTypes.UserDataLoading,
-      }
-    );
-
-    expect(actualState).toEqual(expectedState);
-  });
 });
