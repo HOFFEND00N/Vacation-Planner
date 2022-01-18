@@ -4,6 +4,7 @@ import { Row } from "../Row/Row";
 import { Vacation } from "../../../../../domain/types";
 import { TableCalendarContext } from "../../../TableCalendarContext/TableCalendarContext";
 import { TotalCell } from "../Cells/TotalCell";
+import { Cell } from "../Cells/Cell";
 import { getDayWorkloadType } from "./getDayWorkloadType";
 
 type TotalRowProps = {
@@ -28,7 +29,7 @@ export const TotalRow = ({ vacations, daysInMonth, teamMembersCount }: TotalRowP
   }
   return (
     <Row dataTestId="table-calendar-total-row">
-      <TotalCell value="Total" key={0} />
+      <Cell value="Total" />
       {cells}
     </Row>
   );

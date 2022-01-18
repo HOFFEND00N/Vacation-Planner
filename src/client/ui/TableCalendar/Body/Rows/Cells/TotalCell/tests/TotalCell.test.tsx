@@ -6,32 +6,32 @@ import { WorkloadType } from "../../../../../../../types";
 
 describe("TotalCell ", () => {
   test("should render", async () => {
-    render(<TotalCell value="test value" />);
+    render(<TotalCell workloadType={WorkloadType.Weak} />);
 
-    expect(screen.getByText("test value")).toBeInTheDocument();
+    expect(screen.getByTestId("table-cell")).toBeInTheDocument();
   });
 
   test("should have weak workload className, when WorkloadType = Weak", async () => {
     const expectedClassName = "total-cell--weak-workload";
 
-    render(<TotalCell value="test value" workloadType={WorkloadType.Weak} />);
+    render(<TotalCell workloadType={WorkloadType.Weak} />);
 
-    expect(screen.getByText("test value").classList.contains(expectedClassName)).toEqual(true);
+    expect(screen.getByTestId("table-cell").classList.contains(expectedClassName)).toEqual(true);
   });
 
   test("should have weak workload className, when WorkloadType = Medium", async () => {
     const expectedClassName = "total-cell--medium-workload";
 
-    render(<TotalCell value="test value" workloadType={WorkloadType.Medium} />);
+    render(<TotalCell workloadType={WorkloadType.Medium} />);
 
-    expect(screen.getByText("test value").classList.contains(expectedClassName)).toEqual(true);
+    expect(screen.getByTestId("table-cell").classList.contains(expectedClassName)).toEqual(true);
   });
 
   test("should have weak workload className, when WorkloadType = Heavy", async () => {
     const expectedClassName = "total-cell--heavy-workload";
 
-    render(<TotalCell value="test value" workloadType={WorkloadType.Heavy} />);
+    render(<TotalCell workloadType={WorkloadType.Heavy} />);
 
-    expect(screen.getByText("test value").classList.contains(expectedClassName)).toEqual(true);
+    expect(screen.getByTestId("table-cell").classList.contains(expectedClassName)).toEqual(true);
   });
 });
