@@ -7,7 +7,7 @@ import "@testing-library/jest-dom";
 describe("application", () => {
   test("should render", () => {
     const username = "test";
-    const vacationStart = moment("25-12-20210", "DD-MM-YYYY");
+    const vacationStart = moment("25-12-2021", "DD-MM-YYYY");
     const vacationEnd = moment("30-12-2021", "DD-MM-YYYY");
     const currentDate = moment("1-12-2021", "DD-MM-YYYY");
 
@@ -37,7 +37,7 @@ describe("application", () => {
 
   test("should render, when 1 additional vacation day passed", () => {
     const username = "test";
-    const vacationStart = moment("25-12-20210", "DD-MM-YYYY");
+    const vacationStart = moment("25-12-2021", "DD-MM-YYYY");
     const vacationEnd = moment("30-12-2021", "DD-MM-YYYY");
     const currentDate = moment("1-12-2021", "DD-MM-YYYY");
     const additionalVacationDays = 1;
@@ -62,7 +62,7 @@ describe("application", () => {
 
   test("should render, when 3 additional vacation days passed", () => {
     const username = "test";
-    const vacationStart = moment("25-12-20210", "DD-MM-YYYY");
+    const vacationStart = moment("25-12-2021", "DD-MM-YYYY");
     const vacationEnd = moment("30-12-2021", "DD-MM-YYYY");
     const currentDate = moment("1-12-2021", "DD-MM-YYYY");
     const additionalVacationDays = 3;
