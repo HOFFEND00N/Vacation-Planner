@@ -6,14 +6,13 @@ import "./vacation-data-cell.css";
 import { Cell } from "../Cell";
 
 type CellProps = {
-  value?: number | string;
-  date?: Date;
-  isSelectable?: boolean;
-  isSelected?: boolean;
-  vacationType?: VacationType;
+  date: Date;
+  isSelectable: boolean;
+  isSelected: boolean;
+  vacationType: VacationType;
 };
 
-export const VacationDataCell = ({ value, date, isSelectable, isSelected, vacationType }: CellProps) => {
+export const VacationDataCell = ({ date, isSelectable, isSelected, vacationType }: CellProps) => {
   const tableCalendarContext = useContext(TableCalendarContext);
 
   const cellClassNames = cn({
@@ -27,8 +26,6 @@ export const VacationDataCell = ({ value, date, isSelectable, isSelected, vacati
     <Cell
       classNames={cellClassNames}
       onClick={() => (isSelectable ? tableCalendarContext.handleClick(date as Date) : undefined)}
-      data-testid="table-cell"
-      value={value}
     />
   );
 };

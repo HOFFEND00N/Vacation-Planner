@@ -5,12 +5,15 @@ import moment from "moment";
 import { VacationDataCell } from "../VacationDataCell";
 import "@testing-library/jest-dom";
 import { TableCalendarContext } from "../../../../../TableCalendarContext/TableCalendarContext";
+import { VacationType } from "../../../../../../../domain/types";
 
 describe("UserDataCell", () => {
   test("should render", async () => {
-    render(<VacationDataCell value="test value" />);
+    render(
+      <VacationDataCell vacationType={VacationType.APPROVED} date={new Date("1-11-2021")} isSelectable isSelected />
+    );
 
-    expect(screen.getByText("test value")).toBeInTheDocument();
+    expect(screen.getByTestId("table-cell")).toBeInTheDocument();
   });
 
   test("should fire cell onClick event", () => {
@@ -18,10 +21,15 @@ describe("UserDataCell", () => {
 
     render(
       <TableCalendarContext.Provider value={{ handleClick: mockOnClick, currentTableCalendarDate: moment() }}>
-        <VacationDataCell value="test value" date={new Date("1-11-2021")} isSelectable />
+        <VacationDataCell
+          date={new Date("1-11-2021")}
+          vacationType={VacationType.APPROVED}
+          isSelectable
+          isSelected={false}
+        />
       </TableCalendarContext.Provider>
     );
-    userEvent.click(screen.getByText("test value"));
+    userEvent.click(screen.getByTestId("table-cell"));
 
     expect(mockOnClick).toBeCalledTimes(1);
   });
@@ -31,10 +39,15 @@ describe("UserDataCell", () => {
 
     render(
       <TableCalendarContext.Provider value={{ handleClick: mockOnClick, currentTableCalendarDate: moment() }}>
-        <VacationDataCell value="test value" date={new Date("1-11-2021")} />
+        <VacationDataCell
+          date={new Date("1-11-2021")}
+          vacationType={VacationType.APPROVED}
+          isSelectable={false}
+          isSelected={false}
+        />
       </TableCalendarContext.Provider>
     );
-    userEvent.click(screen.getByText("test value"));
+    userEvent.click(screen.getByTestId("table-cell"));
 
     expect(mockOnClick).toBeCalledTimes(0);
   });

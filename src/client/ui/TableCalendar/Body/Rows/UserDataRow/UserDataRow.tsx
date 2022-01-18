@@ -7,6 +7,7 @@ import { Row } from "../Row/Row";
 import { User, Vacation } from "../../../../../domain/types";
 import { TableCalendarContext } from "../../../TableCalendarContext/TableCalendarContext";
 import { DaysColumnCell } from "../Cells/DaysColumnCell";
+import { Cell } from "../Cells/Cell";
 import { isCellSelectable } from "./isCellSelectable";
 import { isCellSelected } from "./isCellSelected";
 
@@ -61,7 +62,7 @@ export const UserDataRow = ({
   }
   return (
     <Row dataTestId={`row ${user.id}`}>
-      <VacationDataCell value={employeeName} key={0} />
+      <Cell value={employeeName} />
       <DaysColumnCell value={getTotalVacationsDays(vacations)} />
       {cells}
     </Row>
