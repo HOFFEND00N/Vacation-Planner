@@ -12,12 +12,13 @@ export const sendRequestToServer = async ({
   const response = await fetch(url, {
     method,
     body,
-    headers: body
-      ? {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        }
-      : undefined,
+    headers:
+      method === HttpMethod.POST
+        ? {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          }
+        : undefined,
   });
   const parsedResponse = await response.json();
   if (response.status >= 400) {
