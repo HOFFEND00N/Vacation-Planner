@@ -13,6 +13,10 @@
   min-height: 100px;
 }
 
+.dropzone-container{
+  width: 400px;
+}
+
 .dropzone-container__header {
   margin-bottom: 10px;
 }

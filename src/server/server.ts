@@ -16,6 +16,7 @@ import { getTeamVacations } from "./DBHelpers/getTeamVacations";
   const dbConnection = await setupDBConnection();
   await setupDBModels(dbConnection);
   const port = nconf.get(Config.SITE_SERVER_PORT);
+  const jsonParser = bodyParser.json();
 
   const server = express();
 
@@ -32,7 +33,6 @@ import { getTeamVacations } from "./DBHelpers/getTeamVacations";
   if (process.env.mode === "production") {
     server.use(express.static("dist"));
   }
-  const jsonParser = bodyParser.json();
 
   server.get("/team-members", async (req, res) => {
     try {

@@ -5,10 +5,10 @@ import moment from "moment";
 import Dropzone, { UploadStates } from "@confirmit/react-dropzone";
 import { TextField } from "@confirmit/react-text-field";
 import { planVacation } from "../../application/planVacation";
-import "./plan-vacation.css";
 import { AdditionalVacationDays } from "./AddiionalVacationDays";
 import { Application } from "./Application";
 import { VacationDates } from "./VacationDates";
+import "./plan-vacation.css";
 
 export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
   const [uploadState, setUploadState] = useState(UploadStates.Idle);
@@ -96,7 +96,7 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
           >
             Print application
           </Button>
-          <div>
+          <div className="dropzone-container">
             <div className="dropzone-container__header">Upload a vacation application</div>
             <Dropzone
               uploadState={uploadState}
