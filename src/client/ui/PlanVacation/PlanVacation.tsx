@@ -16,6 +16,7 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
   const [files, setFiles] = useState<File[]>([]);
   const [selectedFileName, setSelectedFileName] = useState("");
   const location = useLocation();
+  const history = useHistory();
   const [vacationStartDate, setVacationStartDate] = useState(moment(location.state.vacationStart.date));
   const [vacationEndDate, setVacationEndDate] = useState(moment(location.state.vacationEnd.date));
   const [additionalVacationDays, setAdditionalVacationDays] = useState<number | undefined>(undefined);
@@ -23,7 +24,8 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
 
   const handleSubmit = async () => {
     if (files.length === 0) {
-      alert("please upload document with vacation request");
+      showWarning("please upload document with vacation request");
+      return;
     }
     setUploadState(UploadStates.Uploading);
     await planVacation({
@@ -35,6 +37,10 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
 
   const showNotification = () => {
     store.success({ text: "Vacation successfully planned", closeTimeout: 0 });
+  };
+
+  const showWarning = (text: string) => {
+    store.warning({ text, closeTimeout: 0 });
   };
 
   const handleStartDateChange = (startDate: moment.Moment) => {
@@ -55,7 +61,6 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
     setSelectedFileName("");
   };
 
-  const history = useHistory();
   const handleCancel = () => {
     history.push({
       pathname: "/",
@@ -71,7 +76,7 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
   };
 
   return (
-    <div className="application-form-container">
+    <div className="application-form-container" data-testid="application-form-container">
       <div className="application-form">
         <div>
           <VacationDates
@@ -85,6 +90,7 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
             placeholder="Иванова И.И."
             value={userName}
             onChange={setUserName}
+            data-testid="full-name-input"
           />
           <AdditionalVacationDays
             additionalVacationDays={additionalVacationDays}

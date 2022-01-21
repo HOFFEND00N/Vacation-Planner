@@ -19,13 +19,13 @@ export function AdditionalVacationDays({
   };
 
   return (
-    <div>
+    <div data-testid="additional-vacation-days">
       <div className="additional-vacation-days">
         <div className="additional-vacation-days__header">Use additional vacation days</div>
         <CheckBox
           onChange={handleUseAdditionalVacationDays}
           checked={additionalVacationDays !== undefined}
-          id={"isUseAdditionalVacationDays"}
+          id="isUseAdditionalVacationDays"
         />
       </div>
       {additionalVacationDays !== undefined ? (
