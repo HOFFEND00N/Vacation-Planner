@@ -1,4 +1,4 @@
-import { VacationType } from "./domain/types";
+import { VacationType } from "../sharedKernel";
 
 export type VacationTypeByDay = Record<number, VacationType>;
 

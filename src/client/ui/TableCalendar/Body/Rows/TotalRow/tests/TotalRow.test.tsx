@@ -3,8 +3,8 @@ import React from "react";
 import "@testing-library/jest-dom";
 import moment from "moment";
 import { TotalRow } from "../TotalRow";
-import { VacationType } from "../../../../../../domain/types";
 import { TableCalendarContext } from "../../../../TableCalendarContext/TableCalendarContext";
+import { VacationType } from "../../../../../../../sharedKernel";
 
 describe("Total row", () => {
   describe("0 vacations passed", () => {

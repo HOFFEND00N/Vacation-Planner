@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 import { ModelsNames } from "../../constants";
-import { VacationType } from "../../client/domain/types";
+import { VacationType } from "../../sharedKernel";
 
 export async function createVacation({
   vacationStartDate,

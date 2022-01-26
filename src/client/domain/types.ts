@@ -1,3 +1,5 @@
+import { VacationType } from "../../sharedKernel";
+
 export type User = {
   name: string;
   id: string;
@@ -9,10 +11,5 @@ export type Vacation = {
   userId: string;
   type: VacationType;
 };
-
-export enum VacationType {
-  APPROVED = "Approved",
-  PENDING_APPROVAL = "Pending approval",
-}
 
 export type VacationCountByDays = Record<number, number>;

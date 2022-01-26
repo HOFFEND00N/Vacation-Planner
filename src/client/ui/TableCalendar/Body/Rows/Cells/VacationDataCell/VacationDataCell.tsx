@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import cn from "classnames";
 import { TableCalendarContext } from "../../../../TableCalendarContext/TableCalendarContext";
-import { VacationType } from "../../../../../../domain/types";
 import "./vacation-data-cell.css";
 import { Cell } from "../Cell";
+import { VacationType } from "../../../../../../../sharedKernel";
 
 type CellProps = {
   date: Date;

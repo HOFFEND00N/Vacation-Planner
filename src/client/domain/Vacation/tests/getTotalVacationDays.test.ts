@@ -1,5 +1,5 @@
 import { getTotalVacationsDays } from "../getTotalVacationsDays";
-import { VacationType } from "../../types";
+import { VacationType } from "../../../../sharedKernel";
 
 describe("get total vacations days", () => {
   test("should return 0, when no vacations passed", () => {

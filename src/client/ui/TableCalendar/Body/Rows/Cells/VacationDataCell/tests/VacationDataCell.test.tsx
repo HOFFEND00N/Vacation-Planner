@@ -2,10 +2,11 @@ import { render, screen } from "@testing-library/react";
 import React from "react";
 import userEvent from "@testing-library/user-event";
 import moment from "moment";
+import { describe, test } from "@jest/globals";
 import { VacationDataCell } from "../VacationDataCell";
 import "@testing-library/jest-dom";
 import { TableCalendarContext } from "../../../../../TableCalendarContext/TableCalendarContext";
-import { VacationType } from "../../../../../../../domain/types";
+import { VacationType } from "../../../../../../../../sharedKernel";
 
 describe("UserDataCell", () => {
   test("should render", async () => {
