@@ -179,32 +179,4 @@ describe("PlanVacation", () => {
     await userEvent.click(clearFileButton);
     expect(screen.queryByText("hello.png")).not.toBeInTheDocument();
   });
-
-  // test("should show Application and hide everything else, when print application button pressed", async () => {
-  //   window.matchMedia = jest.fn().mockImplementation(query => {
-  //     return {
-  //       matches: query !== 'print' ,
-  //       media: '',
-  //       onchange: null,
-  //       addListener: jest.fn(),
-  //       removeListener: jest.fn(),
-  //     };
-  //   });
-  //   render(<PlanVacation currentDate={moment("1-10-2021", "DD-MM-YYYY")} />);
-  //   // window.print = jest.fn();
-  //   const printApplicationButton = screen.getByRole("button", { name: "Print application" });
-  //   userEvent.click(printApplicationButton);
-  //
-  //   expect(screen.queryByTestId("application-form-container")).toHaveStyle({ display: "none" });
-  //
-  //   // expect(screen.queryByTestId("vacation-dates")).not.toBeInTheDocument();
-  //   // expect(screen.queryByRole("group", { name: "Full name in the genitive case" })).not.toBeInTheDocument();
-  //   // expect(screen.queryByText("Use additional vacation days")).not.toBeInTheDocument();
-  //   // expect(screen.queryByRole("button", { name: "Print application" })).not.toBeInTheDocument();
-  //   // expect(screen.queryByText("Upload a vacation application")).not.toBeInTheDocument();
-  //   // expect(screen.queryByRole("button", { name: "Cancel" })).not.toBeInTheDocument();
-  //   // expect(screen.queryByRole("button", { name: "Plan vacation" })).not.toBeInTheDocument();
-  //   // expect(screen.queryByTestId("additional-vacation-days-input")).not.toBeInTheDocument();
-  //   // expect(screen.queryByTestId("application")).toBeInTheDocument();
-  // });
 });
