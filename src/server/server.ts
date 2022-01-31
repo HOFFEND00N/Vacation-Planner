@@ -32,6 +32,7 @@ import { vacationsRouter } from "./routers/vacationsRouter";
   if (process.env.mode === "production") {
     server.use(express.static("dist"));
   }
+
   server.use("/team-members", teamMembersRouter);
   server.use("/vacations", vacationsRouter);
 

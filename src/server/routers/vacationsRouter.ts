@@ -5,6 +5,7 @@ import { Vacation } from "../../shared";
 import { getTeamVacations } from "../DBHelpers/getTeamVacations";
 import { createVacation } from "../DBHelpers/createVacation";
 import { DB_CONNECTION } from "../constants";
+import { deleteUnapprovedVacation } from "../../DBHelpers/deleteUnapprovedVacation";
 
 const vacationsRouter = express.Router();
 const jsonParser = bodyParser.json();
@@ -50,5 +51,17 @@ vacationsRouter.post(
     }
   }
 );
+
+vacationsRouter.delete("/vacations", async (req, res) => {
+  const vacationId = req.query.id as string;
+  const dbConnection = req.app.get(DB_CONNECTION);
+
+  try {
+    await deleteUnapprovedVacation({ vacationId, dbConnection });
+    res.status(204).send();
+  } catch (e) {
+    res.status(500).send({ error: "Something went wrong, please try again later" });
+  }
+});
 
 export { vacationsRouter };

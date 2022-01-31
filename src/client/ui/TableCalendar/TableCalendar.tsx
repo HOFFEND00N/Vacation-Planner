@@ -10,7 +10,8 @@ import { Pager } from "./Pager";
 import { Body } from "./Body";
 import { Footer } from "./Footer";
 import { useVacationSelected } from "./useVacationSelected";
-import { errorOccurred, reducer, userDataLoaded } from "./Body/reducer";
+import { UserVacations } from "./UserVacations/UserVacations";
+import { errorOccurred, reducer, userDataLoaded, vacationCanceled } from "./Body/reducer";
 import "./table-calendar.css";
 
 export const TableCalendar = ({ currentDate }: { currentDate: moment.Moment }) => {
@@ -37,6 +38,17 @@ export const TableCalendar = ({ currentDate }: { currentDate: moment.Moment }) =
     })();
   }, []);
 
+  const handleVacationCanceled = (vacationId: string) => {
+    dispatch(
+      vacationCanceled({
+        vacations: vacations!,
+        canceledVacationId: vacationId,
+        teamMembers: teamMembers!,
+        currentUser: currentUser!,
+      })
+    );
+  };
+
   const handlePreviousMonthChange = () => {
     setCurrentTableCalendarDate(currentTableCalendarDate.clone().subtract(1, "months"));
   };
@@ -61,18 +73,12 @@ export const TableCalendar = ({ currentDate }: { currentDate: moment.Moment }) =
 
   return (
     <div className="table-calendar" data-testid="table-calendar">
-      <UserVacations vacations={currentUserVacations} />
-      <TableCalendarContext.Provider
-        value={{
-          handleClick: handleVacationSelected,
-          currentTableCalendarDate,
-          vacations: findUserVacations({
-            vacations,
-            userId: currentUser.id,
-            year: currentTableCalendarDate.year(),
-          }),
-        }}
-      >
+      <UserVacations vacations={currentUserVacations} onVacationCancel={handleVacationCanceled} />
+      <TableCalendarContext.Provider value={{ handleClick: handleVacationSelected, currentTableCalendarDate, vacations: findUserVacations({
+        vacations,
+        userId: currentUser.id,
+        year: currentTableCalendarDate.year(),
+      }) }}>
         <Pager handlePreviousMonthChange={handlePreviousMonthChange} handleNextMonthChange={handleNextMonthChange} />
         <Body
           vacationStart={vacationStart}

@@ -35,6 +35,7 @@
     "@confirmit/react-banner": "11.0.59",
     "@confirmit/react-button": "6.4.9",
     "@confirmit/react-calendar": "8.1.6",
+    "@confirmit/react-confirmation-dialog": "1.0.71",
     "@confirmit/react-contexts": "0.3.0",
     "@confirmit/react-date-picker": "16.0.8",
     "@confirmit/react-dropzone": "0.2.58",
