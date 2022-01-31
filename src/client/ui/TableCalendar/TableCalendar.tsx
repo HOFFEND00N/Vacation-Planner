@@ -8,10 +8,10 @@ import { findUserVacations } from "../../domain/Vacation/findUserVacations";
 import { TableCalendarContext } from "./TableCalendarContext/TableCalendarContext";
 import { Pager } from "./Pager";
 import { Body } from "./Body";
-import "./table-calendar.css";
 import { Footer } from "./Footer";
 import { useVacationSelected } from "./useVacationSelected";
 import { errorOccurred, reducer, userDataLoaded } from "./Body/reducer";
+import "./table-calendar.css";
 
 export const TableCalendar = ({ currentDate }: { currentDate: moment.Moment }) => {
   const [currentTableCalendarDate, setCurrentTableCalendarDate] = useState(currentDate);
@@ -37,14 +37,6 @@ export const TableCalendar = ({ currentDate }: { currentDate: moment.Moment }) =
     })();
   }, []);
 
-  if (error) {
-    return <h1> No data </h1>;
-  }
-
-  if (!currentUser || !vacations || !teamMembers) {
-    return <h1> Please wait, searching your teammates... </h1>;
-  }
-
   const handlePreviousMonthChange = () => {
     setCurrentTableCalendarDate(currentTableCalendarDate.clone().subtract(1, "months"));
   };
@@ -53,8 +45,23 @@ export const TableCalendar = ({ currentDate }: { currentDate: moment.Moment }) =
     setCurrentTableCalendarDate(currentTableCalendarDate.clone().add(1, "months"));
   };
 
+  const currentUserVacations = findUserVacations({
+    userId: currentUser.id,
+    vacations,
+    year: currentDate.year(),
+  }).filter((vacation) => vacation.type === VacationType.PENDING_APPROVAL);
+
+  if (error) {
+    return <h1> No data </h1>;
+  }
+
+  if (!currentUser || !vacations || !teamMembers) {
+    return <h1> Please wait, searching your teammates... </h1>;
+  }
+
   return (
     <div className="table-calendar" data-testid="table-calendar">
+      <UserVacations vacations={currentUserVacations} />
       <TableCalendarContext.Provider
         value={{
           handleClick: handleVacationSelected,

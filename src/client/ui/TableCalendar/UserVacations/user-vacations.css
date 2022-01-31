@@ -1,0 +1,10 @@
+.user-vacation{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.user-vacation__dates{
+    min-width: 275px;
+}

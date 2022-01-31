@@ -5,15 +5,15 @@ import { TableCalendarContext } from "../TableCalendarContext/TableCalendarConte
 import { User, Vacation } from "../../../../shared";
 import { UserDataRow, HeaderRow, TotalRow } from "./Rows";
 
-type propsType = {
+type BodyPropsType = {
   vacationStart: TableCalendarStateType;
   vacationEnd: TableCalendarStateType;
+  vacations: Vacation[];
   teamMembers: User[];
   currentUser: User;
-  vacations: Vacation[];
 };
 
-export const Body = ({ vacationStart, vacationEnd, currentUser, teamMembers, vacations }: propsType) => {
+export const Body = ({ vacationStart, vacationEnd, teamMembers, vacations, currentUser }: BodyPropsType) => {
   const { currentTableCalendarDate } = useContext(TableCalendarContext);
 
   const daysInMonth = currentTableCalendarDate.daysInMonth();
