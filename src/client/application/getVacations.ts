@@ -1,13 +1,12 @@
 import { Vacation } from "../domain/types";
 import { BASE_SERVER_URL } from "../constants";
-import { HttpMethod } from "../types";
-import { sendRequestToServer } from "./sendRequestToServer";
+import { sendGetRequestToServer } from "./sendGetRequestToServer";
 
 export const getVacations = async (usersIds: string[]): Promise<Vacation[]> => {
   const queryStringElements = usersIds.map((usersId) => `id=${usersId}`);
   const url = `${BASE_SERVER_URL}/vacations?${queryStringElements.join("&")}`;
 
-  const response = await sendRequestToServer({ url, method: HttpMethod.GET });
+  const response = await sendGetRequestToServer(url);
 
   return response.vacations.map((vacation) => {
     vacation.start = new Date(vacation.start);
