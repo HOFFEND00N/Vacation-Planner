@@ -5,6 +5,7 @@ import { getVacations } from "../../application/getVacations";
 import { showError } from "../bannerHelpers/showError";
 import { getTeamMembers } from "../../application/getTeamMembers";
 import { findUserVacations } from "../../domain/Vacation/findUserVacations";
+import { VacationType } from "../../../shared";
 import { TableCalendarContext } from "./TableCalendarContext/TableCalendarContext";
 import { Pager } from "./Pager";
 import { Body } from "./Body";
@@ -57,12 +58,6 @@ export const TableCalendar = ({ currentDate }: { currentDate: moment.Moment }) =
     setCurrentTableCalendarDate(currentTableCalendarDate.clone().add(1, "months"));
   };
 
-  const currentUserVacations = findUserVacations({
-    userId: currentUser.id,
-    vacations,
-    year: currentDate.year(),
-  }).filter((vacation) => vacation.type === VacationType.PENDING_APPROVAL);
-
   if (error) {
     return <h1> No data </h1>;
   }
@@ -71,14 +66,26 @@ export const TableCalendar = ({ currentDate }: { currentDate: moment.Moment }) =
     return <h1> Please wait, searching your teammates... </h1>;
   }
 
+  const currentUserVacations = findUserVacations({
+    userId: currentUser.id,
+    vacations,
+    year: currentDate.year(),
+  }).filter((vacation) => vacation.type === VacationType.PENDING_APPROVAL);
+
   return (
     <div className="table-calendar" data-testid="table-calendar">
       <UserVacations vacations={currentUserVacations} onVacationCancel={handleVacationCanceled} />
-      <TableCalendarContext.Provider value={{ handleClick: handleVacationSelected, currentTableCalendarDate, vacations: findUserVacations({
-        vacations,
-        userId: currentUser.id,
-        year: currentTableCalendarDate.year(),
-      }) }}>
+      <TableCalendarContext.Provider
+        value={{
+          handleClick: handleVacationSelected,
+          currentTableCalendarDate,
+          vacations: findUserVacations({
+            vacations,
+            userId: currentUser.id,
+            year: currentTableCalendarDate.year(),
+          }),
+        }}
+      >
         <Pager handlePreviousMonthChange={handlePreviousMonthChange} handleNextMonthChange={handleNextMonthChange} />
         <Body
           vacationStart={vacationStart}

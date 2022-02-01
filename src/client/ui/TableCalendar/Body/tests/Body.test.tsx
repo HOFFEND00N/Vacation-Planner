@@ -21,12 +21,12 @@ describe("Body", () => {
         <Body
           vacationStart={{ date: new Date(1), isSelected: false }}
           vacationEnd={{ date: new Date(1), isSelected: false }}
+          vacations={[]}
           teamMembers={[
             { id: "user 2", name: "user 2" },
             { id: "user 1", name: "user 1" },
           ]}
           currentUser={{ id: "user 1", name: "user 1" }}
-          vacations={[]}
         />
       </TableCalendarContext.Provider>
     );
@@ -44,12 +44,12 @@ describe("Body", () => {
         <Body
           vacationStart={{ date: new Date(1), isSelected: false }}
           vacationEnd={{ date: new Date(1), isSelected: false }}
+          vacations={[]}
           teamMembers={[
             { id: "user 2", name: "user 2" },
             { id: "user 1", name: "user 1" },
           ]}
           currentUser={{ id: "user 1", name: "user 1" }}
-          vacations={[]}
         />
       </TableCalendarContext.Provider>
     );
@@ -69,12 +69,12 @@ describe("Body", () => {
         <Body
           vacationStart={{ date: new Date(1), isSelected: false }}
           vacationEnd={{ date: new Date(1), isSelected: false }}
+          vacations={[]}
           teamMembers={[
             { id: "user 2", name: "user 2" },
             { id: "user 1", name: "user 1" },
           ]}
           currentUser={{ id: "user 1", name: "user 1" }}
-          vacations={[]}
         />
       </TableCalendarContext.Provider>
     );
