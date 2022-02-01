@@ -1,5 +1,5 @@
 import nconf from "nconf";
-import { Config } from "../constants";
+import { Config } from "./constants";
 
 export const makeIndexHtml = () => {
   return `<!DOCTYPE html>

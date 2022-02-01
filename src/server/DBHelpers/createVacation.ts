@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize";
-import { ModelsNames } from "../../constants";
+import { ModelsNames } from "../constants";
 import { VacationType } from "../../sharedKernel";
 
 export async function createVacation({

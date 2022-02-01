@@ -3,7 +3,7 @@ import express from "express";
 import nconf from "nconf";
 import { sso } from "node-expose-sspi";
 import bodyParser from "body-parser";
-import { Config, LINE_BREAK } from "../constants";
+import { Config, LINE_BREAK } from "./constants";
 import { makeIndexHtml } from "./makeIndexHtml";
 import { setupConfig } from "./setupConfig";
 import { setupDBConnection } from "./DBHelpers/setupDBConnection";

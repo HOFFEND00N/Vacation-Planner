@@ -1,5 +1,5 @@
 import ActiveDirectory from "activedirectory";
-import { TEAMS } from "../../constants";
+import { TEAMS } from "../constants";
 import { findUserTeam } from "./findUserTeam";
 import { findGroupMembers } from "./findGroupMembers";
 import { entryParser } from "./entryParser";

@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 import nconf from "nconf";
-import { Config } from "../../constants";
+import { Config } from "../constants";
 
 export const setupDBConnection = async () => {
   const sequelize = new Sequelize(nconf.get(Config.DB_CONNECTION));
