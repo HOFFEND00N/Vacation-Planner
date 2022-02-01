@@ -1,4 +1,4 @@
-import { BodyReducerStateType, reducer, reducerActionTypes } from "../reducer";
+import { BodyReducerStateType, reducer, ReducerActionTypes } from "../reducer";
 
 describe("reducer", () => {
   test("updates state correctly, when data loaded", () => {
@@ -14,7 +14,7 @@ describe("reducer", () => {
     const actualState = reducer(
       {},
       {
-        type: reducerActionTypes.UserDataLoaded,
+        type: ReducerActionTypes.UserDataLoaded,
         currentUser: { id: "user 1", name: "user 1" },
         teamMembers: [
           { id: "user 1", name: "user 1" },
@@ -39,7 +39,7 @@ describe("reducer", () => {
     const actualState = reducer(
       {},
       {
-        type: reducerActionTypes.ErrorOccurred,
+        type: ReducerActionTypes.ErrorOccurred,
         error: {
           message: "message",
           name: "",

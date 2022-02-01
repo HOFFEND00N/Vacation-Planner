@@ -7,35 +7,35 @@ export type BodyReducerStateType = {
   vacations?: Vacation[];
 };
 
-export enum reducerActionTypes {
+export enum ReducerActionTypes {
   UserDataLoaded = "user data loaded",
   ErrorOccurred = "error occurred",
 }
 
-export type errorOccurredAction = {
-  type: reducerActionTypes.ErrorOccurred;
+export type ErrorOccurredAction = {
+  type: ReducerActionTypes.ErrorOccurred;
   error: Error;
 };
 
-export type userDataLoadedAction = {
-  type: reducerActionTypes.UserDataLoaded;
+export type UserDataLoadedAction = {
+  type: ReducerActionTypes.UserDataLoaded;
   teamMembers: User[];
   currentUser: User;
   vacations: Vacation[];
 };
 
-export type BodyReducerActionType = userDataLoadedAction | errorOccurredAction;
+export type BodyReducerActionType = UserDataLoadedAction | ErrorOccurredAction;
 
 export const reducer = (state: BodyReducerStateType, action: BodyReducerActionType): BodyReducerStateType => {
   switch (action.type) {
-    case reducerActionTypes.UserDataLoaded: {
+    case ReducerActionTypes.UserDataLoaded: {
       return {
         teamMembers: action.teamMembers,
         currentUser: action.currentUser,
         vacations: action.vacations,
       };
     }
-    case reducerActionTypes.ErrorOccurred: {
+    case ReducerActionTypes.ErrorOccurred: {
       return {
         error: action.error,
       };
@@ -51,14 +51,14 @@ export const userDataLoaded = ({
   teamMembers: User[];
   currentUser: User;
   vacations: Vacation[];
-}): userDataLoadedAction => ({
-  type: reducerActionTypes.UserDataLoaded,
+}): UserDataLoadedAction => ({
+  type: ReducerActionTypes.UserDataLoaded,
   teamMembers,
   currentUser,
   vacations,
 });
 
-export const errorOccurred = (error: Error): errorOccurredAction => ({
-  type: reducerActionTypes.ErrorOccurred,
+export const errorOccurred = (error: Error): ErrorOccurredAction => ({
+  type: ReducerActionTypes.ErrorOccurred,
   error,
 });
