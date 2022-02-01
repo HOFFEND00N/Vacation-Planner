@@ -50,11 +50,15 @@ export const UserVacations = ({
       <div>Your vacations: </div>
       {vacationDates}
       <ConfirmationDialog
-        title="Cancel vacation"
+        title="Vacation cancellation"
         onClose={handleClose}
         onConfirm={handleConfirmation}
         open={isConfirmationDialogOpen}
         mode={ConfirmationMode.Danger}
+        texts={{
+          ok: "Yes",
+          cancel: "No",
+        }}
       >
         <span> Are you sure you want to cancel vacation? </span>
       </ConfirmationDialog>
