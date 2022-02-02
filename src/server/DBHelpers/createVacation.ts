@@ -19,8 +19,9 @@ export async function createVacation({
   const user = await dbConnection.models[ModelsNames.USER].findOne({
     where: { id: userId },
   });
-  const [firstName, lastName] = userName.split(" ");
+
   if (!user) {
+    const [firstName, lastName] = userName.split(" ");
     await dbConnection.models[ModelsNames.USER].create({ id: userId, firstName, lastName });
   }
 
