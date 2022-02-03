@@ -33,6 +33,7 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
       vacationEndDate: vacationEndDate.toDate(),
     });
     showNotification();
+    setUploadState(UploadStates.Idle);
   };
 
   const showNotification = () => {
