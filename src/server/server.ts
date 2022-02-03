@@ -11,6 +11,7 @@ import { setupDBModels } from "./DBHelpers/setupDBModels";
 import { getTeamMembers } from "./ADHelpers/getTeamMembers";
 import { getTeamVacations } from "./DBHelpers/getTeamVacations";
 import { createVacation } from "./DBHelpers/createVacation";
+import { IMyRequest } from "./types";
 
 (async () => {
   setupConfig();
@@ -35,45 +36,64 @@ import { createVacation } from "./DBHelpers/createVacation";
     server.use(express.static("dist"));
   }
 
-  server.get("/team-members", async (req, res) => {
-    try {
-      // const username = req.sso.user?.adUser?.userPrincipalName;
-      const team = await getTeamMembers("anna.kozlova@forsta.com");
-      res.send({
-        team,
-        currentUser: { id: "D1E5D597-93FC-4AEA-8FFF-D92CADD0F639", name: "Anna Kozlova" },
-      });
-    } catch (e) {
-      res.status(500).send({ error: "Something went wrong, please try again later" });
+  server.get(
+    "/team-members",
+    async (req: IMyRequest<unknown, unknown, unknown, unknown, Record<string, unknown>>, res) => {
+      try {
+        // const username = req.sso.user?.adUser?.userPrincipalName;
+        const team = await getTeamMembers("anna.kozlova@forsta.com");
+        res.send({
+          team,
+          currentUser: { id: "D1E5D597-93FC-4AEA-8FFF-D92CADD0F639", name: "Anna Kozlova" },
+        });
+      } catch (e) {
+        res.status(500).send({ error: "Something went wrong, please try again later" });
+      }
     }
-  });
+  );
 
-  server.get("/vacations", async (req, res) => {
-    try {
-      const usersIds = req.query.id as string[];
+  server.get(
+    "/vacations",
+    async (req: IMyRequest<unknown, unknown, unknown, { id: string[] }, Record<string, unknown>>, res) => {
+      try {
+        const usersIds = req.query.id;
 
-      const usersVacations = await getTeamVacations({ usersIds, dbConnection });
-      res.send({ vacations: usersVacations });
-    } catch (e) {
-      res.status(500).send({ error: "Something went wrong, please try again later" });
+        const usersVacations = await getTeamVacations({ usersIds, dbConnection });
+        res.send({ vacations: usersVacations });
+      } catch (e) {
+        res.status(500).send({ error: "Something went wrong, please try again later" });
+      }
     }
-  });
+  );
 
-  server.post("/vacations", jsonParser, async (req, res) => {
-    try {
-      //userId: (req.sso.user?.adUser?.objectGUID as string[])[0] ||| userName: req.sso.user?.displayName as string
-      const vacation = await createVacation({
-        userId: "D1E5D597-93FC-4AEA-8FFF-D92CADD0F639",
-        dbConnection,
-        userName: "Anna Kozlova",
-        vacationStartDate: req.body.vacationStartDate,
-        vacationEndDate: req.body.vacationEndDate,
-      });
-      res.status(200).send(vacation);
-    } catch (e) {
-      res.status(500).send({ error: "Something went wrong, please try again later" });
+  server.post(
+    "/vacations",
+    jsonParser,
+    async (
+      req: IMyRequest<
+        unknown,
+        unknown,
+        { vacationStartDate: Date; vacationEndDate: Date },
+        unknown,
+        Record<string, unknown>
+      >,
+      res
+    ) => {
+      try {
+        //userId: req.sso.user?.adUser?.objectGUID[0] ||| userName: req.sso.user?.displayName
+        const vacation = await createVacation({
+          userId: "D1E5D597-93FC-4AEA-8FFF-D92CADD0F639",
+          dbConnection,
+          userName: "Anna Kozlova",
+          vacationStartDate: req.body.vacationStartDate,
+          vacationEndDate: req.body.vacationEndDate,
+        });
+        res.status(200).send(vacation);
+      } catch (e) {
+        res.status(500).send({ error: "Something went wrong, please try again later" });
+      }
     }
-  });
+  );
 
   server.get("*", (req, res) => {
     if (process.env.mode === "development") {
