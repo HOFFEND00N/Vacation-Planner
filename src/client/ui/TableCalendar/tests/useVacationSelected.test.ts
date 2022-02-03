@@ -69,7 +69,7 @@ describe("useVacationSelected", () => {
 
   test("should initialize vacation start and vacation end with provided values", () => {
     const expectedVacationStart = { isSelected: true, date: new Date("1-5-2021") };
-    const expectedVacationEnd = { isSelected: false };
+    const expectedVacationEnd = { isSelected: true, date: new Date("1-15-2021") };
 
     const { result } = renderHook(() =>
       useVacationSelected({
@@ -78,7 +78,8 @@ describe("useVacationSelected", () => {
           date: new Date("1-5-2021"),
         },
         initialVacationEnd: {
-          isSelected: false,
+          isSelected: true,
+          date: new Date("1-15-2021"),
         },
       })
     );
