@@ -7,9 +7,7 @@ import { PlanVacation } from "../PlanVacation";
 import { TableCalendar } from "../TableCalendar";
 import "./app.css";
 
-export const App = () => {
-  const currentDate = moment();
-
+export const App = ({ currentDate }: { currentDate: moment.Moment }) => {
   return (
     <ThemeContext.Provider value={theme.themeNames.material}>
       <Banner />

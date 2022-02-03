@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, waitForElementToBeRemoved } from "@testing-library/react";
+import { render, screen, waitForElementToBeRemoved, within } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import moment from "moment";
@@ -44,7 +44,7 @@ describe("App", () => {
 
     render(
       <BrowserRouter>
-        <App />
+        <App currentDate={moment("1-10-2021", "DD-MM-YYYY")} />
       </BrowserRouter>
     );
 
@@ -52,6 +52,18 @@ describe("App", () => {
 
     await waitForElementToBeRemoved(screen.getByText("Please wait, searching your teammates..."));
     expect(screen.getByTestId("table-calendar-body")).toBeInTheDocument();
+
+    const planVacationButton = screen.getByTestId("plan-vacation-button");
+    const currentUserRow = screen.getByTestId("row user 1");
+
+    userEvent.click(within(currentUserRow).getAllByTestId("table-cell")[3]);
+    expect(within(currentUserRow).getAllByTestId("table-cell")[3]).toHaveClass("cell--selected");
+    userEvent.click(planVacationButton);
+
+    expect(screen.getByTestId("application-form-container")).toBeInTheDocument();
+    expect(
+      within(screen.getByTestId("application")).getByText("Прошу предоставить мне отпуск с 02.10.2021 до 02.10.2021")
+    ).toBeInTheDocument();
   });
 
   test("should navigate to page with table calendar, when cancel button clicked in plan vacation page", async () => {
@@ -65,7 +77,7 @@ describe("App", () => {
     (getVacations as jest.Mock).mockReturnValue([]);
     render(
       <MemoryRouter initialEntries={memoryRouterInitialEntries}>
-        <App />
+        <App currentDate={moment("1-10-2021", "DD-MM-YYYY")} />
       </MemoryRouter>
     );
 
