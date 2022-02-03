@@ -7,7 +7,7 @@ import { Row } from "../Row/Row";
 import { TableCalendarContext } from "../../../TableCalendarContext/TableCalendarContext";
 import { DaysColumnCell } from "../Cells/DaysColumnCell";
 import { Cell } from "../Cells/Cell";
-import { User, Vacation } from "../../../../../../sharedKernel";
+import { User, Vacation } from "../../../../../../shared";
 import { isCellSelectable } from "./isCellSelectable";
 import { isCellSelected } from "./isCellSelected";
 

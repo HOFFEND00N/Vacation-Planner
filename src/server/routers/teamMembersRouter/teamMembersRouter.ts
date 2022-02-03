@@ -1,6 +1,6 @@
 import express, { Response } from "express";
 import { IMyRequest } from "../../types";
-import { User } from "../../../sharedKernel";
+import { User } from "../../../shared";
 import { getTeamMembers } from "../../ADHelpers/getTeamMembers";
 
 const teamMembersRouter = express.Router();

@@ -1,4 +1,4 @@
-import { VacationType } from "../sharedKernel";
+import { VacationType } from "../shared";
 
 export type VacationTypeByDay = Record<number, VacationType>;
 

@@ -6,7 +6,7 @@ import { describe, test } from "@jest/globals";
 import { VacationDataCell } from "../VacationDataCell";
 import "@testing-library/jest-dom";
 import { TableCalendarContext } from "../../../../../TableCalendarContext/TableCalendarContext";
-import { VacationType } from "../../../../../../../../sharedKernel";
+import { VacationType } from "../../../../../../../../shared";
 
 describe("UserDataCell", () => {
   test("should render", async () => {

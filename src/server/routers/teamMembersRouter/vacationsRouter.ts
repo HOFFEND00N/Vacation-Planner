@@ -1,7 +1,7 @@
 import express, { Response } from "express";
 import bodyParser from "body-parser";
 import { IMyRequest } from "../../types";
-import { Vacation } from "../../../sharedKernel";
+import { Vacation } from "../../../shared";
 import { getTeamVacations } from "../../DBHelpers/getTeamVacations";
 import { createVacation } from "../../DBHelpers/createVacation";
 import { DB_CONNECTION } from "../../constants";

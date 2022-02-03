@@ -3,7 +3,7 @@ import cn from "classnames";
 import { TableCalendarContext } from "../../../../TableCalendarContext/TableCalendarContext";
 import "./vacation-data-cell.css";
 import { Cell } from "../Cell";
-import { VacationType } from "../../../../../../../sharedKernel";
+import { VacationType } from "../../../../../../../shared";
 
 type CellProps = {
   date: Date;

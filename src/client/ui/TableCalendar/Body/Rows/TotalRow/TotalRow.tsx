@@ -4,7 +4,7 @@ import { Row } from "../Row/Row";
 import { TableCalendarContext } from "../../../TableCalendarContext/TableCalendarContext";
 import { TotalCell } from "../Cells/TotalCell";
 import { Cell } from "../Cells/Cell";
-import { Vacation } from "../../../../../../sharedKernel";
+import { Vacation } from "../../../../../../shared";
 import { getDayWorkloadType } from "./getDayWorkloadType";
 
 type TotalRowProps = {

@@ -1,5 +1,5 @@
 import { BASE_SERVER_URL } from "../constants";
-import { User } from "../../sharedKernel";
+import { User } from "../../shared";
 import { sendGetRequestToServer } from "./sendGetRequestToServer";
 
 export const getTeamMembers = async (): Promise<{ teamMembers: User[]; currentUser: User }> => {

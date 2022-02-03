@@ -1,7 +1,7 @@
 import moment from "moment";
 import { getVacationsCountByDays } from "../getVacationsCountByDays";
 import { VacationCountByDays } from "../../types";
-import { VacationType } from "../../../../sharedKernel";
+import { VacationType } from "../../../../shared";
 
 describe("get vacations count by days", () => {
   test("should return empty object, when zero vacation passed", () => {

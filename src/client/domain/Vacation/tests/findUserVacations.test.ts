@@ -1,5 +1,5 @@
 import { findUserVacations } from "../findUserVacations";
-import { Vacation, VacationType } from "../../../../sharedKernel";
+import { Vacation, VacationType } from "../../../../shared";
 
 //case when vacation starts in one year and ends in another is impossible
 describe("find user vacations", () => {

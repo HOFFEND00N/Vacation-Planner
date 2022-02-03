@@ -1,4 +1,4 @@
-import { Vacation } from "../../../sharedKernel";
+import { Vacation } from "../../../shared";
 import { getDateDifferenceInDays } from "./getDateDifferenceInDays";
 
 export const getTotalVacationsDays = (vacations: Vacation[]) => {

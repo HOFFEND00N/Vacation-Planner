@@ -1,6 +1,6 @@
 import { Op, Sequelize } from "sequelize";
 import { ModelsNames } from "../constants";
-import { Vacation } from "../../sharedKernel";
+import { Vacation } from "../../shared";
 
 export async function getTeamVacations({
   dbConnection,

@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import moment from "moment";
 import { TotalRow } from "../TotalRow";
 import { TableCalendarContext } from "../../../../TableCalendarContext/TableCalendarContext";
-import { VacationType } from "../../../../../../../sharedKernel";
+import { VacationType } from "../../../../../../../shared";
 
 describe("Total row", () => {
   describe("0 vacations passed", () => {
