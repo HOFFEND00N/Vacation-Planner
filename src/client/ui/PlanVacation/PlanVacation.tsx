@@ -6,7 +6,7 @@ import Dropzone, { UploadStates } from "@confirmit/react-dropzone";
 import { TextField } from "@confirmit/react-text-field";
 import { store } from "@confirmit/react-banner";
 import { planVacation } from "../../application/planVacation";
-import { AdditionalVacationDays } from "./AddiionalVacationDays";
+import { AdditionalVacationDays } from "./AdditonalVacationDays";
 import { Application } from "./Application";
 import { VacationDates } from "./VacationDates";
 import "./plan-vacation.css";
