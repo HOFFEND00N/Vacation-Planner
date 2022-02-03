@@ -1,6 +1,6 @@
 import { Moment } from "moment";
 import { VacationInterval } from "../../types";
-import { Vacation } from "../types";
+import { Vacation } from "../../../sharedKernel";
 
 //6 variants of vacation dates in case of month: prev/current, current/current, current/next, prev/next.
 // prev/prev, next/next - dont care about this cases.

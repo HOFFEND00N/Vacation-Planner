@@ -4,10 +4,10 @@ import { getVacationsTypeByDayForCurrentMonth } from "../../../../../domain/Vaca
 import { getTotalVacationsDays } from "../../../../../domain/Vacation/getTotalVacationsDays";
 import { TableCalendarStateType } from "../../../useVacationSelected";
 import { Row } from "../Row/Row";
-import { User, Vacation } from "../../../../../domain/types";
 import { TableCalendarContext } from "../../../TableCalendarContext/TableCalendarContext";
 import { DaysColumnCell } from "../Cells/DaysColumnCell";
 import { Cell } from "../Cells/Cell";
+import { User, Vacation } from "../../../../../../sharedKernel";
 import { isCellSelectable } from "./isCellSelectable";
 import { isCellSelected } from "./isCellSelected";
 

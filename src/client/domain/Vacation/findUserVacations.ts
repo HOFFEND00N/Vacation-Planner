@@ -1,4 +1,4 @@
-import { Vacation } from "../types";
+import { Vacation } from "../../../sharedKernel";
 
 export const findUserVacations = ({
   vacations,

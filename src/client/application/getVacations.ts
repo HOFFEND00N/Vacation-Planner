@@ -1,5 +1,5 @@
-import { Vacation } from "../domain/types";
 import { BASE_SERVER_URL } from "../constants";
+import { Vacation } from "../../sharedKernel";
 import { sendGetRequestToServer } from "./sendGetRequestToServer";
 
 export const getVacations = async (usersIds: string[]): Promise<Vacation[]> => {

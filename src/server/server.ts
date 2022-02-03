@@ -1,8 +1,9 @@
 import path from "path";
-import express from "express";
+import express, { Response } from "express";
 import nconf from "nconf";
 import { sso } from "node-expose-sspi";
 import bodyParser from "body-parser";
+import { User, Vacation } from "../sharedKernel";
 import { Config, LINE_BREAK } from "./constants";
 import { makeIndexHtml } from "./makeIndexHtml";
 import { setupConfig } from "./setupConfig";
@@ -38,7 +39,10 @@ import { IMyRequest } from "./types";
 
   server.get(
     "/team-members",
-    async (req: IMyRequest<unknown, unknown, unknown, unknown, Record<string, unknown>>, res) => {
+    async (
+      req: IMyRequest<unknown, unknown, unknown, unknown, Record<string, unknown>>,
+      res: Response<{ error: string } | { team: User[]; currentUser: User }, Record<string, unknown>>
+    ) => {
       try {
         // const username = req.sso.user?.adUser?.userPrincipalName;
         const team = await getTeamMembers("anna.kozlova@forsta.com");
@@ -54,7 +58,10 @@ import { IMyRequest } from "./types";
 
   server.get(
     "/vacations",
-    async (req: IMyRequest<unknown, unknown, unknown, { id: string[] }, Record<string, unknown>>, res) => {
+    async (
+      req: IMyRequest<unknown, unknown, unknown, { id: string[] }, Record<string, unknown>>,
+      res: Response<{ error: string } | { vacations: Vacation[] }, Record<string, unknown>>
+    ) => {
       try {
         const usersIds = req.query.id;
 
@@ -77,7 +84,7 @@ import { IMyRequest } from "./types";
         unknown,
         Record<string, unknown>
       >,
-      res
+      res: Response<{ error: string } | { vacation: Vacation }, Record<string, unknown>>
     ) => {
       try {
         //userId: req.sso.user?.adUser?.objectGUID[0] ||| userName: req.sso.user?.displayName
@@ -88,7 +95,7 @@ import { IMyRequest } from "./types";
           vacationStartDate: req.body.vacationStartDate,
           vacationEndDate: req.body.vacationEndDate,
         });
-        res.status(200).send(vacation);
+        res.status(200).send({ vacation });
       } catch (e) {
         res.status(500).send({ error: "Something went wrong, please try again later" });
       }

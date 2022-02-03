@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { getVacationsCountByDays } from "../../../../../domain/Vacation/getVacationsCountByDays";
 import { Row } from "../Row/Row";
-import { Vacation } from "../../../../../domain/types";
 import { TableCalendarContext } from "../../../TableCalendarContext/TableCalendarContext";
 import { TotalCell } from "../Cells/TotalCell";
 import { Cell } from "../Cells/Cell";
+import { Vacation } from "../../../../../../sharedKernel";
 import { getDayWorkloadType } from "./getDayWorkloadType";
 
 type TotalRowProps = {

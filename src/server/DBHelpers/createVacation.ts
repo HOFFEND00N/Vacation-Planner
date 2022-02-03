@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 import { ModelsNames } from "../constants";
-import { VacationType } from "../../sharedKernel";
+import { Vacation, VacationType } from "../../sharedKernel";
 
 export async function createVacation({
   vacationStartDate,
@@ -14,7 +14,7 @@ export async function createVacation({
   userId: string;
   userName: string;
   dbConnection: Sequelize;
-}) {
+}): Promise<Vacation> {
   userId = userId.replace(/[{}]/g, "");
   const user = await dbConnection.models[ModelsNames.USER].findOne({
     where: { id: userId },
@@ -25,10 +25,10 @@ export async function createVacation({
     await dbConnection.models[ModelsNames.USER].create({ id: userId, firstName, lastName });
   }
 
-  return await dbConnection.models[ModelsNames.VACATION].create({
+  return (await dbConnection.models[ModelsNames.VACATION].create({
     start: vacationStartDate,
     end: vacationEndDate,
     userId,
     type: VacationType.PENDING_APPROVAL,
-  });
+  })) as unknown as Vacation;
 }

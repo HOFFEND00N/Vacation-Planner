@@ -1,4 +1,4 @@
-import { User, Vacation } from "../../../domain/types";
+import { User, Vacation } from "../../../../sharedKernel";
 
 export type BodyReducerStateType = {
   error?: Error;
