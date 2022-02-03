@@ -22,3 +22,5 @@ export const TEAMS = [
 ];
 
 export const LINE_BREAK = "------------------------------------------------------------";
+
+export const DB_CONNECTION = "dbConnection";
