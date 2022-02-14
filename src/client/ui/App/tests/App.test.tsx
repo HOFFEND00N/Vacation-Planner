@@ -1,35 +1,28 @@
 import React from "react";
-import { render, screen, waitForElementToBeRemoved, within } from "@testing-library/react";
+import { act, queryHelpers, render, screen, waitForElementToBeRemoved, within } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import moment from "moment";
 import userEvent from "@testing-library/user-event";
+import { store } from "@confirmit/react-banner";
 import { App } from "../App";
 import { getTeamMembers } from "../../../application/getTeamMembers";
 import { getVacations } from "../../../application/getVacations";
+import { planVacation } from "../../../application/planVacation";
 
 jest.mock("../../../application/getVacations");
 jest.mock("../../../application/getTeamMembers");
+jest.mock("../../../application/planVacation");
 jest.mock("../../../constants.ts", () => {
   return {};
 });
-
-const memoryRouterInitialEntries = [
-  {
-    pathname: "/plan-vacation",
-    search: "",
-    hash: "",
-    state: {
-      vacationStart: {
-        date: moment("2-11-2021", "DD-MM-YYYY"),
-      },
-      vacationEnd: {
-        date: moment("14-11-2021", "DD-MM-YYYY"),
-      },
-    },
-    key: "sgdskldbgsbd",
+jest.mock("@confirmit/react-banner", () => ({
+  ...jest.requireActual("@confirmit/react-banner"),
+  store: {
+    success: jest.fn(),
   },
-];
+  __esModule: true,
+}));
 
 describe("App", () => {
   test("should render App, select one day vacation, navigate to plan vacation page, when plan vacation button clicked", async () => {
@@ -66,7 +59,68 @@ describe("App", () => {
     ).toBeInTheDocument();
   });
 
+  test("should navigate to plan vacation page, then plan vacation and redirect back to main page", async () => {
+    (getTeamMembers as jest.Mock).mockReturnValue({
+      teamMembers: [
+        { id: "user 2", name: "user 2" },
+        { id: "user 1", name: "user 1" },
+      ],
+      currentUser: { id: "user 1", name: "user 1" },
+    });
+    (getVacations as jest.Mock).mockReturnValue([]);
+    const mockPlanVacation = jest.fn();
+    (planVacation as jest.Mock).mockImplementation(mockPlanVacation);
+    const mockSuccess = jest.fn();
+    (store.success as jest.Mock).mockImplementation(mockSuccess);
+    await act(async () => {
+      render(
+        <MemoryRouter>
+          <App currentDate={moment("1-10-2021", "DD-MM-YYYY")} />
+        </MemoryRouter>
+      );
+
+      await waitForElementToBeRemoved(screen.getByText("Please wait, searching your teammates..."));
+
+      const mainPagePlanVacationButton = screen.getByTestId("plan-vacation-button");
+      const currentUserRow = screen.getByTestId("row user 1");
+
+      userEvent.click(within(currentUserRow).getAllByTestId("table-cell")[3]);
+      userEvent.click(mainPagePlanVacationButton);
+
+      const input = queryHelpers.queryAllByAttribute(
+        "data-test",
+        screen.getByTestId("application-form-container"),
+        "dropzone-file-input"
+      )[0] as HTMLInputElement;
+      const file = new File(["hello"], "hello.png", { type: "image/png" });
+      userEvent.upload(input, file);
+
+      const planVacationButton = screen.getByRole("button", { name: "Plan vacation" });
+      await userEvent.click(planVacationButton);
+    });
+
+    expect(mockPlanVacation).toBeCalledTimes(1);
+    expect(mockSuccess).toBeCalledTimes(1);
+    expect(screen.getByTestId("table-calendar")).toBeInTheDocument();
+  });
+
   test("should navigate to page with table calendar, when cancel button clicked in plan vacation page", async () => {
+    const memoryRouterInitialEntries = [
+      {
+        pathname: "/plan-vacation",
+        search: "",
+        hash: "",
+        state: {
+          vacationStart: {
+            date: moment("2-11-2021", "DD-MM-YYYY"),
+          },
+          vacationEnd: {
+            date: moment("14-11-2021", "DD-MM-YYYY"),
+          },
+        },
+        key: "sgdskldbgsbd",
+      },
+    ];
     (getTeamMembers as jest.Mock).mockReturnValue({
       teamMembers: [
         { id: "user 2", name: "user 2" },

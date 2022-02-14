@@ -28,12 +28,20 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
       return;
     }
     setUploadState(UploadStates.Uploading);
-    await planVacation({
-      vacationStartDate: vacationStartDate.toDate(),
-      vacationEndDate: vacationEndDate.toDate(),
-    });
-    showNotification();
-    setUploadState(UploadStates.Idle);
+    try {
+      await planVacation({
+        vacationStartDate: vacationStartDate.toDate(),
+        vacationEndDate: vacationEndDate.toDate(),
+      });
+      setUploadState(UploadStates.Idle);
+      showNotification();
+      history.push({
+        pathname: "/",
+      });
+    } catch (e) {
+      setUploadState(UploadStates.Idle);
+      showError(e);
+    }
   };
 
   const showNotification = () => {
@@ -42,6 +50,10 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
 
   const showWarning = (text: string) => {
     store.warning({ text, closeTimeout: 0 });
+  };
+
+  const showError = (error: Error) => {
+    store.error({ text: error.message, closeTimeout: 0 });
   };
 
   const handleStartDateChange = (startDate: moment.Moment) => {

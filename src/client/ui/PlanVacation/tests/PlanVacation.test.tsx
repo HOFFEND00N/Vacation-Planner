@@ -1,4 +1,4 @@
-import { queryHelpers, render, screen, within } from "@testing-library/react";
+import { act, queryHelpers, render, screen, within } from "@testing-library/react";
 import React from "react";
 import "@testing-library/jest-dom";
 import moment from "moment";
@@ -11,6 +11,7 @@ jest.mock("@confirmit/react-banner", () => ({
   store: {
     success: jest.fn(),
     warning: jest.fn(),
+    error: jest.fn(),
   },
 }));
 jest.mock("react-router-dom", () => ({
@@ -28,6 +29,9 @@ jest.mock("react-router-dom", () => ({
       },
     },
     key: "sgdskldbgsbd",
+  }),
+  useHistory: () => ({
+    push: jest.fn(),
   }),
 }));
 jest.mock("../../../constants.ts", () => {
@@ -141,8 +145,8 @@ describe("PlanVacation", () => {
     (planVacation as jest.Mock).mockImplementation(jest.fn());
     const mockSuccess = jest.fn();
     (store.success as jest.Mock).mockImplementation(mockSuccess);
-    const component = render(<PlanVacation currentDate={moment("1-10-2021", "DD-MM-YYYY")} />);
 
+    const component = render(<PlanVacation currentDate={moment("1-10-2021", "DD-MM-YYYY")} />);
     const input = queryHelpers.queryAllByAttribute(
       "data-test",
       component.baseElement as HTMLElement,
@@ -152,9 +156,38 @@ describe("PlanVacation", () => {
     userEvent.upload(input, file);
 
     const planVacationButton = screen.getByRole("button", { name: "Plan vacation" });
-    await userEvent.click(planVacationButton);
+    await act(async () => {
+      await userEvent.click(planVacationButton);
+    });
 
     expect(mockSuccess).toBeCalledTimes(1);
+    expect(screen.getByText("hello.png")).toBeInTheDocument();
+  });
+
+  test("should show error, when plan vacation failed", async () => {
+    (planVacation as jest.Mock).mockImplementation(
+      jest.fn(() => {
+        throw Error("some error");
+      })
+    );
+    const mockError = jest.fn();
+    (store.error as jest.Mock).mockImplementation(mockError);
+
+    const component = render(<PlanVacation currentDate={moment("1-10-2021", "DD-MM-YYYY")} />);
+    const input = queryHelpers.queryAllByAttribute(
+      "data-test",
+      component.baseElement as HTMLElement,
+      "dropzone-file-input"
+    )[0] as HTMLInputElement;
+    const file = new File(["hello"], "hello.png", { type: "image/png" });
+    userEvent.upload(input, file);
+
+    const planVacationButton = screen.getByRole("button", { name: "Plan vacation" });
+    await act(async () => {
+      await userEvent.click(planVacationButton);
+    });
+
+    expect(mockError).toBeCalledTimes(1);
     expect(screen.getByText("hello.png")).toBeInTheDocument();
   });
 
