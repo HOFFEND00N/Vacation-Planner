@@ -10,7 +10,6 @@ import { planVacation } from "../../../application/planVacation";
 jest.mock("@confirmit/react-banner", () => ({
   store: {
     success: jest.fn(),
-    warning: jest.fn(),
     error: jest.fn(),
   },
 }));
@@ -47,7 +46,7 @@ describe("PlanVacation", () => {
     expect(screen.getByRole("group", { name: "Full name in the genitive case" })).toBeInTheDocument();
     expect(screen.getByText("Use additional vacation days")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Print application" })).toBeInTheDocument();
-    expect(screen.getByText("Upload a vacation application")).toBeInTheDocument();
+    expect(screen.getByText("Upload a vacation application *")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Cancel" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Plan vacation" })).toBeInTheDocument();
     expect(screen.getByTestId("application")).toBeInTheDocument();
@@ -128,17 +127,6 @@ describe("PlanVacation", () => {
 
     userEvent.click(checkbox);
     expect(within(additionalVacationDaysElement).queryByRole("textbox")).not.toBeInTheDocument();
-  });
-
-  test("should show warning, when plan vacation button clicked without uploaded application scan", () => {
-    const mockWarning = jest.fn();
-    (store.warning as jest.Mock).mockImplementation(mockWarning);
-    render(<PlanVacation currentDate={moment("1-10-2021", "DD-MM-YYYY")} />);
-
-    const planVacationButton = screen.getByRole("button", { name: "Plan vacation" });
-    userEvent.click(planVacationButton);
-
-    expect(mockWarning).toBeCalledTimes(1);
   });
 
   test("should show success, when plan vacation button clicked with uploaded application scan", async () => {

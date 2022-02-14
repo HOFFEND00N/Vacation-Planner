@@ -23,33 +23,24 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
   const [userName, setUserName] = useState("");
 
   const handleSubmit = async () => {
-    if (files.length === 0) {
-      showWarning("please upload document with vacation request");
-      return;
-    }
     setUploadState(UploadStates.Uploading);
     try {
       await planVacation({
         vacationStartDate: vacationStartDate.toDate(),
         vacationEndDate: vacationEndDate.toDate(),
       });
-      setUploadState(UploadStates.Idle);
       showNotification();
       history.push({
         pathname: "/",
       });
     } catch (e) {
-      setUploadState(UploadStates.Idle);
       showError(e);
     }
+    setUploadState(UploadStates.Idle);
   };
 
   const showNotification = () => {
     store.success({ text: "Vacation successfully planned", closeTimeout: 0 });
-  };
-
-  const showWarning = (text: string) => {
-    store.warning({ text, closeTimeout: 0 });
   };
 
   const showError = (error: Error) => {
@@ -119,7 +110,7 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
             Print application
           </Button>
           <div className="dropzone-container">
-            <div className="dropzone-container__header">Upload a vacation application</div>
+            <div className="dropzone-container__header">Upload a vacation application *</div>
             <Dropzone
               uploadState={uploadState}
               selectedLabel={selectedFileName}
@@ -134,7 +125,12 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
         <Button className="buttons-container__item" appearance={Appearances.primaryDanger} onClick={handleCancel}>
           Cancel
         </Button>
-        <Button className="buttons-container__item" appearance={Appearances.primarySuccess} onClick={handleSubmit}>
+        <Button
+          className="buttons-container__item"
+          appearance={Appearances.primarySuccess}
+          onClick={handleSubmit}
+          disabled={files.length === 0}
+        >
           Plan vacation
         </Button>
       </div>
