@@ -27,19 +27,19 @@ export const Application = ({
   }
 
   return (
-    <div className="application" data-testid="application">
-      <div className="application-header" data-testid="application-header">
+    <div className="application-to-print" data-testid="application">
+      <div className="application-to-print__header" data-testid="application-to-print__header">
         <div>Генеральному директору</div>
         <div>ООО "Конфёрмит" </div>
         <div>Мастрюкову Д.Л. </div>
         <div>от {userName} </div>
       </div>
-      <div className="application-headline">Заявление</div>
+      <div className="application-to-print__headline">Заявление</div>
       <div>
         Прошу предоставить мне отпуск с {vacationStart.format("DD.MM.YYYY")} до {vacationEnd.format("DD.MM.YYYY")}
         {text}
       </div>
-      <div className="application-footer">{currentDate.format("DD.MM.YYYY")}</div>
+      <div className="application-to-print__footer">{currentDate.format("DD.MM.YYYY")}</div>
     </div>
   );
 };

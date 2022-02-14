@@ -1,26 +1,26 @@
-.application {
+.application-to-print {
     display: none;
 }
 
 @media print {
-    .application{
+    .application-to-print{
         display: block;
     }
 }
 
-.application-header {
+.application-to-print__header {
     align-items: flex-end;
     padding: 40px 0;
     display: flex;
     flex-direction: column;
 }
 
-.application-headline {
+.application-to-print__headline {
     text-align: center;
     padding: 40px 0;
 }
 
-.application-footer {
+.application-to-print__footer {
     text-align: right;
     padding: 40px 80px 40px 0;
 }

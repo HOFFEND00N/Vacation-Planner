@@ -103,14 +103,14 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
         </div>
         <div className="right-page-half">
           <Button
-            className="print-application-button"
+            className="application-form__print-application-button"
             appearance={Appearances.primarySuccess}
             onClick={handlePrintApplication}
           >
             Print application
           </Button>
-          <div className="dropzone-container">
-            <div className="dropzone-container__header">Upload a vacation application *</div>
+          <div className="application-form__dropzone-container">
+            <div className="application-form__dropzone-container-header">Upload a vacation application *</div>
             <Dropzone
               uploadState={uploadState}
               selectedLabel={selectedFileName}
@@ -121,12 +121,16 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
         </div>
       </div>
 
-      <div className="buttons-container">
-        <Button className="buttons-container__item" appearance={Appearances.primaryDanger} onClick={handleCancel}>
+      <div className="application-form__buttons-container">
+        <Button
+          className="application-form__buttons-container-item"
+          appearance={Appearances.primaryDanger}
+          onClick={handleCancel}
+        >
           Cancel
         </Button>
         <Button
-          className="buttons-container__item"
+          className="application-form__buttons-container-item"
           appearance={Appearances.primarySuccess}
           onClick={handleSubmit}
           disabled={files.length === 0}

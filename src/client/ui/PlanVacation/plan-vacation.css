@@ -9,25 +9,25 @@
   min-height: 240px;
 }
 
-.dropzone-container{
+.application-form__dropzone-container{
   width: 400px;
 }
 
-.dropzone-container__header {
+.application-form__dropzone-container-header {
   margin-bottom: 10px;
 }
 
-.buttons-container {
+.application-form__buttons-container {
   display: flex;
   justify-content: flex-end;
   margin-top: 15px;
 }
 
-.buttons-container__item {
+.application-form__buttons-container-item {
   margin-left: 10px;
 }
 
-.print-application-button {
+.application-form__print-application-button {
   margin: auto;
   width: 100%;
   justify-content: center;
@@ -42,7 +42,7 @@
 
 @media print {
   .application-form,
-  .buttons-container {
+  .application-form__buttons-container {
     display: none;
   }
 }

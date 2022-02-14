@@ -21,7 +21,7 @@ describe("application", () => {
     );
 
     expect(screen.getByTestId("application")).toBeInTheDocument();
-    expect(screen.getByTestId("application-header")).toBeInTheDocument();
+    expect(screen.getByTestId("application-to-print__header")).toBeInTheDocument();
     expect(screen.getByText("Генеральному директору")).toBeInTheDocument();
     expect(screen.getByText('ООО "Конфёрмит"')).toBeInTheDocument();
     expect(screen.getByText("Мастрюкову Д.Л.")).toBeInTheDocument();
