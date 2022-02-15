@@ -4,6 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import moment from "moment";
 import Dropzone, { UploadStates } from "@confirmit/react-dropzone";
 import { TextField } from "@confirmit/react-text-field";
+import { Icon, printer } from "@confirmit/react-icons";
 import { planVacation } from "../../application/planVacation";
 import { showError } from "../bannerHelpers/showError";
 import { showNotification } from "../bannerHelpers/showNotification";
@@ -92,6 +93,7 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
             className="application-form__print-application-button"
             appearance={Appearances.primarySuccess}
             onClick={handlePrintApplication}
+            suffix={<Icon path={printer} />}
           >
             Print application
           </Button>
