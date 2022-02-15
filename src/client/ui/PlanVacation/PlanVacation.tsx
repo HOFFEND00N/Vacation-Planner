@@ -47,14 +47,6 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
     store.error({ text: error.message, closeTimeout: 0 });
   };
 
-  const handleStartDateChange = (startDate: moment.Moment) => {
-    setVacationStartDate(startDate);
-  };
-
-  const handleEndDateChange = (endDate: moment.Moment) => {
-    setVacationEndDate(endDate);
-  };
-
   const handleFileSelected = (selectedFiles: File[]) => {
     setFiles(selectedFiles);
     setSelectedFileName(selectedFiles[0].name);
@@ -86,8 +78,8 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
           <VacationDates
             vacationStartDate={vacationStartDate}
             vacationEndDate={vacationEndDate}
-            handleDateStartChange={handleStartDateChange}
-            handleDateEndChange={handleEndDateChange}
+            handleDateStartChange={(startDate: moment.Moment) => setVacationStartDate(startDate)}
+            handleDateEndChange={(endDate: moment.Moment) => setVacationEndDate(endDate)}
           />
           <TextField
             label="Full name in the genitive case"
