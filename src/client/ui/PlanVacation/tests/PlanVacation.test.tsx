@@ -87,7 +87,7 @@ describe("PlanVacation", () => {
     ).toBeInTheDocument();
   });
 
-  test("should change additional vacation days in application, when enter value in textbox", () => {
+  test("should change additional vacation days in application, when enter value in textbox = 1", () => {
     render(<PlanVacation currentDate={moment("1-10-2021", "DD-MM-YYYY")} />);
 
     const checkbox = screen.getByRole("checkbox");
@@ -102,7 +102,7 @@ describe("PlanVacation", () => {
     ).toBeInTheDocument();
   });
 
-  test("should change additional vacation days in application, when enter value in textbox", () => {
+  test("should change additional vacation days in application, when enter value in 1 < textbox < 5", () => {
     render(<PlanVacation currentDate={moment("1-10-2021", "DD-MM-YYYY")} />);
 
     const checkbox = screen.getByRole("checkbox");
@@ -113,6 +113,21 @@ describe("PlanVacation", () => {
     expect(
       within(screen.getByTestId("application")).getByText(
         "Прошу предоставить мне отпуск с 02.11.2021 до 14.11.2021, из них 3 дополнительных дня отпуска за 2021 год"
+      )
+    ).toBeInTheDocument();
+  });
+
+  test("should change additional vacation days in application, when enter value in textbox > 5", () => {
+    render(<PlanVacation currentDate={moment("1-10-2021", "DD-MM-YYYY")} />);
+
+    const checkbox = screen.getByRole("checkbox");
+    userEvent.click(checkbox);
+
+    const additionalVacationDaysElement = screen.getByTestId("additional-vacation-days");
+    userEvent.type(within(additionalVacationDaysElement).getByRole("textbox"), "5");
+    expect(
+      within(screen.getByTestId("application")).getByText(
+        "Прошу предоставить мне отпуск с 02.11.2021 до 14.11.2021, из них 5 дополнительных дней отпуска за 2021 год"
       )
     ).toBeInTheDocument();
   });

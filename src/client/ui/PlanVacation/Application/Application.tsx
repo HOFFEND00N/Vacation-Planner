@@ -21,8 +21,10 @@ export const Application = ({
   if (additionalVacationDays) {
     if (additionalVacationDays === 1) {
       text = `, из них ${additionalVacationDays} дополнительный день отпуска за ${vacationStart.year()} год`;
-    } else {
+    } else if (additionalVacationDays < 5) {
       text = `, из них ${additionalVacationDays} дополнительных дня отпуска за ${vacationStart.year()} год`;
+    } else {
+      text = `, из них ${additionalVacationDays} дополнительных дней отпуска за ${vacationStart.year()} год`;
     }
   }
 
