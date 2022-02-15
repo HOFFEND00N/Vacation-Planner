@@ -14,7 +14,7 @@ import "./plan-vacation.css";
 
 export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
   const [uploadState, setUploadState] = useState(UploadStates.Idle);
-  const [files, setFiles] = useState<File[]>([]);
+  const [file, setFile] = useState<File>();
   const [selectedFileName, setSelectedFileName] = useState("");
   const location = useLocation();
   const history = useHistory();
@@ -42,12 +42,12 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
   };
 
   const handleFileSelected = (selectedFiles: File[]) => {
-    setFiles(selectedFiles);
+    setFile(selectedFiles[0]);
     setSelectedFileName(selectedFiles[0].name);
   };
 
   const handleClearFile = () => {
-    setFiles([]);
+    setFile(undefined);
     setSelectedFileName("");
   };
 
@@ -119,7 +119,7 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
           className="application-form__buttons-container-item"
           appearance={Appearances.primarySuccess}
           onClick={handleSubmit}
-          disabled={files.length === 0}
+          disabled={!file}
         >
           Plan vacation
         </Button>
