@@ -6,7 +6,7 @@
 .application-form {
   display: flex;
   justify-content: space-between;
-  min-height: 240px;
+  min-height: 270px;
 }
 
 .application-form__dropzone-container{
@@ -31,13 +31,6 @@
   margin: auto;
   width: 100%;
   justify-content: center;
-}
-
-.right-page-half {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
 }
 
 @media print {

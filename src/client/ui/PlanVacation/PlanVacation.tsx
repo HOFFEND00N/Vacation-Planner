@@ -5,6 +5,7 @@ import moment from "moment";
 import Dropzone, { UploadStates } from "@confirmit/react-dropzone";
 import { TextField } from "@confirmit/react-text-field";
 import { Icon, printer } from "@confirmit/react-icons";
+import { Fieldset, LayoutStyle } from "@confirmit/react-fieldset";
 import { planVacation } from "../../application/planVacation";
 import { showError } from "../bannerHelpers/showError";
 import { showNotification } from "../bannerHelpers/showNotification";
@@ -69,7 +70,7 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
   return (
     <div className="application-form-container" data-testid="application-form-container">
       <div className="application-form">
-        <div>
+        <Fieldset layoutStyle={LayoutStyle.Vertical}>
           <VacationDates
             vacationStartDate={vacationStartDate}
             vacationEndDate={vacationEndDate}
@@ -87,8 +88,9 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
             additionalVacationDays={additionalVacationDays}
             setAdditionalVacationDays={setAdditionalVacationDays}
           />
-        </div>
-        <div className="right-page-half">
+        </Fieldset>
+
+        <Fieldset layoutStyle={LayoutStyle.Vertical}>
           <Button
             className="application-form__print-application-button"
             appearance={Appearances.primarySuccess}
@@ -106,7 +108,7 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
               onClearFile={handleClearFile}
             />
           </div>
-        </div>
+        </Fieldset>
       </div>
 
       <div className="application-form__buttons-container">
