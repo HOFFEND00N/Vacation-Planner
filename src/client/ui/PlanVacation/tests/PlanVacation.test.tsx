@@ -59,8 +59,8 @@ describe("PlanVacation", () => {
 
     const fullNameElement = screen.getByTestId("full-name-input");
     const input = within(fullNameElement).getByRole("textbox");
-    userEvent.type(input, "last name");
-    expect(input).toHaveValue(expectedFullName);
+    userEvent.type(input, expectedFullName);
+    expect(within(screen.getByTestId("application")).getByText(`от ${expectedFullName}`)).toBeInTheDocument();
   });
 
   test("should change start date in application, when value in date picker changed", () => {
