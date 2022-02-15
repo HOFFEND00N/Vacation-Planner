@@ -10,12 +10,12 @@ export function AdditionalVacationDays({
   additionalVacationDays: number | undefined;
   setAdditionalVacationDays: Dispatch<SetStateAction<number | undefined>>;
 }) {
-  const handleAdditionalVacationDaysChange = (value: string) => {
-    setAdditionalVacationDays(Number(value));
+  const handleAdditionalVacationDaysChange = (value: number) => {
+    setAdditionalVacationDays(value);
   };
 
   const handleUseAdditionalVacationDays = () => {
-    additionalVacationDays === undefined ? setAdditionalVacationDays(0) : setAdditionalVacationDays(undefined);
+    additionalVacationDays === undefined ? setAdditionalVacationDays(1) : setAdditionalVacationDays(undefined);
   };
 
   return (
@@ -29,7 +29,7 @@ export function AdditionalVacationDays({
         />
       </div>
       {additionalVacationDays !== undefined ? (
-        <TextField onChange={handleAdditionalVacationDaysChange} value={additionalVacationDays} />
+        <TextField onChange={handleAdditionalVacationDaysChange} value={additionalVacationDays} type={"number"} />
       ) : undefined}
     </div>
   );

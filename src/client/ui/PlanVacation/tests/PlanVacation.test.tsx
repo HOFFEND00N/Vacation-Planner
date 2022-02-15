@@ -87,14 +87,12 @@ describe("PlanVacation", () => {
     ).toBeInTheDocument();
   });
 
-  test("should change additional vacation days in application, when enter value in textbox = 1", () => {
+  test("should have default additional vacation days value in application = 1", () => {
     render(<PlanVacation currentDate={moment("1-10-2021", "DD-MM-YYYY")} />);
 
     const checkbox = screen.getByRole("checkbox");
     userEvent.click(checkbox);
 
-    const additionalVacationDaysElement = screen.getByTestId("additional-vacation-days");
-    userEvent.type(within(additionalVacationDaysElement).getByRole("textbox"), "1");
     expect(
       within(screen.getByTestId("application")).getByText(
         "Прошу предоставить мне отпуск с 02.11.2021 до 14.11.2021, из них 1 дополнительный день отпуска за 2021 год"
@@ -109,7 +107,9 @@ describe("PlanVacation", () => {
     userEvent.click(checkbox);
 
     const additionalVacationDaysElement = screen.getByTestId("additional-vacation-days");
-    userEvent.type(within(additionalVacationDaysElement).getByRole("textbox"), "3");
+    const input = within(additionalVacationDaysElement).getByDisplayValue("1");
+    userEvent.type(input, "{backspace}");
+    userEvent.type(input, "3");
     expect(
       within(screen.getByTestId("application")).getByText(
         "Прошу предоставить мне отпуск с 02.11.2021 до 14.11.2021, из них 3 дополнительных дня отпуска за 2021 год"
@@ -124,7 +124,10 @@ describe("PlanVacation", () => {
     userEvent.click(checkbox);
 
     const additionalVacationDaysElement = screen.getByTestId("additional-vacation-days");
-    userEvent.type(within(additionalVacationDaysElement).getByRole("textbox"), "5");
+
+    const input = within(additionalVacationDaysElement).getByDisplayValue("1");
+    userEvent.type(input, "{backspace}");
+    userEvent.type(input, "5");
     expect(
       within(screen.getByTestId("application")).getByText(
         "Прошу предоставить мне отпуск с 02.11.2021 до 14.11.2021, из них 5 дополнительных дней отпуска за 2021 год"
@@ -138,10 +141,10 @@ describe("PlanVacation", () => {
     const additionalVacationDaysElement = screen.getByTestId("additional-vacation-days");
     const checkbox = screen.getByRole("checkbox");
     userEvent.click(checkbox);
-    expect(within(additionalVacationDaysElement).getByRole("textbox")).toBeInTheDocument();
+    expect(within(additionalVacationDaysElement).getByDisplayValue("1")).toBeInTheDocument();
 
     userEvent.click(checkbox);
-    expect(within(additionalVacationDaysElement).queryByRole("textbox")).not.toBeInTheDocument();
+    expect(within(additionalVacationDaysElement).queryByDisplayValue("1")).not.toBeInTheDocument();
   });
 
   test("should show success, when plan vacation button clicked with uploaded application scan", async () => {
