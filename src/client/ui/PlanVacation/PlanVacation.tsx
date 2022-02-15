@@ -14,7 +14,7 @@ import { Application } from "./Application";
 import { VacationDates } from "./VacationDates";
 import "./plan-vacation.css";
 
-export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
+export const PlanVacation = ({ currentDate }: { currentDate: moment.Moment }) => {
   const [uploadState, setUploadState] = useState(UploadStates.Idle);
   const [file, setFile] = useState<File>();
   const [selectedFileName, setSelectedFileName] = useState("");
@@ -138,4 +138,4 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
       />
     </div>
   );
-}
+};
