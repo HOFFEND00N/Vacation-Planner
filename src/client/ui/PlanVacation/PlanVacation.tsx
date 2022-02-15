@@ -4,8 +4,9 @@ import { useHistory, useLocation } from "react-router-dom";
 import moment from "moment";
 import Dropzone, { UploadStates } from "@confirmit/react-dropzone";
 import { TextField } from "@confirmit/react-text-field";
-import { store } from "@confirmit/react-banner";
 import { planVacation } from "../../application/planVacation";
+import { showError } from "../bannerHelpers/showError";
+import { showNotification } from "../bannerHelpers/showNotification";
 import { AdditionalVacationDays } from "./AdditonalVacationDays";
 import { Application } from "./Application";
 import { VacationDates } from "./VacationDates";
@@ -29,22 +30,15 @@ export function PlanVacation({ currentDate }: { currentDate: moment.Moment }) {
         vacationStartDate: vacationStartDate.toDate(),
         vacationEndDate: vacationEndDate.toDate(),
       });
-      showNotification();
+      setUploadState(UploadStates.Idle);
+      showNotification("Vacation successfully planned");
       history.push({
         pathname: "/",
       });
     } catch (e) {
+      setUploadState(UploadStates.Idle);
       showError(e);
     }
-    setUploadState(UploadStates.Idle);
-  };
-
-  const showNotification = () => {
-    store.success({ text: "Vacation successfully planned", closeTimeout: 0 });
-  };
-
-  const showError = (error: Error) => {
-    store.error({ text: error.message, closeTimeout: 0 });
   };
 
   const handleFileSelected = (selectedFiles: File[]) => {

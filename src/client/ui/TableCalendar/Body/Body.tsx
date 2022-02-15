@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useReducer } from "react";
-import { store } from "@confirmit/react-banner";
 import { getTeamMembers } from "../../../application/getTeamMembers";
 import { getVacations } from "../../../application/getVacations";
 import { TableCalendarStateType } from "../useVacationSelected";
 import { findUserVacations } from "../../../domain/Vacation/findUserVacations";
 import { TableCalendarContext } from "../TableCalendarContext/TableCalendarContext";
+import { showError } from "../../bannerHelpers/showError";
 import { UserDataRow, HeaderRow, TotalRow } from "./Rows";
 import { userDataLoaded, reducer, errorOccurred } from "./reducer";
 
@@ -29,10 +29,6 @@ export const Body = ({ vacationStart, vacationEnd }: propsType) => {
       }
     })();
   }, []);
-
-  const showError = (error: Error) => {
-    store.error({ text: error.message, closeTimeout: 0 });
-  };
 
   if (error) {
     return <h1> No data </h1>;
