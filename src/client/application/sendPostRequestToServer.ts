@@ -1,9 +1,9 @@
 import { HttpMethod } from "../types";
 
-export const sendPostRequestToServer = async ({ url, body }: { url: string; body: string }) => {
+export const sendPostRequestToServer = async ({ url, body }: { url: string; body: unknown }) => {
   const response = await fetch(url, {
     method: HttpMethod.POST,
-    body,
+    body: JSON.stringify(body),
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",

@@ -11,9 +11,9 @@ export const planVacation = async ({
   const url = `${BASE_SERVER_URL}/vacations`;
   return await sendPostRequestToServer({
     url,
-    body: JSON.stringify({
+    body: {
       vacationStartDate,
       vacationEndDate,
-    }),
+    },
   });
 };
