@@ -52,7 +52,7 @@ vacationsRouter.post(
   }
 );
 
-vacationsRouter.delete("/vacations", async (req, res) => {
+vacationsRouter.delete("/", async (req, res) => {
   const vacationId = req.query.id as string;
   const dbConnection = req.app.get(DB_CONNECTION);
 
