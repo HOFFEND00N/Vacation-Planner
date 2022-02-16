@@ -1,5 +1,5 @@
 import express, { Response } from "express";
-import { IMyRequest } from "../../types";
+import { IRequestWithSSO } from "../../types";
 import { User } from "../../../shared";
 import { getTeamMembers } from "../../ADHelpers/getTeamMembers";
 
@@ -8,7 +8,7 @@ const teamMembersRouter = express.Router();
 teamMembersRouter.get(
   "/",
   async (
-    req: IMyRequest<unknown, unknown, unknown, unknown, Record<string, unknown>>,
+    req: IRequestWithSSO<unknown, unknown, unknown, unknown, Record<string, unknown>>,
     res: Response<{ error: string } | { team: User[]; currentUser: User }, Record<string, unknown>>
   ) => {
     try {

@@ -1,6 +1,6 @@
 import { Request } from "express";
 
-export interface IMyRequest<P, resBody, reqBody, reqQuery, Locals>
+export interface IRequestWithSSO<P, resBody, reqBody, reqQuery, Locals>
   extends Request<P, resBody, reqBody, reqQuery, Locals> {
   sso: {
     user: {

@@ -1,6 +1,6 @@
 import express, { Response } from "express";
 import bodyParser from "body-parser";
-import { IMyRequest } from "../../types";
+import { IRequestWithSSO } from "../../types";
 import { Vacation } from "../../../shared";
 import { getTeamVacations } from "../../DBHelpers/getTeamVacations";
 import { createVacation } from "../../DBHelpers/createVacation";
@@ -12,7 +12,7 @@ const jsonParser = bodyParser.json();
 vacationsRouter.get(
   "/",
   async (
-    req: IMyRequest<unknown, unknown, unknown, { id: string[] }, Record<string, unknown>>,
+    req: IRequestWithSSO<unknown, unknown, unknown, { id: string[] }, Record<string, unknown>>,
     res: Response<{ error: string } | { vacations: Vacation[] }, Record<string, unknown>>
   ) => {
     try {
@@ -31,7 +31,7 @@ vacationsRouter.post(
   "/",
   jsonParser,
   async (
-    req: IMyRequest<
+    req: IRequestWithSSO<
       unknown,
       unknown,
       { vacationStartDate: Date; vacationEndDate: Date },
