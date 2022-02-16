@@ -1,10 +1,10 @@
 import express, { Response } from "express";
 import bodyParser from "body-parser";
-import { IRequestWithSSO } from "../../types";
-import { Vacation } from "../../../shared";
-import { getTeamVacations } from "../../DBHelpers/getTeamVacations";
-import { createVacation } from "../../DBHelpers/createVacation";
-import { DB_CONNECTION } from "../../constants";
+import { IRequestWithSSO } from "../types";
+import { Vacation } from "../../shared";
+import { getTeamVacations } from "../DBHelpers/getTeamVacations";
+import { createVacation } from "../DBHelpers/createVacation";
+import { DB_CONNECTION } from "../constants";
 
 const vacationsRouter = express.Router();
 const jsonParser = bodyParser.json();

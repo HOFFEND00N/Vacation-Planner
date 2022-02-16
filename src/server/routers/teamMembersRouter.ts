@@ -1,7 +1,7 @@
 import express, { Response } from "express";
-import { IRequestWithSSO } from "../../types";
-import { User } from "../../../shared";
-import { getTeamMembers } from "../../ADHelpers/getTeamMembers";
+import { IRequestWithSSO } from "../types";
+import { User } from "../../shared";
+import { getTeamMembers } from "../ADHelpers/getTeamMembers";
 
 const teamMembersRouter = express.Router();
 

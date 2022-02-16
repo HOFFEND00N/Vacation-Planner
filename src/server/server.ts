@@ -7,8 +7,8 @@ import { makeIndexHtml } from "./makeIndexHtml";
 import { setupConfig } from "./setupConfig";
 import { setupDBConnection } from "./DBHelpers/setupDBConnection";
 import { setupDBModels } from "./DBHelpers/setupDBModels";
-import { teamMembersRouter } from "./routers/teamMembersRouter/teamMembersRouter";
-import { vacationsRouter } from "./routers/teamMembersRouter/vacationsRouter";
+import { teamMembersRouter } from "./routers/teamMembersRouter";
+import { vacationsRouter } from "./routers/vacationsRouter";
 
 (async () => {
   setupConfig();
