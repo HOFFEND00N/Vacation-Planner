@@ -166,7 +166,7 @@ describe("Table calendar", () => {
       userEvent.click(confirmationVacationCancellationButton);
 
       expect(screen.getByTestId("table-calendar")).toBeInTheDocument();
-      expect(screen.queryByText("Fri Jan 01 2021 - Mon Jan 11 2021")).not.toBeInTheDocument();
+      await waitForElementToBeRemoved(screen.queryByText("Fri Jan 01 2021 - Mon Jan 11 2021"));
       expect(screen.queryByText("Cancel vacation")).not.toBeInTheDocument();
     });
 

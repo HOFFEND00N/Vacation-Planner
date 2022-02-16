@@ -4,6 +4,8 @@ import { ConfirmationDialog, ConfirmationMode } from "@confirmit/react-confirmat
 import { cancelUnapprovedVacation } from "../../../application/cancelUnapprovedVacation";
 import "./user-vacations.css";
 import { Vacation } from "../../../../shared";
+import { showNotification } from "../../bannerHelpers/showNotification";
+import { showError } from "../../bannerHelpers/showError";
 
 export const UserVacations = ({
   vacations,
@@ -25,9 +27,16 @@ export const UserVacations = ({
   };
 
   const handleConfirmation = () => {
-    (async () => await cancelUnapprovedVacation(vacationId!))();
-    onVacationCancel(vacationId!);
-    setIsConfirmationDialogOpen(false);
+    (async () => {
+      try {
+        await cancelUnapprovedVacation(vacationId!);
+        onVacationCancel(vacationId!);
+        showNotification("Vacation has been canceled successfully");
+      } catch (e) {
+        showError(e);
+      }
+      setIsConfirmationDialogOpen(false);
+    })();
   };
 
   if (vacations.length === 0) {
