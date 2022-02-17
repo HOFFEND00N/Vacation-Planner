@@ -8,7 +8,7 @@ const teamMembersRouter = express.Router();
 teamMembersRouter.get(
   "/",
   async (
-    req: IRequestWithSSO<unknown, unknown, unknown, unknown, Record<string, unknown>>,
+    req: IRequestWithSSO<Record<string, unknown>>,
     res: Response<{ error: string } | { team: User[]; currentUser: User }, Record<string, unknown>>
   ) => {
     try {

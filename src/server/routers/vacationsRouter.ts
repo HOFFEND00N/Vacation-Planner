@@ -12,7 +12,7 @@ const jsonParser = bodyParser.json();
 vacationsRouter.get(
   "/",
   async (
-    req: IRequestWithSSO<unknown, unknown, unknown, { id: string[] }, Record<string, unknown>>,
+    req: IRequestWithSSO<Record<string, unknown>, { id: string[] }>,
     res: Response<{ error: string } | { vacations: Vacation[] }, Record<string, unknown>>
   ) => {
     try {
@@ -31,13 +31,7 @@ vacationsRouter.post(
   "/",
   jsonParser,
   async (
-    req: IRequestWithSSO<
-      unknown,
-      unknown,
-      { vacationStartDate: Date; vacationEndDate: Date },
-      unknown,
-      Record<string, unknown>
-    >,
+    req: IRequestWithSSO<Record<string, unknown>, unknown, { vacationStartDate: Date; vacationEndDate: Date }>,
     res: Response<{ error: string } | { vacation: Vacation }, Record<string, unknown>>
   ) => {
     try {

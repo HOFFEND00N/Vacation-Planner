@@ -1,7 +1,7 @@
 import { Request } from "express";
 
-export interface IRequestWithSSO<P, resBody, reqBody, reqQuery, Locals>
-  extends Request<P, resBody, reqBody, reqQuery, Locals> {
+export interface IRequestWithSSO<Locals, reqQuery = unknown, reqBody = unknown>
+  extends Request<unknown, unknown, reqBody, reqQuery, Locals> {
   sso: {
     user: {
       adUser: {
