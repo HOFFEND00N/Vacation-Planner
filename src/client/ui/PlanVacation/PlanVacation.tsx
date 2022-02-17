@@ -74,8 +74,8 @@ export const PlanVacation = ({ currentDate }: { currentDate: moment.Moment }) =>
           <VacationDates
             vacationStartDate={vacationStartDate}
             vacationEndDate={vacationEndDate}
-            handleDateStartChange={(startDate: moment.Moment) => setVacationStartDate(startDate)}
-            handleDateEndChange={(endDate: moment.Moment) => setVacationEndDate(endDate)}
+            handleDateStartChange={setVacationStartDate}
+            handleDateEndChange={setVacationEndDate}
           />
           <TextField
             label="Full name in the genitive case"
