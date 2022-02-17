@@ -3,13 +3,13 @@ import { TextField } from "@confirmit/react-text-field";
 import { CheckBox } from "@confirmit/react-toggle";
 import "./additional-vacation-days.css";
 
-export function AdditionalVacationDays({
+export const AdditionalVacationDays = ({
   additionalVacationDays,
   setAdditionalVacationDays,
 }: {
   additionalVacationDays: number | undefined;
   setAdditionalVacationDays: Dispatch<SetStateAction<number | undefined>>;
-}) {
+}) => {
   const handleAdditionalVacationDaysChange = (value: number) => {
     setAdditionalVacationDays(value);
   };
@@ -33,4 +33,4 @@ export function AdditionalVacationDays({
       ) : undefined}
     </div>
   );
-}
+};

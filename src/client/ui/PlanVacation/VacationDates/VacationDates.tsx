@@ -3,7 +3,7 @@ import { DatePicker } from "@confirmit/react-date-picker";
 import moment from "moment";
 import "./vacation-dates.css";
 
-export function VacationDates({
+export const VacationDates = ({
   vacationStartDate,
   vacationEndDate,
   handleDateStartChange,
@@ -13,7 +13,7 @@ export function VacationDates({
   vacationEndDate: moment.Moment;
   handleDateStartChange: Dispatch<SetStateAction<moment.Moment | null>>;
   handleDateEndChange: Dispatch<SetStateAction<moment.Moment | null>>;
-}) {
+}) => {
   return (
     <div data-testid="vacation-dates">
       Vacation dates
@@ -34,4 +34,4 @@ export function VacationDates({
       </div>
     </div>
   );
-}
+};
