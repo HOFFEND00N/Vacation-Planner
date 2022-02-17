@@ -44,7 +44,7 @@ vacationsRouter.post(
         vacationStartDate: req.body.vacationStartDate,
         vacationEndDate: req.body.vacationEndDate,
       });
-      res.status(200).send({ vacation });
+      res.status(201).send({ vacation });
     } catch (e) {
       res.status(500).send({ error: "Something went wrong, please try again later" });
     }
