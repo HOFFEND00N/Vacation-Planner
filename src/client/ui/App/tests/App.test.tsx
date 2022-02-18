@@ -162,10 +162,10 @@ describe("App", () => {
         hash: "",
         state: {
           vacationStart: {
-            date: moment("2-11-2021", "DD-MM-YYYY"),
+            date: new Date("11-2-2021"),
           },
           vacationEnd: {
-            date: moment("14-11-2021", "DD-MM-YYYY"),
+            date: new Date("11-14-2021"),
           },
         },
         key: "sgdskldbgsbd",

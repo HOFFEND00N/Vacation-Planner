@@ -20,8 +20,6 @@ export const PlanVacation = ({ currentDate }: { currentDate: moment.Moment }) =>
   const [selectedFileName, setSelectedFileName] = useState("");
   const location = useLocation();
   const history = useHistory();
-  const [vacationStartDate, setVacationStartDate] = useState(moment(location.state.vacationStart.date));
-  const [vacationEndDate, setVacationEndDate] = useState(moment(location.state.vacationEnd.date));
   const [additionalVacationDays, setAdditionalVacationDays] = useState<number | undefined>(undefined);
   const [userName, setUserName] = useState("");
 
@@ -29,8 +27,8 @@ export const PlanVacation = ({ currentDate }: { currentDate: moment.Moment }) =>
     setUploadState(UploadStates.Uploading);
     try {
       await planVacation({
-        vacationStartDate: vacationStartDate.toDate(),
-        vacationEndDate: vacationEndDate.toDate(),
+        vacationStartDate: location.state.vacationStart.date,
+        vacationEndDate: location.state.vacationEnd.date,
       });
       setUploadState(UploadStates.Idle);
       showNotification("Vacation successfully planned");
@@ -57,8 +55,8 @@ export const PlanVacation = ({ currentDate }: { currentDate: moment.Moment }) =>
     history.push({
       pathname: "/",
       state: {
-        vacationStart: { isSelected: true, date: vacationStartDate.toDate() },
-        vacationEnd: { isSelected: true, date: vacationEndDate.toDate() },
+        vacationStart: { isSelected: true, date: location.state.vacationStart.date },
+        vacationEnd: { isSelected: true, date: location.state.vacationEnd.date },
       },
     });
   };
@@ -72,10 +70,8 @@ export const PlanVacation = ({ currentDate }: { currentDate: moment.Moment }) =>
       <div className="application-form">
         <Fieldset layoutStyle={LayoutStyle.Vertical}>
           <VacationDates
-            vacationStartDate={vacationStartDate}
-            vacationEndDate={vacationEndDate}
-            handleDateStartChange={setVacationStartDate}
-            handleDateEndChange={setVacationEndDate}
+            vacationStartDate={location.state.vacationStart.date}
+            vacationEndDate={location.state.vacationEnd.date}
           />
           <TextField
             label="Full name in the genitive case"
@@ -130,8 +126,8 @@ export const PlanVacation = ({ currentDate }: { currentDate: moment.Moment }) =>
       </div>
 
       <Application
-        vacationEnd={vacationEndDate}
-        vacationStart={vacationStartDate}
+        vacationEnd={moment(location.state.vacationEnd.date)}
+        vacationStart={moment(location.state.vacationStart.date)}
         additionalVacationDays={additionalVacationDays}
         userName={userName}
         currentDate={currentDate}

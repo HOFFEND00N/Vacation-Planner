@@ -21,10 +21,10 @@ jest.mock("react-router-dom", () => ({
     hash: "",
     state: {
       vacationStart: {
-        date: moment("2-11-2021", "DD-MM-YYYY"),
+        date: new Date("11-2-2021"),
       },
       vacationEnd: {
-        date: moment("14-11-2021", "DD-MM-YYYY"),
+        date: new Date("11-14-2021"),
       },
     },
     key: "sgdskldbgsbd",
@@ -61,30 +61,6 @@ describe("PlanVacation", () => {
     const input = within(fullNameElement).getByRole("textbox");
     userEvent.type(input, expectedFullName);
     expect(within(screen.getByTestId("application")).getByText(`от ${expectedFullName}`)).toBeInTheDocument();
-  });
-
-  test("should change start date in application, when value in date picker changed", () => {
-    const component = render(<PlanVacation currentDate={moment("1-10-2021", "DD-MM-YYYY")} />);
-
-    userEvent.click(screen.getByTestId("start-date-picker"));
-    const popover = queryHelpers.queryAllByAttribute("data-popover", component.baseElement as HTMLElement, /.*/)[0];
-    userEvent.click(within(popover).getByText("1"));
-
-    expect(
-      within(screen.getByTestId("application")).getByText("Прошу предоставить мне отпуск с 01.11.2021 до 14.11.2021")
-    ).toBeInTheDocument();
-  });
-
-  test("should change end date in application, when value in date picker changed", () => {
-    const component = render(<PlanVacation currentDate={moment("1-10-2021", "DD-MM-YYYY")} />);
-
-    userEvent.click(screen.getByTestId("end-date-picker"));
-    const popover = queryHelpers.queryAllByAttribute("data-popover", component.baseElement as HTMLElement, /.*/)[0];
-    userEvent.click(within(popover).getByText("21"));
-
-    expect(
-      within(screen.getByTestId("application")).getByText("Прошу предоставить мне отпуск с 02.11.2021 до 21.11.2021")
-    ).toBeInTheDocument();
   });
 
   test("should have default additional vacation days value in application = 1", () => {
