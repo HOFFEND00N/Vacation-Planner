@@ -29,9 +29,11 @@ export const useVacationSelected = ({
       setVacationEnd({ isSelected: false });
     } else if (!vacationEnd.isSelected) {
       if (vacationStart.date && date > vacationStart.date) {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        if (vacations.some((vacation) => vacation.start >= vacationStart.date && vacation.end <= date)) {
+        if (
+          vacations.some(
+            (vacation) => vacationStart.date && vacation.start >= vacationStart.date && vacation.end <= date
+          )
+        ) {
           setVacationStart({ isSelected: true, date });
         } else {
           setVacationEnd({ isSelected: true, date });
