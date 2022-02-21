@@ -1,18 +1,15 @@
-import { Vacation } from "../../../../../../shared";
+import { VacationTypeByDay } from "../../../../../types";
 
 export const isCellSelectable = ({
   userId,
   currentUserId,
-  cellDate,
-  vacations,
+  vacationTypeByDay,
+  day,
 }: {
   userId: string;
   currentUserId: string;
-  cellDate: Date;
-  vacations: Vacation[];
+  vacationTypeByDay: VacationTypeByDay;
+  day: number;
 }) => {
-  if (vacations.some((vacation) => cellDate >= vacation.start && cellDate <= vacation.end)) {
-    return false;
-  }
-  return userId === currentUserId;
+  return userId === currentUserId && !vacationTypeByDay[day];
 };

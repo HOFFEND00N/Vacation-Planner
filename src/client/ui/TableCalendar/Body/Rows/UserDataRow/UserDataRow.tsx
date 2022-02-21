@@ -45,8 +45,8 @@ export const UserDataRow = ({
     const isSelectable = isCellSelectable({
       userId: user.id,
       currentUserId: currentUser.id,
-      cellDate: elementDate,
-      vacations: userVacations,
+      vacationTypeByDay,
+      day,
     });
     const isSelected = isCellSelected({
       vacationStartDate: vacationStart.date,
