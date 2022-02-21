@@ -12,7 +12,8 @@ describe("teamMembersRouters", () => {
     app.use("/team-members", teamMembersRouter);
     request = supertest(app);
   });
-  test("should return team members, when AD interaction successfully", async () => {
+
+  test("should return team members, when find requested people in AD", async () => {
     (getTeamMembers as jest.Mock).mockReturnValue([{ name: "name", id: "id" }]);
 
     const response = await request.get("/team-members");
@@ -21,7 +22,7 @@ describe("teamMembersRouters", () => {
     expect(response.body.team).toEqual([{ name: "name", id: "id" }]);
   });
 
-  test("should return error, when AD interaction fails", async () => {
+  test("should return error, when fails to find userTeam", async () => {
     (getTeamMembers as jest.Mock).mockImplementation(() => {
       throw Error("some error");
     });
