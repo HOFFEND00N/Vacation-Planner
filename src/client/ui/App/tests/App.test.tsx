@@ -108,6 +108,7 @@ describe("App", () => {
 
     expect(mockPlanVacation).toBeCalledTimes(1);
     expect(screen.getByText("Vacation successfully planned")).toBeInTheDocument();
+    await waitForElementToBeRemoved(screen.getByText("Please wait, searching your teammates..."));
     expect(screen.getByTestId("table-calendar")).toBeInTheDocument();
   });
 

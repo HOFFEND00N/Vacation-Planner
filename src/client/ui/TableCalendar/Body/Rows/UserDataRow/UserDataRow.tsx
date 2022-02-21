@@ -13,7 +13,7 @@ import { isCellSelected } from "./isCellSelected";
 
 export const UserDataRow = ({
   daysInMonth,
-  vacations,
+  userVacations,
   user,
   vacationStart,
   vacationEnd,
@@ -21,7 +21,7 @@ export const UserDataRow = ({
   employeeName,
 }: {
   daysInMonth: number;
-  vacations: Vacation[];
+  userVacations: Vacation[];
   user: User;
   vacationStart: TableCalendarStateType;
   vacationEnd: TableCalendarStateType;
@@ -32,7 +32,7 @@ export const UserDataRow = ({
 
   const cells: JSX.Element[] = [];
   const vacationTypeByDay = getVacationsTypeByDayForCurrentMonth({
-    vacations,
+    vacations: userVacations,
     currentTableCalendarDate: tableCalendarContext.currentTableCalendarDate,
   });
   for (let day = 1; day < daysInMonth + 1; day++) {
@@ -46,7 +46,7 @@ export const UserDataRow = ({
       userId: user.id,
       currentUserId: currentUser.id,
       cellDate: elementDate,
-      vacations,
+      vacations: userVacations,
     });
     const isSelected = isCellSelected({
       vacationStartDate: vacationStart.date,
@@ -68,7 +68,7 @@ export const UserDataRow = ({
   return (
     <Row dataTestId={`row ${user.id}`}>
       <Cell value={employeeName} />
-      <DaysColumnCell value={getTotalVacationsDays(vacations)} />
+      <DaysColumnCell value={getTotalVacationsDays(userVacations)} />
       {cells}
     </Row>
   );

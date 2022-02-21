@@ -13,7 +13,7 @@ describe("Total row", () => {
 
       render(
         <TableCalendarContext.Provider
-          value={{ handleClick: jest.fn(), currentTableCalendarDate: moment(new Date("1-11-2021")) }}
+          value={{ handleClick: jest.fn(), currentTableCalendarDate: moment(new Date("1-11-2021")), vacations: [] }}
         >
           <TotalRow daysInMonth={daysInMonth} vacations={[]} teamMembersCount={8} />
         </TableCalendarContext.Provider>
@@ -29,7 +29,7 @@ describe("Total row", () => {
 
       render(
         <TableCalendarContext.Provider
-          value={{ handleClick: jest.fn(), currentTableCalendarDate: moment(new Date("1-11-2021")) }}
+          value={{ handleClick: jest.fn(), currentTableCalendarDate: moment(new Date("1-11-2021")), vacations: [] }}
         >
           <TotalRow daysInMonth={daysInMonth} vacations={[]} teamMembersCount={8} />
         </TableCalendarContext.Provider>
@@ -49,7 +49,7 @@ describe("Total row", () => {
 
       render(
         <TableCalendarContext.Provider
-          value={{ handleClick: jest.fn(), currentTableCalendarDate: moment(new Date("1-11-2021")) }}
+          value={{ handleClick: jest.fn(), currentTableCalendarDate: moment(new Date("1-11-2021")), vacations: [] }}
         >
           <TotalRow
             daysInMonth={daysInMonth}
@@ -84,7 +84,7 @@ describe("Total row", () => {
 
       render(
         <TableCalendarContext.Provider
-          value={{ handleClick: jest.fn(), currentTableCalendarDate: moment(new Date("1-11-2021")) }}
+          value={{ handleClick: jest.fn(), currentTableCalendarDate: moment(new Date("1-11-2021")), vacations: [] }}
         >
           <TotalRow
             daysInMonth={daysInMonth}

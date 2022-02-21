@@ -1,42 +1,20 @@
-import React, { useContext, useEffect, useReducer } from "react";
-import { getTeamMembers } from "../../../application/getTeamMembers";
-import { getVacations } from "../../../application/getVacations";
+import React, { useContext } from "react";
 import { TableCalendarStateType } from "../useVacationSelected";
 import { findUserVacations } from "../../../domain/Vacation/findUserVacations";
 import { TableCalendarContext } from "../TableCalendarContext/TableCalendarContext";
-import { showError } from "../../bannerHelpers/showError";
+import { User, Vacation } from "../../../../shared";
 import { UserDataRow, HeaderRow, TotalRow } from "./Rows";
-import { userDataLoaded, reducer, errorOccurred } from "./reducer";
 
 type propsType = {
   vacationStart: TableCalendarStateType;
   vacationEnd: TableCalendarStateType;
+  teamMembers: User[];
+  currentUser: User;
+  vacations: Vacation[];
 };
 
-export const Body = ({ vacationStart, vacationEnd }: propsType) => {
-  const [{ error, currentUser, teamMembers, vacations }, dispatch] = useReducer(reducer, {});
+export const Body = ({ vacationStart, vacationEnd, currentUser, teamMembers, vacations }: propsType) => {
   const { currentTableCalendarDate } = useContext(TableCalendarContext);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const { teamMembers, currentUser } = await getTeamMembers();
-        const vacations = await getVacations(teamMembers.map((teamMember) => teamMember.id));
-        dispatch(userDataLoaded({ teamMembers, currentUser, vacations }));
-      } catch (error) {
-        dispatch(errorOccurred(error));
-        showError(error);
-      }
-    })();
-  }, []);
-
-  if (error) {
-    return <h1> No data </h1>;
-  }
-
-  if (!currentUser || !vacations || !teamMembers) {
-    return <h1> Please wait, searching your teammates... </h1>;
-  }
 
   const daysInMonth = currentTableCalendarDate.daysInMonth();
   return (
@@ -54,7 +32,7 @@ export const Body = ({ vacationStart, vacationEnd }: propsType) => {
             vacationStart={vacationStart}
             vacationEnd={vacationEnd}
             currentUser={currentUser}
-            vacations={userVacations}
+            userVacations={userVacations}
             employeeName={teamMember.name}
             user={teamMember}
             key={teamMember.id}

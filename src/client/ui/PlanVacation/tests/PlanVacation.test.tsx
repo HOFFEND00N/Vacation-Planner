@@ -1,9 +1,8 @@
-import { act, queryHelpers, render, screen, within } from "@testing-library/react";
+import { queryHelpers, render, screen, within } from "@testing-library/react";
 import React from "react";
 import "@testing-library/jest-dom";
 import moment from "moment";
 import userEvent from "@testing-library/user-event";
-import { store } from "@confirmit/react-banner";
 import { PlanVacation } from "../PlanVacation";
 import { planVacation } from "../../../application/planVacation";
 
@@ -121,56 +120,6 @@ describe("PlanVacation", () => {
 
     userEvent.click(checkbox);
     expect(within(additionalVacationDaysElement).queryByDisplayValue("1")).not.toBeInTheDocument();
-  });
-
-  test("should show success, when plan vacation button clicked with uploaded application scan", async () => {
-    (planVacation as jest.Mock).mockImplementation(jest.fn());
-    const mockSuccess = jest.fn();
-    (store.success as jest.Mock).mockImplementation(mockSuccess);
-
-    const component = render(<PlanVacation currentDate={moment("1-10-2021", "DD-MM-YYYY")} />);
-    const input = queryHelpers.queryAllByAttribute(
-      "data-test",
-      component.baseElement as HTMLElement,
-      "dropzone-file-input"
-    )[0] as HTMLInputElement;
-    const file = new File(["hello"], "hello.png", { type: "image/png" });
-    userEvent.upload(input, file);
-
-    const planVacationButton = screen.getByRole("button", { name: "Plan vacation" });
-    await act(async () => {
-      await userEvent.click(planVacationButton);
-    });
-
-    expect(mockSuccess).toBeCalledTimes(1);
-    expect(screen.getByText("hello.png")).toBeInTheDocument();
-  });
-
-  test("should show error, when plan vacation failed", async () => {
-    (planVacation as jest.Mock).mockImplementation(
-      jest.fn(() => {
-        throw Error("some error");
-      })
-    );
-    const mockError = jest.fn();
-    (store.error as jest.Mock).mockImplementation(mockError);
-
-    const component = render(<PlanVacation currentDate={moment("1-10-2021", "DD-MM-YYYY")} />);
-    const input = queryHelpers.queryAllByAttribute(
-      "data-test",
-      component.baseElement as HTMLElement,
-      "dropzone-file-input"
-    )[0] as HTMLInputElement;
-    const file = new File(["hello"], "hello.png", { type: "image/png" });
-    userEvent.upload(input, file);
-
-    const planVacationButton = screen.getByRole("button", { name: "Plan vacation" });
-    await act(async () => {
-      await userEvent.click(planVacationButton);
-    });
-
-    expect(mockError).toBeCalledTimes(1);
-    expect(screen.getByText("hello.png")).toBeInTheDocument();
   });
 
   test("should remove uploaded scan, when user clicked on clear file button", async () => {

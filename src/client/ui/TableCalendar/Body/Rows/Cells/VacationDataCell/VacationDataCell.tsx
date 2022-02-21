@@ -13,7 +13,7 @@ type CellProps = {
 };
 
 export const VacationDataCell = ({ date, isSelectable, isSelected, vacationType }: CellProps) => {
-  const tableCalendarContext = useContext(TableCalendarContext);
+  const { vacations, handleClick } = useContext(TableCalendarContext);
 
   const cellClassNames = cn({
     ["cell--vacation-approved"]: vacationType === VacationType.APPROVED,
@@ -23,9 +23,6 @@ export const VacationDataCell = ({ date, isSelectable, isSelected, vacationType 
   });
 
   return (
-    <Cell
-      classNames={cellClassNames}
-      onClick={() => (isSelectable ? tableCalendarContext.handleClick(date as Date) : undefined)}
-    />
+    <Cell classNames={cellClassNames} onClick={() => (isSelectable ? handleClick({ date, vacations }) : undefined)} />
   );
 };

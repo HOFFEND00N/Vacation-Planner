@@ -21,7 +21,9 @@ describe("UserDataCell", () => {
     const mockOnClick = jest.fn();
 
     render(
-      <TableCalendarContext.Provider value={{ handleClick: mockOnClick, currentTableCalendarDate: moment() }}>
+      <TableCalendarContext.Provider
+        value={{ handleClick: mockOnClick, currentTableCalendarDate: moment(), vacations: [] }}
+      >
         <VacationDataCell
           date={new Date("1-11-2021")}
           vacationType={VacationType.APPROVED}
@@ -39,7 +41,9 @@ describe("UserDataCell", () => {
     const mockOnClick = jest.fn();
 
     render(
-      <TableCalendarContext.Provider value={{ handleClick: mockOnClick, currentTableCalendarDate: moment() }}>
+      <TableCalendarContext.Provider
+        value={{ handleClick: mockOnClick, currentTableCalendarDate: moment(), vacations: [] }}
+      >
         <VacationDataCell
           date={new Date("1-11-2021")}
           vacationType={VacationType.APPROVED}
