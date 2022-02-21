@@ -1,6 +1,6 @@
 import { HttpMethod } from "../types";
 
-export const sendPostRequestToServer = async ({ url, body }: { url: string; body: unknown }) => {
+export const sendPostRequestToServer = async ({ url, body }: { url: string; body: Record<string, unknown> }) => {
   const response = await fetch(url, {
     method: HttpMethod.POST,
     body: JSON.stringify(body),
