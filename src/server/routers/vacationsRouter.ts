@@ -5,7 +5,7 @@ import { Vacation } from "../../shared";
 import { getTeamVacations } from "../DBHelpers/getTeamVacations";
 import { createVacation } from "../DBHelpers/createVacation";
 import { DB_CONNECTION } from "../constants";
-import { deleteUnapprovedVacation } from "../../DBHelpers/deleteUnapprovedVacation";
+import { deleteUnapprovedVacation } from "../DBHelpers/deleteUnapprovedVacation";
 
 const vacationsRouter = express.Router();
 const jsonParser = bodyParser.json();
