@@ -4,9 +4,11 @@ import { getTeamVacations } from "../../DBHelpers/getTeamVacations";
 import { createVacation } from "../../DBHelpers/createVacation";
 import { VacationType } from "../../../shared";
 import { vacationsRouter } from "../vacationsRouter";
+import { deleteUnapprovedVacation } from "../../DBHelpers/deleteUnapprovedVacation";
 
 jest.mock("../../DBHelpers/getTeamVacations");
 jest.mock("../../DBHelpers/createVacation");
+jest.mock("../../DBHelpers/deleteUnapprovedVacation");
 
 describe("vacationsRouter", () => {
   let request;
@@ -92,6 +94,30 @@ describe("vacationsRouter", () => {
       const response = await request
         .post("/vacations")
         .send({ vacationStartDate: new Date("1-1-2021"), vacationEndDate: new Date("1-11-2021") });
+
+      expect(response.status).toBe(500);
+      expect(response.body.error).toEqual("Something went wrong, please try again later");
+    });
+  });
+
+  describe("delete requests", () => {
+    beforeEach(() => {
+      (deleteUnapprovedVacation as jest.Mock).mockImplementation(({ vacationId }: { vacationId: string }) => {
+        if (vacationId === "1") {
+          return 1;
+        }
+        throw Error("no vacation with that id");
+      });
+    });
+
+    test("should return created vacation, when DB interaction successfully", async () => {
+      const response = await request.delete("/vacations?id=1");
+
+      expect(response.status).toBe(204);
+    });
+
+    test("should return error, when failed to create new vacation", async () => {
+      const response = await request.delete("/vacations?id=wrongId");
 
       expect(response.status).toBe(500);
       expect(response.body.error).toEqual("Something went wrong, please try again later");
