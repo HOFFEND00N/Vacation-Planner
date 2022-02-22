@@ -3,7 +3,7 @@ import { Appearances, Button } from "@confirmit/react-button";
 import { ConfirmationDialog, ConfirmationMode } from "@confirmit/react-confirmation-dialog";
 import { cancelUnapprovedVacation } from "../../../application/cancelUnapprovedVacation";
 import "./user-vacations.css";
-import { Vacation } from "../../../../shared";
+import { Vacation, VacationType } from "../../../../shared";
 import { showNotification } from "../../bannerHelpers/showNotification";
 import { showError } from "../../bannerHelpers/showError";
 
@@ -14,6 +14,7 @@ export const UserVacations = ({
   vacations: Vacation[];
   onVacationCancel: (vacationId: string) => void;
 }) => {
+  const unapprovedVacations = vacations.filter((vacation) => vacation.type === VacationType.PENDING_APPROVAL);
   const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] = useState(false);
   const [vacationId, setVacationId] = useState<string>();
 
@@ -39,11 +40,11 @@ export const UserVacations = ({
     })();
   };
 
-  if (vacations.length === 0) {
+  if (unapprovedVacations.length === 0) {
     return <></>;
   }
 
-  const vacationDates = vacations.map((vacation) => (
+  const vacationDates = unapprovedVacations.map((vacation) => (
     <div key={vacation.id} className="user-vacation">
       <div className="user-vacation__dates">
         {vacation.start.toDateString()} - {vacation.end.toDateString()}

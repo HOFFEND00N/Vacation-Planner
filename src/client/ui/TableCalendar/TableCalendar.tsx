@@ -5,7 +5,6 @@ import { getVacations } from "../../application/getVacations";
 import { showError } from "../bannerHelpers/showError";
 import { getTeamMembers } from "../../application/getTeamMembers";
 import { findUserVacations } from "../../domain/Vacation/findUserVacations";
-import { VacationType } from "../../../shared";
 import { TableCalendarContext } from "./TableCalendarContext/TableCalendarContext";
 import { Pager } from "./Pager";
 import { Body } from "./Body";
@@ -70,7 +69,7 @@ export const TableCalendar = ({ currentDate }: { currentDate: moment.Moment }) =
     userId: currentUser.id,
     vacations,
     year: currentDate.year(),
-  }).filter((vacation) => vacation.type === VacationType.PENDING_APPROVAL);
+  });
 
   return (
     <div className="table-calendar" data-testid="table-calendar">
