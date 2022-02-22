@@ -4,5 +4,6 @@ const config = {
   moduleNameMapper: {
     "\\.(css|less)$": "identity-obj-proxy",
   },
+  coveragePathIgnorePatterns: ["/DBHelpers/deleteUnapprovedVacation.ts", "/DBHelpers/getTeamVacations.ts"],
 };
 export default config;
