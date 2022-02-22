@@ -39,14 +39,16 @@ export const TableCalendar = ({ currentDate }: { currentDate: moment.Moment }) =
   }, []);
 
   const handleVacationCanceled = (vacationId: string) => {
-    dispatch(
-      vacationCanceled({
-        vacations: vacations!,
-        canceledVacationId: vacationId,
-        teamMembers: teamMembers!,
-        currentUser: currentUser!,
-      })
-    );
+    if (vacations && teamMembers && currentUser) {
+      dispatch(
+        vacationCanceled({
+          vacations,
+          canceledVacationId: vacationId,
+          teamMembers,
+          currentUser,
+        })
+      );
+    }
   };
 
   const handlePreviousMonthChange = () => {

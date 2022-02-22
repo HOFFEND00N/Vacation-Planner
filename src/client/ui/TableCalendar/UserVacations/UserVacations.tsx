@@ -28,16 +28,18 @@ export const UserVacations = ({
   };
 
   const handleConfirmation = () => {
-    (async () => {
-      try {
-        await cancelUnapprovedVacation(vacationId!);
-        onVacationCancel(vacationId!);
-        showNotification("Vacation has been canceled successfully");
-      } catch (e) {
-        showError(e);
-      }
-      setIsConfirmationDialogOpen(false);
-    })();
+    if (vacationId) {
+      (async () => {
+        try {
+          await cancelUnapprovedVacation(vacationId);
+          onVacationCancel(vacationId);
+          showNotification("Vacation has been canceled successfully");
+        } catch (e) {
+          showError(e);
+        }
+        setIsConfirmationDialogOpen(false);
+      })();
+    }
   };
 
   if (unapprovedVacations.length === 0) {
