@@ -56,7 +56,7 @@ export const UserVacations = ({
 
   return (
     <div>
-      <div>Your vacations: </div>
+      <div>Your unapproved vacations: </div>
       {vacationDates}
       <ConfirmationDialog
         title="Vacation cancellation"
